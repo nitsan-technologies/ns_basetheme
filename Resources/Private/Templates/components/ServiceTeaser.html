@@ -1,0 +1,49 @@
+<f:if condition="{content.text} || {content.bolded}">
+    <f:then>
+        <div class="article__container">
+            <aside class="article__section article__section--aside {f:if(condition:'{content.orientation}==right',then:'article__section--aside-right',else:'')}">
+                <div class="teaser-box {f:if(condition:'{content.color}==orange',then:'teaser-box--orange',else:'')}">
+                    <div class="teaser-box__content">
+                        <div class="teaser-box__column teaser-box__column--wide">
+                            <h4 class="headline teaser-box__headline" id="f1ca">{content.headline}
+                            </h4>
+                            <p class="teaser-box__intro">{content.text}</p>
+                        </div>
+                        <div class="teaser-box__column">
+                            <svg class="icon teaser-box__icon icon--{content.icon}" viewBox="0 0 200 200" role="presentation">
+                              <use xlink:href="#icon-{content.icon}"></use>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="teaser-box__items">
+                        <div class="phone {f:if(condition:'{content.color}==orange',then:'phone--inverted')}"><span class="phone__text">{content.bolded}</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <div class="article__section">
+                <div class="formatted-text">
+                    <f:format.html>{data.bodytext}</f:format.html>
+                </div>
+            </div>
+        </div>
+    </f:then>
+    <f:else>
+        <f:if condition="{0:'',1:''} != {0:'{data.header}',1:'{data.bodytext}'}">
+            <div class="article__section" id="c{localizedUid}">
+                <f:if condition="{data.header}"><f:if condition="{data.header_layout} < 100">
+                    <h2 class="headline headline--4" {f:if(condition:data.sectionIndex,then:'id="b{localizedUid}b"')}>{data.header}</h2>
+                </f:if></f:if>
+                <f:if condition="{data.bodytext}">
+                    <div class="formatted-text">
+                        <f:format.html>{data.bodytext}</f:format.html>
+                    </div>
+                </f:if>
+            </div>
+        </f:if>
+    </f:else>
+</f:if>
+
+
+
+

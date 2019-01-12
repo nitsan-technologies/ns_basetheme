@@ -1,0 +1,12 @@
+<f:if condition="{0:'',1:''} != {0:'{data.header}',1:'{data.bodytext}'}">
+    <div class="article__section" id="c{localizedUid}">
+        <f:if condition="{data.header}"><f:if condition="{data.header_layout} < 100">
+            <h2 class="headline headline--4" {f:if(condition:data.sectionIndex,then:'id="b{localizedUid}b"')}>{data.header}</h2>
+        </f:if></f:if>
+        <f:if condition="{data.bodytext}">
+            <div class="formatted-text">
+                <f:format.html>{data.bodytext}</f:format.html>
+            </div>
+        </f:if>
+    </div>
+</f:if>

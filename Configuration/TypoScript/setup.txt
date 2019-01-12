@@ -1,0 +1,88 @@
+# Includes Basic Configuration of website
+<INCLUDE_TYPOSCRIPT:source="FILE:EXT:site_default/Configuration/TypoScript/Configuration/config.ts" />
+
+# Includes Basic Page Configuration
+<INCLUDE_TYPOSCRIPT:source="FILE:EXT:site_default/Configuration/TypoScript/Page/setup.ts" />
+
+# IndexedSearch Configuration
+<INCLUDE_TYPOSCRIPT:source="FILE:EXT:site_default/Configuration/TypoScript/Extensions/IndexedSearch/setup.ts" />
+
+# Grids Configuration
+<INCLUDE_TYPOSCRIPT:source="FILE:EXT:site_default/Configuration/TypoScript/Extensions/Grids/setup.ts" />
+
+# Form Configuration
+
+# News Configuration
+<INCLUDE_TYPOSCRIPT:source="FILE:EXT:site_default/Configuration/TypoScript/Extensions/News/setup.ts" />
+
+# Fluid_style_content Configuration
+<INCLUDE_TYPOSCRIPT:source="FILE:EXT:site_default/Configuration/TypoScript/Extensions/Fluid_style_content/setup.ts" />
+
+
+
+plugin.tx_nitsan {
+    settings {
+        imageserver = {$template.imageserver}
+        revisionUrl = {$template.frontEndAssetDomain}REVISION
+    }
+}
+lib.fluidContent < lib.contentElement
+lib.fluidContent {
+    partialRootPaths {
+        100 = {$plugin.tx_nitsan_pi1.view.partialRootPath}
+    }
+    templateRootPaths {
+        100 = {$plugin.tx_nitsan_pi1.view.templateRootPath}
+    }
+  
+    variables {
+       
+    }
+
+}
+
+tt_content {
+    ns_text < lib.fluidContent
+    ns_text {
+        templateName = Text
+    }
+    ns_image < lib.fluidContent
+    ns_image {
+        templateName = Image
+        dataProcessing {
+            10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+            10 {
+                references.fieldName = image
+                as = image
+            }
+            20 = NITSAN\site_default\DataProcessing\DefaultProcessor
+        }
+    }
+    ns_serviceteaser < lib.fluidContent
+    ns_serviceteaser {
+      templateName = ServiceTeaser
+      dataProcessing {
+            
+            20 = NITSAN\site_default\DataProcessing\DefaultProcessor
+        }
+    }
+   
+    ns_imageteaser < lib.fluidContent
+    ns_imageteaser {
+      templateName = ImageTeaser
+      dataProcessing {
+            10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+            10 {
+                references.fieldName = image
+                as = image
+            }
+            
+            20 = NITSAN\site_default\DataProcessing\DefaultProcessor
+        }
+    }
+    
+   
+}
+
+
+

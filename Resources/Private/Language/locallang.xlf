@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-07-24T20:37:42Z">
+		<header/>
+		<body>
+            <trans-unit id="creator">
+                <source>copyright</source>
+            </trans-unit>
+            <trans-unit id="length_of_video">
+                <source>Length of the video</source>
+            </trans-unit>
+            <trans-unit id="download">
+                <source>Download</source>
+            </trans-unit>
+            <trans-unit id="number_text">
+                <source>Telephone:</source>
+            </trans-unit>
+            <trans-unit id="fax_text">
+                <source>Telefax:</source>
+            </trans-unit>
+            <trans-unit id="contact_email">
+                <source>E-Mail</source>
+            </trans-unit>
+            <trans-unit id="image-zoom">
+                <source>Image zoom</source>
+            </trans-unit>
+            <trans-unit id="facts-button">
+                <source>Find out more about the ns</source>
+            </trans-unit>
+            <trans-unit id="availibility-suche">
+                <source>Search</source>
+            </trans-unit>
+            <trans-unit id="availibility-sucheingabe">
+                <source>Search input</source>
+            </trans-unit>
+            <trans-unit id="availibility-Suchen">
+                <source>Search</source>
+            </trans-unit>
+            <trans-unit id="darksite-phone1">
+                <source>Krisenhotline:</source>
+            </trans-unit>
+            <trans-unit id="darksite-phone2">
+                <source>Presse-Hotline:</source>
+            </trans-unit>
+            <trans-unit id="darksite-phoneorange1">
+                <source>Berlin / Brandenburg</source>
+            </trans-unit>
+            <trans-unit id="darksite-phoneorange2">
+                <source>Forst / Lausitz</source>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>

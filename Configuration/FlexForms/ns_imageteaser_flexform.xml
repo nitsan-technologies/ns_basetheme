@@ -1,0 +1,36 @@
+<T3DataStructure>
+  <sheets>
+    <sDEF>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>Fields</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+            <orientation>
+              <TCEforms>
+                 <label>LLL:EXT:site_default/Resources/Private/Language/locallang_flex.xlf:service_teaser.orientation</label>
+                 <config>
+                    <type>select</type>
+                    <renderType>selectSingle</renderType>
+                    <items type="array">
+                       <numIndex index="0" type="array">
+                          <numIndex index="0">LLL:EXT:site_default/Resources/Private/Language/locallang_flex.xlf:service_teaser.left</numIndex>
+                          <numIndex index="1">left</numIndex>
+                       </numIndex>
+                       <numIndex index="1" type="array">
+                          <numIndex index="0">LLL:EXT:site_default/Resources/Private/Language/locallang_flex.xlf:service_teaser.right</numIndex>
+                          <numIndex index="1">right</numIndex>
+                       </numIndex>
+                    </items>
+                    <size>1</size>
+                    <minitems>0</minitems>
+                    <maxitems>1</maxitems>
+                 </config>
+              </TCEforms>
+            </orientation>
+        </el>
+      </ROOT>
+    </sDEF>
+  </sheets>
+</T3DataStructure>

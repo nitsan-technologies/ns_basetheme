@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2015-07-24T20:37:42Z">
+		<header/>
+		<body>
+            <trans-unit id="creator">
+                <target>copyright</target>
+            </trans-unit>
+            <trans-unit id="length_of_video">
+                <target>Länge des Videos</target>
+            </trans-unit>
+            <trans-unit id="download">
+                <target>Herunterladen</target>
+            </trans-unit>
+            <trans-unit id="number_text">
+                <target>Telefon:</target>
+            </trans-unit>
+            <trans-unit id="fax_text">
+                <target>Telefax:</target>
+            </trans-unit>
+            <trans-unit id="contact_email">
+                <target>E-Mail</target>
+            </trans-unit>
+            <trans-unit id="image-zoom">
+                <target>Bild zoom</target>
+            </trans-unit>
+            <trans-unit id="facts-button">
+                <target>Mehr über die ns erfahren</target>
+            </trans-unit>
+            <trans-unit id="availibility-suche">
+                <target>Suche</target>
+            </trans-unit>
+            <trans-unit id="availibility-sucheingabe">
+                <target>Sucheingabe</target>
+            </trans-unit>
+            <trans-unit id="availibility-Suchen">
+                <target>Suchen</target>
+            </trans-unit>
+            <trans-unit id="darksite-phone1">
+                <target>Krisenhotline:</target>
+            </trans-unit>
+            <trans-unit id="darksite-phone2">
+                <target>Presse-Hotline:</target>
+            </trans-unit>
+            <trans-unit id="darksite-phoneorange1">
+                <target>Berlin / Brandenburg</target>
+            </trans-unit>
+            <trans-unit id="darksite-phoneorange2">
+                <target>Forst / Lausitz</target>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>

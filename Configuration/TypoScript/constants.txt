@@ -1,0 +1,60 @@
+site_default {
+	website {
+		optimization{
+			#cat = site_default/website/optimization/01; type=boolean; label=Compress CSS
+			compressCss = 1
+			#cat = site_default/website/optimization/02; type=boolean; label=Compress JS
+			compressJs = 1
+			#cat = site_default/website/optimization/03; type=boolean; label=Concatenate CSS
+			concatenateCss = 1
+			#cat = site_default/website/optimization/04; type=boolean; label=Concatenate JS
+			concatenateJs = 1
+		}
+		debugging{
+			#cat = site_default/website/debugging/01; type=boolean; label=Disable Content Object Exception Handler
+			contentObjectExceptionHandler = 0
+		}
+		settings{
+			#cat = site_default/website/settings/01; type=string; label=baseURL
+			baseURL = 
+
+			#cat = site_default/website/settings/01; type=string; label=absRefPrefix
+			absRefPrefix = 
+			
+			#cat = site_default/website/settings/01; type=string; label=Logo Path
+			logo = typo3conf/ext/site_default/Resources/Public/Images/Logo.png
+
+			#cat = site_default/website/settings/02; type=string; label=Copyright Text
+			copyright =
+
+			#cat = site_default/website/settings/03; type=string; label=Website Root page id
+			rootpage = 1
+
+			#cat = site_default/website/settings/04; type=string; label=Indexed search page id
+			searchpage = 11
+		}
+		paths{
+			templateRootPath = typo3conf/ext/site_default/Resources/Private/Templates/
+			layoutRootPath = typo3conf/ext/site_default/Resources/Private/Layouts/
+			partialRootPath = typo3conf/ext/site_default/Resources/Private/Partials/
+		}
+	}
+	bootstrap {
+		templateRootPath = typo3conf/ext/site_default/Resources/Private/Bootstrap/Templates/
+		partialRootPath = typo3conf/ext/site_default/Resources/Private/Bootstrap/Partials/
+		layoutRootPath = typo3conf/ext/site_default/Resources/Private/Bootstrap/Layouts/
+	}
+}
+
+styles.templates.templateRootPath = EXT:site_default/Resources/Private/Extensions/fluid_styled_content/Templates/
+styles.templates.partialRootPath = EXT:site_default/Resources/Private/Extensions/fluid_styled_content/Partials/
+styles.templates.layoutRootPath = EXT:site_default/Resources/Private/Extensions/fluid_styled_content/Layouts/
+
+
+plugin.tx_nitsan_pi1 {
+    view {
+        # cat=plugin.tx_NITSANpageadds_pi1/view/a2; type=text; label=Template Path:The default shared template path for this extension.
+        templateRootPath = EXT:site_default/Resources/Private/Templates/components/
+        partialRootPath = EXT:site_default/Resources/Private/Partials/
+    }
+}

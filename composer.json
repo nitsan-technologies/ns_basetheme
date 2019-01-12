@@ -1,0 +1,31 @@
+{
+  "name": "nitsan/site-default",
+  "type": "typo3-cms-extension",
+  "description": "Purpose of the extension is to use as a default theme for the site, To manage backend/frontend layouts, templates, site global configuration, custom content elements and many more.",
+  "homepage": "https://gitlab.com/sanjay_nitsan/site_default",
+  "license": "GPL-3.0+",
+  "keywords": [
+    "TYPO3 CMS",
+    "site_default"
+  ],
+  "support": {
+    "issues": "https://gitlab.com/sanjay_nitsan/site_default/issues"
+  },
+  "require": {
+    "typo3/cms-core": ">=6.2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "NITSAN\\site_default\\": "Classes/"
+    }
+  },
+  "replace": {
+      "site_default": "self.version",
+      "nitsan/site-default": "self.version"
+  },
+  "extra": {
+      "typo3/cms": {
+          "extension-key": "site_default"
+      }
+  }
+}
