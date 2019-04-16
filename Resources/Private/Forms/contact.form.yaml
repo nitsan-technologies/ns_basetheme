@@ -1,0 +1,31 @@
+
+renderingOptions:
+  submitButtonLabel: Submit
+type: Form
+identifier: contact
+label: Contact
+prototypeName: standard
+renderables:
+  -
+    renderingOptions:
+      previousButtonLabel: 'Previous step'
+      nextButtonLabel: 'Next step'
+    type: Page
+    identifier: page-1
+    label: ''
+    renderables:
+      -
+        defaultValue: ''
+        type: Text
+        identifier: text-1
+        label: Name
+      -
+        defaultValue: ''
+        type: Text
+        identifier: text-2
+        label: Email
+      -
+        defaultValue: ''
+        type: Textarea
+        identifier: textarea-1
+        label: Message
