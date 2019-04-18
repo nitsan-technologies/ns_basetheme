@@ -5,7 +5,7 @@
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:site_default/Configuration/TypoScript/Extensions/IndexedSearch" extensions="ts">
 
 # Includes EXT:Grids Configuration
-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:site_default/Configuration/TypoScript/Extensions/Grids" extensions="ts">
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:site_default/Configuration/TypoScript/Extensions/GridElements" extensions="ts">
 
 # Includes EXT:News Configuration
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:site_default/Configuration/TypoScript/Extensions/News" extensions="ts">

@@ -26,11 +26,13 @@ namespace NITSAN\site_default\Hooks;
 use NITSAN\NITSANpageadds\Helper\NITSANHelper;
 use TYPO3\CMS\Core\FormProtection\Exception;
 use TYPO3\CMS\Core\Utility\DebugUtility;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHookInterface;
 use TYPO3\CMS\Backend\View\PageLayoutView;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Extbase\Service\FlexFormService;
 
 /**
  * Hook to display verbose information about the felogin plugin
@@ -55,9 +57,50 @@ class CmsLayout implements PageLayoutViewDrawItemHookInterface
         $content = $this->getOptionsFromFlexFormData($row);
         $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
 
-        //if ($row['CType'] === 'ns_text') {
-        //}
+        // Get Components from ext_localconf.php
+        $allComponents = constant('ALL_COMPONENTS');
 
+        // Let's check if our components is going to be load in backned?
+        if (in_array($row['CType'], $allComponents)) {
+            $drawItem = false;
+            $headerContent = '';
+
+            // template
+            $view = $this->getFluidTemplate($extKey, GeneralUtility::underscoredToUpperCamelCase($row['CType']));
+
+            if (!empty($row['pi_flexform'])) {
+                /** @var FlexFormService $flexFormService */
+                $flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
+                $flexformData = $flexFormService->convertFlexFormContentToArray($row['pi_flexform']);
+            }
+
+            // same name as field name
+            $images = BackendUtility::resolveFileReferences('tt_content', 'image', $row);
+
+            // assign all to view
+            $view->assignMultiple([
+                'data' => $row,
+                'image'=> $images,
+                'flexformData' => $flexformData
+            ]);
+
+            // return the preview
+            $itemContent = $parentObject->linkEditContent($view->render(), $row);
+        }
+    }
+
+    /**
+     * @param string $extKey
+     * @param string $templateName
+     * @return string the fluid template
+     */
+    protected function getFluidTemplate($extKey, $templateName)
+    {
+        // prepare own template
+        $fluidTemplateFile = GeneralUtility::getFileAbsFileName('EXT:site_default/Resources/Private/Templates/Components/Backend/' . $templateName . '.html');
+        $view = GeneralUtility::makeInstance(StandaloneView::class);
+        $view->setTemplatePathAndFilename($fluidTemplateFile);
+        return $view;
     }
 
     /**
@@ -105,5 +148,36 @@ class CmsLayout implements PageLayoutViewDrawItemHookInterface
     protected function translateKey($key)
     {
         return $GLOBALS['LANG']->sL('LLL:EXT:site_default/Resources/Private/Language/locallang_db.xlf:' . $key);
+    }
+    /**
+     * @param array $row the parent record
+     * @param string $table the name of the irre table
+     * @param string $parentField the field name with the uid of the parent record
+     * @param string $imageField optional image field
+     * @return array the irre elements
+     */
+    private function getInlineRecords(array &$row, $table = '', $parentField = '', $imageField = '')
+    {
+        $irreItems = [];
+
+        if ($table && $parentField) {
+            $irreItems = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows(
+                '*',
+                $table,
+                ' hidden=0 and ' . $parentField . '=' . intval($row['uid']) . ' and pid=' . intval($row['pid'])
+                . BackendUtility::deleteClause($table)
+                . BackendUtility::versioningPlaceholderClause($table),
+                '',
+                'sorting'
+            );
+            if ($imageField && is_array($irreItems) && count($irreItems)) {
+                foreach ($irreItems as $k => $irreItem) {
+                    $irreItems[$k]['irre_' . $imageField] = BackendUtility::resolveFileReferences($table, $imageField,
+                        $irreItem);
+                }
+            }
+        }
+
+        return $irreItems;
     }
 }

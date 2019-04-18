@@ -30,5 +30,8 @@ tt_content {
 
     // Prepare each Component
     ns_imageteaser < .ns_default
-    ns_imageteaser.templateName = Ns_imageteaser
+    ns_imageteaser.templateName = NsImageTeaser
+
+    ns_slider < .ns_default
+    ns_slider.templateName = NsSlider
 }

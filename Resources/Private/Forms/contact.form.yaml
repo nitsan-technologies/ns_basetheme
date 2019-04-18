@@ -19,11 +19,23 @@ renderables:
         type: Text
         identifier: text-1
         label: Name
+        validators:
+          -
+            identifier: NotEmpty
+        properties:
+          fluidAdditionalAttributes:
+            required: required
       -
         defaultValue: ''
         type: Text
         identifier: text-2
         label: Email
+        validators:
+          -
+            identifier: NotEmpty
+        properties:
+          fluidAdditionalAttributes:
+            required: required
       -
         defaultValue: ''
         type: Textarea

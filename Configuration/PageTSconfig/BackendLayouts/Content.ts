@@ -23,7 +23,7 @@ mod {
 								columns {
 									1 {
 										name = LLL:EXT:site_default/Resources/Private/Language/BackendLayouts/locallang.xlf:footer
-										colPos = 20
+										colPos = 1
 									}
 								}
 							}

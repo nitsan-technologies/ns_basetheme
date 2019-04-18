@@ -2,8 +2,8 @@
 menu.main = HMENU
 menu.main {
 	
-	// special = directory
-	// special.value = 3
+	special = directory
+	special.value = {$site_default.website.settings.main_menu}
 		
 	1 = TMENU
 	1 {
@@ -61,7 +61,7 @@ menu.footer = HMENU
 menu.footer {
 	
 	special = directory
-	special.value = 3
+	special.value = {$site_default.website.settings.footer_menu}
 		
 	1 = TMENU
 	1 {

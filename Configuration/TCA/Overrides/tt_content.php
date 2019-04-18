@@ -6,7 +6,7 @@ call_user_func(function () {
 
     $locallang_db = 'LLL:EXT:site_default/Resources/Private/Language/locallang_db.xlf:';
 
-    // Define components
+    // Get Components from ext_localconf.php
     $allComponents = constant('ALL_COMPONENTS');
 
     // Let's load pi_flexform
@@ -43,10 +43,11 @@ call_user_func(function () {
     // CType: ns_imageteaser
     $ns_imageteaser = [
         'showitem' => '
-                --palette--;' . $locallang_db . 'palette.general;general,
-                --palette--;;visibility,
-                --palette--;' . $locallang_db . 'tca.tab.elements;header,bodytext,
-                --div--;LLL:EXT:site_default/Resources/Private/Language/locallang_db.xlf:tab.ns_imageteaser,image,pi_flexform
+            --palette--;' . $locallang_db . 'palette.general;general,
+            --palette--;;visibility,
+            --palette--;' . $locallang_db . 'tca.tab.elements;,pi_flexform,
+            --div--;' . $locallang_db . 'palette.access,
+            --palette--;' . $locallang_db . 'palette.access;access,
         ',
         'columnsOverrides' => [
             'bodytext' => [
@@ -56,6 +57,17 @@ call_user_func(function () {
                 ]
             ]
         ]
+    ];
+
+    // CType: ns_slider
+    $ns_slider = [
+        'showitem' => '
+            --palette--;' . $locallang_db . 'palette.general;general,
+            --palette--;;visibility,
+            --palette--;' . $locallang_db . 'tca.tab.elements;,pi_flexform,
+            --div--;' . $locallang_db . 'palette.access,
+            --palette--;' . $locallang_db . 'palette.access;access,
+        ',
     ];
 
 	// Adding each components

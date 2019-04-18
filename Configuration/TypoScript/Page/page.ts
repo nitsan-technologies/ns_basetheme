@@ -1,7 +1,4 @@
 
-// Get constant value
-plugin.tx_sitedefault.settings.logo = {$site_default.website.settings.logo}
-
 // Initiate Page Object
 page = PAGE
 page {
@@ -16,7 +13,7 @@ page {
 	bodyTagCObject.insertData = 1
 
 	// Setup favion
-	favicon = site_default/Resources/Public/images/favicons/favicon.ico
+	favicon = typo3conf/exit/site_default/Resources/Public/images/favicon.ico
 
 	// Set viewport
 	meta {
@@ -26,7 +23,7 @@ page {
 	// Initiate all the css-together
 	includeCSS {
 		10 = typo3conf/ext/site_default/Resources/Public/vendor/bootstrap/css/bootstrap.min.css
-		20 = typo3conf/ext/site_default/Resources/Public/css/modern-business.css
+		20 = typo3conf/ext/site_default/Resources/Public/css/custom.css
 	}
 
 	// Initiate all the js-together

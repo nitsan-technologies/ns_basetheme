@@ -31,7 +31,8 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php'][
 
 // Define your list of all the Components
 $allComponents = [
-	'ns_imageteaser',	
+	'ns_imageteaser',
+    'ns_slider',
 ];
 
 define("ALL_COMPONENTS", $allComponents);

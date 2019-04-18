@@ -3,8 +3,15 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2015-07-24T20:37:42Z">
 		<header/>
 		<body>
+			<trans-unit id="palette.access">
+                <source>Access</source>
+            </trans-unit>
             <trans-unit id="title">
                 <source>Title</source>
+            </trans-unit>
+
+            <trans-unit id="ns_imageteaser.readmore">
+                <source>Read more!</source>
             </trans-unit>
 		</body>
 	</file>

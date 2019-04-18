@@ -14,13 +14,13 @@ config {
 
 	# For Caching
 	cache_period = 86400
-	no_cache = 1
+	no_cache = {$site_default.website.settings.no_cache}
 
 	# For Debugging
 	contentObjectExceptionHandler = 0
 	
 	# For TYPO3 v9 EXT:realurl
-	// tx_realurl_enable = 1
+	# tx_realurl_enable = 1
 
 	# For enable indexed search
 	index_enable = 1
@@ -33,10 +33,10 @@ config {
 
 	# Site Optimization
 	moveJsFromHeaderToFooter = 1
-	compressJs = 1
-	compressCss = 1
-	concatenateJs = 1
-	concatenateCss = 1
+	compressJs = {$site_default.website.settings.compress_cssjs}
+	compressCss = {$site_default.website.settings.compress_cssjs}
+	concatenateJs = {$site_default.website.settings.compress_cssjs}
+	concatenateCss = {$site_default.website.settings.compress_cssjs}
 }
 
 # for TYPO3 v8, Mulit-Langauge configuration
