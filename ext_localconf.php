@@ -20,7 +20,7 @@ if (TYPO3_MODE === 'BE') {
         $_EXTKEY
     );
     // Let's add default PageTS for "Form"
-    $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['default'] = 'EXT:site_default/Configuration/PageTSconfig/TceForm/Default.yaml';
+    $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['default'] = 'EXT:site_default/Configuration/RTE/Default.yaml';
 }
 
 // Draw content into content elements

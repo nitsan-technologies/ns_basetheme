@@ -1,18 +1,30 @@
 {
   "name": "nitsan/site-default",
   "type": "typo3-cms-extension",
-  "description": "Purpose of the extension is to use as a default theme for the site, To manage backend/frontend layouts, templates, site global configuration, custom content elements and many more.",
-  "homepage": "https://gitlab.com/sanjay_nitsan/site_default",
-  "license": "GPL-3.0+",
+  "description": "Site-default delivers a full configured frontend theme for TYPO3, based on the Bootstrap CSS Framework.",
   "keywords": [
     "TYPO3 CMS",
-    "Theme",
-    "Template",
-    "Bootstrap"
+    "introduction",
+    "sitedefault",
+    "bootstrap",
+    "responsive",
+    "frontend",
+    "theme",
+    "web"
+  ],
+  "homepage": "https://gitlab.com/sanjay_nitsan/site_default",
+  "authors": [
+    {
+        "name": "Team NITSAN",
+        "email": "info@nitsan.in",
+        "role": "Developer",
+        "homepage": "http://www.nitsan.in/"
+    }
   ],
   "support": {
     "issues": "https://gitlab.com/sanjay_nitsan/site_default/issues"
   },
+  "license": "MIT",
   "require": {
     "typo3/cms-core": ">=8.0.0",
     "georgringer/news": ">=4.3.0",

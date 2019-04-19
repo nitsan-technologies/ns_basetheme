@@ -1,7 +1,7 @@
 plugin.tx_form.settings.yamlConfigurations {
-    100 = EXT:site_default/Configuration/Yaml/FormConfiguration.yaml
+    100 = EXT:site_default/Configuration/Form/setup.yaml
 }
  
 module.tx_form.settings.yamlConfigurations {
-    100 = EXT:site_default/Configuration/Yaml/FormConfiguration.yaml
+    100 = EXT:site_default/Configuration/Form/setup.yaml
 }
