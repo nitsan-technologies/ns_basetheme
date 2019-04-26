@@ -11,14 +11,21 @@
         </ol>
         <div class="carousel-inner" role="listbox">
           <f:for each="{content.slider}" as="item" iteration="itemIterator">
-            <f:if condition="{item.image}">
+            
+            <!-- FAL Media -->
+            <f:comment>
               <div class="carousel-item {f:if(condition: itemIterator.isFirst, then: 'active')}" style="background-image: url('{f:uri.image(src: '{item.image}')}')">
-                <div class="carousel-caption d-none d-md-block">
-                  <h3>{item.headline}</h3>
-                  <p><f:format.html>{item.subheadline}</f:format.html></p>
-                </div>
+            </f:comment>
+
+              <!-- Static Media -->
+              <div class="carousel-item {f:if(condition: itemIterator.isFirst, then: 'active')}" style="background-image: url('http://placehold.it/1980x1080')">
+                
+              <div class="carousel-caption d-none d-md-block">
+                <h3>{item.headline}</h3>
+                <p><f:format.html>{item.subheadline}</f:format.html></p>
               </div>
-            </f:if>
+            </div>
+            
           </f:for>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

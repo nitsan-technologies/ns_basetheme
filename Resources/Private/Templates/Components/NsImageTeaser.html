@@ -1,7 +1,7 @@
 <f:if condition="{content.headline}">
-    <div class="card h-100 text-center">
-      <img class="card-img-top" src="http://placehold.it/750x450" alt="">
+    <div class="card h-100 text-center">     
       
+      <!-- FAL Media -->
       <f:comment>
         <f:media class="card-img-top" file="{content.image}" 
           additionalAttributes="{
@@ -9,6 +9,10 @@
               srcset:'{f:uri.image(image: content.image, cropVariant: \'default\')}?text=860x530@1400w 1400w,{f:uri.image(image: content.image, cropVariant: \'specialTablet\')}?text=720x440@865w 865w,{f:uri.image(image: content.image, cropVariant: \'specialMobile\')}?text=355x220@480w 480w'
           }"/>
       </f:comment>
+
+      <!-- Static Media -->
+      <img class="card-img-top" src="http://placehold.it/1980x1080" alt="">
+      
       <div class="card-body">
         <h4 class="card-title">{content.headline}</h4>
         <h6 class="card-subtitle mb-2 text-muted">{content.subheadline}</h6>

@@ -2,7 +2,15 @@
       data-namespace-typo3-fluid="true">
 
 <f:if condition="{flexformData.headline}">
-	<p><f:image src="{flexformData.image}" width="200" /></p>
+	
+	<!-- FAL Media -->
+	<f:comment>
+		<p><f:image src="{flexformData.image}" width="200" /></p>
+	</f:comment>
+
+	<!-- Static Media -->
+	<p><img src="http://placehold.it/1980x1080" width="200" /></p>
+  
 	<h4>{flexformData.headline}</h4>
 	<h6">{flexformData.subheadline}</h6>
 	<p>{flexformData.text}</p>
