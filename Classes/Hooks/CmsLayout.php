@@ -66,7 +66,7 @@ class CmsLayout implements PageLayoutViewDrawItemHookInterface {
 	 */
 	protected function getFluidTemplate($extKey, $templateName) {
 		// prepare own template
-		$fluidTemplateFile = GeneralUtility::getFileAbsFileName('EXT:site_default/Resources/Private/Templates/Components/Backend/' . $templateName . '.html');
+		$fluidTemplateFile = GeneralUtility::getFileAbsFileName('EXT:site_default/Resources/Private/Components/Backend/' . $templateName . '.html');
 		$view = GeneralUtility::makeInstance(StandaloneView::class);
 		$view->setTemplatePathAndFilename($fluidTemplateFile);
 		return $view;
