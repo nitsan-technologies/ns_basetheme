@@ -36,7 +36,10 @@
 								<div class="col-lg-6 news-img-wrap">
 									<span class="no-media-element">
 										<n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}">
-											<f:image class="img-fluid rounded" src="{settings.list.media.dummyImage}" title="" alt="" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}" maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+											<f:comment>
+												<f:image class="img-fluid rounded" src="{settings.list.media.dummyImage}" title="" alt="" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}" maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}"/>
+											</f:comment>
+											<f:image class="rounded" src="typo3conf/ext/site_default/Resources/Public/Images/1980x1080.png" title="" alt="" maxWidth="500" />
 										</n:link>
 									</span>
 								</div>
