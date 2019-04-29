@@ -10,5 +10,8 @@
 # Includes EXT:News Configuration
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:site_default/Configuration/TypoScript/Extensions/News" extensions="ts">
 
+# Includes EXT:Fluid Style Content Configuration
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:site_default/Configuration/TypoScript/Extensions/Fluid" extensions="ts">
+
 # Includes Page Configuration
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:site_default/Configuration/TypoScript/Page" extensions="ts">
