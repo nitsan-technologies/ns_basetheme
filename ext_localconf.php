@@ -7,11 +7,14 @@ if (!defined('TYPO3_MODE')) {
 // Let's configuration of this extension from "Extension Manager"
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$_EXTKEY] = unserialize($_EXTCONF);
 
-// Define your list of all the Components
-$allComponents = [
-  'ns_imageteaser',
-    'ns_slider',
-];
+// Define your each componenet's flexform files
+$allComponents = array();
+$arrAllComponents = scandir("typo3conf/ext/site_default/Configuration/FlexForms");
+foreach ($arrAllComponents as $key=>$value) {
+  if($value != '.' && $value != '..') {
+    $allComponents[] = str_replace(".xml","",$value);
+  }
+}
 
 define("ALL_COMPONENTS", $allComponents);
 
