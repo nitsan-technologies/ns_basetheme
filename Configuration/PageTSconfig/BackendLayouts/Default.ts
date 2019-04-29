@@ -5,7 +5,7 @@ mod {
         BackendLayouts {
             default {
                 title = LLL:EXT:site_default/Resources/Private/Language/BackendLayouts/locallang.xlf:default
-                icon = EXT:site_default/Resources/Public/Icons/BackendLayouts/default.png
+                icon = EXT:site_default/Resources/Public/Icons/BackendLayouts/Default.png
                 config {
 					backend_layout {
 						colCount = 1
