@@ -88,6 +88,6 @@ foreach ($allComponents as $theComponent) {
 	$iconRegistry->registerIcon(
 		$theComponent,
 		\TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-		['source' => 'EXT:site_default/Resources/Public/components-icons/' . $theComponent . '.png']
+		['source' => 'EXT:site_default/Resources/Public/Icons/' . $theComponent . '.png']
 	);
 }
