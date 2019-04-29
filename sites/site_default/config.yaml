@@ -1,5 +1,5 @@
 rootPageId: 1
-base: 'http://site.default.v9.ddev.local/'
+base: 'http://site-default.ddev.local/'
 baseVariants: {  }
 languages:
   -
