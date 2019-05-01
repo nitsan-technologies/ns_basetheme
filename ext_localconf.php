@@ -9,13 +9,31 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$_EXTKEY] = unserialize($_EXTCONF);
 
 // Define your each componenet's flexform files
 $allComponents = array();
-$arrAllComponents = scandir("typo3conf/ext/site_default/Configuration/FlexForms");
-foreach ($arrAllComponents as $key=>$value) {
-  if($value != '.' && $value != '..') {
-    $allComponents[] = str_replace(".xml","",$value);
+$arrAllComponents['site_default'] = scandir("typo3conf/ext/site_default/Configuration/FlexForms");
+
+// Get list of all the extensions
+$arrAllExtensions = scandir("typo3conf/ext/");
+foreach ($arrAllExtensions as $key => $extKey) {
+  // Get only extension which are child theme eg., EXT:ns_theme_cleanblog
+  $extensionPrefixKey = substr($extKey, 0, 9);
+  if($extensionPrefixKey == "ns_theme_") {
+    $arrAllComponents[$extKey] = scandir("typo3conf/ext/$extKey/Configuration/FlexForms");
   }
 }
 
+// Preparing final array with ALL components from ALL themes
+foreach ($arrAllComponents as $extKey=>$extValue) {
+  foreach ($extValue as $key=>$value) {
+    if($value != '.' && $value != '..') {
+      $theComponentName = str_replace(".xml","",$value);
+      if(!empty($theComponentName)) {
+        $allComponents[$extKey][] = $theComponentName;
+      }
+    }
+  }
+}
+
+// Settled constatant to access from "Everywhere"
 define("ALL_COMPONENTS", $allComponents);
 
 // Include new content elements to modWizards
@@ -33,12 +51,13 @@ if (TYPO3_MODE === 'BE') {
 
             // Let's prepare CType components to add at PageTS Config
             $collectComponent = $listComponent = $tsComponents = '';
-            foreach ($allComponents as $theComponent) {
+            foreach ($allComponents as $extKey=>$extValue) {
+              foreach ($extValue as $key=>$theComponent) {
                 $collectComponent .= "
                     $theComponent {
                       iconIdentifier = $theComponent
-                      title = LLL:EXT:site_default/Resources/Private/Language/locallang_db.xlf:wizard.$theComponent
-                      description = LLL:EXT:site_default/Resources/Private/Language/locallang_db.xlf:wizard.$theComponent.desc
+                      title = LLL:EXT:$extKey/Resources/Private/Language/locallang_db.xlf:wizard.$theComponent
+                      description = LLL:EXT:$extKey/Resources/Private/Language/locallang_db.xlf:wizard.$theComponent.desc
                       tt_content_defValues {
                           CType = $theComponent
                       }
@@ -49,6 +68,7 @@ if (TYPO3_MODE === 'BE') {
                     '.$theComponent.' < .ns_default
                     '.$theComponent.'.templateName = '.ucfirst($theComponent).'
                 ';
+              }
             }
             
             // Adding final CType and extra tab call "Custom Components"
@@ -84,10 +104,13 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php'][
 $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
   \TYPO3\CMS\Core\Imaging\IconRegistry::class
 );
-foreach ($allComponents as $theComponent) {
-	$iconRegistry->registerIcon(
-		$theComponent,
-		\TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-		['source' => 'EXT:site_default/Resources/Public/Icons/' . $theComponent . '.png']
-	);
+
+foreach ($allComponents as $extKey=>$extValue) {
+  foreach ($extValue as $key=>$theComponent) {
+  	$iconRegistry->registerIcon(
+  		$theComponent,
+  		\TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
+  		['source' => 'EXT:'.$extKey.'/Resources/Public/Icons/' . $theComponent . '.png']
+  	);
+  }
 }

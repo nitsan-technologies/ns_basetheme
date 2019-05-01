@@ -29,14 +29,25 @@ class CmsLayout implements PageLayoutViewDrawItemHookInterface {
 
 		// Get Components from ext_localconf.php
 		$allComponents = constant('ALL_COMPONENTS');
+		$rowFlag = $extensionKey = '';
+
+		// Finalize components
+		foreach ($allComponents as $extKey=>$extValue) {
+        	foreach ($extValue as $key=>$theComponent) {
+        		if ($row['CType'] == $theComponent) {
+        			$rowFlag = 1;
+        			$extensionKey = $extKey;
+        		}
+        	}
+        }
 
 		// Let's check if our components is going to be load in backned?
-		if (in_array($row['CType'], $allComponents)) {
+		if ($rowFlag == 1 && $extensionKey != '') {
 			$drawItem = false;
 			$headerContent = '';
 
 			// template
-			$view = $this->getFluidTemplate($extKey, GeneralUtility::underscoredToUpperCamelCase($row['CType']));
+			$view = $this->getFluidTemplate($extKey, GeneralUtility::underscoredToUpperCamelCase($row['CType']), $extensionKey);
 
 			if (!empty($row['pi_flexform'])) {
 				/** @var FlexFormService $flexFormService */
@@ -64,9 +75,9 @@ class CmsLayout implements PageLayoutViewDrawItemHookInterface {
 	 * @param string $templateName
 	 * @return string the fluid template
 	 */
-	protected function getFluidTemplate($extKey, $templateName) {
+	protected function getFluidTemplate($extKey, $templateName, $extensionKey) {
 		// prepare own template
-		$fluidTemplateFile = GeneralUtility::getFileAbsFileName('EXT:site_default/Resources/Private/Components/Backend/' . $templateName . '.html');
+		$fluidTemplateFile = GeneralUtility::getFileAbsFileName('EXT:'.$extensionKey.'/Resources/Private/Components/Backend/' . $templateName . '.html');
 		$view = GeneralUtility::makeInstance(StandaloneView::class);
 		$view->setTemplatePathAndFilename($fluidTemplateFile);
 		return $view;

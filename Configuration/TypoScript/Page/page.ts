@@ -28,8 +28,8 @@ page {
 
 	// Initiate all the js-together
 	includeJSFooter{
-		jquery = typo3conf/ext/site_default/Resources/Public/vendor/jquery/jquery.min.js
-		bootstrap = typo3conf/ext/site_default/Resources/Public/vendor/bootstrap/js/bootstrap.bundle.min.js
+		10 = typo3conf/ext/site_default/Resources/Public/vendor/jquery/jquery.min.js
+		20 = typo3conf/ext/site_default/Resources/Public/vendor/bootstrap/js/bootstrap.bundle.min.js
 	}
 
 	// Let's start fluid_styled_content

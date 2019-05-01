@@ -29,11 +29,3 @@ site_default {
 		}
 	}
 }
-
-# Define templates and partials paths for "Custom Components"
-plugin.tx_nitsan_pi1 {
-    view {
-        templateRootPath = EXT:site_default/Resources/Private/Templates/Components/
-        partialRootPath = EXT:site_default/Resources/Private/Partials/
-    }
-}

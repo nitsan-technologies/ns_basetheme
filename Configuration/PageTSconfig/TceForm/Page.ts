@@ -24,7 +24,6 @@ TCEFORM.sys_file_reference.crop.config.cropVariants {
         allowedAspectRatios {
             NaN {
                 title = LLL:EXT:lang/Resources/Private/Language/locallang_wizards.xlf:imwizard.ratio.free
-                value = 0.0
             }
         }
     }
@@ -34,7 +33,6 @@ TCEFORM.sys_file_reference.crop.config.cropVariants {
         allowedAspectRatios {
             3:2 {
                 title = LLL:EXT:lang/Resources/Private/Language/locallang_wizards.xlf:imwizard.ratio.3_2
-                value = 1.5
             }
         }
     }
@@ -44,7 +42,6 @@ TCEFORM.sys_file_reference.crop.config.cropVariants {
         allowedAspectRatios {
             4:3 {
                 title = LLL:EXT:lang/Resources/Private/Language/locallang_wizards.xlf:imwizard.ratio.4_3
-                value = 1.3333333
             }
         }
     }
