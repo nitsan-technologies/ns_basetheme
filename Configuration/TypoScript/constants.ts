@@ -16,8 +16,11 @@ site_default {
 
 			#cat = site_default/website/settings/05; type=int; label=Footer Menu ID
 			footer_menu = 7
+			
+			#cat = site_default/website/settings/06; type=string; label=Root Page Id
+			rootpage = 1
 
-			#cat = site_default/website/settings/06; type=boolean; label=Compress and Concatenate CSS/JS
+			#cat = site_default/website/settings/07; type=boolean; label=Compress and Concatenate CSS/JS
 			compress_cssjs = 0
 		}
 
