@@ -1,8 +1,3 @@
-cache:
-  key: "$CI_COMMIT_REF_NAME/$CI_JOB_STAGE"
-  paths:
-    - .composer/
-
 before_script:
   - apk add git --update
 
