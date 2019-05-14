@@ -46,7 +46,7 @@
   "extra": {
       "typo3/cms": {
           "extension-key": "site_default",
-          "web-dir": ".Build/Web",
+          "web-dir": ".Build/Web"
       }
   }
 }
