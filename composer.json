@@ -39,9 +39,14 @@
       "site_default": "self.version",
       "nitsan/site-default": "self.version"
   },
+  "config": {
+    "vendor-dir": ".Build/vendor/",
+    "bin-dir": ".Build/bin/"
+  },
   "extra": {
       "typo3/cms": {
-          "extension-key": "site_default"
+          "extension-key": "site_default",
+          "web-dir": ".Build/Web",
       }
   }
 }
