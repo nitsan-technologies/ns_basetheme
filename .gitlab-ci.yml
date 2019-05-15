@@ -28,6 +28,7 @@ stages:
     - composer require --dev helmich/typo3-typoscript-lint
   script:
     - .Build/bin/phpcs --standard=PSR2 --extensions=php *
+    - .Build/bin/typoscript-lint -c tslint.yaml
 
 # Tests in PHP 7.2 and TYPO3 9.5
 test:php72:typo3_95:
