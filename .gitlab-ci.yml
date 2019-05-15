@@ -25,6 +25,7 @@ stages:
     #- composer require typo3/minimal ${TYPO3_VERSION} --update-with-dependencies
     #- composer require nimut/testing-framework
     - composer require squizlabs/php_codesniffer
+    - composer require --dev helmich/typo3-typoscript-lint
   script:
     - .Build/bin/phpcs --standard=PSR2 --extensions=php *
 
