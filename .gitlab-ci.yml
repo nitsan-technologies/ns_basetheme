@@ -24,10 +24,10 @@ stages:
     - php -r "unlink('composer-setup.php'); unlink('installer.sig');"
     #- composer require typo3/minimal ${TYPO3_VERSION} --update-with-dependencies
     #- composer require nimut/testing-framework
-    - composer require squizlabs/php_codesniffer
+    #- composer require squizlabs/php_codesniffer
     - composer require --dev helmich/typo3-typoscript-lint
   script:
-    - .Build/bin/phpcs --standard=PSR2 --extensions=php *
+    #- .Build/bin/phpcs --standard=PSR2 --extensions=php *
     - .Build/bin/typoscript-lint -c tslint.yaml
 
 # Tests in PHP 7.2 and TYPO3 9.5
