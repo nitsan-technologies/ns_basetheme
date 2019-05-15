@@ -13,5 +13,7 @@ tslint:typoscriptcgl:
     image: composer:1.6
     stage: tslint
     script:
+      - export TYPO3_PATH_WEB="$PWD/.Build/Web"
+      - export COMPOSER_CACHE_DIR=.composer
       - composer install --no-progress --no-ansi --no-interaction
       - .Build/bin/typoscript-lint -c tslint.yaml
