@@ -9,23 +9,6 @@ before_script:
 stages:
   - test
 
-test:yaml:
-  image: python:alpine3.7
-  stage: test
-  before_script:
-      - pip install yamllint==1.10.0
-  script:
-      - yamllint -c yamllint.yaml .gitlab-ci.yml tslint.yaml sites/site_default/config.yaml Configuration/Default.yaml Configuration/Form/setup.yaml Configuration/RTE/Default.yaml
-
-test:typoscript:
-  image: composer:1.6
-  stage: test
-  before_script:
-    - export COMPOSER_CACHE_DIR=.composer
-    - composer require --dev helmich/typo3-typoscript-lint
-  script:
-    - .Build/bin/typoscript-lint -c tslint.yaml
-
 .test: &testing
   stage: test
   image: php:$DOCKER_TAG
@@ -44,7 +27,24 @@ test:typoscript:
     - composer require squizlabs/php_codesniffer
   script:
     - .Build/bin/phpcs --standard=PSR2 --extensions=php *
-        
+
+test:yaml:
+  image: python:alpine3.7
+  stage: test
+  before_script:
+      - pip install yamllint==1.10.0
+  script:
+      - yamllint -c yamllint.yaml .gitlab-ci.yml tslint.yaml sites/site_default/config.yaml Configuration/Default.yaml Configuration/Form/setup.yaml Configuration/RTE/Default.yaml
+
+test:typoscript:
+  image: composer:1.6
+  stage: test
+  before_script:
+    - export COMPOSER_CACHE_DIR=.composer
+    - composer require --dev helmich/typo3-typoscript-lint
+  script:
+    - .Build/bin/typoscript-lint -c tslint.yaml
+            
 # Tests in PHP 7.2 and TYPO3 9.5
 test:php72:typo3_95:
   <<: *testing
