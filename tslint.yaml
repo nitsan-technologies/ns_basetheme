@@ -1,6 +1,5 @@
 paths:
-    - Configuration/TypoScript/
-    - Configuration/TypoScript/Configuration/
+    - Configuration/
 
 sniffs:
     - class: Indentation
