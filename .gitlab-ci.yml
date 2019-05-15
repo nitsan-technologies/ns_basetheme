@@ -10,6 +10,13 @@ stages:
   - test
   - tslint
 
+.tslint:typoscriptcgl:
+    image: composer:1.6
+    stage: tslint
+    script:
+      - composer install --no-progress --no-ansi --no-interaction
+      - .Build/bin/typoscript-lint -c tslint.yaml
+
 .test: &testing
   stage: test
   image: php:$DOCKER_TAG
@@ -30,13 +37,6 @@ stages:
   script:
     #- .Build/bin/phpcs --standard=PSR2 --extensions=php *
     #- .Build/bin/typoscript-lint -c tslint.yaml
-
-tslint:typoscriptcgl:
-    image: composer:1.6
-    stage: tslint
-    script:
-      - composer install --no-progress --no-ansi --no-interaction
-      - .Build/bin/typoscript-lint -c tslint.yaml
         
 # Tests in PHP 7.2 and TYPO3 9.5
 test:php72:typo3_95:
