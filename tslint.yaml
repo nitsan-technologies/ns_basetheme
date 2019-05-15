@@ -1,5 +1,4 @@
 paths:
-    - Configuration/Form
     - Configuration/PageTSconfig
     - Configuration/RTE
     - Configuration/TypoScript
