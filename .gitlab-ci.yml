@@ -7,8 +7,8 @@ before_script:
   - apk add git --update
 
 stages:
-  - test
   - lint
+  - test
 
 lint:typoscriptcgl:
     image: composer:1.6
