@@ -20,4 +20,4 @@ rules:
         forbid-in-block-mappings: true
         forbid-in-flow-mappings: true
     indentation:
-        spaces: 2
+        spaces: 4
