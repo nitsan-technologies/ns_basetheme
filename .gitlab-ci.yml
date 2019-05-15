@@ -8,6 +8,7 @@ before_script:
 
 stages:
   - test
+  - tslint
 
 .test: &testing
   stage: test
@@ -25,11 +26,18 @@ stages:
     #- composer require typo3/minimal ${TYPO3_VERSION} --update-with-dependencies
     #- composer require nimut/testing-framework
     #- composer require squizlabs/php_codesniffer
-    - composer require --dev helmich/typo3-typoscript-lint
+    #- composer require --dev helmich/typo3-typoscript-lint
   script:
     #- .Build/bin/phpcs --standard=PSR2 --extensions=php *
-    - .Build/bin/typoscript-lint -c tslint.yaml
+    #- .Build/bin/typoscript-lint -c tslint.yaml
 
+tslint:typoscriptcgl:
+    image: composer:1.6
+    stage: tslint
+    script:
+      - composer install --no-progress --no-ansi --no-interaction
+      - .Build/bin/typoscript-lint -c tslint.yaml
+        
 # Tests in PHP 7.2 and TYPO3 9.5
 test:php72:typo3_95:
   <<: *testing
