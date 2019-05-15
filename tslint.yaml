@@ -1,5 +1,9 @@
 paths:
-    - Configuration/
+    - Configuration/FlexForms
+    - Configuration/Form
+    - Configuration/PageTSconfig
+    - Configuration/RTE
+    - Configuration/TypoScript
 
 sniffs:
     - class: Indentation
