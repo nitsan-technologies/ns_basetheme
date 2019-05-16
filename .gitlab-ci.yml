@@ -26,7 +26,7 @@ stages:
     #- composer require nimut/testing-framework
     - composer require squizlabs/php_codesniffer
   script:
-    - .Build/bin/phpcs --standard=PSR2 --extensions=php *
+    - .Build/bin/phpcs --standard=PSR2 --warning-severity=0 --extensions=php *
 
 test:yaml:
   image: python:alpine3.7
