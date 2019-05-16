@@ -1,6 +1,6 @@
 rootPageId: 1
 base: 'http://site-default.ddev.local/'
-baseVariants: {  }
+baseVariants: {}
 languages:
   - title: English
     enabled: true
@@ -27,7 +27,7 @@ routes:
 routeEnhancers:
   NewsPlugin:
     type: Extbase
-    limitToPages: [13,0,0]
+    limitToPages: [13, 0, 0]
     extension: News
     plugin: Pi1
     routes:
