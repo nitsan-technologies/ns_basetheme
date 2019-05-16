@@ -14,12 +14,12 @@ TYPO3:
                 translation:
                   translationFile:
                     110: 'EXT:site_default/Resources/Private/Language/locallang.xlf'
-                # layoutRootPaths:
-                #    20: 'EXT:site_default/Resources/Private/Forms/Layouts/'
-                # templateRootPaths:
-                #    20: 'EXT:site_default/Resources/Private/Forms/Templates/'
-                # partialRootPaths:
-                #    20: 'EXT:site_default/Resources/Private/Forms/Partials/'
+            # layoutRootPaths:
+            #    20: 'EXT:site_default/Resources/Private/Forms/Layouts/'
+            # templateRootPaths:
+            #    20: 'EXT:site_default/Resources/Private/Forms/Templates/'
+            # partialRootPaths:
+            #    20: 'EXT:site_default/Resources/Private/Forms/Partials/'
             Checkbox:
               properties:
                 containerClassAttribute: 'custom-control custom-checkbox'
