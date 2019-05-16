@@ -7,9 +7,7 @@
  */
 
 // TYPO3 Security Check
-if (!defined('TYPO3_MODE')) {
-    die ('Access denied.');
-}
+defined('TYPO3_MODE') or die();
 
 // Provide detailed information and depenencies of EXT:site_default
 $EM_CONF[$_EXTKEY] = array(

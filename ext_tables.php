@@ -1,8 +1,6 @@
 <?php
 // TYPO3 Security Check
-if (!defined('TYPO3_MODE')) {
-    die ('Access denied.');
-}
+defined('TYPO3_MODE') or die();
 
 // Add default include static TypoScript (for root page)
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
