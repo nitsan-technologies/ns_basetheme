@@ -1,6 +1,6 @@
 rootPageId: 1
 base: 'http://site-default.ddev.local/'
-baseVariants: {}
+baseVariants: { }
 languages:
   - title: English
     enabled: true
