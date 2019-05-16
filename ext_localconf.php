@@ -9,15 +9,15 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$_EXTKEY] = unserialize($_EXTCONF);
 
 // Define your each componenet's flexform files
 $allComponents = array();
-$arrAllComponents['site_default'] = scandir("typo3conf/ext/site_default/Configuration/FlexForms");
+$arrAllComponents['site_default'] = scandir(PATH_typo3conf."ext/site_default/Configuration/FlexForms");
 
 // Get list of all the extensions
-$arrAllExtensions = scandir("typo3conf/ext/");
+$arrAllExtensions = scandir(PATH_typo3conf."ext/");
 foreach ($arrAllExtensions as $key => $extKey) {
   // Get only extension which are child theme eg., EXT:ns_theme_cleanblog
   $extensionPrefixKey = substr($extKey, 0, 9);
   if($extensionPrefixKey == "ns_theme_") {
-    $arrAllComponents[$extKey] = scandir("typo3conf/ext/$extKey/Configuration/FlexForms");
+    $arrAllComponents[$extKey] = scandir(PATH_typo3conf."ext/$extKey/Configuration/FlexForms");
   }
 }
 
