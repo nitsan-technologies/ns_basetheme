@@ -1,8 +1,7 @@
 # TypoScript for rendering in frontend
-
 tt_content.gridelements_pi1.20.10.setup {
 
-	# Two column grid container
+    # Two column grid container
     1 < lib.gridelements.defaultGridSetup
     1 {
         columns {
@@ -36,6 +35,7 @@ tt_content.gridelements_pi1.20.10.setup {
                         value = <div class="col-md-6">
                     }
                 }
+
                 wrap = |</div>
             }
 
@@ -69,9 +69,11 @@ tt_content.gridelements_pi1.20.10.setup {
                         value = <div class="col-md-6">
                     }
                 }
+
                 wrap = |</div>
             }
         }
+
         stdWrap.wrap.cObject = COA
         stdWrap.wrap.cObject {
             10 = TEXT
@@ -98,6 +100,7 @@ tt_content.gridelements_pi1.20.10.setup {
                         value = <div class="col-md-4">
                     }
                 }
+
                 wrap = |</div>
             }
 
@@ -116,6 +119,7 @@ tt_content.gridelements_pi1.20.10.setup {
                         value = <div class="col-md-4">
                     }
                 }
+
                 wrap = |</div>
             }
 
@@ -134,9 +138,11 @@ tt_content.gridelements_pi1.20.10.setup {
                         value = <div class="col-md-4">
                     }
                 }
+
                 wrap = |</div>
             }
         }
+
         stdWrap.wrap.cObject = COA
         stdWrap.wrap.cObject {
             10 = TEXT
@@ -182,6 +188,7 @@ tt_content.gridelements_pi1.20.10.setup {
                         value = <div class="col-md-3">
                     }
                 }
+
                 wrap = |</div>
             }
 
@@ -200,6 +207,7 @@ tt_content.gridelements_pi1.20.10.setup {
                         value = <div class="col-md-3">
                     }
                 }
+
                 wrap = |</div>
             }
 
@@ -218,9 +226,11 @@ tt_content.gridelements_pi1.20.10.setup {
                         value = <div class="col-md-3">
                     }
                 }
+
                 wrap = |</div>
             }
         }
+
         stdWrap.wrap.cObject = COA
         stdWrap.wrap.cObject {
             10 = TEXT

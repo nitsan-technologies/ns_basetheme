@@ -10,25 +10,25 @@ call_user_func(function () {
     $allComponents = constant('ALL_COMPONENTS');
 
     // Let's load pi_flexform
-    foreach ($allComponents as $extKey=>$extValue) {
-        foreach ($extValue as $key=>$theComponent) {
+    foreach ($allComponents as $extKey => $extValue) {
+        foreach ($extValue as $key => $theComponent) {
             $GLOBALS['TCA']['tt_content']['types']['CType']['subtypes_addlist'][$theComponent] = 'pi_flexform';
             \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
-             '',
-             'FILE:EXT:'.$extKey.'/Configuration/FlexForms/'. $theComponent .'.xml',
-             ''. $theComponent .''
+                '',
+                'FILE:EXT:' . $extKey . '/Configuration/FlexForms/' . $theComponent . '.xml',
+                '' . $theComponent . ''
             );
         }
     }
 
     // Let's add each Component as CType
-    foreach ($allComponents as $extKey=>$extValue) {
-        foreach ($extValue as $key=>$theComponent) {
+    foreach ($allComponents as $extKey => $extValue) {
+        foreach ($extValue as $key => $theComponent) {
             \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
                 'tt_content',
                 'CType',
                 [
-                    'LLL:EXT:'.$extKey.'/Resources/Private/Language/locallang_db.xlf:wizard.'.$theComponent,
+                    'LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_db.xlf:wizard.' . $theComponent,
                     $theComponent,
                     'content-image'
                 ],
@@ -40,22 +40,22 @@ call_user_func(function () {
 
     // Register icon of each component
     $typeIcon = $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['textmedia'];
-    foreach ($allComponents as $extKey=>$extValue) {
-        foreach ($extValue as $key=>$theComponent) {
+    foreach ($allComponents as $extKey => $extValue) {
+        foreach ($extValue as $key => $theComponent) {
             $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$theComponent] = $typeIcon;
         }
     }
 
     // Adding each components
-    foreach ($allComponents as $extKey=>$extValue) {
-        foreach ($extValue as $key=>$theComponent) {
+    foreach ($allComponents as $extKey => $extValue) {
+        foreach ($extValue as $key => $theComponent) {
             $tcaComponent = [
                 'showitem' => '
-                    --palette--;LLL:EXT:'.$extKey.'/Resources/Private/Language/locallang_db.xlf:palette.general;general,
+                    --palette--;LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_db.xlf:palette.general;general,
                     --palette--;;visibility,
-                    --palette--;LLL:EXT:'.$extKey.'/Resources/Private/Language/locallang_db.xlf:tca.tab.elements;,pi_flexform,
-                    --div--;LLL:EXT:'.$extKey.'/Resources/Private/Language/locallang_db.xlf:palette.access,
-                    --palette--;LLL:EXT:'.$extKey.'/Resources/Private/Language/locallang_db.xlf:palette.access;access,
+                    --palette--;LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_db.xlf:tca.tab.elements;,pi_flexform,
+                    --div--;LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_db.xlf:palette.access,
+                    --palette--;LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_db.xlf:palette.access;access,
                 ',
             ];
             $GLOBALS['TCA']['tt_content']['types'][$theComponent] = $tcaComponent;

@@ -1,21 +1,21 @@
 # Let's overwrite default paths of EXT:news
 plugin.tx_news {
-	view {
-		templateRootPaths {
-			0 = EXT:site_default/Resources/Private/Extensions/news/Templates/
-			1 = {$plugin.tx_news.view.templateRootPath}
-		}
+    view {
+        templateRootPaths {
+            0 = EXT:site_default/Resources/Private/Extensions/news/Templates/
+            1 = {$plugin.tx_news.view.templateRootPath}
+        }
 
-		partialRootPaths {
-			0 = EXT:site_default/Resources/Private/Extensions/news/Partials/
-			1 = {$plugin.tx_news.view.partialRootPath}
-		}
+        partialRootPaths {
+            0 = EXT:site_default/Resources/Private/Extensions/news/Partials/
+            1 = {$plugin.tx_news.view.partialRootPath}
+        }
 
-		layoutRootPaths {
-			0 = EXT:site_default/Resources/Private/Extensions/news/Layouts/
-			1 = {$plugin.tx_news.view.layoutRootPath}
-		}
-	}
+        layoutRootPaths {
+            0 = EXT:site_default/Resources/Private/Extensions/news/Layouts/
+            1 = {$plugin.tx_news.view.layoutRootPath}
+        }
+    }
 }
 
 # Used when need to extend news plugin

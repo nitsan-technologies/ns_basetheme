@@ -1,23 +1,25 @@
-# Change backend layout config
-TCEFORM.pages.backend_layout_next_level.removeItems = -1,
-TCEFORM.pages.backend_layout.removeItems = -1,
-
 # Let's disable some configuration of Copy/Paste
 TCEMAIN {
     table {
         tt_content {
-           disablePrependAtCopy = 1
-           disableHideAtCopy = 1
+            disablePrependAtCopy = 1
+            disableHideAtCopy = 1
         }
+
         pages {
-           disablePrependAtCopy = 1
-           disableHideAtCopy = 0
+            disablePrependAtCopy = 1
+            disableHideAtCopy = 0
         }
     }
 }
 
 # Let's make responsive design with Desktop, Tablet and Mobile
 TCEFORM.sys_file_reference.crop.config.cropVariants {
+    pages {
+        backend_layout_next_level.removeItems = -1,
+        backend_layout.removeItems = -1,
+    }
+
     default {
         title = LLL:EXT:site_default/Resources/Private/Language/locallang_db.xlf:imageManipulation.desktop
         selectedRatio = NaN
@@ -27,6 +29,7 @@ TCEFORM.sys_file_reference.crop.config.cropVariants {
             }
         }
     }
+
     specialTablet {
         title = LLL:EXT:site_default/Resources/Private/Language/locallang_db.xlf:imageManipulation.tablet
         selectedRatio = NaN
@@ -36,6 +39,7 @@ TCEFORM.sys_file_reference.crop.config.cropVariants {
             }
         }
     }
+
     specialMobile {
         title = LLL:EXT:site_default/Resources/Private/Language/locallang_db.xlf:imageManipulation.mobile
         selectedRatio = NaN
@@ -57,43 +61,43 @@ TCEFORM.sys_file_reference.crop.config.cropVariants {
 #              4 = h4
 #              5 = h5
 #         }
-#     }  
+#     }
 #     layout {
 #         types {
 #             textmedia{
-#                 altLabels.1 = 
+#                 altLabels.1 =
 #                 removeItems = 2,3
 #             }
 
 #         }
-#     }    
+#     }
 # }
 
 # TCEFORM.pages {
-#     layout {        
-    
+#     layout {
+
 #         config {
 #             default = 0
 #         }
-#         altLabels.0 = 
-#         altLabels.1 = 
+#         altLabels.0 =
+#         altLabels.1 =
 #         removeItems = 2,3
 #     }
 #     backend_layout {
 #         config {
-#             default = 
+#             default =
 #         }
-#         removeItems = -1 
+#         removeItems = -1
 #     }
 # }
 # TCEFORM.tx_powermail_domain_model_form {
 #         css {
-#             altLabels.layout1 = 
-#             altLabels.layout2 = 
-#             altLabels.layout3 = 
+#             altLabels.layout1 =
+#             altLabels.layout2 =
+#             altLabels.layout3 =
 #             addItems{
-#                 layout4 = 
-#                 layout5 = 
+#                 layout4 =
+#                 layout5 =
 #             }
 #             removeItems = nolabel
 #         }
@@ -102,8 +106,8 @@ TCEFORM.sys_file_reference.crop.config.cropVariants {
 
 # TCEFORM.tx_powermail_domain_model_page {
 #         css {
-#             altLabels.layout1 = 
-#             altLabels.layout2 = 
+#             altLabels.layout1 =
+#             altLabels.layout2 =
 #             removeItems = layout3,nolabel
 #         }
 #     }
@@ -111,13 +115,13 @@ TCEFORM.sys_file_reference.crop.config.cropVariants {
 
 # TCEFORM.tx_powermail_domain_model_field {
 #         css {
-#             altLabels.layout1 = 
+#             altLabels.layout1 =
 #             removeItems = layout3, layout2,nolabel
 #         }
 #     }
 # }
 
 # tx_news.templateLayouts {
-#     1 = 
-#     2 = 
+#     1 =
+#     2 =
 # }

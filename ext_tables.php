@@ -1,24 +1,25 @@
 <?php
 // TYPO3 Security Check
 if (!defined('TYPO3_MODE')) {
-	die ('Access denied.');
+    die ('Access denied.');
 }
 
 // Add default include static TypoScript (for root page)
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Default TYPO3 Theme & Templates');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript',
+    'Default TYPO3 Theme & Templates');
 
 // Get Components from ext_localconf.php
 $allComponents = constant('ALL_COMPONENTS');
 
 // Let's prepare CType components to add at TypoScript Config
 $tsComponents = '';
-foreach ($allComponents as $extKey=>$extValue) {
-	foreach ($extValue as $key=>$theComponent) {
+foreach ($allComponents as $extKey => $extValue) {
+    foreach ($extValue as $key => $theComponent) {
 
-		$arrTemplateName = explode("_", $theComponent);
-		$templateName = ucfirst($arrTemplateName[0])."".ucfirst($arrTemplateName[1]);
-		if(!empty($templateName)) {
-		    $tsComponents .= "
+        $arrTemplateName = explode("_", $theComponent);
+        $templateName = ucfirst($arrTemplateName[0]) . "" . ucfirst($arrTemplateName[1]);
+        if (!empty($templateName)) {
+            $tsComponents .= "
 		        $theComponent = FLUIDTEMPLATE
 		        $theComponent {
 		            templateRootPaths {
@@ -42,8 +43,8 @@ foreach ($allComponents as $extKey=>$extValue) {
 		            }
 		        }
 		    ";
-		}
-	}    
+        }
+    }
 }
 
 // Add TypoScript for tt_content as setup.ts
