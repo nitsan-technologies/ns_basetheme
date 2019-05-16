@@ -34,4 +34,3 @@ $EM_CONF[$_EXTKEY] = array(
         'classmap' => array('Classes/')
     )
 );
-?>

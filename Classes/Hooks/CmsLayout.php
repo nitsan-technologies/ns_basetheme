@@ -56,8 +56,11 @@ class CmsLayout implements PageLayoutViewDrawItemHookInterface
             $headerContent = '';
 
             // template
-            $view = $this->getFluidTemplate($extKey, GeneralUtility::underscoredToUpperCamelCase($row['CType']),
-                $extensionKey);
+            $view = $this->getFluidTemplate(
+                $extKey,
+                GeneralUtility::underscoredToUpperCamelCase($row['CType']),
+                $extensionKey
+            );
 
             if (!empty($row['pi_flexform'])) {
                 /** @var FlexFormService $flexFormService */

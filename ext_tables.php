@@ -5,8 +5,11 @@ if (!defined('TYPO3_MODE')) {
 }
 
 // Add default include static TypoScript (for root page)
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript',
-    'Default TYPO3 Theme & Templates');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
+    $_EXTKEY,
+    'Configuration/TypoScript',
+    'Default TYPO3 Theme & Templates'
+);
 
 // Get Components from ext_localconf.php
 $allComponents = constant('ALL_COMPONENTS');

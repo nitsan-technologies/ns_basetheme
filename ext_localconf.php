@@ -19,7 +19,7 @@ foreach ($arrAllExtensions as $key => $extKey) {
     if ($extensionPrefixKey == "ns_theme_") {
         $arrAllComponents[$extKey] = scandir(PATH_typo3conf . "ext/$extKey/Configuration/FlexForms");
     }
-
+}
 
 // Preparing final array with ALL components from ALL themes
 foreach ($arrAllComponents as $extKey => $extValue) {
