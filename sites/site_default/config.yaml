@@ -2,8 +2,7 @@ rootPageId: 1
 base: 'http://site-default.ddev.local/'
 baseVariants: {  }
 languages:
-  -
-    title: English
+  - title: English
     enabled: true
     languageId: '0'
     base: /
@@ -15,17 +14,14 @@ languages:
     direction: ''
     flag: gb
 errorHandling:
-  -
-    errorCode: '404'
+  - errorCode: '404'
     errorHandler: Page
     errorContentSource: 't3://page?uid=6'
 routes:
-  -
-    route: robots.txt
+  - route: robots.txt
     type: staticText
     content: "User-agent: *\r\nDisallow: /typo3/\r\nDisallow: /typo3_src/\r\nAllow: /typo3/sysext/frontend/Resources/Public/*\r\n"
-  -
-    route: sitemap.xml
+  - route: sitemap.xml
     type: uri
     source: 'http://site-default.ddev.local/?sitemap=pages&type=1533906435&cHash=aeddf6d092a6d0fc89cac9fee90229e6'
 routeEnhancers:
