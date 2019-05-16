@@ -16,7 +16,6 @@ $allComponents = constant('ALL_COMPONENTS');
 $tsComponents = '';
 foreach ($allComponents as $extKey => $extValue) {
     foreach ($extValue as $key => $theComponent) {
-
         $arrTemplateName = explode("_", $theComponent);
         $templateName = ucfirst($arrTemplateName[0]) . "" . ucfirst($arrTemplateName[1]);
         if (!empty($templateName)) {
