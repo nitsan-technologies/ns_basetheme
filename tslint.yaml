@@ -8,6 +8,5 @@ sniffs:
       parameters:
         indentConditions: true
     - class: RepeatingRValue
-        disabled: true
     - class: DeadCode
         disabled: true
