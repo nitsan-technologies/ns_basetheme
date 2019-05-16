@@ -22,8 +22,8 @@ stages:
     - php -r "if (hash_file('SHA384', 'composer-setup.php') === trim(file_get_contents('installer.sig'))) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
     - php composer-setup.php --no-ansi --install-dir=/usr/bin --filename=composer
     - php -r "unlink('composer-setup.php'); unlink('installer.sig');"
-    #- composer require typo3/minimal ${TYPO3_VERSION} --update-with-dependencies
-    #- composer require nimut/testing-framework
+    # - composer require typo3/minimal ${TYPO3_VERSION} --update-with-dependencies
+    # - composer require nimut/testing-framework
     - composer require squizlabs/php_codesniffer
   script:
     - .Build/bin/phpcs --standard=PSR2 --warning-severity=0 --extensions=php *
@@ -32,9 +32,9 @@ test:yaml:
   image: python:alpine3.7
   stage: test
   before_script:
-      - pip install yamllint==1.10.0
+    - pip install yamllint==1.10.0
   script:
-      - yamllint -c yamllint.yaml .gitlab-ci.yml tslint.yaml sites/site_default/config.yaml Configuration/Default.yaml Configuration/Form/setup.yaml Configuration/RTE/Default.yaml
+    - yamllint -c yamllint.yaml .gitlab-ci.yml tslint.yaml sites/site_default/config.yaml Configuration/Default.yaml Configuration/Form/setup.yaml Configuration/RTE/Default.yaml
 
 test:typoscript:
   image: composer:1.6
@@ -44,10 +44,10 @@ test:typoscript:
     - composer require --dev helmich/typo3-typoscript-lint
   script:
     - .Build/bin/typoscript-lint -c tslint.yaml
-            
+
 # Tests in PHP 7.2 and TYPO3 9.5
 test:php72:typo3_95:
   <<: *testing
   variables:
     DOCKER_TAG: 7.2-alpine
-    #TYPO3_VERSION: ^9.5
+    # TYPO3_VERSION: ^9.5
