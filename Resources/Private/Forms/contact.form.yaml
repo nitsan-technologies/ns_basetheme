@@ -54,7 +54,7 @@ renderables:
                     placeholder: 'Full name and surname'
                     required: required
                 validators:
-                  - { identifier: NotEmpty }
+                  - {identifier: NotEmpty}
               - type: Text
                 identifier: company
                 label: 'Company'
