@@ -30,7 +30,7 @@ stages:
   script:
     - .Build/bin/phpcs --standard=PSR2 --warning-severity=0 --extensions=php *
 
-yaml:yaml:
+yaml:test:
   image: python:alpine3.7
   stage: yaml
   before_script:
@@ -38,7 +38,7 @@ yaml:yaml:
   script:
     - yamllint -c .
 
-typoscript:typoscript:
+typoscript:test:
   image: composer:1.6
   stage: typoscript
   before_script:
@@ -48,7 +48,7 @@ typoscript:typoscript:
     - .Build/bin/typoscript-lint -c tslint.yaml
 
 # Tests in PHP 7.2 and TYPO3 9.5
-php:php72:typo3_95:
+php:testphp72:typo3_95:
   <<: *phptesting
   variables:
     DOCKER_TAG: 7.2-alpine
