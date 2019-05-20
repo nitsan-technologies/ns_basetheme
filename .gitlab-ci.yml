@@ -7,10 +7,12 @@ before_script:
   - apk add git --update
 
 stages:
-  - test
+  - php
+  - typoscript
+  - yaml
 
-.test: &testing
-  stage: test
+.php: &phptesting
+  stage: php
   image: php:$DOCKER_TAG
   only:
     - branches
@@ -28,17 +30,17 @@ stages:
   script:
     - .Build/bin/phpcs --standard=PSR2 --warning-severity=0 --extensions=php *
 
-test:yaml:
+yaml:yaml:
   image: python:alpine3.7
-  stage: test
+  stage: yaml
   before_script:
     - pip install yamllint==1.10.0
   script:
     - yamllint -c .
 
-test:typoscript:
+typoscript:typoscript:
   image: composer:1.6
-  stage: test
+  stage: typoscript
   before_script:
     - export COMPOSER_CACHE_DIR=.composer
     - composer require --dev helmich/typo3-typoscript-lint
@@ -46,8 +48,8 @@ test:typoscript:
     - .Build/bin/typoscript-lint -c tslint.yaml
 
 # Tests in PHP 7.2 and TYPO3 9.5
-test:php72:typo3_95:
-  <<: *testing
+php:php72:typo3_95:
+  <<: *phptesting
   variables:
     DOCKER_TAG: 7.2-alpine
     # TYPO3_VERSION: ^9.5
