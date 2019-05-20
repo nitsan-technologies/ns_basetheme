@@ -12,7 +12,7 @@ site_default {
             copyright = Copyright
 
             #cat = site_default/website/settings/04; type=int; label=Main Menu ID
-            main_menu = 12
+            main_menu = 11
 
             #cat = site_default/website/settings/05; type=int; label=Footer Menu ID
             footer_menu = 7
