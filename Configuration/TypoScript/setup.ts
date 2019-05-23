@@ -4,6 +4,9 @@
 # Includes EXT:IndexedSearch Configuration
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:site_default/Configuration/TypoScript/Extensions/IndexedSearch" extensions="ts">
 
+# Includes EXT:Form Configuration
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:site_default/Configuration/TypoScript/Extensions/Form" extensions="ts">
+
 # Includes EXT:Grids Configuration
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:site_default/Configuration/TypoScript/Extensions/GridElements" extensions="ts">
 
