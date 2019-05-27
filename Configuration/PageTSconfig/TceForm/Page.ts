@@ -12,45 +12,6 @@ TCEMAIN {
         }
     }
 }
-
-# Let's make responsive design with Desktop, Tablet and Mobile
-TCEFORM.sys_file_reference.crop.config.cropVariants {
-    pages {
-        backend_layout_next_level.removeItems = -1,
-        backend_layout.removeItems = -1,
-    }
-
-    default {
-        title = LLL:EXT:site_default/Resources/Private/Language/locallang_db.xlf:imageManipulation.desktop
-        selectedRatio = NaN
-        allowedAspectRatios {
-            NaN {
-                title = LLL:EXT:lang/Resources/Private/Language/locallang_wizards.xlf:imwizard.ratio.free
-            }
-        }
-    }
-
-    specialTablet {
-        title = LLL:EXT:site_default/Resources/Private/Language/locallang_db.xlf:imageManipulation.tablet
-        selectedRatio = NaN
-        allowedAspectRatios {
-            3:2 {
-                title = LLL:EXT:lang/Resources/Private/Language/locallang_wizards.xlf:imwizard.ratio.3_2
-            }
-        }
-    }
-
-    specialMobile {
-        title = LLL:EXT:site_default/Resources/Private/Language/locallang_db.xlf:imageManipulation.mobile
-        selectedRatio = NaN
-        allowedAspectRatios {
-            4:3 {
-                title = LLL:EXT:lang/Resources/Private/Language/locallang_wizards.xlf:imwizard.ratio.4_3
-            }
-        }
-    }
-}
-
 # TCEFORM.tt_content {
 
 #      header_layout {

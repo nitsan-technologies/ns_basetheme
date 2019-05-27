@@ -61,4 +61,45 @@ call_user_func(function () {
             $GLOBALS['TCA']['tt_content']['types'][$theComponent] = $tcaComponent;
         }
     }
+    
+    $imageManipulation = [
+        'image' => 'image',
+        'textmedia' => 'assets',
+        'textpic' => 'image'
+    ];
+
+    foreach ($imageManipulation as $key => $value) {
+        $GLOBALS['TCA']['tt_content']['types'][$key]['columnsOverrides'][$value]['config']['overrideChildTca']['columns']['crop']['config'] = [
+            'type' => 'imageManipulation',
+            'cropVariants' => [
+                'specialMobile' => [
+                    'title' => 'LLL:EXT:site_default/Resources/Private/Language/locallang_db.xlf:imageManipulation.mobile',
+                    'allowedAspectRatios' => [
+                        'NaN' => [
+                            'title' => 'LLL:EXT:lang/Resources/Private/Language/locallang_wizards.xlf:imwizard.ratio.free',
+                            'value' => 0.0
+                        ],
+                    ],
+                ],
+                'specialTablet' => [
+                    'title' => 'LLL:EXT:site_default/Resources/Private/Language/locallang_db.xlf:imageManipulation.tablet',
+                    'allowedAspectRatios' => [
+                        'NaN' => [
+                            'title' => 'LLL:EXT:lang/Resources/Private/Language/locallang_wizards.xlf:imwizard.ratio.free',
+                            'value' => 0.0
+                        ],
+                    ],
+                ],
+                'default' => [
+                    'title' => 'LLL:EXT:site_default/Resources/Private/Language/locallang_db.xlf:imageManipulation.desktop',
+                    'allowedAspectRatios' => [
+                        'NaN' => [
+                            'title' => 'LLL:EXT:lang/Resources/Private/Language/locallang_wizards.xlf:imwizard.ratio.free',
+                            'value' => 0.0
+                        ],
+                    ],
+                ],
+            ]
+        ];
+    }
 });
