@@ -9,6 +9,7 @@ before_script:
 stages:
   - php
   - typoscript
+  - fluid
   - yaml
 
 .php: &phptesting
@@ -30,14 +31,6 @@ stages:
   script:
     - .Build/bin/phpcs --standard=PSR2 --warning-severity=0 --extensions=php *
 
-yaml:test:
-  image: python:alpine3.7
-  stage: yaml
-  before_script:
-    - pip install yamllint==1.10.0
-  script:
-    - yamllint .
-
 typoscript:test:
   image: composer:1.6
   stage: typoscript
@@ -46,6 +39,23 @@ typoscript:test:
     - composer require --dev helmich/typo3-typoscript-lint
   script:
     - .Build/bin/typoscript-lint -c tslint.yaml
+
+fluid:test:
+  image: composer:1.6
+  stage: fluid
+  before_script:
+    - export COMPOSER_CACHE_DIR=.composer
+    - composer require typo3fluid/fluid-lint
+  script:
+    - .Build/bin/fluid-lint /Resources/Private/
+
+yaml:test:
+  image: python:alpine3.7
+  stage: yaml
+  before_script:
+    - pip install yamllint==1.10.0
+  script:
+    - yamllint .
 
 # Tests in PHP 7.2 and TYPO3 9.5
 php:testphp72:typo3_95:
