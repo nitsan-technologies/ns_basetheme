@@ -7,13 +7,15 @@ before_script:
   - apk add git --update
 
 stages:
-  - fluid
+  - xliff
 
-fluid:test:
+xliff:test:
   image: composer:1.6
-  stage: fluid
+  stage: xliff
   before_script:
     - export COMPOSER_CACHE_DIR=.composer
-    - composer require namelesscoder/fluid-lint
+    - apk --no-cache add libxml2-utils
+    - wget https://raw.githubusercontent.com/symfony/translation/v4.1.1/Resources/schemas/xliff-core-1.2-strict.xsd
+    - xmllint --schema xliff-core-1.2-strict.xsd --noout $(find localPackages -name '*.xlf')
   script:
-    - .Build/bin/fluid-lint /Resources/Private/
+    - .Build/bin/fluid-lint lint:xliff /Resources/
