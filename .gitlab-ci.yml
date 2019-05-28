@@ -17,4 +17,5 @@ xliff:test:
     - apk --no-cache add libxml2-utils
     - wget https://raw.githubusercontent.com/symfony/translation/v4.1.1/Resources/schemas/xliff-core-1.2-strict.xsd
   script:
-    - .Build/bin/xlifflinter /Resources/Private/Language
+    - xmllint --schema xliff-core-1.2-strict.xsd --noout $(find /Resources/Private/Language/ -name '*.xlf')
+    #- .Build/bin/xlifflinter lint:xliff /Resources/Private/Language
