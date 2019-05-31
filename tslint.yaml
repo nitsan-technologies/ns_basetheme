@@ -2,6 +2,9 @@ paths:
   - Configuration/PageTSconfig
   - Configuration/TypoScript
 
+filePatterns:
+  - "*.ts"
+
 sniffs:
   - class: Indentation
     parameters:
