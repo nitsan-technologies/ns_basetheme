@@ -1,7 +1,6 @@
 paths:
   - Configuration/PageTSconfig
   - Configuration/TypoScript
-  - ext_typoscript_setup.txt
 
 sniffs:
   - class: Indentation
