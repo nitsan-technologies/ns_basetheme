@@ -16,4 +16,4 @@ fluid:test:
     - export COMPOSER_CACHE_DIR=.composer
     - composer require typo3fluid/fluid-lint:dev-master
   script:
-    - .Build/bin/fluidlint Resources/Private/Templates/Default.html
+    - .Build/bin/fluidlint Resources/Private/
