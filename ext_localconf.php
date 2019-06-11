@@ -75,10 +75,10 @@ if (TYPO3_MODE === 'BE') {
             \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig("
                 # Add new custom wizard for our Components
                 mod.wizards.newContentElement.wizardItems.extra {
-                   
+
                    # Set caption
                    header = Custom Components
-                   icon = 
+                   icon =
 
                    # Register each Components
                    elements {
@@ -93,6 +93,48 @@ if (TYPO3_MODE === 'BE') {
     // Let's add default PageTS for "Form"
     $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['default'] = 'EXT:site_default/Configuration/RTE/Default.yaml';
 }
+
+// Let's prepare CType components to add at TypoScript Config
+$tsComponents = '';
+foreach ($allComponents as $extKey => $extValue) {
+    foreach ($extValue as $key => $theComponent) {
+        $arrTemplateName = explode("_", $theComponent);
+        $templateName = ucfirst($arrTemplateName[0]) . "" . ucfirst($arrTemplateName[1]);
+        if (!empty($templateName)) {
+            $tsComponents .= "
+                $theComponent = FLUIDTEMPLATE
+                $theComponent {
+                    templateRootPaths {
+                        0 = EXT:fluid_styled_content/Resources/Private/Templates/
+                        10 = EXT:$extKey/Resources/Private/Components/
+                    }
+                    partialRootPaths {
+                        0 = EXT:fluid_styled_content/Resources/Private/Partials/
+                        10 = EXT:$extKey/Resources/Private/Partials/
+                    }
+                    variables {
+                    }
+                    templateName = $templateName
+                    dataProcessing {
+                        10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                        10 {
+                            references.fieldName = image
+                            as = image
+                        }
+                        20 = NITSAN\site_default\DataProcessing\DefaultProcessor
+                    }
+                }
+            ";
+        }
+    }
+}
+
+// Add TypoScript for tt_content as setup.ts
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScript($_EXTKEY, 'setup', "
+    tt_content {
+        $tsComponents
+    }
+");
 
 // Draw content into content elements
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem'][] = 'NITSAN\\site_default\\Hooks\\CmsLayout';
