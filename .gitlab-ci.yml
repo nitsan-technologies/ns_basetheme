@@ -7,18 +7,14 @@ before_script:
   - apk add git --update
 
 stages:
-  #- php
-  #- typoscript
   - fluid
-  #- yaml
-  #- xliff
-
+  
 fluid:test:
   image: composer:1.6
   stage: fluid
   before_script:
     - export COMPOSER_CACHE_DIR=.composer
-    - composer require typo3fluid/fluid-lint
+    - composer require typo3fluid/fluid-lint:dev-master
   script:
     - .Build/bin/fluidlint /Resources/Private/
 
