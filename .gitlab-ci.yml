@@ -7,13 +7,72 @@ before_script:
   - apk add git --update
 
 stages:
-  - fluid
+  - php
+  - typoscript
+  #- fluid
+  - yaml
+  #- xliff
 
-fluid:test:
+.php: &phptesting
+  stage: php
+  image: php:$DOCKER_TAG
+  only:
+    - branches
+  before_script:
+    - export TYPO3_PATH_WEB="$PWD/.Build/Web"
+    - export COMPOSER_CACHE_DIR=.composer
+    - curl -OLs https://composer.github.io/installer.sig
+    - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    - php -r "if (hash_file('SHA384', 'composer-setup.php') === trim(file_get_contents('installer.sig'))) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+    - php composer-setup.php --no-ansi --install-dir=/usr/bin --filename=composer
+    - php -r "unlink('composer-setup.php'); unlink('installer.sig');"
+    # - composer require typo3/minimal ${TYPO3_VERSION} --update-with-dependencies
+    # - composer require nimut/testing-framework
+    - composer require squizlabs/php_codesniffer
+  script:
+    - .Build/bin/phpcs --standard=PSR2 --warning-severity=0 --extensions=php *
+
+typoscript:test:
   image: composer:1.6
-  stage: fluid
+  stage: typoscript
   before_script:
     - export COMPOSER_CACHE_DIR=.composer
-    - composer require typo3fluid/fluid-lint:dev-master
+    - composer require --dev helmich/typo3-typoscript-lint
   script:
-    - .Build/bin/fluidlint Resources/Private/
+    - .Build/bin/typoscript-lint -c tslint.yaml
+
+#fluid:test:
+#  image: composer:1.6
+#  stage: fluid
+#  before_script:
+#    - export COMPOSER_CACHE_DIR=.composer
+#    - composer require typo3fluid/fluid-lint:dev-master
+#  script:
+#    - .Build/bin/fluidlint Resources/Private/Templates/Default.html
+
+yaml:test:
+  image: python:alpine3.7
+  stage: yaml
+  before_script:
+    - pip install yamllint==1.10.0
+  script:
+    - yamllint .
+
+#xliff:test:
+#  image: composer:1.6
+#  stage: xliff
+#  before_script:
+#    - export COMPOSER_CACHE_DIR=.composer
+#    #- apk --no-cache add libxml2-utils
+#    #- wget https://raw.githubusercontent.com/symfony/translation/v4.1.1/Resources/schemas/xliff-core-1.0-strict.xsd
+#    - composer require symfony/translation
+# script:
+#    - .Build/bin/xlifflinter php bin/console lint:xliff /Resources/Private/Language
+#    #- xmllint --schema xliff-core-1.0-strict.xsd --noout $(find Resources -name '*.xlf')
+
+# Tests in PHP 7.2 and TYPO3 9.5
+php:testphp72:typo3_95:
+  <<: *phptesting
+  variables:
+    DOCKER_TAG: 7.2-alpine
+    # TYPO3_VERSION: ^9.5
