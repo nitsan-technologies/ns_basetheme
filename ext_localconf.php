@@ -77,10 +77,10 @@ if (TYPO3_MODE === 'BE') {
                 mod.wizards.newContentElement.wizardItems.extra {
 
                    # Set caption
-                   header = Custom Components
+                   header = Custom Elements
                    icon =
 
-                   # Register each Components
+                   # Register each Elements
                    elements {
                         $collectComponent
                    }
