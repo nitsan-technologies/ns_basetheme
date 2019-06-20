@@ -1,0 +1,56 @@
+<f:switch expression="{data.flexform_content_type}">
+
+    <f:case value="1">
+
+        <div class="card-deck team-card-wrap">
+            <div class="card">
+                <f:format.raw>{data.tx_gridelements_view_column_1}</f:format.raw>
+            </div>
+            <div class="card">
+                <f:format.raw>{data.tx_gridelements_view_column_2}</f:format.raw>
+            </div>
+            <div class="card">
+                <f:format.raw>{data.tx_gridelements_view_column_3}</f:format.raw>
+            </div>
+        </div>        
+
+    </f:case>
+
+    <f:case value="2">
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="teaser-box text-center">             
+                    <f:format.raw>{data.tx_gridelements_view_column_1}</f:format.raw>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="teaser-box text-center">                                
+                    <f:format.raw>{data.tx_gridelements_view_column_2}</f:format.raw>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="teaser-box text-center">                    
+                    <f:format.raw>{data.tx_gridelements_view_column_3}</f:format.raw>
+                </div>
+            </div>
+        </div>
+
+    </f:case>
+
+    <f:defaultCase>
+        <div class="row">
+            <div class="{data.flexform_width_column_md_1} {data.flexform_offset_column_md_1} {data.flexform_width_column_xs_1} {data.flexform_offset_column_xs_1} {data.flexform_width_column_sm_1} {data.flexform_offset_column_sm_1} {data.flexform_width_column_lg_1} {data.flexform_offset_column_lg_1} {data.flexform_width_column_xl_1} {data.flexform_offset_column_xl_1}">                
+                <f:format.raw>{data.tx_gridelements_view_column_1}</f:format.raw>                
+            </div>
+            <div class="{data.flexform_width_column_md_2} {data.flexform_offset_column_md_2} {data.flexform_width_column_xs_2} {data.flexform_offset_column_xs_2} {data.flexform_width_column_sm_2} {data.flexform_offset_column_sm_2} {data.flexform_width_column_lg_2} {data.flexform_offset_column_lg_2} {data.flexform_width_column_xl_2} {data.flexform_offset_column_xl_2}">
+                <f:format.raw>{data.tx_gridelements_view_column_2}</f:format.raw>            
+            </div>
+            <div class="{data.flexform_width_column_md_3} {data.flexform_offset_column_md_3} {data.flexform_width_column_xs_3} {data.flexform_offset_column_xs_3} {data.flexform_width_column_sm_3} {data.flexform_offset_column_sm_3} {data.flexform_width_column_lg_3} {data.flexform_offset_column_lg_3} {data.flexform_width_column_xl_3} {data.flexform_offset_column_xl_3}">                
+                <f:format.raw>{data.tx_gridelements_view_column_3}</f:format.raw>                
+            </div>
+        </div>
+    </f:defaultCase>
+
+</f:switch>    
+
