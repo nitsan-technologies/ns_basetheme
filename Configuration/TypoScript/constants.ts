@@ -15,7 +15,7 @@ site_default {
             main_menu = 11
 
             #cat = site_default/website/settings/05; type=int; label=Footer Menu ID
-            footer_menu = 7
+            footer_menu = 6
 
             #cat = site_default/website/settings/06; type=string; label=Root Page Id
             rootpage = 1
