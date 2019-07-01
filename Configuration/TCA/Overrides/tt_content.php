@@ -73,7 +73,7 @@ call_user_func(function () {
             'type' => 'imageManipulation',
             'cropVariants' => [
                 'specialMobile' => [
-                    'title' => 'LLL:EXT:site_default/Resources/Private/Language/locallang_db.xlf:imageManipulation.mobile',
+                    'title' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:imageManipulation.mobile',
                     'allowedAspectRatios' => [
                         'NaN' => [
                             'title' => 'LLL:EXT:lang/Resources/Private/Language/locallang_wizards.xlf:imwizard.ratio.free',
@@ -82,7 +82,7 @@ call_user_func(function () {
                     ],
                 ],
                 'specialTablet' => [
-                    'title' => 'LLL:EXT:site_default/Resources/Private/Language/locallang_db.xlf:imageManipulation.tablet',
+                    'title' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:imageManipulation.tablet',
                     'allowedAspectRatios' => [
                         'NaN' => [
                             'title' => 'LLL:EXT:lang/Resources/Private/Language/locallang_wizards.xlf:imwizard.ratio.free',
@@ -91,7 +91,7 @@ call_user_func(function () {
                     ],
                 ],
                 'default' => [
-                    'title' => 'LLL:EXT:site_default/Resources/Private/Language/locallang_db.xlf:imageManipulation.desktop',
+                    'title' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:imageManipulation.desktop',
                     'allowedAspectRatios' => [
                         'NaN' => [
                             'title' => 'LLL:EXT:lang/Resources/Private/Language/locallang_wizards.xlf:imwizard.ratio.free',

@@ -3,7 +3,7 @@ TYPO3:
     Form:
       persistenceManager:
         allowedExtensionPaths:
-          110: EXT:site_default/Resources/Private/Forms/
+          110: EXT:ns_basetheme/Resources/Private/Forms/
         allowSaveToExtensionPaths: true
         allowDeleteFromExtensionPaths: true
       prototypes:
@@ -13,13 +13,13 @@ TYPO3:
               renderingOptions:
                 translation:
                   translationFile:
-                    110: 'EXT:site_default/Resources/Private/Language/locallang.xlf'
+                    110: 'EXT:ns_basetheme/Resources/Private/Language/locallang.xlf'
             # layoutRootPaths:
-            #    20: 'EXT:site_default/Resources/Private/Forms/Layouts/'
+            #    20: 'EXT:ns_basetheme/Resources/Private/Forms/Layouts/'
             # templateRootPaths:
-            #    20: 'EXT:site_default/Resources/Private/Forms/Templates/'
+            #    20: 'EXT:ns_basetheme/Resources/Private/Forms/Templates/'
             # partialRootPaths:
-            #    20: 'EXT:site_default/Resources/Private/Forms/Partials/'
+            #    20: 'EXT:ns_basetheme/Resources/Private/Forms/Partials/'
             Checkbox:
               properties:
                 containerClassAttribute: 'custom-control custom-checkbox'

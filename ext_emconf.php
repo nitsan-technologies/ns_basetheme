@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of the package nitsan/site-default.
+ * This file is part of the package nitsan/ns-basetheme.
  *
  * For the full copyright and license information, please read the
  * LICENSE file that was distributed with this source code.
@@ -9,16 +9,16 @@
 // TYPO3 Security Check
 defined('TYPO3_MODE') or die();
 
-// Provide detailed information and depenencies of EXT:site_default
+// Provide detailed information and depenencies of EXT:ns_basetheme
 $EM_CONF[$_EXTKEY] = array(
     'title' => 'Default TYPO3 Theme & Templates',
-    'description' => 'Site-default delivers a full configured frontend theme for TYPO3, based on the Bootstrap CSS Framework.',
+    'description' => 'ns-basetheme delivers a full configured frontend theme for TYPO3, based on the Bootstrap CSS Framework.',
     'category' => 'templates',
     'author' => '-',
     'author_email' => '-',
     'author_company' => '-',
     'state' => 'stable',
-    'version' => '2.0.2',
+    'version' => '3.0.0',
     'constraints' => array(
         'depends' => array(
             'typo3' => '8.0.0-9.5.99',

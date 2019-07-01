@@ -6,7 +6,7 @@ tt_content.gridelements_pi1.20.10.setup {
     1 {
         cObject = FLUIDTEMPLATE
         cObject {
-            file = typo3conf/ext/site_default/Resources/Private/Extensions/Grid/twocol.html
+            file = typo3conf/ext/ns_basetheme/Resources/Private/Extensions/Grid/twocol.html
         }
     }
 
@@ -15,7 +15,7 @@ tt_content.gridelements_pi1.20.10.setup {
     2 {
         cObject = FLUIDTEMPLATE
         cObject {
-            file = typo3conf/ext/site_default/Resources/Private/Extensions/Grid/threeColumns.html
+            file = typo3conf/ext/ns_basetheme/Resources/Private/Extensions/Grid/threeColumns.html
         }
     }
 
@@ -24,7 +24,7 @@ tt_content.gridelements_pi1.20.10.setup {
     3 {
         cObject = FLUIDTEMPLATE
         cObject {
-            file = typo3conf/ext/site_default/Resources/Private/Extensions/Grid/fourcolumn.html
+            file = typo3conf/ext/ns_basetheme/Resources/Private/Extensions/Grid/fourcolumn.html
         }
     }
 }

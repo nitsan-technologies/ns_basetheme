@@ -14,7 +14,7 @@ page {
     }
 
     // Setup favion
-    favicon = typo3conf/exit/site_default/Resources/Public/images/favicon.ico
+    favicon = typo3conf/exit/ns_basetheme/Resources/Public/images/favicon.ico
 
     // Set viewport
     meta {
@@ -23,22 +23,22 @@ page {
 
     // Initiate all the css-together
     includeCSS {
-        10 = typo3conf/ext/site_default/Resources/Public/vendor/bootstrap/css/bootstrap.min.css
-        20 = typo3conf/ext/site_default/Resources/Public/css/custom.css
+        10 = typo3conf/ext/ns_basetheme/Resources/Public/vendor/bootstrap/css/bootstrap.min.css
+        20 = typo3conf/ext/ns_basetheme/Resources/Public/css/custom.css
     }
 
     // Initiate all the js-together
     includeJSFooter {
-        10 = typo3conf/ext/site_default/Resources/Public/vendor/jquery/jquery.min.js
-        20 = typo3conf/ext/site_default/Resources/Public/vendor/bootstrap/js/bootstrap.bundle.min.js
+        10 = typo3conf/ext/ns_basetheme/Resources/Public/vendor/jquery/jquery.min.js
+        20 = typo3conf/ext/ns_basetheme/Resources/Public/vendor/bootstrap/js/bootstrap.bundle.min.js
     }
 
     // Let's start fluid_styled_content
     10 = FLUIDTEMPLATE
     10 {
-        layoutRootPath = {$site_default.website.paths.layoutRootPath}
-        partialRootPath = {$site_default.website.paths.partialRootPath}
-        templateRootPath = {$site_default.website.paths.templateRootPath}
+        layoutRootPath = {$ns_basetheme.website.paths.layoutRootPath}
+        partialRootPath = {$ns_basetheme.website.paths.partialRootPath}
+        templateRootPath = {$ns_basetheme.website.paths.templateRootPath}
 
         // Let's automatically choose backend layout and template
         file.stdWrap.cObject = CASE
@@ -49,13 +49,13 @@ page {
             }
 
             default = TEXT
-            default.value = {$site_default.website.paths.templateRootPath}Default.html
+            default.value = {$ns_basetheme.website.paths.templateRootPath}Default.html
 
             pagets__content = TEXT
-            pagets__content.value = {$site_default.website.paths.templateRootPath}Content.html
+            pagets__content.value = {$ns_basetheme.website.paths.templateRootPath}Content.html
         }
 
-        settings < plugin.tx_sitedefault.settings
+        settings < plugin.tx_nsBasetheme.settings
     }
 }
 
@@ -79,7 +79,7 @@ lib {
 
         2 = TEXT
         2 {
-            value = {$site_default.website.settings.copyright}
+            value = {$ns_basetheme.website.settings.copyright}
             wrap = |
         }
     }

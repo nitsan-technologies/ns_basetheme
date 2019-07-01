@@ -28,7 +28,7 @@ tx_gridelements.setup {
         }
       }
     }
-    flexformDS = FILE:EXT:site_default/Configuration/PageTSconfig/GridElements/2col_flexform.xml
+    flexformDS = FILE:EXT:ns_basetheme/Configuration/PageTSconfig/GridElements/2col_flexform.xml
   }
 }
 */

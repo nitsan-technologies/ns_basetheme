@@ -1,18 +1,18 @@
 {
-  "name": "nitsan/site-default",
+  "name": "nitsan/ns-basetheme",
   "type": "typo3-cms-extension",
-  "description": "Site-default delivers a full configured frontend theme for TYPO3, based on the Bootstrap CSS Framework.",
+  "description": "ns-basetheme delivers a full configured frontend theme for TYPO3, based on the Bootstrap CSS Framework.",
   "keywords": [
     "TYPO3 CMS",
     "introduction",
-    "sitedefault",
+    "nsBasetheme",
     "bootstrap",
     "responsive",
     "frontend",
     "theme",
     "web"
   ],
-  "homepage": "https://gitlab.com/sanjay_nitsan/site_default",
+  "homepage": "https://gitlab.com/sanjay_nitsan/ns_basetheme",
   "authors": [
     {
         "name": "Team NITSAN",
@@ -22,7 +22,7 @@
     }
   ],
   "support": {
-    "issues": "https://gitlab.com/sanjay_nitsan/site_default/issues"
+    "issues": "https://gitlab.com/sanjay_nitsan/ns_basetheme/issues"
   },
   "license": "MIT",
   "require": {
@@ -32,12 +32,12 @@
   },
   "autoload": {
     "psr-4": {
-      "NITSAN\\site_default\\": "Classes/"
+      "NITSAN\\ns_basetheme\\": "Classes/"
     }
   },
   "replace": {
-      "site_default": "self.version",
-      "nitsan/site-default": "self.version"
+      "ns_basetheme": "self.version",
+      "nitsan/ns-basetheme": "self.version"
   },
   "config": {
     "vendor-dir": ".Build/vendor/",
@@ -47,7 +47,7 @@
       "typo3/cms": {
           "cms-package-dir": "{$vendor-dir}/typo3/cms",
           "web-dir": ".Build/public",
-          "extension-key": "site_default"
+          "extension-key": "ns_basetheme"
       }
   }
 }

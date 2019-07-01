@@ -14,7 +14,7 @@ config {
 
     # For Caching
     cache_period = 86400
-    no_cache = {$site_default.website.settings.no_cache}
+    no_cache = {$ns_basetheme.website.settings.no_cache}
 
     # For Debugging
     contentObjectExceptionHandler = 0
@@ -33,10 +33,10 @@ config {
 
     # Site Optimization
     moveJsFromHeaderToFooter = 1
-    compressJs = {$site_default.website.settings.compress_cssjs}
-    compressCss = {$site_default.website.settings.compress_cssjs}
-    concatenateJs = {$site_default.website.settings.compress_cssjs}
-    concatenateCss = {$site_default.website.settings.compress_cssjs}
+    compressJs = {$ns_basetheme.website.settings.compress_cssjs}
+    compressCss = {$ns_basetheme.website.settings.compress_cssjs}
+    concatenateJs = {$ns_basetheme.website.settings.compress_cssjs}
+    concatenateCss = {$ns_basetheme.website.settings.compress_cssjs}
 }
 
 # for TYPO3 v8, Mulit-Langauge configuration

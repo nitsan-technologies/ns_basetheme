@@ -13,14 +13,14 @@
                         <el>
                             <container>
                                 <title>
-                                    LLL:EXT:site_default/Resources/Private/Language/locallang_flex.xlf:ns_slider.title
+                                    LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_flex.xlf:ns_slider.title
                                 </title>
                                 <type>array</type>
                                 <el>
                                     <headline>
                                         <TCEforms>
                                             <label>
-                                                LLL:EXT:site_default/Resources/Private/Language/locallang_flex.xlf:general.headline
+                                                LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_flex.xlf:general.headline
                                             </label>
                                             <config>
                                                 <type>input</type>
@@ -31,7 +31,7 @@
                                     <subheadline>
                                         <TCEforms>
                                             <label>
-                                                LLL:EXT:site_default/Resources/Private/Language/locallang_flex.xlf:general.subheadline
+                                                LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_flex.xlf:general.subheadline
                                             </label>
                                             <config>
                                                 <type>input</type>
@@ -41,7 +41,7 @@
                                     <image>
                                         <TCEforms>
                                             <label>
-                                                LLL:EXT:site_default/Resources/Private/Language/locallang_flex.xlf:general.image
+                                                LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_flex.xlf:general.image
                                             </label>
                                             <config>
                                                 <type>group</type>

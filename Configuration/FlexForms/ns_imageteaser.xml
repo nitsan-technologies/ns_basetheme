@@ -9,7 +9,7 @@
                 <el>
                     <headline>
                         <TCEforms>
-                            <label>LLL:EXT:site_default/Resources/Private/Language/locallang_flex.xlf:general.headline
+                            <label>LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_flex.xlf:general.headline
                             </label>
                             <config>
                                 <type>input</type>
@@ -20,7 +20,7 @@
                     <subheadline>
                         <TCEforms>
                             <label>
-                                LLL:EXT:site_default/Resources/Private/Language/locallang_flex.xlf:general.subheadline
+                                LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_flex.xlf:general.subheadline
                             </label>
                             <config>
                                 <type>input</type>
@@ -29,7 +29,7 @@
                     </subheadline>
                     <text>
                         <TCEforms>
-                            <label>LLL:EXT:site_default/Resources/Private/Language/locallang_flex.xlf:general.text
+                            <label>LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_flex.xlf:general.text
                             </label>
                             <config>
                                 <type>text</type>
@@ -38,7 +38,7 @@
                     </text>
                     <image>
                         <TCEforms>
-                            <label>LLL:EXT:site_default/Resources/Private/Language/locallang_flex.xlf:general.image
+                            <label>LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_flex.xlf:general.image
                             </label>
                             <config>
                                 <type>group</type>
@@ -58,7 +58,7 @@
                     </image>
                     <link>
                         <TCEforms>
-                            <label>LLL:EXT:site_default/Resources/Private/Language/locallang_flex.xlf:general.link
+                            <label>LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_flex.xlf:general.link
                             </label>
                             <config>
                                 <type>group</type>

@@ -4,7 +4,7 @@ menu {
     main {
 
         special = directory
-        special.value = {$site_default.website.settings.main_menu}
+        special.value = {$ns_basetheme.website.settings.main_menu}
 
         1 = TMENU
         1 {
@@ -65,7 +65,7 @@ menu {
     footer {
 
         special = directory
-        special.value = {$site_default.website.settings.footer_menu}
+        special.value = {$ns_basetheme.website.settings.footer_menu}
 
         1 = TMENU
         1 {

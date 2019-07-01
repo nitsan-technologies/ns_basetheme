@@ -3,8 +3,8 @@ mod {
     web_layout {
         BackendLayouts {
             default {
-                title = LLL:EXT:site_default/Resources/Private/Language/BackendLayouts/locallang.xlf:default
-                icon = EXT:site_default/Resources/Public/Icons/BackendLayouts/Default.png
+                title = LLL:EXT:ns_basetheme/Resources/Private/Language/BackendLayouts/locallang.xlf:default
+                icon = EXT:ns_basetheme/Resources/Public/Icons/BackendLayouts/Default.png
                 config {
                     backend_layout {
                         colCount = 1
@@ -13,7 +13,7 @@ mod {
                             1 {
                                 columns {
                                     1 {
-                                        name = LLL:EXT:site_default/Resources/Private/Language/BackendLayouts/locallang.xlf:content
+                                        name = LLL:EXT:ns_basetheme/Resources/Private/Language/BackendLayouts/locallang.xlf:content
                                         colPos = 0
                                     }
                                 }
@@ -22,7 +22,7 @@ mod {
                             2 {
                                 columns {
                                     1 {
-                                        name = LLL:EXT:site_default/Resources/Private/Language/BackendLayouts/locallang.xlf:footer
+                                        name = LLL:EXT:ns_basetheme/Resources/Private/Language/BackendLayouts/locallang.xlf:footer
                                         colPos = 1
                                     }
                                 }

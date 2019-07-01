@@ -1,5 +1,5 @@
 rootPageId: 1
-base: 'http://site-default.ddev.local/'
+base: 'http://ns-basetheme.ddev.local/'
 baseVariants: { }
 languages:
   - title: English
@@ -23,7 +23,7 @@ routes:
     content: "User-agent: *\r\nDisallow: /typo3/\r\nDisallow: /typo3_src/\r\nAllow: /typo3/sysext/frontend/Resources/Public/*\r\n"
   - route: sitemap.xml
     type: uri
-    source: 'http://site-default.ddev.local/?sitemap=pages&type=1533906435&cHash=aeddf6d092a6d0fc89cac9fee90229e6'
+    source: 'http://ns-basetheme.ddev.local/?sitemap=pages&type=1533906435&cHash=aeddf6d092a6d0fc89cac9fee90229e6'
 routeEnhancers:
   NewsPlugin:
     type: Extbase

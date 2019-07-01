@@ -39,15 +39,15 @@ plugin.tx_indexedsearch {
 
     view {
         templateRootPaths {
-            10 = EXT:site_default/Resources/Private/Extensions/IndexedSearch/Templates
+            10 = EXT:ns_basetheme/Resources/Private/Extensions/IndexedSearch/Templates
         }
 
         partialRootPaths {
-            10 = EXT:site_default/Resources/Private/Extensions/IndexedSearch/Partials
+            10 = EXT:ns_basetheme/Resources/Private/Extensions/IndexedSearch/Partials
         }
 
         layoutRootPaths {
-            10 = EXT:site_default/Resources/Private/Extensions/IndexedSearch/Layouts
+            10 = EXT:ns_basetheme/Resources/Private/Extensions/IndexedSearch/Layouts
         }
     }
 }

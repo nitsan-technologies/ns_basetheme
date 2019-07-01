@@ -9,7 +9,7 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$_EXTKEY] = unserialize($_EXTCONF);
 
 // Define your each componenet's flexform files
 $allComponents = array();
-$arrAllComponents['site_default'] = scandir(PATH_typo3conf . "ext/site_default/Configuration/FlexForms");
+$arrAllComponents['ns_basetheme'] = scandir(PATH_typo3conf . "ext/ns_basetheme/Configuration/FlexForms");
 
 // Get list of all the extensions
 $arrAllExtensions = scandir(PATH_typo3conf . "ext/");
@@ -91,7 +91,7 @@ if (TYPO3_MODE === 'BE') {
         $_EXTKEY
     );
     // Let's add default PageTS for "Form"
-    $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['default'] = 'EXT:site_default/Configuration/RTE/Default.yaml';
+    $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['default'] = 'EXT:ns_basetheme/Configuration/RTE/Default.yaml';
 }
 
 // Let's prepare CType components to add at TypoScript Config
@@ -121,7 +121,7 @@ foreach ($allComponents as $extKey => $extValue) {
                             references.fieldName = image
                             as = image
                         }
-                        20 = NITSAN\site_default\DataProcessing\DefaultProcessor
+                        20 = NITSAN\\ns_basetheme\\DataProcessing\\DefaultProcessor
                     }
                 }
             ";
@@ -137,10 +137,10 @@ foreach ($allComponents as $extKey => $extValue) {
 ");
 
 // Draw content into content elements
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem'][] = 'NITSAN\\site_default\\Hooks\\CmsLayout';
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem'][] = 'NITSAN\\ns_basetheme\\Hooks\\CmsLayout';
 
 // Manipulate data if needed
-// $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = 'EXT:' . $_EXTKEY . '/Classes/Hooks/PreProcessFields.php:NITSAN\site_default\Hooks\PreProcessFields';
+// $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = 'EXT:' . $_EXTKEY . '/Classes/Hooks/PreProcessFields.php:NITSAN\ns_basetheme\Hooks\PreProcessFields';
 
 // Let's register icon for each TYPO3 Components
 $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(

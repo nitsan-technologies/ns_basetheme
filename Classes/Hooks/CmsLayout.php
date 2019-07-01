@@ -1,6 +1,6 @@
 <?php
 
-namespace NITSAN\site_default\Hooks;
+namespace NITSAN\ns_basetheme\Hooks;
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\PageLayoutView;
@@ -145,6 +145,6 @@ class CmsLayout implements PageLayoutViewDrawItemHookInterface
      */
     protected function translateKey($key)
     {
-        return $GLOBALS['LANG']->sL('LLL:EXT:site_default/Resources/Private/Language/locallang_db.xlf:' . $key);
+        return $GLOBALS['LANG']->sL('LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:' . $key);
     }
 }
