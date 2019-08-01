@@ -35,6 +35,19 @@
             <trans-unit id="ns_slider.title">
                 <source>Slider</source>
             </trans-unit>
+
+            <trans-unit id="tx_nsthemens2019_domain_model_testimonial.header">
+                <source>Heading</source>
+            </trans-unit>
+            <trans-unit id="tx_nsthemens2019_domain_model_testimonial.sub_header">
+                <source>Sub Heading</source>
+            </trans-unit>
+            <trans-unit id="tx_nsthemens2019_domain_model_testimonial.testimonials">
+                <source>Select testimonials</source>
+            </trans-unit>
+            <trans-unit id="tx_nsthemens2019_domain_model_testimonial.link">
+                <source>Page ID of All videos </source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>
