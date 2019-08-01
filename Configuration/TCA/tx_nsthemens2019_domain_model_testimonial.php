@@ -114,7 +114,6 @@ return [
                 ],
             ],
         ],
-
         'videotextopt' => [
             'exclude' => true,
             'onChange' => 'reload',
@@ -123,7 +122,7 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:tx_nsthemens2019_domain_model_testimonial.testimonialtextopt', '0'],                    
+                    ['LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:tx_nsthemens2019_domain_model_testimonial.testimonialtextopt', '0'],
                     ['LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:tx_nsthemens2019_domain_model_testimonial.testimonialvideoopt', '1'],
                 ],
                 'size' => 1,
