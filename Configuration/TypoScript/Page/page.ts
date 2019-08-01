@@ -83,4 +83,78 @@ lib {
             wrap = |
         }
     }
+
+    //Get Testimonial content
+    getTestimonials = CONTENT
+    getTestimonials {
+        table = tx_nsthemens2019_domain_model_testimonial
+        select {
+            pidInList = 0
+            uidInList = {field:uid}
+            uidInList.insertData = 1
+            andWhere = hidden = 0 && deleted = 0
+            selectFields = *
+        }
+        renderObj = COA
+        renderObj {
+            wrap = <div class="lqd-column col-md-4 col-sm-6">|</div>
+
+            #Render video file/link    
+            5 = FILES
+            5 {
+                references {
+                    uid.field = uid
+                    fieldName = youtube_link
+                }
+                renderObj = COA
+                renderObj {
+                    5 = TEXT
+                    5.value = <a href="
+                    10 = TEXT
+                    10 {
+                        data = file:current:publicUrl
+                        wrap = |" class="fresco">
+                    }
+
+                }
+            }
+            #Render Image file 
+            10 = FILES
+            10 {
+                references {
+                    uid.field = uid
+                    fieldName = image
+                }
+                renderObj = IMAGE
+                renderObj {
+                    file.import.data = file:current:uid
+                    file.treatIdAsReference = 1
+                    file.width = 570
+                    file.height = 460
+                    altText.data = file:current:title
+                    wrap = <div class="fancy-box fancy-box-classes fancy-box-heading-sm"><figure class="fancy-box-image">|</figure>
+                }
+            }
+            20 = TEXT
+            20.wrap = <div class="fancy-box-contents"><div class="fancy-box-info">|
+
+            30 = TEXT
+            30 {
+                field = title
+                stdWrap.htmlSpecialChars = 0
+                wrap = <h3 class="font-weight-semibold">|</h3>
+            }
+
+            40 = TEXT
+            40 {
+                field = detail
+                stdWrap.htmlSpecialChars = 0
+                wrap = <span class="trainer"><i class="icon-md-play-circle"></i>|</span>
+            }
+
+            50 = TEXT
+            50.wrap = |</div></div></div></a>
+        }
+    }
+
 }

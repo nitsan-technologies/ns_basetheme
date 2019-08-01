@@ -36,6 +36,41 @@
             <trans-unit id="wizard.ns_slider.desc">
                 <source>Integrate slider with multiple images and headline</source>
             </trans-unit>
+
+              <trans-unit id="wizard.ns_testimonials">
+                <source>[Custom] Video Testimonial</source>
+            </trans-unit>
+            <trans-unit id="wizard.ns_testimonials.desc">
+                <source>Select this option for display user video testimonial.</source>
+            </trans-unit>
+
+            <trans-unit id="tx_nsthemens2019_domain_model_testimonial">
+                <source>Testimonial</source>
+            </trans-unit>
+            <trans-unit id="tx_nsthemens2019_domain_model_testimonial.videotextopt">
+                <source>Select testimonial type</source>
+            </trans-unit>
+            <trans-unit id="tx_nsthemens2019_domain_model_testimonial.image">
+                <source>Image</source>
+            </trans-unit>
+            <trans-unit id="tx_nsthemens2019_domain_model_testimonial.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="tx_nsthemens2019_domain_model_testimonial.detail">
+                <source>Detail</source>
+            </trans-unit>
+            <trans-unit id="tx_nsthemens2019_domain_model_testimonial.youtube_link">
+                <source>Youtube Link</source>
+            </trans-unit>
+            <trans-unit id="tx_nsthemens2019_domain_model_testimonial.testimonialopt">
+                <source>Select testimonial type</source>
+            </trans-unit>
+            <trans-unit id="tx_nsthemens2019_domain_model_testimonial.testimonialvideoopt">
+                <source>Video testimonial</source>
+            </trans-unit>
+            <trans-unit id="tx_nsthemens2019_domain_model_testimonial.testimonialtextopt">
+                <source>Text testimonial</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>
