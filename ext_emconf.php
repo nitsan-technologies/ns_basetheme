@@ -12,7 +12,7 @@ defined('TYPO3_MODE') or die();
 // Provide detailed information and depenencies of EXT:ns_basetheme
 $EM_CONF[$_EXTKEY] = array(
     'title' => '[NITSAN] TYPO3 Parent/Base Theme',
-    'description' => 'The TYPO3 theme which is design for parent and child theme concept, This parent theme have common and global configuration to support the child theme',
+    'description' => 'The TYPO3 theme which is design for parent and child theme concept, This parent theme have common and global configuration to support the child theme. Read more at documentation.',
     'category' => 'templates',
     'author' => 'Team NITSAN',
     'author_email' => 'sanjay@nitsan.in',
