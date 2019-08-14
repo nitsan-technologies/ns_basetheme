@@ -5,12 +5,12 @@
   "keywords": [
     "TYPO3 CMS",
     "introduction",
-    "nsBasetheme",
+    "Basetheme",
     "bootstrap",
     "responsive",
     "frontend",
     "theme",
-    "web"
+    "ns"
   ],
   "homepage": "https://gitlab.com/sanjay_nitsan/ns_basetheme",
   "authors": [
@@ -36,8 +36,8 @@
     }
   },
   "replace": {
-      "ns_basetheme": "3.0.0",
-      "nitsan/ns-basetheme": "3.0.0"
+      "ns_basetheme": "3.1.0",
+      "nitsan/ns-basetheme": "3.1.0"
   },
   "config": {
     "vendor-dir": ".Build/vendor/",
