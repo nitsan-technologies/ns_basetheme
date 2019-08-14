@@ -1,0 +1,15 @@
+paths:
+  - Configuration/PageTSconfig
+  - Configuration/TypoScript
+
+filePatterns:
+  - "*.ts"
+
+sniffs:
+  - class: Indentation
+    parameters:
+      indentConditions: true
+  - class: RepeatingRValue
+    disabled: true
+  - class: DeadCode
+    disabled: true

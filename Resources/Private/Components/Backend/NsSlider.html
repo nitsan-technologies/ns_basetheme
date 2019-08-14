@@ -1,0 +1,26 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:if condition="{flexformData.slider}">
+  <header>
+      <div class="row">
+          <f:for each="{flexformData.slider}" as="item">
+            <div class="col-sm-2">
+              
+              <!-- FAL Media -->
+              <f:comment>
+                <p><f:image src="{item.container.image}" width="200" /></p>
+              </f:comment>
+
+              <!-- Static Media -->
+              <p><img src="http://placehold.it/1980x1080" width="200" /></p>
+              
+              <h3>{item.container.headline}</h3>
+              <p><f:format.html>{item.container.subheadline}</f:format.html></p>
+            </div>
+          </f:for>
+      </div>
+  </header>
+</f:if>
+
+</html>

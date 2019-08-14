@@ -1,0 +1,34 @@
+<html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+    
+    <!-- Let's check if calling from TS DataProcessing For Rendering -->
+    <f:if condition="{NsRecord}">
+        <f:then>
+            <div class="row">
+                <f:for each="{NsRecord}" as="value" key="key">
+                    <div class="col-4">
+                        <h4>{value.data.title}</h4>
+                        <f:image image="{value.files.0}" width="200" />
+                        <f:format.html>{value.data.detail}</f:format.html>
+                    </div>
+                </f:for>
+            </div>
+        </f:then>
+
+        <!-- Otherwise, let's just render content from Flex -->
+        <f:else>
+            <section class="record" id="record">
+                <div class="container">
+
+                    <!-- Render from Flexform -->
+                    <div class="row">
+                        <h2>{content.header}</h2>
+                    </div>
+                    
+                    <!-- Call TypoScript for DataProcessing -->
+                    <f:cObject typoscriptObjectPath="lib.getRecord" data="{uid: content.record, pid: content.storage}" />
+                </div>
+            </section>
+        </f:else>
+    </f:if>
+    
+</html>

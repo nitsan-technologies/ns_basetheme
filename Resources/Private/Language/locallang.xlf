@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-07-24T20:37:42Z">
+		<header/>
+		<body>
+			<trans-unit id="palette.access">
+                <source>Access</source>
+            </trans-unit>
+            <trans-unit id="title">
+                <source>Title</source>
+            </trans-unit>
+
+            <trans-unit id="ns_imageteaser.readmore">
+                <source>Read more!</source>
+            </trans-unit>
+            <trans-unit id="tx_nsbasetheme_domain_model_record">
+                <source>Record</source>
+            </trans-unit>
+            <trans-unit id="tx_nsbasetheme_domain_model_record.image">
+                <source>Image</source>
+            </trans-unit>
+            <trans-unit id="tx_nsbasetheme_domain_model_record.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="tx_nsbasetheme_domain_model_record.detail">
+                <source>Detail</source>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>

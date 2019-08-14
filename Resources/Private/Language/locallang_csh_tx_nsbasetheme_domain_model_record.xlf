@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-07-24T04:33:02Z" product-name="ns_basetheme">
+		<header/>
+		<body>
+			<trans-unit id="image.description">
+				<source>image</source>
+			</trans-unit>
+			<trans-unit id="title.description">
+				<source>title</source>
+			</trans-unit>
+			<trans-unit id="detail.description">
+				<source>detail</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,16 @@
+<f:form
+	class="navbar-form navbar-right"
+	pageUid="1"
+	extensionName="indexedsearch"
+	pluginName="pi2"
+	action="search"
+	controller="Search">
+
+	<div class="form-group">
+		<f:form.textfield class="form-control" placeholder="{f:translate(key:'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang.xlf:indexed_search.placeholder')}" name="search[sword]" />
+	</div>
+	<input type="hidden" name="search[action]" value="search"/>
+	<input type="hidden" name="search[controller]" value="Search"/>
+	
+	<f:form.submit class="btn btn-primary" value="{f:translate(key:'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang.xlf:indexed_search.searchButton')}"/>
+</f:form>

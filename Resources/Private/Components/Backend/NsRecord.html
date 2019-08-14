@@ -1,0 +1,18 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+    <h2><f:translate key="LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:wizard.ns_record"/></h2>
+    <header>
+        <div class="row">
+            <div class="col-md-12">
+                <f:if condition="{flexformData.header}">
+                	<h3>{flexformData.header}</h3>
+               	</f:if>
+               	<f:if condition="{flexformData.record}">
+                	<p><strong>UID: {flexformData.record}</strong></p>
+               	</f:if>
+            </div>
+        </div>
+    </header>
+
+</html>

@@ -1,0 +1,43 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:if condition="{content.slider}">
+  <header>
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <f:for each="{content.slider}" as="item" iteration="itemIterator">
+              <li data-target="#carouselExampleIndicators" data-slide-to="{itemIterator.index}" class="{f:if(condition: itemIterator.isFirst, then: 'active')}"></li>
+          </f:for>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+          <f:for each="{content.slider}" as="item" iteration="itemIterator">
+            
+            <!-- FAL Media -->
+            <f:comment>
+              <div class="carousel-item {f:if(condition: itemIterator.isFirst, then: 'active')}" style="background-image: url('{f:uri.image(src: '{item.image}')}')">
+            </f:comment>
+
+              <!-- Static Media -->
+              <div class="carousel-item {f:if(condition: itemIterator.isFirst, then: 'active')}" style="background-image: url('http://placehold.it/1980x1080')">
+                
+              <div class="carousel-caption d-none d-md-block">
+                <h3>{item.headline}</h3>
+                <p><f:format.html>{item.subheadline}</f:format.html></p>
+              </div>
+            </div>
+            
+          </f:for>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+  </header>
+</f:if>
+
+</html>
