@@ -1,34 +1,67 @@
 <html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
     
-    <!-- Let's check if calling from TS DataProcessing For Rendering -->
-    <f:if condition="{NsRecord}">
+    <!-- Listing > Header -->
+    <f:if condition="{content.display} == 'listing'">
         <f:then>
-            <div class="row">
-                <f:for each="{NsRecord}" as="value" key="key">
-                    <div class="col-4">
-                        <h4>{value.data.title}</h4>
-                        <f:image image="{value.files.0}" width="200" />
-                        <f:format.html>{value.data.detail}</f:format.html>
-                    </div>
-                </f:for>
-            </div>
-        </f:then>
-
-        <!-- Otherwise, let's just render content from Flex -->
-        <f:else>
             <section class="record" id="record">
                 <div class="container">
-
-                    <!-- Render from Flexform -->
                     <div class="row">
                         <h2>{content.header}</h2>
                     </div>
                     
                     <!-- Call TypoScript for DataProcessing -->
-                    <f:cObject typoscriptObjectPath="lib.getRecord" data="{uid: content.record, pid: content.storage}" />
+                    <f:cObject typoscriptObjectPath="NsRecordList" data="{uid: content.record, pid: content.storage, detailPageId: content.detailPageId}" />
                 </div>
             </section>
-        </f:else>
+        </f:then>
     </f:if>
-    
+
+    <!-- Listing > Records -->
+    <f:if condition="{NsRecordList}">
+        <f:then>
+            <div class="row">
+                <f:for each="{NsRecordList}" as="value" key="key">
+                    <div class="col-4">
+                        <h4>{value.data.title}</h4>
+                        <f:link.page pageUid="{data.detailPageId}" additionalParams="{uid: value.data.uid}">
+                            <f:image image="{value.files.0}" width="200" />
+                            <f:format.html>{value.data.detail}</f:format.html>
+                        </f:link.page>
+                    </div>
+                </f:for>
+            </div>
+        </f:then>
+    </f:if>
+
+    <!-- Detail > Header -->
+    <f:if condition="{content.display} == 'detail'">
+        <f:then>
+            <section class="record" id="record">
+                <div class="container">
+                    <div class="row">
+                        <h2>{content.header}</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Call TypoScript for DataProcessing -->
+                            <f:cObject typoscriptObjectPath="NsRecordDetail" data="{pid: content.storage}" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </f:then>
+    </f:if>
+
+    <!-- Detail > Record -->
+    <f:if condition="{NsRecordDetail}">
+        <f:then>
+            <div class="row">
+                <div class="col-12">
+                    <h4>{NsRecordDetail.0.data.title}</h4>                    
+                    <f:image image="{NsRecordDetail.0.files.0}" width="500" />
+                    <f:format.html>{NsRecordDetail.0.data.detail}</f:format.html>
+                </div>
+            </div>
+        </f:then>
+    </f:if>  
 </html>

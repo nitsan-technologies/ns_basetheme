@@ -21,6 +21,18 @@
             <trans-unit id="general.text">
                 <source>Text</source>
             </trans-unit>
+            <trans-unit id="general.display">
+                <source>Display</source>
+            </trans-unit>
+            <trans-unit id="general.listing">
+                <source>Listing</source>
+            </trans-unit>
+            <trans-unit id="general.detail">
+                <source>Detatil</source>
+            </trans-unit>
+            <trans-unit id="general.detailPageId">
+                <source>Detatil Page</source>
+            </trans-unit>
             
             <trans-unit id="ns_imageteaser.orientation">
                 <source>Orientation</source>
@@ -38,9 +50,6 @@
 
             <trans-unit id="tx_nsbasetheme_domain_model_record.header">
                 <source>Heading</source>
-            </trans-unit>
-            <trans-unit id="tx_nsbasetheme_domain_model_record.sub_header">
-                <source>Sub Heading</source>
             </trans-unit>
             <trans-unit id="tx_nsbasetheme_domain_model_record.Record">
                 <source>Select Record</source>
