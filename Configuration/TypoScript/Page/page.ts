@@ -1,3 +1,13 @@
+// Grab all the constant
+plugin {
+    ns_basetheme {
+        settings {
+            logo = {$ns_basetheme.website.settings.logo}
+            copyright = {$ns_basetheme.website.settings.copyright}
+        }
+    }
+}
+
 // Initiate Page Object
 page = PAGE
 page {
@@ -55,7 +65,7 @@ page {
             pagets__content.value = {$ns_basetheme.website.paths.templateRootPath}Content.html
         }
 
-        settings < plugin.tx_nsBasetheme.settings
+        settings < plugin.ns_basetheme.settings
     }
 }
 
