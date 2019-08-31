@@ -24,7 +24,7 @@ page {
     }
 
     // Setup favion
-    favicon = typo3conf/exit/ns_basetheme/Resources/Public/images/favicon.ico
+    shortcutIcon = typo3conf/exit/ns_basetheme/Resources/Public/images/favicon.ico
 
     // Set viewport
     meta {
