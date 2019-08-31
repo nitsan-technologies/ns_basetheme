@@ -22,8 +22,8 @@ $EM_CONF[$_EXTKEY] = array(
     'constraints' => array(
         'depends' => array(
             'typo3' => '8.0.0-9.5.99',
-            'news' => '4.3.0-7.2.99',
-            'gridelements' => '8.0.0-9.2.99',
+            'news' => '4.3.0-7.9.99',
+            'gridelements' => '8.0.0-9.9.99',
         ),
         'conflicts' => array(),
         'suggests' => array(),
