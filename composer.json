@@ -35,8 +35,8 @@
     }
   },
   "replace": {
-      "ns_basetheme": "3.1.0",
-      "nitsan/ns-basetheme": "3.1.0"
+      "ns_basetheme": "3.1.1",
+      "nitsan/ns-basetheme": "3.1.1"
   },
   "config": {
     "vendor-dir": ".Build/vendor/",
