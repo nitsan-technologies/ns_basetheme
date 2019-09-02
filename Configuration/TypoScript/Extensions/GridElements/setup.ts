@@ -27,4 +27,13 @@ tt_content.gridelements_pi1.20.10.setup {
             file = typo3conf/ext/ns_basetheme/Resources/Private/Extensions/Grid/fourcolumn.html
         }
     }
+    
+    # One column grid container
+    4 < lib.gridelements.defaultGridSetup
+    4 {
+        cObject = FLUIDTEMPLATE
+        cObject {
+            file = typo3conf/ext/ns_basetheme/Resources/Private/Extensions/Grid/oneColumn.html
+        }
+    }
 }
