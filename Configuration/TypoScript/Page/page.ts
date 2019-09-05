@@ -15,14 +15,6 @@ page {
     // Set default page typenum
     typeNum = 0
 
-    // Setup body tag with page-id
-    bodyTag >
-    bodyTagCObject = TEXT
-    bodyTagCObject {
-        value = <body class='' id='page_{page:uid}'>
-        insertData = 1
-    }
-
     // Setup favion
     shortcutIcon = typo3conf/exit/ns_basetheme/Resources/Public/images/favicon.ico
 
@@ -69,6 +61,7 @@ page {
     }
 }
 
+# Define the library
 lib {
     // Define default content
     content = CONTENT
@@ -91,5 +84,34 @@ lib {
             value = {$ns_basetheme.website.settings.copyright}
             wrap = |
         }
+    }
+}
+
+# <body> Setup common classes
+page.bodyTagCObject = COA
+page.bodyTagCObject {
+    wrap = <body class="|">
+
+    10 = COA
+    10 {
+        # page uid
+        10 = TEXT
+        10.field = alias // uid
+        10.wrap = id_|
+
+        # tree level (NOTE: 0 is first level, ID=1)
+        20 = TEXT
+        20.data = level : 1
+        20.noTrimWrap = | tree||
+
+        # parent uid
+        30 = TEXT
+        30.field = pid
+        30.noTrimWrap = | parent||
+
+        # language uid
+        40 = TEXT
+        40.data = TSFE : sys_language_uid
+        40.noTrimWrap = | lang| |
     }
 }
