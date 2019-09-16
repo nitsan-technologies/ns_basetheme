@@ -87,6 +87,10 @@ lib {
     }
 }
 
+# Get rootPageId
+lib.rootPageId = TEXT
+lib.rootPageId.data = leveluid : 0
+
 # <body> Setup common classes
 page.bodyTagCObject = COA
 page.bodyTagCObject {
