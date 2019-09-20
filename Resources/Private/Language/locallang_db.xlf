@@ -56,6 +56,12 @@
             <trans-unit id="tx_nsbasetheme_domain_model_record.detail">
                 <source>Detail</source>
             </trans-unit>
+            <trans-unit id="website">
+                <source>Website configuration</source>
+            </trans-unit>
+            <trans-unit id="cookie">
+                <source>Cookie configuration</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

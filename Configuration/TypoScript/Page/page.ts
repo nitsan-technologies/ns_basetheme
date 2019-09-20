@@ -23,6 +23,61 @@ page {
         viewport = width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no
     }
 
+    # Modify Google Analytics from CS_SEO
+    headerData {
+        998 = FLUIDTEMPLATE
+        998 {
+            file = EXT:ns_basetheme/Resources/Private/Extensions/Cookie/Layouts/Cookie.html
+
+            templateRootPath = EXT:ns_basetheme/Resources/Private/Extensions/Cookie/Templates/
+            partialRootPath = EXT:ns_basetheme/Resources/Private/Extensions/Cookie/Partials/
+            layoutRootPath = EXT:ns_basetheme/Resources/Private/Extensions/Cookie/Layouts/
+
+            settings  {
+                url = {$ns_basetheme.website.settings.cookie.settings.url}
+                theme = {$ns_basetheme.website.settings.cookie.settings.theme}
+                position = {$ns_basetheme.website.settings.cookie.settings.position}
+                type = {$ns_basetheme.website.settings.cookie.settings.type}
+                dismissOnScroll = {$ns_basetheme.website.settings.cookie.settings.dismissOnScroll}
+                barBg = {$ns_basetheme.website.settings.cookie.settings.palette.popup.background}
+                barColor = {$ns_basetheme.website.settings.cookie.settings.palette.popup.text}
+                btnBg = {$ns_basetheme.website.settings.cookie.settings.palette.button.background}
+                btnColor = {$ns_basetheme.website.settings.cookie.settings.palette.button.text}
+            }
+        }
+        
+        657 {
+            10 {
+                stdWrap.replacement  {
+                    10 {
+                        search = <script
+                        replace = <script data-ignore="1" data-cookieconsent="statistics" type="text/plain"
+                    }
+                    20 {
+                        search = src=
+                        replace = data-src=
+                    }
+                }
+            }
+            # Modify Google Analytics from CS_SEO
+            20 {
+                stdWrap.replacement  {
+                    10 {
+                        search = <script
+                        replace = <script data-ignore="1" data-cookieconsent="statistics" type="text/plain"
+                    }
+                }
+            }
+        }
+
+        # Modify Google Tag-Manager & Piwiki from CS_SEO
+        90 = COA
+        90 {
+            wrap = <script data-ignore="1" data-cookieconsent="statistics" type="text/plain">|</script>
+            10 < .jsInline.654
+        }
+    }
+
     // Initiate all the css-together
     includeCSS {
         10 = typo3conf/ext/ns_basetheme/Resources/Public/vendor/bootstrap/css/bootstrap.min.css
