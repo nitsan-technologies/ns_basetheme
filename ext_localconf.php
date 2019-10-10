@@ -3,21 +3,33 @@
 if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
-
+$_EXTKEY = 'ns_basetheme';
 // Let's configuration of this extension from "Extension Manager"
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$_EXTKEY] = unserialize($_EXTCONF);
 
 // Define your each componenet's flexform files
 $allComponents = array();
-$arrAllComponents['ns_basetheme'] = scandir(PATH_typo3conf . "ext/ns_basetheme/Configuration/FlexForms");
+if (version_compare(TYPO3_branch, '10.0', '>')) {
+    $arrAllComponents['ns_basetheme'] = scandir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . "/typo3conf/ext/ns_basetheme/Configuration/FlexForms");
+} else {
+    $arrAllComponents['ns_basetheme'] = scandir(PATH_typo3conf . "ext/ns_basetheme/Configuration/FlexForms");
+}
 
 // Get list of all the extensions
-$arrAllExtensions = scandir(PATH_typo3conf . "ext/");
+if (version_compare(TYPO3_branch, '10.0', '>')) {
+    $arrAllExtensions = scandir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . "/typo3conf/ext/");
+} else {
+    $arrAllExtensions = scandir(PATH_typo3conf . "ext/");
+}  
 foreach ($arrAllExtensions as $key => $extKey) {
     // Get only extension which are child theme eg., EXT:ns_theme_cleanblog
     $extensionPrefixKey = substr($extKey, 0, 9);
     if ($extensionPrefixKey == "ns_theme_") {
-        $arrAllComponents[$extKey] = scandir(PATH_typo3conf . "ext/$extKey/Configuration/FlexForms");
+        if (version_compare(TYPO3_branch, '10.0', '>')) {
+            $arrAllComponents[$extKey] = scandir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . "/typo3conf/ext/$extKey/Configuration/FlexForms");
+        } else {
+            $arrAllComponents[$extKey] = scandir(PATH_typo3conf . "ext/$extKey/Configuration/FlexForms");
+        }
     }
 }
 
