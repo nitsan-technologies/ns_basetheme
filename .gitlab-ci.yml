@@ -71,8 +71,8 @@ stages:
 #    #- xmllint --schema xliff-core-1.0-strict.xsd --noout $(find Resources -name '*.xlf')
 
 # Tests in PHP 7.2 and TYPO3 9.5
-# php:testphp72:typo3_95:
-#   <<: *phptesting
-#   variables:
-#     DOCKER_TAG: 7.2-alpine
-#     # TYPO3_VERSION: ^9.5
+php:testphp72:typo3_95:
+  <<: *phptesting
+  variables:
+    DOCKER_TAG: 7.2-alpine
+    # TYPO3_VERSION: ^9.5
