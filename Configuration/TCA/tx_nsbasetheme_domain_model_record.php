@@ -185,7 +185,6 @@ return [
                 'rows' => 15,
                 'eval' => 'trim',
             ],
-            
         ],    
     ],
 ];
