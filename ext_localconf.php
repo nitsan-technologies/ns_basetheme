@@ -20,7 +20,7 @@ if (version_compare(TYPO3_branch, '10.0', '>')) {
     $arrAllExtensions = scandir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . "/typo3conf/ext/");
 } else {
     $arrAllExtensions = scandir(PATH_typo3conf . "ext/");
-}  
+}
 foreach ($arrAllExtensions as $key => $extKey) {
     // Get only extension which are child theme eg., EXT:ns_theme_cleanblog
     $extensionPrefixKey = substr($extKey, 0, 9);
