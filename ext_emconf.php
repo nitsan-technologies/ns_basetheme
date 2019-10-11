@@ -18,11 +18,11 @@ $EM_CONF[$_EXTKEY] = array(
     'author_email' => 'sanjay@nitsan.in',
     'author_company' => 'NITSAN Technologies Pvt Ltd',
     'state' => 'stable',
-    'version' => '3.1.5',
+    'version' => '4.0.0',
     'constraints' => array(
         'depends' => array(
             'typo3' => '8.0.0-10.99.99',
-            'gridelements' => '8.0.0-10.99.99r'
+            'gridelements' => '8.0.0-10.99.99'
         ),
         'conflicts' => array(),
         'suggests' => array(),
