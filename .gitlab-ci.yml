@@ -7,10 +7,10 @@ before_script:
   - apk add git --update
 
 stages:
-  - php
-  - typoscript
+  #- php
+  #- typoscript
   #- fluid
-  - yaml
+  #- yaml
   #- xliff
 
 .php: &phptesting
