@@ -1,22 +1,18 @@
+####
+# Example of what CKEditor can all bring
+###
+
+# Load default processing options
 imports:
-  - {resource: "EXT:rte_ckeditor/Configuration/RTE/Processing.yaml"}
-  - {resource: "EXT:rte_ckeditor/Configuration/RTE/Editor/Base.yaml"}
-  - {resource: "EXT:rte_ckeditor/Configuration/RTE/Editor/Plugins.yaml"}
+    - { resource: "EXT:rte_ckeditor/Configuration/RTE/Processing.yaml" }
+    - { resource: "EXT:rte_ckeditor/Configuration/RTE/Editor/Base.yaml" }
+    - { resource: "EXT:rte_ckeditor/Configuration/RTE/Editor/Plugins.yaml" }
 
+# Add configuration for the editor
+# For complete documentation see http://docs.ckeditor.com/#!/api/CKEDITOR.config
 editor:
-  # externalPlugins:
-  # bootstrappackage_address:
-  #    resource: "EXT:ns_basetheme/Resources/Public/CKEditor/Plugins/Address/plugin.min.js"
-  # bootstrappackage_box:
-  #    resource: "EXT:ns_basetheme/Resources/Public/CKEditor/Plugins/Box/plugin.min.js"
-  # bootstrappackage_columns:
-  #    resource: "EXT:ns_basetheme/Resources/Public/CKEditor/Plugins/Columns/plugin.min.js"
-  # bootstrappackage_indent:
-  #    resource: "EXT:ns_basetheme/Resources/Public/CKEditor/Plugins/Indent/plugin.min.js"
-  # bootstrappackage_table:
-  #    resource: "EXT:ns_basetheme/Resources/Public/CKEditor/Plugins/Table/plugin.min.js"
-
   config:
+    
     contentsCss: "EXT:ns_basetheme/Resources/Public/css/RTE/bootstrap4-rte.min.css"
 
     stylesSet:
@@ -58,19 +54,24 @@ editor:
       - {name: "Warning", element: "span", attributes: {'class': 'text-warning'}}
       - {name: "Danger", element: "span", attributes: {'class': 'text-danger'}}
 
-    toolbarGroups:
-      - {name: styles, groups: [format, styles]}
-      - {name: basicstyles, groups: [basicstyles]}
-      - {name: paragraph, groups: [list, indent, blocks, align]}
-      - "/"
-      - {name: links, groups: [links]}
-      - {name: clipboard, groups: [clipboard, cleanup, undo]}
-      - {name: editing, groups: [spellchecker]}
-      - {name: insert, groups: [insert]}
-      - {name: tools, groups: [table, specialchar]}
-      - {name: document, groups: [mode]}
+    format_tags: "p;h1;h2;h3;pre"
 
-    format_tags: "p;h1;h2;h3;h4;h5;pre"
+    toolbarGroups:
+      - { name: clipboard, groups: [clipboard, undo] }
+      - { name: editing,   groups: [find, selection, spellchecker] }
+      - { name: links }
+      - { name: insert }
+      - { name: tools }
+      - { name: table }
+      - { name: tabletools }
+      - { name: document,  groups: [ mode, document, doctools ] }
+      - { name: others }
+      - "/"
+      - { name: basicstyles, groups: [ basicstyles, align, cleanup ] }
+      - { name: paragraph,   groups: [ list, indent, blocks, align, bidi ] }
+      - { name: specialcharacters,   groups: [ insertcharacters ] }
+      - "/"
+      - { name: styles }
 
     justifyClasses:
       - text-left
@@ -78,23 +79,27 @@ editor:
       - text-right
       - text-justify
 
-    # extraPlugins:
-    # - justify
-    # - autolink
-    # - bootstrappackage_address
-    # - bootstrappackage_box
-    # - bootstrappackage_columns
-    # - bootstrappackage_indent
-    # - bootstrappackage_table
+    extraPlugins:
+      - justify
+      - font
+      - find
+      - bidi
+      - selectall
+      - autolink
+      - wordcount
 
     removePlugins:
-      - image
+      - null
 
     removeButtons:
-      - Anchor
-      - Underline
-      - Strike
 
+# Allow s and u tag
+processing:
+  allowTags:
+    - s
+    - u
+
+# Anchor class
 classesAnchor:
   page:
     class: 'link-page'
@@ -112,6 +117,7 @@ classesAnchor:
     class: 'link-mail'
     type: 'mail'
 
+# Custom class
 buttons:
   link:
     properties:
