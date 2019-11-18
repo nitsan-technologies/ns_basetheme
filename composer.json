@@ -4,12 +4,12 @@
   "description": "The TYPO3 theme which is design for parent and child theme concept, This parent theme have common and global configuration to support the child theme. Read more at documentation.",
   "keywords": [
     "TYPO3 CMS",
-    "introduction",
     "Basetheme",
     "bootstrap",
     "responsive",
     "frontend",
     "theme",
+    "template",
     "ns"
   ],
   "homepage": "https://gitlab.com/sanjay_nitsan/ns_basetheme",
@@ -35,7 +35,6 @@
     }
   },
   "replace": {
-      "ns_basetheme": "self.version",
       "nitsan/ns-basetheme": "self.version"
   },
   "config": {
