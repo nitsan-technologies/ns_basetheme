@@ -8,23 +8,23 @@ $_EXTKEY = 'ns_basetheme';
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$_EXTKEY] = unserialize($_EXTCONF);
 
 // Define your each componenet's flexform files
-$allComponents = array();
+$allComponents = [];
 if (version_compare(TYPO3_branch, '10.0', '>')) {
-    $arrAllComponents['ns_basetheme'] = scandir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . "/typo3conf/ext/ns_basetheme/Configuration/FlexForms");
+    $arrAllComponents['ns_basetheme'] = scandir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/typo3conf/ext/ns_basetheme/Configuration/FlexForms');
 } else {
-    $arrAllComponents['ns_basetheme'] = scandir(PATH_typo3conf . "ext/ns_basetheme/Configuration/FlexForms");
+    $arrAllComponents['ns_basetheme'] = scandir(PATH_typo3conf . 'ext/ns_basetheme/Configuration/FlexForms');
 }
 
 // Get list of all the extensions
 if (version_compare(TYPO3_branch, '10.0', '>')) {
-    $arrAllExtensions = scandir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . "/typo3conf/ext/");
+    $arrAllExtensions = scandir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/typo3conf/ext/');
 } else {
-    $arrAllExtensions = scandir(PATH_typo3conf . "ext/");
+    $arrAllExtensions = scandir(PATH_typo3conf . 'ext/');
 }
 foreach ($arrAllExtensions as $key => $extKey) {
     // Get only extension which are child theme eg., EXT:ns_theme_cleanblog
     $extensionPrefixKey = substr($extKey, 0, 9);
-    if ($extensionPrefixKey == "ns_theme_") {
+    if ($extensionPrefixKey == 'ns_theme_') {
         if (version_compare(TYPO3_branch, '10.0', '>')) {
             $arrAllComponents[$extKey] = scandir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . "/typo3conf/ext/$extKey/Configuration/FlexForms");
         } else {
@@ -37,7 +37,7 @@ foreach ($arrAllExtensions as $key => $extKey) {
 foreach ($arrAllComponents as $extKey => $extValue) {
     foreach ($extValue as $key => $value) {
         if ($value != '.' && $value != '..') {
-            $theComponentName = str_replace(".xml", "", $value);
+            $theComponentName = str_replace('.xml', '', $value);
             if (!empty($theComponentName)) {
                 $allComponents[$extKey][] = $theComponentName;
             }
@@ -46,7 +46,7 @@ foreach ($arrAllComponents as $extKey => $extValue) {
 }
 
 // Settled constatant to access from "Everywhere"
-define("ALL_COMPONENTS", $allComponents);
+define('ALL_COMPONENTS', $allComponents);
 
 // Include new content elements to modWizards
 if (TYPO3_MODE === 'BE') {
@@ -110,8 +110,8 @@ if (TYPO3_MODE === 'BE') {
 $tsComponents = '';
 foreach ($allComponents as $extKey => $extValue) {
     foreach ($extValue as $key => $theComponent) {
-        $arrTemplateName = explode("_", $theComponent);
-        $templateName = ucfirst($arrTemplateName[0]) . "" . ucfirst($arrTemplateName[1]);
+        $arrTemplateName = explode('_', $theComponent);
+        $templateName = ucfirst($arrTemplateName[0]) . '' . ucfirst($arrTemplateName[1]);
         if (!empty($templateName)) {
             $tsComponents .= "
                 $theComponent = FLUIDTEMPLATE

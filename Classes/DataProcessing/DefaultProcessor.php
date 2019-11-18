@@ -29,7 +29,6 @@ class DefaultProcessor implements DataProcessorInterface
         array $processorConfiguration,
         array $processedData
     ) {
-
         $processedData['content'] = $this->getOptionsFromFlexFormData($processedData['data']);
 
         return $processedData;

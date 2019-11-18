@@ -3,7 +3,6 @@
 namespace NITSAN\ns_basetheme\Hooks;
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Backend\View\PageLayoutView;
 use TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHookInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
@@ -19,7 +18,7 @@ class CmsLayout implements PageLayoutViewDrawItemHookInterface
      * Preprocesses the preview rendering of a content element.
      *
      * @param \TYPO3\CMS\Backend\View\PageLayoutView $parentObject Calling parent object
-     * @param boolean $drawItem Whether to draw the item using the default functionalities
+     * @param bool $drawItem Whether to draw the item using the default functionalities
      * @param string $headerContent Header content
      * @param string $itemContent Item content
      * @param array $row Record row of tt_content

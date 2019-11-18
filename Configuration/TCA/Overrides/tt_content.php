@@ -3,7 +3,6 @@
 defined('TYPO3_MODE') or die();
 
 call_user_func(function () {
-
     $locallang_db = '';
 
     // Get Components from ext_localconf.php
@@ -64,7 +63,7 @@ call_user_func(function () {
             $GLOBALS['TCA']['tt_content']['types'][$theComponent] = $tcaComponent;
         }
     }
-    
+
     $imageManipulation = [
         'image' => 'image',
         'textmedia' => 'assets',
