@@ -8,10 +8,10 @@ before_script:
 
 stages:
   - php
-  #- typoscript
+  - typoscript
   #- fluid
-  #- yaml
-  #- xliff
+  - yaml
+  - xliff
 
 .php: &phptesting
   stage: php
@@ -34,14 +34,14 @@ stages:
     .Build/bin/php-cs-fixer fix --dry-run --config=.php_cs --diff
     #- .Build/bin/phpcs --standard=PSR2 --warning-severity=0 --extensions=php *
 
-# typoscript:test:
-#   image: composer:1.6
-#   stage: typoscript
-#   before_script:
-#     - export COMPOSER_CACHE_DIR=.composer
-#     - composer require --dev helmich/typo3-typoscript-lint
-#   script:
-#     - .Build/bin/typoscript-lint -c tslint.yaml
+typoscript:test:
+   image: composer:1.6
+   stage: typoscript
+   before_script:
+     - export COMPOSER_CACHE_DIR=.composer
+     - composer require --dev helmich/typo3-typoscript-lint
+   script:
+     - .Build/bin/typoscript-lint -c tslint.yaml
 
 #fluid:test:
 #  image: composer:1.6
@@ -52,25 +52,25 @@ stages:
 #  script:
 #    - .Build/bin/fluidlint Resources/Private/Templates/Default.html
 
-# yaml:test:
-#   image: python:alpine3.7
-#   stage: yaml
-#   before_script:
-#     - pip install yamllint==1.10.0
-#   script:
-#     - yamllint .
+yaml:test:
+   image: python:alpine3.7
+   stage: yaml
+   before_script:
+     - pip install yamllint==1.10.0
+   script:
+     - yamllint .
 
-#xliff:test:
-#  image: composer:1.6
-#  stage: xliff
-#  before_script:
-#    - export COMPOSER_CACHE_DIR=.composer
-#    #- apk --no-cache add libxml2-utils
-#    #- wget https://raw.githubusercontent.com/symfony/translation/v4.1.1/Resources/schemas/xliff-core-1.0-strict.xsd
-#    - composer require symfony/translation
-# script:
-#    - .Build/bin/xlifflinter php bin/console lint:xliff /Resources/Private/Language
-#    #- xmllint --schema xliff-core-1.0-strict.xsd --noout $(find Resources -name '*.xlf')
+xliff:test:
+  image: composer:1.6
+  stage: xliff
+  before_script:
+    - export COMPOSER_CACHE_DIR=.composer
+    #- apk --no-cache add libxml2-utils
+    #- wget https://raw.githubusercontent.com/symfony/translation/v4.1.1/Resources/schemas/xliff-core-1.0-strict.xsd
+    - composer require symfony/translation
+  script:
+    - .Build/bin/xlifflinter php bin/console lint:xliff /Resources/Private/Language
+    #- xmllint --schema xliff-core-1.0-strict.xsd --noout $(find Resources -name '*.xlf')
 
 # Tests in PHP 7.2 and TYPO3 9.5
 php:testphp72:typo3_95:
