@@ -28,9 +28,11 @@ stages:
     - php -r "unlink('composer-setup.php'); unlink('installer.sig');"
     # - composer require typo3/minimal ${TYPO3_VERSION} --update-with-dependencies
     # - composer require nimut/testing-framework
-    - composer require squizlabs/php_codesniffer
+    # - composer require squizlabs/php_codesniffer
+    composer require friendsofphp/php-cs-fixer
   script:
-    - .Build/bin/phpcs --standard=PSR2 --warning-severity=0 --extensions=php *
+    .Build/bin/php-cs-fixer fix --dry-run --config=.php_cs --diff
+    #- .Build/bin/phpcs --standard=PSR2 --warning-severity=0 --extensions=php *
 
 # typoscript:test:
 #   image: composer:1.6
