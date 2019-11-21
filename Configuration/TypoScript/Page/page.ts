@@ -176,10 +176,10 @@ lib {
             wrap = |
         }
     }
-}
 
-# Get rootPageId
-lib.rootPageId = TEXT
-lib.rootPageId {
-    data = leveluid : 0
+    # Get rootPageId
+    rootPageId = TEXT
+    rootPageId {
+        data = leveluid : 0
+    }
 }
