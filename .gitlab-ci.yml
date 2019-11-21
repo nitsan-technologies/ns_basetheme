@@ -9,7 +9,6 @@ before_script:
 stages:
   - xliff
 
-
 xliff:test:
   image: composer:1.6
   stage: xliff
@@ -19,5 +18,9 @@ xliff:test:
     #- wget https://raw.githubusercontent.com/symfony/translation/v4.1.1/Resources/schemas/xliff-core-1.0-strict.xsd
     - composer require symfony/translation
   script:
-    - bin/console lint:xliff /Resources/Private/Language
+    - which php
+    - whereis php
+    - ls -l /usr/bin/php
+    - php bin/console
+    - php bin/console lint:xliff /Resources/Private/Language
     #- xmllint --schema xliff-core-1.0-strict.xsd --noout $(find Resources -name '*.xlf')
