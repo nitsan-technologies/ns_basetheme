@@ -35,13 +35,13 @@ stages:
     #- .Build/bin/phpcs --standard=PSR2 --warning-severity=0 --extensions=php *
 
 typoscript:test:
-   image: composer:1.6
-   stage: typoscript
-   before_script:
-     - export COMPOSER_CACHE_DIR=.composer
-     - composer require --dev helmich/typo3-typoscript-lint
-   script:
-     - .Build/bin/typoscript-lint -c tslint.yaml
+  image: composer:1.6
+  stage: typoscript
+  before_script:
+    - export COMPOSER_CACHE_DIR=.composer
+    - composer require --dev helmich/typo3-typoscript-lint
+  script:
+    - .Build/bin/typoscript-lint -c tslint.yaml
 
 #fluid:test:
 #  image: composer:1.6
@@ -53,12 +53,12 @@ typoscript:test:
 #    - .Build/bin/fluidlint Resources/Private/Templates/Default.html
 
 yaml:test:
-   image: python:alpine3.7
-   stage: yaml
-   before_script:
-     - pip install yamllint==1.10.0
-   script:
-     - yamllint .
+  image: python:alpine3.7
+  stage: yaml
+  before_script:
+    - pip install yamllint==1.10.0
+  script:
+    - yamllint -d relaxed -f colored .
 
 xliff:test:
   image: composer:1.6
