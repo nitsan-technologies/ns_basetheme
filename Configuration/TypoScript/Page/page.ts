@@ -33,7 +33,7 @@ page {
             partialRootPath = EXT:ns_basetheme/Resources/Private/Extensions/Cookie/Partials/
             layoutRootPath = EXT:ns_basetheme/Resources/Private/Extensions/Cookie/Layouts/
 
-            settings  {
+            settings {
                 url = {$ns_basetheme.website.settings.cookie.settings.url}
                 theme = {$ns_basetheme.website.settings.cookie.settings.theme}
                 position = {$ns_basetheme.website.settings.cookie.settings.position}
@@ -45,10 +45,10 @@ page {
                 btnColor = {$ns_basetheme.website.settings.cookie.settings.palette.button.text}
             }
         }
-        
+
         657 {
             10 {
-                stdWrap.replacement  {
+                stdWrap.replacement {
                     10 {
                         search = <script
                         replace = <script data-ignore="1" data-cookieconsent="statistics" type="text/plain"
@@ -61,7 +61,7 @@ page {
             }
             # Modify Google Analytics from CS_SEO
             20 {
-                stdWrap.replacement  {
+                stdWrap.replacement {
                     10 {
                         search = <script
                         replace = <script data-ignore="1" data-cookieconsent="statistics" type="text/plain"
@@ -75,6 +75,42 @@ page {
         90 {
             wrap = <script data-ignore="1" data-cookieconsent="statistics" type="text/plain">|</script>
             10 < .jsInline.654
+        }
+    }
+
+    bodyTagCObject = COA
+    bodyTagCObject {
+        wrap = <body class="|">
+
+        10 = COA
+        10 {
+            # page uid
+            10 = TEXT
+            10 {
+                field = alias // uid
+                wrap = id_|
+            }
+
+            # tree level (NOTE: 0 is first level, ID=1)
+            20 = TEXT
+            20 {
+                data = level : 1
+                noTrimWrap = | tree||
+            }
+
+            # parent uid
+            30 = TEXT
+            30 {
+                field = pid
+                noTrimWrap = | parent||
+            }
+
+            # language uid
+            40 = TEXT
+            40 {
+                data = TSFE : sys_language_uid
+                noTrimWrap = | lang| |
+            }
         }
     }
 
@@ -144,33 +180,6 @@ lib {
 
 # Get rootPageId
 lib.rootPageId = TEXT
-lib.rootPageId.data = leveluid : 0
-
-# <body> Setup common classes
-page.bodyTagCObject = COA
-page.bodyTagCObject {
-    wrap = <body class="|">
-
-    10 = COA
-    10 {
-        # page uid
-        10 = TEXT
-        10.field = alias // uid
-        10.wrap = id_|
-
-        # tree level (NOTE: 0 is first level, ID=1)
-        20 = TEXT
-        20.data = level : 1
-        20.noTrimWrap = | tree||
-
-        # parent uid
-        30 = TEXT
-        30.field = pid
-        30.noTrimWrap = | parent||
-
-        # language uid
-        40 = TEXT
-        40.data = TSFE : sys_language_uid
-        40.noTrimWrap = | lang| |
-    }
+lib.rootPageId {
+    data = leveluid : 0
 }
