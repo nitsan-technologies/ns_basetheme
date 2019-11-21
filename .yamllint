@@ -3,7 +3,13 @@
 extends: default
 
 rules:
+  line-length:
+    max: 999
+    level: warning
   line-length: disable
+  indentation
+    spaces: 2
+  comments-indentation: disable
 
 ignore: |
   /.ddev/
