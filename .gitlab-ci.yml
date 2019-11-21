@@ -58,7 +58,7 @@ yaml:test:
    before_script:
      - pip install yamllint==1.10.0
    script:
-     - yamllint .
+     - yamllint -d relaxed .
 
 xliff:test:
   image: composer:1.6
