@@ -1,4 +1,10 @@
 extends: default
 
+rules:
+  # Let's allow more then 80 chars
+  line-length:
+    max: 999
+    level: warning
+
 ignore: |
   /.ddev/
