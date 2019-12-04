@@ -1,5 +1,5 @@
 <?php
-namespace NITSAN\SaveCloseCe\Hooks;
+namespace NITSAN\ns_basetheme\Hooks;
 
 use TYPO3\CMS\Backend\Template\Components\Buttons\InputButton;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
