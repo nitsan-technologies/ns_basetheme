@@ -24,7 +24,7 @@ tx_gridelements.setup {
         title = 2 Column Grid
         description = Standard two column grid container
         icon = EXT:ns_basetheme/Resources/Public/Icons/Extension.svg
-        flexformDS = FILE:EXT:ns_basetheme/Configuration/FlexForms/Extensions/Gridelements/nsBase2Col.xml
+        flexformDS = FILE:EXT:ns_basetheme/Configuration/FlexForms/Gridelements/nsBase2Col.xml
         config {
             colCount = 2
             rowCount = 1
@@ -48,7 +48,7 @@ tx_gridelements.setup {
         title = 3 Column Grid
         description = Standard three column grid container
         icon = EXT:ns_basetheme/Resources/Public/Icons/Extension.svg
-        flexformDS = FILE:EXT:ns_basetheme/Configuration/FlexForms/Extensions/Gridelements/nsBase3Col.xml
+        flexformDS = FILE:EXT:ns_basetheme/Configuration/FlexForms/Gridelements/nsBase3Col.xml
         config {
             colCount = 3
             rowCount = 1
@@ -76,7 +76,7 @@ tx_gridelements.setup {
         title = 4 Column Grid
         description = Standard four column grid container
         icon = EXT:ns_basetheme/Resources/Public/Icons/Extension.svg
-        flexformDS = FILE:EXT:ns_basetheme/Configuration/FlexForms/Extensions/Gridelements/nsBase4Col.xml
+        flexformDS = FILE:EXT:ns_basetheme/Configuration/FlexForms/Gridelements/nsBase4Col.xml
         config {
             colCount = 4
             rowCount = 1
