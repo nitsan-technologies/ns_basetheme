@@ -10,14 +10,14 @@ $_EXTKEY = 'ns_basetheme';
 
 // Define your each componenet's flexform files
 $allComponents = [];
-if (version_compare(TYPO3_branch, '10.0', '>')) {
+if (version_compare(TYPO3_branch, '9.0', '>')) {
     $arrAllComponents['ns_basetheme'] = scandir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/typo3conf/ext/ns_basetheme/Configuration/FlexForms');
 } else {
     $arrAllComponents['ns_basetheme'] = scandir(PATH_typo3conf . 'ext/ns_basetheme/Configuration/FlexForms');
 }
 
 // Get list of all the extensions
-if (version_compare(TYPO3_branch, '10.0', '>')) {
+if (version_compare(TYPO3_branch, '9.0', '>')) {
     $arrAllExtensions = scandir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/typo3conf/ext/');
 } else {
     $arrAllExtensions = scandir(PATH_typo3conf . 'ext/');
@@ -26,7 +26,7 @@ foreach ($arrAllExtensions as $key => $extKey) {
     // Get only extension which are child theme eg., EXT:ns_theme_cleanblog
     $extensionPrefixKey = substr($extKey, 0, 9);
     if ($extensionPrefixKey == 'ns_theme_') {
-        if (version_compare(TYPO3_branch, '10.0', '>')) {
+        if (version_compare(TYPO3_branch, '9.0', '>')) {
             $arrAllComponents[$extKey] = scandir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . "/typo3conf/ext/$extKey/Configuration/FlexForms");
         } else {
             $arrAllComponents[$extKey] = scandir(PATH_typo3conf . "ext/$extKey/Configuration/FlexForms");

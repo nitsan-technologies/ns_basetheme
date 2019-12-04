@@ -9,3 +9,7 @@ $_EXTKEY = 'ns_basetheme';
     'Configuration/TypoScript',
     '[NITSAN] EXT:ns_basetheme: Default Theme'
 );
+if (version_compare(TYPO3_branch, '9.0', '>')) {
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['Backend\Template\Components\ButtonBar']['getButtonsHook'][] = 'NITSAN\SaveCloseCe\Hooks\SaveCloseHook->addSaveCloseButton';
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['Backend\Template\Components\ButtonBar']['getButtonsHook'][] = 'NITSAN\SaveCloseCe\Hooks\SaveCloseHook->addSaveShowButton';
+}
