@@ -1,4 +1,7 @@
-// Grab all the constant
+################
+### CONSTANT ###
+################
+
 plugin {
     ns_basetheme {
         settings {
@@ -8,7 +11,10 @@ plugin {
     }
 }
 
-// Initiate Page Object
+########################
+### MAIN PAGE OBJECT ###
+########################
+
 page = PAGE
 page {
 
@@ -23,7 +29,7 @@ page {
         viewport = width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no
     }
 
-    # Modify Google Analytics from CS_SEO
+    // Modify Google Analytics from CS_SEO
     headerData {
         998 = FLUIDTEMPLATE
         998 {
@@ -70,7 +76,7 @@ page {
             }
         }
 
-        # Modify Google Tag-Manager & Piwiki from CS_SEO
+        // Modify Google Tag-Manager & Piwiki from CS_SEO
         90 = COA
         90 {
             wrap = <script data-ignore="1" data-cookieconsent="statistics" type="text/plain">|</script>
@@ -149,10 +155,39 @@ page {
         }
 
         settings < plugin.ns_basetheme.settings
+
+        // Generate menu with DataProcessing
+        dataProcessing {
+
+            // Main menu
+            101 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+            101 {
+                levels = 5
+                special = directory
+                special.value = {$ns_basetheme.website.settings.main_menu}
+                expandAll = 1
+                includeSpacer = 1
+                as = MainMenu
+            }
+
+            // Footer menu
+            102 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+            102 {
+                levels = 5
+                special = directory
+                special.value = {$ns_basetheme.website.settings.footer_menu}
+                expandAll = 1
+                includeSpacer = 1
+                as = FooterMenu
+            }
+         }
     }
 }
 
-# Define the library
+#########################
+### GLOBAL LIB OBJECT ###
+#########################
+
 lib {
     // Define default content
     content = CONTENT
@@ -177,7 +212,7 @@ lib {
         }
     }
 
-    # Get rootPageId
+    // Get rootPageId
     rootPageId = TEXT
     rootPageId {
         data = leveluid : 0

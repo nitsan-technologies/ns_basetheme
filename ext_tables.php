@@ -7,7 +7,7 @@ $_EXTKEY = 'ns_basetheme';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
     $_EXTKEY,
     'Configuration/TypoScript',
-    '[NITSAN] EXT:ns_basetheme: Default Theme'
+    '[NITSAN] Parent theme'
 );
 if (version_compare(TYPO3_branch, '9.0', '>')) {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['Backend\Template\Components\ButtonBar']['getButtonsHook'][] = 'NITSAN\ns_basetheme\Hooks\SaveCloseHook->addSaveCloseButton';
