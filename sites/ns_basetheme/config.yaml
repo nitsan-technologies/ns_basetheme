@@ -1,5 +1,9 @@
+base: 'http://thebetaspace.com/project/'
+baseVariants:
+  -
+    base: 'http://ns-basetheme.ddev.local/'
+    condition: 'applicationContext == "Development"'
 rootPageId: 1
-base: 'http://ns-basetheme.ddev.local/'
 baseVariants: { }
 languages:
   - title: English
