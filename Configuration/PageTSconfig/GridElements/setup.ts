@@ -1,34 +1,107 @@
-/*
-
-!!! CAUTION !!! Somehow does not works based on "PageTSconfig File". For now, keep going with database record based grids.
-
+// Grids configuration added in GLOBAL pageTS
 tx_gridelements.setup {
-
-  # Identifier
-  1 {
-    title = 2 Columns Grid
-    description = Standard bootstrap two column grid
-    //icon = EXT:mhtemplatelmw/Resources/Public/Icons/BackendLayouts/accordeon.png
-
-    config {
-      colCount = 2
-      rowCount = 1
-      rows {
-        1 {
-          columns {
-            1 {
-              name = Column 1
-              colPos = 1
+    # Identifier
+    nsBase1Col {
+        title = 1 Column Grid
+        description = Standard bootstrap single column grid
+        icon = EXT:ns_basetheme/Resources/Public/Icons/Extension.svg
+        config {
+            colCount = 1
+            rowCount = 1
+            rows {
+                1 {
+                    columns {
+                        1 {
+                            name = Column 1
+                            colPos = 1
+                        }
+                    }
+                }
             }
-            2 {
-              name = Column 2
-              colPos = 2
-            }
-          }
         }
-      }
     }
-    flexformDS = FILE:EXT:ns_basetheme/Configuration/PageTSconfig/GridElements/2col_flexform.xml
-  }
+    nsBase2Col {
+        title = 2 Column Grid
+        description = Standard two column grid container
+        icon = EXT:ns_basetheme/Resources/Public/Icons/Extension.svg
+        flexformDS = FILE:EXT:ns_basetheme/Configuration/FlexForms/Extensions/Gridelements/nsBase2Col.xml
+        config {
+            colCount = 2
+            rowCount = 1
+            rows {
+                1 {
+                    columns {
+                        1 {
+                            name = Column 1
+                            colPos = 1
+                        }
+                        2 {
+                            name = Column 2
+                            colPos = 2
+                        }
+                    }
+                }
+            }
+        }
+    }
+    nsBase3Col {
+        title = 3 Column Grid
+        description = Standard three column grid container
+        icon = EXT:ns_basetheme/Resources/Public/Icons/Extension.svg
+        flexformDS = FILE:EXT:ns_basetheme/Configuration/FlexForms/Extensions/Gridelements/nsBase3Col.xml
+        config {
+            colCount = 3
+            rowCount = 1
+            rows {
+                1 {
+                    columns {
+                        1 {
+                            name = Column 1
+                            colPos = 1
+                        }
+                        2 {
+                            name = Column 2
+                            colPos = 2
+                        }
+                        3 {
+                            name = Column 3
+                            colPos = 3
+                        }
+                    }
+                }
+            }
+        }
+    }
+    nsBase4Col {
+        title = 4 Column Grid
+        description = Standard four column grid container
+        icon = EXT:ns_basetheme/Resources/Public/Icons/Extension.svg
+        flexformDS = FILE:EXT:ns_basetheme/Configuration/FlexForms/Extensions/Gridelements/nsBase4Col.xml
+        config {
+            colCount = 4
+            rowCount = 1
+            rows {
+                1 {
+                    columns {
+                        1 {
+                            name = Column 1
+                            colPos = 1
+                        }
+                        2 {
+                            name = Column 2
+                            colPos = 2
+                        }
+                        3 {
+                            name = Column 3
+                            colPos = 3
+                        }
+                        4 {
+                            name = Column 4
+                            colPos = 4
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
-*/

@@ -1,9 +1,17 @@
 # TypoScript for rendering in frontend
 tt_content.gridelements_pi1.20.10.setup {
+    # One column grid container
+    nsBase1Col < lib.gridelements.defaultGridSetup
+    nsBase1Col {
+        cObject = FLUIDTEMPLATE
+        cObject {
+            file = typo3conf/ext/ns_basetheme/Resources/Private/Extensions/Grid/oneColumn.html
+        }
+    }
 
     # Two column grid container
-    1 < lib.gridelements.defaultGridSetup
-    1 {
+    nsBase2Col < lib.gridelements.defaultGridSetup
+    nsBase2Col {
         cObject = FLUIDTEMPLATE
         cObject {
             file = typo3conf/ext/ns_basetheme/Resources/Private/Extensions/Grid/twocol.html
@@ -11,8 +19,8 @@ tt_content.gridelements_pi1.20.10.setup {
     }
 
     # Three column grid container
-    2 < lib.gridelements.defaultGridSetup
-    2 {
+    nsBase3Col < lib.gridelements.defaultGridSetup
+    nsBase3Col {
         cObject = FLUIDTEMPLATE
         cObject {
             file = typo3conf/ext/ns_basetheme/Resources/Private/Extensions/Grid/threeColumns.html
@@ -20,20 +28,11 @@ tt_content.gridelements_pi1.20.10.setup {
     }
 
     # Four column grid container
-    3 < lib.gridelements.defaultGridSetup
-    3 {
+    nsBase4Col < lib.gridelements.defaultGridSetup
+    nsBase4Col {
         cObject = FLUIDTEMPLATE
         cObject {
             file = typo3conf/ext/ns_basetheme/Resources/Private/Extensions/Grid/fourcolumn.html
-        }
-    }
-    
-    # One column grid container
-    4 < lib.gridelements.defaultGridSetup
-    4 {
-        cObject = FLUIDTEMPLATE
-        cObject {
-            file = typo3conf/ext/ns_basetheme/Resources/Private/Extensions/Grid/oneColumn.html
         }
     }
 }

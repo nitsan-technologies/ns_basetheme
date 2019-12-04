@@ -45,6 +45,9 @@ foreach ($arrAllComponents as $extKey => $extValue) {
     }
 }
 
+// Let's add default PageTSConfig for Backend layout, TCE form, Components etc.,
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKEY . '/Configuration/PageTSconfig/setup.ts">');
+
 // Settled constatant to access from "Everywhere"
 define('ALL_COMPONENTS', $allComponents);
 
@@ -54,9 +57,6 @@ if (TYPO3_MODE === 'BE') {
         function ($_EXTKEY) {
             // Get the extension configuration
             $extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$_EXTKEY]);
-
-            // Let's add default PageTSConfig for Backend layout, TCE form, Components etc.,
-            \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKEY . '/Configuration/PageTSconfig/setup.ts">');
 
             // Get Components from ext_localconf.php
             $allComponents = constant('ALL_COMPONENTS');
