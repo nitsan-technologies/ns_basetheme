@@ -44,7 +44,7 @@ typoscript:test:
     - export COMPOSER_CACHE_DIR=.composer
     - composer require --dev helmich/typo3-typoscript-lint
   script:
-    - .Build/bin/typoscript-lint -c tslint.yaml
+    - .Build/bin/typoscript-lint -c .tslint.yaml
 
 yaml:test:
   image: python:alpine3.7
