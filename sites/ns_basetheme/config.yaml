@@ -4,7 +4,6 @@ baseVariants:
     base: 'http://ns-basetheme.ddev.local/'
     condition: 'applicationContext == "Development"'
 rootPageId: 1
-baseVariants: { }
 languages:
   - title: English
     enabled: true
