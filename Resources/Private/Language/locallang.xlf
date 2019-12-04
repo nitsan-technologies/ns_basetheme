@@ -13,18 +13,7 @@
             <trans-unit id="ns_imageteaser.readmore">
                 <source>Read more!</source>
             </trans-unit>
-            <trans-unit id="tx_nsbasetheme_domain_model_record">
-                <source>Record</source>
-            </trans-unit>
-            <trans-unit id="tx_nsbasetheme_domain_model_record.image">
-                <source>Image</source>
-            </trans-unit>
-            <trans-unit id="tx_nsbasetheme_domain_model_record.title">
-                <source>Title</source>
-            </trans-unit>
-            <trans-unit id="tx_nsbasetheme_domain_model_record.detail">
-                <source>Detail</source>
-            </trans-unit>
+
             <trans-unit id="message">
                 <source>We use cookies and other tracking technologies to personalize and improve your experience. By continuing to use our website you consent to this.</source>
             </trans-unit>

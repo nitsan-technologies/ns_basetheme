@@ -33,7 +33,7 @@
             <trans-unit id="general.detailPageId">
                 <source>Detatil Page</source>
             </trans-unit>
-            
+
             <trans-unit id="ns_imageteaser.orientation">
                 <source>Orientation</source>
             </trans-unit>
@@ -43,19 +43,9 @@
             <trans-unit id="ns_imageteaser.right">
                 <source>Right</source>
             </trans-unit>
-            
+
             <trans-unit id="ns_slider.title">
                 <source>Slider</source>
-            </trans-unit>
-
-            <trans-unit id="tx_nsbasetheme_domain_model_record.header">
-                <source>Heading</source>
-            </trans-unit>
-            <trans-unit id="tx_nsbasetheme_domain_model_record.Record">
-                <source>Select Record</source>
-            </trans-unit>
-            <trans-unit id="tx_nsbasetheme_domain_model_record.storage">
-                <source>Storage</source>
             </trans-unit>
 		</body>
 	</file>

@@ -52,7 +52,7 @@ yaml:test:
   before_script:
     - pip install yamllint==1.10.0
   script:
-    - yamllint -c .yamllint .
+    - yamllint -c .yamllint.yaml .
 
 #fluid:test:
 #  image: composer:1.6

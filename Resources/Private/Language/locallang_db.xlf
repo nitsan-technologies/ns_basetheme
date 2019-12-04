@@ -9,7 +9,7 @@
             <trans-unit id="headline">
                 <source>Headline</source>
             </trans-unit>
-            
+
             <trans-unit id="imageManipulation.desktop">
                 <source>[Desktop] Default image dimension</source>
             </trans-unit>
@@ -19,7 +19,7 @@
             <trans-unit id="imageManipulation.mobile">
                 <source>[Mobile] Default image dimension</source>
             </trans-unit>
-            
+
             <trans-unit id="wizard.ns_imageteaser">
                 <source>[Component] Image Teaser</source>
             </trans-unit>
@@ -29,7 +29,7 @@
             <trans-unit id="wizard.ns_imageteaser.desc">
                 <source>Display teaser box with image and text</source>
             </trans-unit>
-            
+
             <trans-unit id="wizard.ns_slider">
                 <source>[Component] Slider</source>
             </trans-unit>
@@ -37,25 +37,6 @@
                 <source>Integrate slider with multiple images and headline</source>
             </trans-unit>
 
-            <trans-unit id="wizard.ns_record">
-                <source>[Custom] Record</source>
-            </trans-unit>
-            <trans-unit id="wizard.ns_record.desc">
-                <source>Display records with title, image and text.</source>
-            </trans-unit>
-
-            <trans-unit id="tx_nsbasetheme_domain_model_record">
-                <source>Record</source>
-            </trans-unit>
-            <trans-unit id="tx_nsbasetheme_domain_model_record.image">
-                <source>Image</source>
-            </trans-unit>
-            <trans-unit id="tx_nsbasetheme_domain_model_record.title">
-                <source>Title</source>
-            </trans-unit>
-            <trans-unit id="tx_nsbasetheme_domain_model_record.detail">
-                <source>Detail</source>
-            </trans-unit>
             <trans-unit id="website">
                 <source>Website configuration</source>
             </trans-unit>
