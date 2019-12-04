@@ -4,8 +4,9 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 $_EXTKEY = 'ns_basetheme';
+
 // Let's configuration of this extension from "Extension Manager"
-$GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$_EXTKEY] = unserialize($_EXTCONF);
+// $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$_EXTKEY] = unserialize($_EXTCONF);
 
 // Define your each componenet's flexform files
 $allComponents = [];
@@ -36,7 +37,7 @@ foreach ($arrAllExtensions as $key => $extKey) {
 // Preparing final array with ALL components from ALL themes
 foreach ($arrAllComponents as $extKey => $extValue) {
     foreach ($extValue as $key => $value) {
-        if ($value != '.' && $value != '..') {
+        if ($value != '.' && $value != '..' && strpos($value, '.xml') !== false) {
             $theComponentName = str_replace('.xml', '', $value);
             if (!empty($theComponentName)) {
                 $allComponents[$extKey][] = $theComponentName;
@@ -55,9 +56,6 @@ define('ALL_COMPONENTS', $allComponents);
 if (TYPO3_MODE === 'BE') {
     call_user_func(
         function ($_EXTKEY) {
-            // Get the extension configuration
-            $extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf'][$_EXTKEY]);
-
             // Get Components from ext_localconf.php
             $allComponents = constant('ALL_COMPONENTS');
 

@@ -2,7 +2,6 @@
 
 namespace NITSAN\ns_basetheme\DataProcessing;
 
-use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
@@ -31,8 +30,12 @@ class DefaultProcessor implements DataProcessorInterface
         array $processedData
     ) {
 
-        // Grab the flexform data for custom-content-element
-        $flexFormService = GeneralUtility::makeInstance(FlexFormService::class);
+        /** @var FlexFormService $flexFormService */
+        if (version_compare(TYPO3_branch, '9.0', '>')) {
+            $flexFormService = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Service\FlexFormService::class);
+        } else {
+            $flexFormService = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Service\FlexFormService::class);
+        }
         $processedData['content'] = $flexFormService->convertFlexFormContentToArray($processedData['data']['pi_flexform']);
 
         return $processedData;

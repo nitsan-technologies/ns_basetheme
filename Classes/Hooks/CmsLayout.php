@@ -61,7 +61,7 @@ class CmsLayout implements PageLayoutViewDrawItemHookInterface
 
             if (!empty($row['pi_flexform'])) {
                 /** @var FlexFormService $flexFormService */
-                if (version_compare(TYPO3_branch, '10.0', '>')) {
+                if (version_compare(TYPO3_branch, '9.0', '>')) {
                     $flexFormService = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Service\FlexFormService::class);
                 } else {
                     $flexFormService = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Service\FlexFormService::class);
