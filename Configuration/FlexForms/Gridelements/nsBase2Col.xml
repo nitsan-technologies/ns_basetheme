@@ -7,19 +7,19 @@
 		<general>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:colNormal</sheetTitle>
+					<sheetTitle>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:colNormal</sheetTitle>
 				</TCEforms>
                 <type>array</type>
 				<el>
 					<width_column_md_1>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:sizeLeft</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeLeft</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:notDefined</numIndex>
+										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
 										<numIndex index="1"/>
 									</numIndex>
 									<numIndex index="1" type="array">
@@ -77,12 +77,12 @@
 					<width_column_md_2>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:sizeRight</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeRight</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:notDefined</numIndex>
+										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
 										<numIndex index="1"/>
 									</numIndex>
 									<numIndex index="1" type="array">
@@ -140,12 +140,12 @@
 					<offset_column_md_1>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:offsetLeft</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetLeft</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:notDefined</numIndex>
+										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
 										<numIndex index="1"/>
 									</numIndex>
 									<numIndex index="1" type="array">
@@ -208,12 +208,12 @@
 					<offset_column_md_2>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:offsetRight</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetRight</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:notDefined</numIndex>
+										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
 										<numIndex index="1"/>
 									</numIndex>
 									<numIndex index="1" type="array">
@@ -279,19 +279,19 @@
 		<columns_xs>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:colXtraSmall</sheetTitle>
+					<sheetTitle>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:colXtraSmall</sheetTitle>
 				</TCEforms>
                 <type>array</type>
 				<el>
 					<width_column_xs_1>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:sizeLeft</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeLeft</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:notDefined</numIndex>
+										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
 										<numIndex index="1"/>
 									</numIndex>
 									<numIndex index="1" type="array">
@@ -349,12 +349,12 @@
 					<width_column_xs_2>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:sizeRight</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeRight</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:notDefined</numIndex>
+										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
 										<numIndex index="1"/>
 									</numIndex>
 									<numIndex index="1" type="array">
@@ -412,12 +412,12 @@
 					<offset_column_xs_1>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:offsetLeft</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetLeft</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:notDefined</numIndex>
+										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
 										<numIndex index="1"/>
 									</numIndex>
 									<numIndex index="1" type="array">
@@ -480,12 +480,12 @@
 					<offset_column_xs_2>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:offsetRight</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetRight</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:notDefined</numIndex>
+										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
 										<numIndex index="1"/>
 									</numIndex>
 									<numIndex index="1" type="array">
@@ -551,19 +551,19 @@
 		<columns_sm>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:colSmall</sheetTitle>
+					<sheetTitle>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:colSmall</sheetTitle>
 				</TCEforms>
                 <type>array</type>
 				<el>
 					<width_column_sm_1>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:sizeLeft</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeLeft</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:notDefined</numIndex>
+										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
 										<numIndex index="1"></numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
@@ -626,12 +626,12 @@
 					<width_column_sm_2>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:sizeRight</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeRight</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:notDefined</numIndex>
+										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
 										<numIndex index="1"/>
 									</numIndex>
 									<numIndex index="1" type="array">
@@ -694,12 +694,12 @@
 					<offset_column_sm_1>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:offsetLeft</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetLeft</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:notDefined</numIndex>
+										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
 										<numIndex index="1"/>
 									</numIndex>
 									<numIndex index="1" type="array">
@@ -762,12 +762,12 @@
 					<offset_column_sm_2>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:offsetRight</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetRight</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:notDefined</numIndex>
+										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
 										<numIndex index="1"/>
 									</numIndex>
 									<numIndex index="1" type="array">
@@ -833,19 +833,19 @@
 		<columns_lg>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:colBig</sheetTitle>
+					<sheetTitle>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:colBig</sheetTitle>
 				</TCEforms>
                 <type>array</type>
 				<el>
 					<width_column_lg_1>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:sizeLeft</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeLeft</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:notDefined</numIndex>
+										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
 										<numIndex index="1"/>
 									</numIndex>
 									<numIndex index="1" type="array">
@@ -907,12 +907,12 @@
 					<width_column_lg_2>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:sizeRight</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeRight</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:notDefined</numIndex>
+										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
 										<numIndex index="1"/>
 									</numIndex>
 									<numIndex index="1" type="array">
@@ -974,12 +974,12 @@
 					<offset_column_lg_1>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:offsetLeft</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetLeft</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:notDefined</numIndex>
+										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
 										<numIndex index="1"/>
 									</numIndex>
 									<numIndex index="1" type="array">
@@ -1042,12 +1042,12 @@
 					<offset_column_lg_2>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:offsetRight</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetRight</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:notDefined</numIndex>
+										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
 										<numIndex index="1"/>
 									</numIndex>
 									<numIndex index="1" type="array">
@@ -1113,19 +1113,19 @@
 		<columns_xl>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:Extralarge</sheetTitle>
+					<sheetTitle>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:Extralarge</sheetTitle>
 				</TCEforms>
                 <type>array</type>
 				<el>
 					<width_column_xl_1>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:sizeLeft</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeLeft</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:notDefined</numIndex>
+										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
 										<numIndex index="1"/>
 									</numIndex>
 									<numIndex index="1" type="array">
@@ -1183,12 +1183,12 @@
 					<width_column_xl_2>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:sizeRight</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeRight</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:notDefined</numIndex>
+										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
 										<numIndex index="1"/>
 									</numIndex>
 									<numIndex index="1" type="array">
@@ -1246,12 +1246,12 @@
 					<offset_column_xl_1>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:offsetLeft</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetLeft</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:notDefined</numIndex>
+										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
 										<numIndex index="1"/>
 									</numIndex>
 									<numIndex index="1" type="array">
@@ -1314,12 +1314,12 @@
 					<offset_column_xl_2>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:offsetRight</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetRight</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Grid/Language/locallang.xlf:notDefined</numIndex>
+										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
 										<numIndex index="1"/>
 									</numIndex>
 									<numIndex index="1" type="array">
