@@ -162,7 +162,7 @@ foreach ($allComponents as $extKey => $extValue) {
         $iconRegistry->registerIcon(
             $theComponent,
             \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-            ['source' => 'EXT:' . $extKey . '/Resources/Public/Icons/' . $theComponent . '.png']
+            ['source' => (file_exists('/typo3conf/ext/' . $extKey . '/Resources/Public/Icons/' . $theComponent . '.png')) ? 'EXT:' . $extKey . '/Resources/Public/Icons/' . $theComponent . '.png' :  '/typo3conf/ext/ns_basetheme/Resources/Public/Icons/Extension.png' ]
         );
     }
 }
