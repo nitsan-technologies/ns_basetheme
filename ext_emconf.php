@@ -1,10 +1,4 @@
 <?php
-/*
- * This file is part of the package nitsan/ns-basetheme.
- *
- * For the full copyright and license information, please read the
- * LICENSE file that was distributed with this source code.
- */
 
 // TYPO3 Security Check
 defined('TYPO3_MODE') or die();
@@ -18,7 +12,7 @@ $EM_CONF[$_EXTKEY] = [
     'author_email' => 'sanjay@nitsan.in',
     'author_company' => 'NITSAN Technologies Pvt Ltd',
     'state' => 'stable',
-    'version' => '9.0.0',
+    'version' => '9.0.1',
     'constraints' => [
         'depends' => [
             'typo3' => '8.0.0-10.99.99'
