@@ -12,10 +12,10 @@ $EM_CONF[$_EXTKEY] = [
     'author_email' => 'sanjay@nitsan.in',
     'author_company' => 'NITSAN Technologies Pvt Ltd',
     'state' => 'stable',
-    'version' => '9.0.1',
+    'version' => '9.1.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '8.0.0-10.99.99'
+            'typo3' => '8.0.0-10.9.99'
         ],
         'conflicts' => [],
         'suggests' => [],
