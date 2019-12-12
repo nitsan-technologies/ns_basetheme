@@ -6,6 +6,7 @@ plugin {
     ns_basetheme {
         settings {
             logo = {$ns_basetheme.website.settings.logo}
+            rootpage = {$ns_basetheme.website.settings.rootpage}
             copyright = {$ns_basetheme.website.settings.copyright}
         }
     }
