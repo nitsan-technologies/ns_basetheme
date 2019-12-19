@@ -29,15 +29,50 @@ class DefaultProcessor implements DataProcessorInterface
         array $processorConfiguration,
         array $processedData
     ) {
-
-        /** @var FlexFormService $flexFormService */
-        if (version_compare(TYPO3_branch, '9.0', '>')) {
-            $flexFormService = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Service\FlexFormService::class);
-        } else {
-            $flexFormService = GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\Service\FlexFormService::class);
-        }
-        $processedData['content'] = $flexFormService->convertFlexFormContentToArray($processedData['data']['pi_flexform']);
+        $processedData['content'] = $this->getOptionsFromFlexFormData($processedData['data']);
 
         return $processedData;
+    }
+
+    /**
+     * @param array $row
+     * @return array
+     */
+    protected function getOptionsFromFlexFormData(array $row)
+    {
+        $options = [];
+        $flexFormAsArray = GeneralUtility::xml2array($row['pi_flexform']);
+        if (isset($flexFormAsArray['data']) && is_array($flexFormAsArray['data'])) {
+            foreach ($flexFormAsArray['data'] as $base) {
+                if (!empty($base['lDEF']) && is_array($base['lDEF'])) {
+                    foreach ($base['lDEF'] as $optionKey => $optionValue) {
+                        $optionParts = explode('.', $optionKey);
+                        $optionKey = array_pop($optionParts);
+                        if (isset($optionValue['el']) && is_array($optionValue['el'])) {
+                            foreach ($optionValue['el'] as $subprekey => $subArrayItem) {
+                                foreach ($subArrayItem as $subsubArrayItem) {
+                                    if (isset($subsubArrayItem['el'])) {
+                                        foreach ($subsubArrayItem['el'] as $subkey => $value) {
+                                            if (!is_array($options[$optionKey])) {
+                                                $options[$optionKey] = [];
+                                            }
+
+                                            if (!is_array($options[$optionKey][$subprekey])) {
+                                                $options[$optionKey][$subprekey] = [];
+                                            }
+
+                                            $options[$optionKey][$subprekey][$subkey] = $value['vDEF'];
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            $options[$optionKey] = $optionValue['vDEF'] === '1' ? true : $optionValue['vDEF'];
+                        }
+                    }
+                }
+            }
+        }
+        return $options;
     }
 }
