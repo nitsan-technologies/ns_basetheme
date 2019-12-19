@@ -10,6 +10,9 @@
 # Includes EXT:Grids Configuration
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/GridElements" extensions="ts">
 
+# Includes EXT:Fluid Configuration
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/Fluid" extensions="ts">
+
 # Includes EXT:News Configuration
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/News" extensions="ts">
 

@@ -181,7 +181,7 @@ page {
                 includeSpacer = 1
                 as = FooterMenu
             }
-         }
+        }
     }
 }
 
