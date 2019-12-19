@@ -1,8 +1,5 @@
 <?php
 
-// TYPO3 Security Check
-defined('TYPO3_MODE') or die();
-
 // Provide detailed information and depenencies of EXT:ns_basetheme
 $EM_CONF[$_EXTKEY] = [
     'title' => '[NITSAN] TYPO3 Parent/Base Theme',
