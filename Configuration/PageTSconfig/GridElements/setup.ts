@@ -2,8 +2,8 @@
 tx_gridelements.setup {
     # Identifier
     nsBase1Col {
-        title = 1 Column Grid
-        description = Standard bootstrap single column grid
+        title = LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.1column
+        description = LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.1column.des
         icon = EXT:ns_basetheme/Resources/Public/Icons/gridelements.svg
         config {
             colCount = 1
@@ -21,8 +21,8 @@ tx_gridelements.setup {
         }
     }
     nsBase2Col {
-        title = 2 Column Grid
-        description = Standard two column grid container
+        title = LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.2column
+        description = LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.2column.des
         icon = EXT:ns_basetheme/Resources/Public/Icons/gridelements.svg
         flexformDS = FILE:EXT:ns_basetheme/Configuration/FlexForms/Gridelements/nsBase2Col.xml
         config {
@@ -45,8 +45,8 @@ tx_gridelements.setup {
         }
     }
     nsBase3Col {
-        title = 3 Column Grid
-        description = Standard three column grid container
+        title = LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.3column
+        description = LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.3column.des
         icon = EXT:ns_basetheme/Resources/Public/Icons/gridelements.svg
         flexformDS = FILE:EXT:ns_basetheme/Configuration/FlexForms/Gridelements/nsBase3Col.xml
         config {
@@ -73,8 +73,8 @@ tx_gridelements.setup {
         }
     }
     nsBase4Col {
-        title = 4 Column Grid
-        description = Standard four column grid container
+        title = LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.4column
+        description = LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.4column.des
         icon = EXT:ns_basetheme/Resources/Public/Icons/gridelements.svg
         flexformDS = FILE:EXT:ns_basetheme/Configuration/FlexForms/Gridelements/nsBase4Col.xml
         config {

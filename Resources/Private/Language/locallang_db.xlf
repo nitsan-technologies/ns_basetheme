@@ -43,6 +43,30 @@
             <trans-unit id="cookie">
                 <source>Cookie configuration</source>
             </trans-unit>
+            <trans-unit id="grid.1column">
+                <source>1 column Grid</source>
+            </trans-unit>
+            <trans-unit id="grid.1column.des">
+                <source>Standard One Column Grid</source>
+            </trans-unit>
+            <trans-unit id="grid.2column">
+                <source>2 column Grid</source>
+            </trans-unit>
+            <trans-unit id="grid.2column.des">
+                <source>Standard Two Column Grid</source>
+            </trans-unit>
+            <trans-unit id="grid.3column">
+                <source>3 column Grid</source>
+            </trans-unit>
+            <trans-unit id="grid.3column.des">
+                <source>Standard Three Column Grid</source>
+            </trans-unit>
+            <trans-unit id="grid.4column">
+                <source>4 column Grid</source>
+            </trans-unit>
+            <trans-unit id="grid.4column.des">
+                <source>Standard Four Column Grid</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>
