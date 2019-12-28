@@ -30,6 +30,9 @@ ns_basetheme {
             #cat = ns_basetheme/100/07; type=boolean; label=Compress and Concatenate CSS/JS
             compress_cssjs = 0
 
+            #cat = ns_basetheme/100/08; type=string; label=Google Analytics Id
+            googleanalytics =
+
             cookie {
 
                 settings {
