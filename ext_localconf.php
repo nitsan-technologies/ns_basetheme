@@ -131,6 +131,16 @@ foreach ($allComponents as $extKey => $extValue) {
                             references.fieldName = image
                             as = image
                         }
+                        13 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                        13 {
+                            references.fieldName = file2
+                            as = file2
+                        }
+                        16 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                        16 {
+                            references.fieldName = file3
+                            as = file3
+                        }
                         20 = NITSAN\\ns_basetheme\\DataProcessing\\DefaultProcessor
                     }
                 }
