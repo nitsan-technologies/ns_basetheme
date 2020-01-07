@@ -131,6 +131,11 @@ foreach ($allComponents as $extKey => $extValue) {
                             references.fieldName = image
                             as = image
                         }
+                        11 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                        11 {
+                            references.fieldName = media
+                            as = media
+                        }
                         13 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
                         13 {
                             references.fieldName = file2
