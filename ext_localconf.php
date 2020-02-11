@@ -4,6 +4,16 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 $_EXTKEY = 'ns_basetheme';
+if (TYPO3_MODE === 'BE') {
+    $class = 'TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher';
+    $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance($class);
+    $dispatcher->connect(
+        'TYPO3\\CMS\\Extensionmanager\\Service\\ExtensionManagementService',
+        'hasInstalledExtensions',
+        'NITSAN\\ns_basetheme\\Setup',
+        'executeOnSignal'
+    );
+}
 
 // Let's configuration of this extension from "Extension Manager"
 // $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$_EXTKEY] = unserialize($_EXTCONF);
