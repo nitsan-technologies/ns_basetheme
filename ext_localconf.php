@@ -21,8 +21,10 @@ if (TYPO3_MODE === 'BE') {
 // Define your each componenet's flexform files
 $allComponents = [];
 if (version_compare(TYPO3_branch, '9.0', '>')) {
+    $siteRoot = TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/typo3conf/';
     $arrAllComponents['ns_basetheme'] = scandir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/typo3conf/ext/ns_basetheme/Configuration/FlexForms');
 } else {
+    $siteRoot = PATH_typo3conf;
     $arrAllComponents['ns_basetheme'] = scandir(PATH_typo3conf . 'ext/ns_basetheme/Configuration/FlexForms');
 }
 
@@ -181,13 +183,12 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php'][
 $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
     \TYPO3\CMS\Core\Imaging\IconRegistry::class
 );
-
 foreach ($allComponents as $extKey => $extValue) {
     foreach ($extValue as $key => $theComponent) {
         $iconRegistry->registerIcon(
             $theComponent,
             \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-            ['source' => (file_exists('/typo3conf/ext/' . $extKey . '/Resources/Public/Icons/' . $theComponent . '.png')) ? 'EXT:' . $extKey . '/Resources/Public/Icons/' . $theComponent . '.png' :  'EXT:ns_basetheme/Resources/Public/Icons/default_icon.png' ]
+            ['source' => (file_exists($siteRoot . 'ext/' . $extKey . '/Resources/Public/Icons/' . $theComponent . '.png')) ? 'EXT:' . $extKey . '/Resources/Public/Icons/' . $theComponent . '.png' :  'EXT:ns_basetheme/Resources/Public/Icons/default_icon.png' ]
         );
     }
 }
