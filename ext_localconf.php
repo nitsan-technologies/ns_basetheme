@@ -10,7 +10,7 @@ if (TYPO3_MODE === 'BE') {
     $dispatcher->connect(
         'TYPO3\\CMS\\Extensionmanager\\Service\\ExtensionManagementService',
         'hasInstalledExtensions',
-        'NITSAN\\ns_basetheme\\Setup',
+        'NITSAN\\NsBasetheme\\Setup',
         'executeOnSignal'
     );
 }
@@ -158,7 +158,7 @@ foreach ($allComponents as $extKey => $extValue) {
                             references.fieldName = file3
                             as = file3
                         }
-                        50 = NITSAN\\ns_basetheme\\DataProcessing\\DefaultProcessor
+                        50 = NITSAN\\NsBasetheme\\DataProcessing\\DefaultProcessor
                     }
                 }
             ";
@@ -174,10 +174,10 @@ foreach ($allComponents as $extKey => $extValue) {
 ");
 
 // Draw content into content elements
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem'][] = 'NITSAN\\ns_basetheme\\Hooks\\CmsLayout';
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem'][] = 'NITSAN\\NsBasetheme\\Hooks\\CmsLayout';
 
 // Manipulate data if needed
-// $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = 'EXT:' . $_EXTKEY . '/Classes/Hooks/PreProcessFields.php:NITSAN\ns_basetheme\Hooks\PreProcessFields';
+// $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = 'EXT:' . $_EXTKEY . '/Classes/Hooks/PreProcessFields.php:NITSAN\NsBasetheme\Hooks\PreProcessFields';
 
 // Let's register icon for each TYPO3 Components
 $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
@@ -192,3 +192,10 @@ foreach ($allComponents as $extKey => $extValue) {
         );
     }
 }
+
+//Module Icon
+$iconRegistry->registerIcon(
+    'module-nsbasetheme',
+    \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+    ['source' => 'EXT:ns_basetheme/Resources/Public/Icons/module-nitsan.svg']
+);

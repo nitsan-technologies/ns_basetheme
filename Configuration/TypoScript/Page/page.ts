@@ -12,6 +12,15 @@ plugin {
     }
 }
 
+# Module configuration
+module.tx_nsbasetheme {
+    view {
+        templateRootPaths.0 = EXT:ns_basetheme/Resources/Private/Backend/Templates/
+        partialRootPaths.0 = EXT:ns_basetheme/Resources/Private/Backend/Partials/
+        layoutRootPaths.0 = EXT:ns_basetheme/Resources/Private/Backend/Layouts/
+    }
+}
+
 ########################
 ### MAIN PAGE OBJECT ###
 ########################
@@ -229,5 +238,18 @@ lib {
     rootPageId = TEXT
     rootPageId {
         data = leveluid : 0
+    }
+}
+
+ajaxData = PAGE
+ajaxData {
+    typeNum = 22184356
+    config {
+        disableAllHeaderCode = 1
+        additionalHeaders = Content-type:application/html
+        xhtml_cleaning = 0
+        debug = 0
+        no_cache = 1
+        admPanel = 0
     }
 }

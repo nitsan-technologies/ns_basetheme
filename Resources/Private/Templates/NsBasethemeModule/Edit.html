@@ -1,0 +1,16 @@
+<html xmlns:f="https://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Backend/Default" />
+
+  <f:section name="content">
+    <h1>Edit Test</h1>
+
+    <f:flashMessages />
+
+    <f:render partial="FormErrors" />
+
+    <f:form action="update" name="test" object="{test}" >
+    <f:render partial="Test/FormFields" arguments="{test:test}" />
+    <f:form.submit value="Save" />
+    </f:form>
+  </f:section>
+</html>

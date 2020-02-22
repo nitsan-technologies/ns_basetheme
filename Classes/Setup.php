@@ -1,6 +1,6 @@
 <?php
 
-namespace NITSAN\ns_basetheme;
+namespace NITSAN\NsBasetheme;
 
 use TYPO3\CMS\Core\Core\Environment;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace NITSAN\ns_basetheme\DataProcessing;
+namespace NITSAN\NsBasetheme\DataProcessing;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;

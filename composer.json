@@ -30,7 +30,7 @@
   },
   "autoload": {
     "psr-4": {
-      "NITSAN\\ns_basetheme\\": "Classes/"
+      "NITSAN\\NsBasetheme\\": "Classes/"
     }
   },
   "replace": {

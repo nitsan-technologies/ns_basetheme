@@ -1,0 +1,61 @@
+<html xmlns:f="https://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:be.container pageTitle="{f:translate(key: 'pagetitle')}" includeCssFiles="{
+			0: '{f:uri.resource(path:\'Vendor/bootstrap4.3.1.min.css\')}',
+			1: '{f:uri.resource(path:\'css/Module/global.css\')}',
+			2: '{f:uri.resource(path:\'css/Module/main.css\')}'
+		}" includeRequireJsModules="{0:'TYPO3/CMS/NsBasetheme/Main'}">
+	<div class="typo3-fullDoc">
+		<div id="typo3-docheader">
+			<div class="typo3-docheader-functions">
+				<f:be.buttons.csh />
+				<div class="ns-ext-button-bar">
+					<a class="btn btn-primary btn-backup-wizard-modal text-white" href="javascript:;" type="button">
+						<em class="fa fa-cogs" aria-hidden="true"></em><f:translate key="globalsettings" />
+					</a>
+					<div class="button-group float-sm-right">
+						<a href="javascript:;" class="btn btn-success text-white btn-sm"><em class="fa fa-file-o"
+								aria-hidden="true"></em><f:translate key="documentaiton" /></a>
+						<a href="javascript:;" class="btn btn-info text-white btn-sm"><em class="fa fa-question"
+								aria-hidden="true"></em><f:translate key="helpsupport" /></a>
+						<a href="javascript:;" class="btn btn-warning text-white btn-sm"><em class="fa fa-dollar"
+								aria-hidden="true"></em><f:translate key="donate" /></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="typo3-docbody">
+			<div id="typo3-inner-docbody">
+				<div class="ns-ext-navigation">
+					<nav class="navbar navbar-expand-lg">
+						<a class="navbar-brand" href="javascript:;"><f:translate key="extensionName" /></a>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nsextNavbar"
+							aria-controls="nsextNavbar" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="nsextNavbar">
+							<ul class="navbar-nav">
+								<li class="nav-item {f:if(condition: '{action}==dashboard', then: 'active')}">
+									<f:link.action action="dashboard" class="nav-link">
+										<em class="fa fa-dashboard" aria-hidden="true"></em><f:translate key="Dashboard" /></f:link.action>
+								</li>
+								<li class="nav-item {f:if(condition: '{action}==basicSettings', then: 'active')}">
+									<f:link.action action="basicSettings" additionalParams="{cat:'ns_basetheme'}" class="nav-link">
+										<em class="fa fas fa-cog" aria-hidden="true"></em><f:translate key="basicSettings" />
+									</f:link.action>
+								</li>
+								<li class="nav-item {f:if(condition: '{action}==premiumExtension', then: 'active')}">
+									<f:link.action action="premiumExtension" class="nav-link">
+										<em class="fa fa-empire" aria-hidden="true"></em><f:translate key="premiumExtension" />
+									</f:link.action>
+								</li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+				<f:render section="content" />
+			</div>
+		</div>
+	</div>
+</f:be.container>
+
+</html>

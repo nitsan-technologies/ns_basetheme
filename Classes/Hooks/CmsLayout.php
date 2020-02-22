@@ -1,6 +1,6 @@
 <?php
 
-namespace NITSAN\ns_basetheme\Hooks;
+namespace NITSAN\NsBasetheme\Hooks;
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHookInterface;
