@@ -1221,7 +1221,7 @@ class ExtendedTemplateService extends TemplateService
                             $sel = $fV ? 'checked' : '';
                             $p_field =
                                 '<input type="hidden" name="' . $fN . '" value="0" />'
-                               .'<div class="custom-control custom-switch">'
+                               . '<div class="custom-control custom-switch">'
                                     . '<input class="custom-control-input" id="' . $idName . '" type="checkbox" name="' . $fN . '" value="' . ($typeDat['paramstr'] ? $typeDat['paramstr'] : 1) . '" ' . $sel . '>'
                                     . '<label class="custom-control-label" for="' . $idName . '"></label>'
                                 . '</div>';
