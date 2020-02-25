@@ -37,12 +37,41 @@
                 <source>Integrate slider with multiple images and headline</source>
             </trans-unit>
 
-            <trans-unit id="website">
-                <source>Website configuration</source>
+            <trans-unit id="header">
+                <source>Header Settings</source>
+            </trans-unit>
+            <trans-unit id="menu">
+                <source>Menu Settings</source>
+            </trans-unit>
+            <trans-unit id="footer">
+                <source>Footer Settings</source>
+            </trans-unit>
+            <trans-unit id="speed">
+                <source>Speed and Performance</source>
+            </trans-unit>
+            <trans-unit id="maintenance">
+                <source>Site Maintenance</source>
+            </trans-unit>
+            <trans-unit id="seo">
+                <source>SEO Settings</source>
+            </trans-unit>
+            <trans-unit id="google">
+                <source>Google</source>
+            </trans-unit>
+            <trans-unit id="style">
+                <source>Style Settings</source>
+            </trans-unit>
+            <trans-unit id="integration">
+                <source>Custom Integration</source>
+            </trans-unit>
+
+            <trans-unit id="social">
+                <source>Social Media</source>
             </trans-unit>
             <trans-unit id="cookie">
-                <source>Cookie configuration</source>
+                <source>Cookie Consent</source>
             </trans-unit>
+
             <trans-unit id="grid.1column">
                 <source>1 column Grid</source>
             </trans-unit>

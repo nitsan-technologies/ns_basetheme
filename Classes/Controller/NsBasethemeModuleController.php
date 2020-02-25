@@ -43,7 +43,7 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
 
     protected $generalFooterData;
 
-    protected $premiumExtensionData;
+    protected $aboutExtensionData;
 
     protected $constants;
 
@@ -86,10 +86,10 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     {
         parent::initializeAction();
         //Links for the All Dashboard VIEW from API...
-        $sidebarUrl = 'https://composer.t3terminal.com/API/ExtBackendModuleAPI.php?extKey=ns_faq&blockName=DashboardRightSidebar';
-        $dashboardSupportUrl = 'https://composer.t3terminal.com/API/ExtBackendModuleAPI.php?extKey=ns_faq&blockName=DashboardSupport';
-        $generalFooterUrl = 'https://composer.t3terminal.com/API/ExtBackendModuleAPI.php?extKey=ns_faq&blockName=GeneralFooter';
-        $premiumExtensionUrl = 'https://composer.t3terminal.com/API/ExtBackendModuleAPI.php?extKey=ns_faq&blockName=PremiumExtension';
+        $sidebarUrl = 'https://composer.t3terminal.com/API/ExtBackendModuleAPI.php?extKey=ns_basetheme&blockName=DashboardRightSidebar';
+        $dashboardSupportUrl = 'https://composer.t3terminal.com/API/ExtBackendModuleAPI.php?extKey=ns_basetheme&blockName=DashboardSupport';
+        $generalFooterUrl = 'https://composer.t3terminal.com/API/ExtBackendModuleAPI.php?extKey=ns_basetheme&blockName=GeneralFooter';
+        $aboutExtensionUrl = 'https://composer.t3terminal.com/API/ExtBackendModuleAPI.php?extKey=ns_basetheme&blockName=AboutExtension';
 
         $this->nsBasethemeRepository->deleteOldApiData();
         $checkApiData = $this->nsBasethemeRepository->checkApiData();
@@ -97,13 +97,13 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
             $this->sidebarData = $this->nsBasethemeRepository->curlInitCall($sidebarUrl);
             $this->dashboardSupportData = $this->nsBasethemeRepository->curlInitCall($dashboardSupportUrl);
             $this->generalFooterData = $this->nsBasethemeRepository->curlInitCall($generalFooterUrl);
-            $this->premiumExtensionData = $this->nsBasethemeRepository->curlInitCall($premiumExtensionUrl);
+            $this->aboutExtensionData = $this->nsBasethemeRepository->curlInitCall($aboutExtensionUrl);
 
             $data = [
                 'right_sidebar_html' => $this->sidebarData,
                 'support_html'=> $this->dashboardSupportData,
                 'footer_html' => $this->generalFooterData,
-                'premuim_extension_html' => $this->premiumExtensionData,
+                'premuim_extension_html' => $this->aboutExtensionData,
                 'extension_key' => 'ns_faq',
                 'last_update' => date('Y-m-d')
             ];
@@ -111,7 +111,7 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
         } else {
             $this->sidebarData = $checkApiData['right_sidebar_html'];
             $this->dashboardSupportData = $checkApiData['support_html'];
-            $this->premiumExtensionData = $checkApiData['premuim_extension_html'];
+            $this->aboutExtensionData = $checkApiData['premuim_extension_html'];
         }
 
         //GET CONSTANTs
@@ -138,13 +138,61 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     }
 
     /**
-     * action basicSettings
+     * action generalSettings
      *
      * @return void
      */
-    public function basicSettingsAction()
+    public function generalSettingsAction()
     {
-        $this->view->assign('action', 'basicSettings');
+        $this->view->assign('action', 'generalSettings');
+        $this->view->assign('constant', $this->constants);
+        $this->view->assign('constantAttrib', $this->actions);
+    }
+
+    /**
+     * action seoSettings
+     *
+     * @return void
+     */
+    public function seoSettingsAction()
+    {
+        $this->view->assign('action', 'seoSettings');
+        $this->view->assign('constant', $this->constants);
+        $this->view->assign('constantAttrib', $this->actions);
+    }
+
+    /**
+     * action gdprSettings
+     *
+     * @return void
+     */
+    public function gdprSettingsAction()
+    {
+        $this->view->assign('action', 'gdprSettings');
+        $this->view->assign('constant', $this->constants);
+        $this->view->assign('constantAttrib', $this->actions);
+    }
+
+    /**
+     * action styleSettings
+     *
+     * @return void
+     */
+    public function styleSettingsAction()
+    {
+        $this->view->assign('action', 'styleSettings');
+        $this->view->assign('constant', $this->constants);
+        $this->view->assign('constantAttrib', $this->actions);
+    }
+
+    /**
+     * action integrationSettings
+     *
+     * @return void
+     */
+    public function integrationSettingsAction()
+    {
+        $this->view->assign('action', 'integrationSettings');
         $this->view->assign('constant', $this->constants);
         $this->view->assign('constantAttrib', $this->actions);
     }
@@ -228,13 +276,13 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     }
 
     /**
-     * action premiumExtension
+     * action aboutExtension
      *
      * @return void
      */
-    public function premiumExtensionAction()
+    public function aboutExtensionAction()
     {
-        $this->view->assign('action', 'premiumExtension');
-        $this->view->assign('premiumExdata', $this->premiumExtensionData);
+        $this->view->assign('action', 'aboutExtension');
+        $this->view->assign('aboutExdata', $this->aboutExtensionData);
     }
 }

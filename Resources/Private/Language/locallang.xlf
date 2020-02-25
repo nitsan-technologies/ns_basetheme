@@ -29,9 +29,10 @@
             <trans-unit id="link">
                 <source>More info</source>
             </trans-unit>
+
             <!-- Module LLL Start-->
             <trans-unit id="extensionName">
-                <source>NS Basetheme</source>
+                <source>Template Options</source>
             </trans-unit>
             <trans-unit id="globalsettings">
                 <source>Global Setting</source>
@@ -40,20 +41,36 @@
                 <source>Documentaiton</source>
             </trans-unit>
             <trans-unit id="helpsupport">
-                <source>Help &amp; Support</source>
+                <source>Support</source>
             </trans-unit>
             <trans-unit id="donate">
                 <source>Donate</source>
             </trans-unit>
+            <trans-unit id="loginT3Terminal">
+                <source>Login at T3Terminal</source>
+            </trans-unit>
             <trans-unit id="Dashboard">
                 <source>Dashboard</source>
             </trans-unit>
-            <trans-unit id="premiumExtension">
-                <source>Premium Extension</source>
+            <trans-unit id="aboutExtension">
+                <source>About</source>
             </trans-unit>
-            <trans-unit id="basicSettings">
-                <source>Basic Settings</source>
+            <trans-unit id="generalSettings">
+                <source>General</source>
             </trans-unit>
+            <trans-unit id="seoSettings">
+                <source>SEO</source>
+            </trans-unit>
+            <trans-unit id="gdprSettings">
+                <source>GDPR</source>
+            </trans-unit>
+            <trans-unit id="styleSettings">
+                <source>Style</source>
+            </trans-unit>
+            <trans-unit id="integrationSettings">
+                <source>Integration</source>
+            </trans-unit>
+
             <trans-unit id="sorry">
                 <source>Sorry!</source>
             </trans-unit>
@@ -61,7 +78,7 @@
                 <source>No Extension Template available for this Page.</source>
             </trans-unit>
             <trans-unit id="noconstantline2">
-                <source>Please go the Template Module and create new extension Template for this page.</source>
+                <source>Option 1. To configure template glbally, Click on your main/root page. Option 2: To create custom configuration at particular page, Go to the Template Module and create new extension Template for this page.</source>
             </trans-unit>
             <trans-unit id="noconstantline3">
                 <source>Please click here</source>

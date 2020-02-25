@@ -33,11 +33,11 @@ if (TYPO3_MODE === 'BE') {
         'nsbasethememodule', // Submodule key
         '', // Position
         [
-            'NsBasethemeModule' => 'dashboard, basicSettings, premiumExtension, saveConstant',
+            'NsBasethemeModule' => 'dashboard, generalSettings, seoSettings, gdprSettings, styleSettings, integrationSettings, aboutExtension, saveConstant',
         ],
         [
             'access' => 'user,group',
-            'icon' => 'EXT:ns_basetheme/Resources/Public/Icons/Extension.gif',
+            'icon' => 'EXT:ns_basetheme/Resources/Public/Icons/Extension.png',
             'labels' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_basethememodule.xlf',
             'navigationComponentId' => ($isVersion9Up ? 'TYPO3/CMS/Backend/PageTree/PageTreeElement' : 'typo3-pagetree'),
             'inheritNavigationComponentFromMainModule' => false

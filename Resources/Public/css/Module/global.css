@@ -516,8 +516,8 @@ label {
         max-width: 25%;
     }
     .ns-ext-support-block a img {
-        max-width: 120px;
-        max-height: 90px;
+        /* max-width: 120px;
+        max-height: 90px; */
     }
 }
 

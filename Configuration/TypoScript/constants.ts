@@ -1,68 +1,177 @@
+########################
+### General Settings ###
+########################
 
-############################
-### CUSTOM SUBCATEGORIES ###
-###########################
-# customsubcategory=100=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:website
-# customsubcategory=110=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:cookie
+# customsubcategory=100=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:header
+# customsubcategory=110=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:footer
+# customsubcategory=120=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:menu
+# customsubcategory=130=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:speed
+# customsubcategory=140=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:maintenance
+# customsubcategory=170=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:cookie
+
+####################
+### SEO Settings ###
+####################
+
+# customsubcategory=200=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:seo
+# customsubcategory=210=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:google
+# customsubcategory=220=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:social
+
+#####################
+### GDPR Settings ###
+#####################
+
+# customsubcategory=300=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:cookie
+
+#####################
+### Style Settings ###
+#####################
+
+# customsubcategory=400=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:style
+
+###################
+### Integration ###
+###################
+
+# customsubcategory=500=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:integration
 
 # Let's define some constants for global configuration
 ns_basetheme {
     website {
         settings {
-            #cat = ns_basetheme/100/01; type=string; label=Logo Path
+
+            #cat = ns_basetheme/100/01; type=string; label=Upload Logo: Go to Filelist > Upload your logo image and set file path here eg., /fileadmin/images/logo.png
             logo = typo3conf/ext/ns_basetheme/Resources/Public/Images/Logo.png
 
-            #cat = ns_basetheme/100/02; type=boolean; label=Cache enable/disable
-            no_cache = 1
+            #cat = ns_basetheme/100/02; type=string; label=Logo Image Width: Set fix width dimension for your logo
+            logo_width =
 
-            #cat = ns_basetheme/100/03; type=string; label=Copyright Text
-            copyright = Copyright
+            #cat = ns_basetheme/100/03; type=string; label=Logo Image Height: Set fix height dimension for your logo
+            logo_height =
 
-            #cat = ns_basetheme/100/04; type=int; label=Main Menu ID
+            #cat = ns_basetheme/100/04; type=string; label=Logo Text: Set your website name, If logo image not found then display this Logo text.
+            logo_text =
+
+            #cat = ns_basetheme/100/05; type=string; label=Favicon: Go to Filelist > Upload your favicon image and set file path here eg., /fileadmin/images/favicon.png
+            favicon =
+
+
+            #cat = ns_basetheme/110/01; type=int; label=Main Menu Id: Setup page-id of your main menu
             main_menu = 11
 
-            #cat = ns_basetheme/100/05; type=int; label=Footer Menu ID
+            #cat = ns_basetheme/110/02; type=int; label=Footer Menu Id: Setup page-id of your footer menu
             footer_menu = 6
 
-            #cat = ns_basetheme/100/06; type=string; label=Root Page Id
+            #cat = ns_basetheme/110/03; type=string; label=Home Page Id: Setup page-id of your home page
             rootpage = 1
 
-            #cat = ns_basetheme/100/07; type=boolean; label=Compress and Concatenate CSS/JS
+
+            #cat = ns_basetheme/120/01; type=string; label=Copyright Text: Write down your footer's copyright content
+            copyright = Copyright
+
+            #cat = ns_basetheme/120/02; type=boolean; label=Back To Top: You can enable or disable back to top button at bottom-right corner
+            back_to_top = 0
+
+
+            #cat = ns_basetheme/130/01; type=boolean; label=Cache Enable/Disable: You can enable or disable TYPO3 core's cache framework. We recommend to keep enable to boost your website's speed and performance.
+            no_cache = 1
+
+            #cat = ns_basetheme/130/02; type=boolean; label=Compress & Merge CSS/JS: You can enable or merge of CSS and JS files. We recommend to keep enable to boost your website's speed and performance.
             compress_cssjs = 0
 
-            #cat = ns_basetheme/100/08; type=string; label=Google Analytics Id
+
+            #cat = ns_basetheme/140/01; type=boolean; label=Enable Maintenance Mode: You can switch to offline or under maintenance website mode
+            maintenance_mode = 0
+
+            #cat = ns_basetheme/140/02; type=string; label=Text Message Maintenance Mode: What message do you want to display when Website maintenance mode is enable?
+            maintenance_message = Sorry, website is down for maintenance. Be right back!
+
+
+            #cat = ns_seo/200/01; type=string; label=Page Title Prefix: Display default prefix at each page's title
+            seo_title_prefix =
+
+            #cat = ns_seo/200/02; type=string; label=Page Title Sufix: Display default sufix at each page's title
+            seo_title_sufix =
+
+            #cat = ns_seo/200/03; type=string; label=Default Meta Description: Display this content, If not found meta description to particular page
+            seo_meta_description =
+
+            #cat = ns_seo/200/04; type=string; label=Default Meta Keywords: Display this content, If not found meta keywords to particular page
+            seo_meta_keywords =
+
+            #cat = ns_seo/200/05; type=string; label=Default Meta Robots: Set meta robots data
+            seo_robots_default = FOLLOW,INDEX
+
+            #cat = ns_seo/210/01; type=string; label=Google Analytics ID: Setup Google Analytics Tracking ID to enable Google access to track your website
             googleanalytics =
 
-            cookie {
+            #cat = ns_seo/210/02; type=string; label=Google Map API Key: Setup your Google map's API key for displaying Google map
+            seo_google_map =
 
+            #cat = ns_seo/220/01; type=string; label=Twitter Profile Link: Configure your Twitter page's link
+            seo_twitter_link = https://twitter.com/
+
+            #cat = ns_seo/220/02; type=string; label=Facebook Profile Link: Configure your Facebook prpageofile's link
+            seo_facebook_link = https://facebook.com/
+
+            #cat = ns_seo/220/03; type=string; label=LinkedIn Profile Link: Configure your Linkedin page's link
+            seo_linkedin_link = https://linkedin.com/
+
+            cookie {
                 settings {
-                    # cat=ns_basetheme/110; type=int+; label= PID to Data Protection
+                    # cat=ns_gdpr/300; type=int+; label= Privacy Page Id: Configure page-id of your Privacy & Policy page
                     url =
-                    # cat=ns_basetheme/110; type=options[edgeless,classic,basic]; label=Layout
+
+                    # cat=ns_gdpr/300; type=options[edgeless,classic,basic]; label=Layout: Please select layout, how do you want to display cookie consent box
                     theme = edgeless
-                    # cat=ns_basetheme/110; type=options[top,top-left,top-right,bottom,bottom-left,bottom-right]; label= Position
+
+                    # cat=ns_gdpr/300; type=options[top,top-left,top-right,bottom,bottom-left,bottom-right]; label= Position: Please select position to display at particular location of your website
                     position = bottom-right
-                    # cat=ns_basetheme/110; type=int+; label= dismiss on scroll (in PX)
+
+                    # cat=ns_gdpr/300; type=int+; label= Dismiss on scroll: Confiugre in px (pixel)
                     dismissOnScroll =
-                    # cat=ns_basetheme/110; type=options[info,opt-out]; label = Type
+
+                    # cat=ns_gdpr/300; type=options[info,opt-out]; label = Type: Select type from two options of info or opt-out
                     type = info
 
                     palette {
                         popup {
-                            # cat=ns_basetheme/110/popup; type=color; label= Bar: Background
+                            # cat=ns_gdpr/300/popup; type=color; label= Popup Background Color: Select background color of Popup
                             background = rgba(0,0,0,.8)
-                            # cat=ns_basetheme/110/popup; type=color; label= Bar: Text
+                            # cat=ns_gdpr/300/popup; type=color; label= Popup Text Color: Select content color of Popup
                             text = #fff
                         }
                         button {
-                            # cat=ns_basetheme/110/button; type=color; label= Button: Background
+                            # cat=ns_gdpr/300/button; type=color; label= Button Background Color: Select background color of Button
                             background = #b81839
-                            # cat=ns_basetheme/110/button; type=color; label= Button: Text
+                            # cat=ns_gdpr/300/button; type=color; label= Button Text Color: Select content color of Button
                             text = #fff
                         }
                     }
                 }
             }
+
+            #cat = ns_style/400/01; type=options[orange,blue,green]; label=Theme Color: Choose your favourite pre-configured Theme/Template color
+            style_theme_color = blue
+
+
+            #cat = ns_integration/500/01; type=boolean; label=Use Responsive Layout: Enable or display responsive behaviour of Template
+            integration_responsive_layout = 1
+
+            #cat = ns_integration/500/02; type=string; label=Custom CSS: Add your own custom CSS into <head> tag
+            integration_custom_css =
+
+            #cat = ns_integration/500/03; type=boolean; label=Enable Header Code: Enable or disable your code from <head> tag (which is configured at Code into <head>)
+            integration_enable_head =
+
+            #cat = ns_integration/500/04; type=boolean; label=Enable Body Code: Enable or disable your code at the end of <body> tag (which is configured at Code at <body>)
+            integration_enable_body =
+
+            #cat = ns_integration/500/05; type=string; label=Code into <head>: Add you own html code to insert at <head> tag
+            integration_code_head =
+
+            #cat = ns_integration/500/06; type=string; label=Code before <body>: Add you own html code to insert before <body> tag
+            integration_code_body =
         }
 
         # Define paths for templates, layout and partial
