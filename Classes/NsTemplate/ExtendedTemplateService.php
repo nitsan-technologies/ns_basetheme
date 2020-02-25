@@ -1220,7 +1220,8 @@ class ExtendedTemplateService extends TemplateService
                         case 'boolean':
                             $sel = $fV ? 'checked' : '';
                             $p_field =
-                               '<div class="custom-control custom-switch">'
+                                '<input type="hidden" name="' . $fN . '" value="0" />'
+                               .'<div class="custom-control custom-switch">'
                                     . '<input class="custom-control-input" id="' . $idName . '" type="checkbox" name="' . $fN . '" value="' . ($typeDat['paramstr'] ? $typeDat['paramstr'] : 1) . '" ' . $sel . '>'
                                     . '<label class="custom-control-label" for="' . $idName . '"></label>'
                                 . '</div>';
@@ -1275,10 +1276,6 @@ class ExtendedTemplateService extends TemplateService
                             $defaultTyposcriptStyle = '';
                         }
                         $constantCheckbox = '<input type="hidden" name="' . $checkboxName . '" id="' . $checkboxID . '" value="' . $checkboxValue . '"/>';
-                        // If there's no default value for the field, use a static label.
-                        if (!$params['default_value']) {
-                            $params['default_value'] = '[Empty]';
-                        }
                     }
                     $constantLabel = '<label class="t3js-formengine-label" for="' . $idName . '"><span>' . htmlspecialchars($head) . '</span></label>';
                     $constantDescription = $body ? '<div class="field-info-text"><p>' . htmlspecialchars($body) . '</p></div>' : '';
