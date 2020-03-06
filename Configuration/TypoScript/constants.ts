@@ -55,22 +55,20 @@ ns_basetheme {
             #cat = ns_basetheme/100/05; type=string; label=Favicon: Go to Filelist > Upload your favicon image and set file path here eg., /fileadmin/images/favicon.png
             favicon =
 
-
-            #cat = ns_basetheme/110/01; type=int; label=Main Menu Id: Setup page-id of your main menu
-            main_menu = 11
-
-            #cat = ns_basetheme/110/02; type=int; label=Footer Menu Id: Setup page-id of your footer menu
-            footer_menu = 6
-
-            #cat = ns_basetheme/110/03; type=string; label=Home Page Id: Setup page-id of your home page
-            rootpage = 1
-
-
-            #cat = ns_basetheme/120/01; type=string; label=Copyright Text: Write down your footer's copyright content
+            #cat = ns_basetheme/110/01; type=string; label=Copyright Text: Write down your footer's copyright content
             copyright = Copyright
 
-            #cat = ns_basetheme/120/02; type=boolean; label=Back To Top: You can enable or disable back to top button at bottom-right corner
+            #cat = ns_basetheme/110/02; type=boolean; label=Back To Top: You can enable or disable back to top button at bottom-right corner
             back_to_top = 0
+
+            #cat = ns_basetheme/120/01; type=int; label=Main Menu Id: Setup page-id of your main menu
+            main_menu = 11
+
+            #cat = ns_basetheme/120/02; type=int; label=Footer Menu Id: Setup page-id of your footer menu
+            footer_menu = 6
+
+            #cat = ns_basetheme/120/03; type=string; label=Home Page Id: Setup page-id of your home page
+            rootpage = 1
 
 
             #cat = ns_basetheme/130/01; type=boolean; label=Cache Enable/Disable: You can enable or disable TYPO3 core's cache framework. We recommend to keep enable to boost your website's speed and performance.
@@ -83,9 +81,11 @@ ns_basetheme {
             #cat = ns_basetheme/140/01; type=boolean; label=Enable Maintenance Mode: You can switch to offline or under maintenance website mode
             maintenance_mode = 0
 
-            #cat = ns_basetheme/140/02; type=string; label=Text Message Maintenance Mode: What message do you want to display when Website maintenance mode is enable?
-            maintenance_message = Sorry, website is down for maintenance. Be right back!
+            #cat = ns_basetheme/140/01; type=string; label=Headline: What "headeline" do you want to display when Website maintenance mode is enable?
+            maintenance_headline = We&rsquo;ll be back soon!
 
+            #cat = ns_basetheme/140/02; type=string; label=Text Message: What "message" do you want to display when Website maintenance mode is enable?
+            maintenance_message = Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment. If you need to you can always <a href="mailto:#">contact us</a>, otherwise we&rsquo;ll be back online shortly!
 
             #cat = ns_seo/200/01; type=string; label=Page Title Prefix: Display default prefix at each page's title
             seo_title_prefix =
@@ -119,6 +119,9 @@ ns_basetheme {
 
             cookie {
                 settings {
+                    # cat=ns_gdpr/300; type=boolean; label= Enable Cookie Consent: Enable or Disable Cookie Consent Box
+                    cookie_enable = 1
+
                     # cat=ns_gdpr/300; type=int+; label= Privacy Page Id: Configure page-id of your Privacy & Policy page
                     url =
 
@@ -152,10 +155,10 @@ ns_basetheme {
             }
 
             #cat = ns_style/400/01; type=options[orange,blue,green]; label=Theme Color: Choose your favourite pre-configured Theme/Template color
-            style_theme_color = blue
+            #style_theme_color = blue
 
 
-            #cat = ns_integration/500/01; type=boolean; label=Use Responsive Layout: Enable or display responsive behaviour of Template
+            #cat = ns_integration/500/01; type=boolean; label=Enable Responsive Layout: Enable or display responsive behaviour of Template by removing meta > viewport eg., width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no
             integration_responsive_layout = 1
 
             #cat = ns_integration/500/02; type=string; label=Custom CSS: Add your own custom CSS into <head> tag
@@ -164,11 +167,11 @@ ns_basetheme {
             #cat = ns_integration/500/03; type=boolean; label=Enable Header Code: Enable or disable your code from <head> tag (which is configured at Code into <head>)
             integration_enable_head =
 
-            #cat = ns_integration/500/04; type=boolean; label=Enable Body Code: Enable or disable your code at the end of <body> tag (which is configured at Code at <body>)
-            integration_enable_body =
-
-            #cat = ns_integration/500/05; type=string; label=Code into <head>: Add you own html code to insert at <head> tag
+            #cat = ns_integration/500/04; type=string; label=Code into <head>: Add you own html code to insert at <head> tag
             integration_code_head =
+
+            #cat = ns_integration/500/05; type=boolean; label=Enable Body Code: Enable or disable your code at the end of <body> tag (which is configured at Code at <body>)
+            integration_enable_body =
 
             #cat = ns_integration/500/06; type=string; label=Code before <body>: Add you own html code to insert before <body> tag
             integration_code_body =

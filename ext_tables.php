@@ -33,7 +33,7 @@ if (TYPO3_MODE === 'BE') {
         'nsbasethememodule', // Submodule key
         '', // Position
         [
-            'NsBasethemeModule' => 'dashboard, generalSettings, seoSettings, gdprSettings, styleSettings, integrationSettings, aboutExtension, saveConstant',
+            'NsBasethemeModule' => 'generalSettings, seoSettings, gdprSettings, styleSettings, integrationSettings, aboutExtension, saveConstant',
         ],
         [
             'access' => 'user,group',

@@ -209,7 +209,10 @@ class TypoScriptTemplateConstantEditorModuleFunctionController
                 $assigns['constantsMenu'] = BackendUtility::getDropdownMenu($this->id, 'SET[constant_editor_cat]', $this->pObj->MOD_SETTINGS['constant_editor_cat'], $this->pObj->MOD_MENU['constant_editor_cat']);
             }
 
-            $category = strtolower(GeneralUtility::_GP('cat'));
+            // Let's call default "ns_basetheme" constant category
+            $getCurrentCategory = strtolower(GeneralUtility::_GP('cat'));
+            $category = (!empty($getCurrentCategory)) ? $getCurrentCategory : 'ns_basetheme';
+
             // Category and constant editor config:
             $printFields = trim($this->templateService->ext_printFields($this->constants, $category));
             foreach ($this->templateService->getInlineJavaScript() as $name => $inlineJavaScript) {

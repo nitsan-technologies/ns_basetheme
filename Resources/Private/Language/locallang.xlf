@@ -32,7 +32,7 @@
 
             <!-- Module LLL Start-->
             <trans-unit id="extensionName">
-                <source>Template Options</source>
+                <source>Theme Options</source>
             </trans-unit>
             <trans-unit id="globalsettings">
                 <source>Global Setting</source>
@@ -88,6 +88,9 @@
             </trans-unit>
             <trans-unit id="save">
                 <source>Save Changes</source>
+            </trans-unit>
+            <trans-unit id="noThemeConfiguration">
+                <source>Sorry, Configuration not available for this category!</source>
             </trans-unit>
             <!-- Module LLL End-->
 		</body>

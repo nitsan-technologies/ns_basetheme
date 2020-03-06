@@ -39,7 +39,7 @@ page {
         viewport = width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no
     }
 
-    // Modify Google Analytics from CS_SEO
+    // Cookie Consent
     headerData {
         998 = FLUIDTEMPLATE
         998 {
@@ -75,7 +75,6 @@ page {
                     }
                 }
             }
-            # Modify Google Analytics from CS_SEO
             20 {
                 stdWrap.replacement {
                     10 {
@@ -86,12 +85,12 @@ page {
             }
         }
 
-        // Modify Google Tag-Manager & Piwiki from CS_SEO
         90 = COA
         90 {
             wrap = <script data-ignore="1" data-cookieconsent="statistics" type="text/plain">|</script>
             10 < .jsInline.654
         }
+
         987 = TEXT
         987.value (
             <script>
@@ -145,13 +144,14 @@ page {
     // Initiate all the css-together
     includeCSS {
         10 = typo3conf/ext/ns_basetheme/Resources/Public/vendor/bootstrap/css/bootstrap.min.css
-        20 = typo3conf/ext/ns_basetheme/Resources/Public/css/custom.css
+        9901 = typo3conf/ext/ns_basetheme/Resources/Public/css/ns_basetheme.css
     }
 
     // Initiate all the js-together
     includeJSFooter {
         10 = typo3conf/ext/ns_basetheme/Resources/Public/vendor/jquery/jquery.min.js
         20 = typo3conf/ext/ns_basetheme/Resources/Public/vendor/bootstrap/js/bootstrap.bundle.min.js
+        9901 = typo3conf/ext/ns_basetheme/Resources/Public/js/ns_basetheme.js
     }
 
     // Let's start fluid_styled_content
@@ -241,6 +241,10 @@ lib {
     }
 }
 
+#########################
+### AJAX Calling PAGE ###
+#########################
+
 ajaxData = PAGE
 ajaxData {
     typeNum = 22184356
@@ -253,3 +257,101 @@ ajaxData {
         admPanel = 0
     }
 }
+
+
+##########################
+### Render Back To Top ###
+##########################
+
+[{$ns_basetheme.website.settings.back_to_top} == 1]
+    page.footerData {
+        9901 = TEXT
+        9901.value = <!-- Render from EXT:ns_basetheme --><a href="#" id="ns_basetheme_back_to_top" title="Back to top">&uarr;</a>
+    }
+[global]
+
+####################################
+### Disable Responsive Behaviour ###
+####################################
+
+[{$ns_basetheme.website.settings.integration_responsive_layout} == 0]
+    page.meta.viewport >
+[global]
+
+####################################
+### Disable Responsive Behaviour ###
+####################################
+
+page.headerData {
+    9902 = TEXT
+    9902.value = <style>{$ns_basetheme.website.settings.integration_custom_css}</style>
+}
+
+###################
+### <head> Code ###
+###################
+
+[{$ns_basetheme.website.settings.integration_enable_head} == 1]
+    page.headerData {
+        9903 = TEXT
+        9903.value = {$ns_basetheme.website.settings.integration_code_head}
+    }
+[global]
+
+###################
+### <body> Code ###
+###################
+
+[{$ns_basetheme.website.settings.integration_enable_body} == 1]
+    page.footerData {
+        9904 = TEXT
+        9904.value = {$ns_basetheme.website.settings.integration_code_body}
+    }
+[global]
+
+########################
+### Maintenance Mode ###
+########################
+
+[{$ns_basetheme.website.settings.maintenance_mode} == 1]
+
+    # Remove main PAGE Object
+    page >
+
+    # Create special Maintenance PAGE Object
+    maintenancePage = PAGE
+    maintenancePage {
+        10 >
+        20 = TEXT
+        20 {
+            value (
+                <!doctype html>
+                <title>Site Maintenance</title>
+                <style>
+                    body { text-align: center; padding: 150px; }
+                    h1 { font-size: 50px; }
+                    body { font: 20px Helvetica, sans-serif; color: #333; }
+                    article { display: block; text-align: left; width: 650px; margin: 0 auto; }
+                    a { color: #dc8100; text-decoration: none; }
+                    a:hover { color: #333; text-decoration: none; }
+                </style>
+
+                <article>
+                    <h1>{$ns_basetheme.website.settings.maintenance_headline}</h1>
+                    <div>
+                        {$ns_basetheme.website.settings.maintenance_message}
+                    </div>
+                </article>
+            )
+        }
+    }
+[global]
+
+
+##############################
+### Disable Cookie Consent ###
+##############################
+
+[{$ns_basetheme.website.settings.cookie.settings.cookie_enable} == 0]
+    page.headerData.998 >
+[global]

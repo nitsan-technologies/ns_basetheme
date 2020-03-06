@@ -5,5 +5,13 @@
         <button class="btn btn-primary" name="{constantAttrib.buttonsData.name}" form="{constantAttrib.buttonsData.form}"><em class="fa fa-save" aria-hidden="true"></em><f:translate key="save" /></button>
         <input type="hidden" name="{constantAttrib.buttonsData.name}" value="1">
     </div>
-    {constant->f:format.raw()}
+
+    <f:if condition="{constant}!=''">
+        <f:then>
+            {constant->f:format.raw()}
+        </f:then>
+        <f:else>
+            <p class="alert alert-warning"><f:translate key="noThemeConfiguration" /></p>
+        </f:else>
+    </f:if>
 </f:form>
