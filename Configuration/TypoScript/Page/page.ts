@@ -278,6 +278,14 @@ ajaxData {
     page.meta.viewport >
 [global]
 
+########################
+### Enable Debugging ###
+########################
+
+[{$ns_basetheme.website.settings.integration_admpanel} == 1]
+    config.admPanel = 1
+[global]
+
 ####################################
 ### Disable Responsive Behaviour ###
 ####################################

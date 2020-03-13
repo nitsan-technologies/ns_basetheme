@@ -3,8 +3,8 @@
 ########################
 
 # customsubcategory=100=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:header
-# customsubcategory=110=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:footer
-# customsubcategory=120=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:menu
+# customsubcategory=110=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:menu
+# customsubcategory=120=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:footer
 # customsubcategory=130=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:speed
 # customsubcategory=140=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:maintenance
 # customsubcategory=170=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:cookie
@@ -55,20 +55,20 @@ ns_basetheme {
             #cat = ns_basetheme/100/05; type=string; label=Favicon: Go to Filelist > Upload your favicon image and set file path here eg., /fileadmin/images/favicon.png
             favicon =
 
-            #cat = ns_basetheme/110/01; type=string; label=Copyright Text: Write down your footer's copyright content
-            copyright = Copyright
-
-            #cat = ns_basetheme/110/02; type=boolean; label=Back To Top: You can enable or disable back to top button at bottom-right corner
-            back_to_top = 0
-
-            #cat = ns_basetheme/120/01; type=int; label=Main Menu Id: Setup page-id of your main menu
+            #cat = ns_basetheme/110/01; type=int; label=Main Menu Id: Setup page-id of your main menu
             main_menu = 11
 
-            #cat = ns_basetheme/120/02; type=int; label=Footer Menu Id: Setup page-id of your footer menu
+            #cat = ns_basetheme/110/02; type=int; label=Footer Menu Id: Setup page-id of your footer menu
             footer_menu = 6
 
-            #cat = ns_basetheme/120/03; type=string; label=Home Page Id: Setup page-id of your home page
+            #cat = ns_basetheme/110/03; type=string; label=Home Page Id: Setup page-id of your home page
             rootpage = 1
+
+            #cat = ns_basetheme/120/01; type=string; label=Copyright Text: Write down your footer's copyright content
+            copyright = Copyright
+
+            #cat = ns_basetheme/120/02; type=boolean; label=Back To Top: You can enable or disable back to top button at bottom-right corner
+            back_to_top = 0
 
 
             #cat = ns_basetheme/130/01; type=boolean; label=Cache Enable/Disable: You can enable or disable TYPO3 core's cache framework. We recommend to keep enable to boost your website's speed and performance.
@@ -157,6 +157,8 @@ ns_basetheme {
             #cat = ns_style/400/01; type=options[orange,blue,green]; label=Theme Color: Choose your favourite pre-configured Theme/Template color
             #style_theme_color = blue
 
+            #cat = ns_integration/500/00; type=boolean; label=Enable Admin Panel: Enable or disable config.admPanel
+            integration_admpanel = 0
 
             #cat = ns_integration/500/01; type=boolean; label=Enable Responsive Layout: Enable or display responsive behaviour of Template by removing meta > viewport eg., width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no
             integration_responsive_layout = 1

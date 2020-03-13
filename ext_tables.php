@@ -37,7 +37,7 @@ if (TYPO3_MODE === 'BE') {
         ],
         [
             'access' => 'user,group',
-            'icon' => 'EXT:ns_basetheme/Resources/Public/Icons/Extension.png',
+            'icon' => 'EXT:ns_basetheme/Resources/Public/Icons/Extension.svg',
             'labels' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_basethememodule.xlf',
             'navigationComponentId' => ($isVersion9Up ? 'TYPO3/CMS/Backend/PageTree/PageTreeElement' : 'typo3-pagetree'),
             'inheritNavigationComponentFromMainModule' => false

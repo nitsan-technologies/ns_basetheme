@@ -41,7 +41,7 @@
                 <source>Header Settings</source>
             </trans-unit>
             <trans-unit id="menu">
-                <source>Menu Settings</source>
+                <source>Menu and Pages Settings</source>
             </trans-unit>
             <trans-unit id="footer">
                 <source>Footer Settings</source>
