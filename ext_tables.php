@@ -12,37 +12,38 @@ if (TYPO3_MODE === 'BE') {
         ['nitsan' => ''] +
         array_slice($GLOBALS['TBE_MODULES'], 1, count($GLOBALS['TBE_MODULES']) - 1, true);
 
-    if (version_compare(TYPO3_branch, '8.0', '>=')) {
+    if (version_compare(TYPO3_branch, '9.0', '>=')) {
         $GLOBALS['TBE_MODULES']['_configuration']['nitsan'] = [
             'iconIdentifier' => 'module-nsbasetheme',
             'labels' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/BackendModule.xlf',
             'name' => 'nitsan'
         ];
-    } else {
-        $GLOBALS['TBE_MODULES']['_configuration']['nitsan'] = [
-            'iconIdentifier' => 'module-nsbasetheme',
-            'labels' => [
-                'll_ref' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/BackendModule.xlf'
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
+            'NITSAN.NsBasetheme',
+            'nitsan', // Make module a submodule of 'nitsan'
+            'nsbasethememodule', // Submodule key
+            '', // Position
+            [
+                'NsBasethemeModule' => 'generalSettings, seoSettings, gdprSettings, styleSettings, integrationSettings, aboutExtension, saveConstant',
             ],
-            'name' => 'nitsan'
-        ];
+            [
+                'access' => 'user,group',
+                'icon' => 'EXT:ns_basetheme/Resources/Public/Icons/Extension.svg',
+                'labels' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_basethememodule.xlf',
+                'navigationComponentId' => ($isVersion9Up ? 'TYPO3/CMS/Backend/PageTree/PageTreeElement' : 'typo3-pagetree'),
+                'inheritNavigationComponentFromMainModule' => false
+            ]
+        );
     }
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-        'NITSAN.NsBasetheme',
-        'nitsan', // Make module a submodule of 'nitsan'
-        'nsbasethememodule', // Submodule key
-        '', // Position
-        [
-            'NsBasethemeModule' => 'generalSettings, seoSettings, gdprSettings, styleSettings, integrationSettings, aboutExtension, saveConstant',
-        ],
-        [
-            'access' => 'user,group',
-            'icon' => 'EXT:ns_basetheme/Resources/Public/Icons/Extension.svg',
-            'labels' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_basethememodule.xlf',
-            'navigationComponentId' => ($isVersion9Up ? 'TYPO3/CMS/Backend/PageTree/PageTreeElement' : 'typo3-pagetree'),
-            'inheritNavigationComponentFromMainModule' => false
-        ]
-    );
+    //else {
+    //     $GLOBALS['TBE_MODULES']['_configuration']['nitsan'] = [
+    //         'iconIdentifier' => 'module-nsbasetheme',
+    //         'labels' => [
+    //             'll_ref' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/BackendModule.xlf'
+    //         ],
+    //         'name' => 'nitsan'
+    //     ];
+    // }
 }
 
 // Add default include static TypoScript (for root page)
