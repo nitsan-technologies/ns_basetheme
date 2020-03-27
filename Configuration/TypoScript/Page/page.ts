@@ -107,7 +107,7 @@ page {
 
     bodyTagCObject = COA
     bodyTagCObject {
-        wrap = <body class="|">
+        wrap = body class="|"
 
         10 = COA
         10 {
