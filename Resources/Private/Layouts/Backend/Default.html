@@ -1,9 +1,11 @@
 <html xmlns:f="https://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<f:be.container pageTitle="{f:translate(key: 'pagetitle')}" includeCssFiles="{
-			0: '{f:uri.resource(path:\'Vendor/bootstrap4.3.1.min.css\')}',
-			1: '{f:uri.resource(path:\'css/Module/global.css\')}',
-			2: '{f:uri.resource(path:\'css/Module/main.css\')}'
-		}" includeRequireJsModules="{0:'TYPO3/CMS/NsBasetheme/Main'}">
+<f:be.container pageTitle="{f:translate(key: 'pagetitle')}" includeRequireJsModules="{0:'TYPO3/CMS/NsBasetheme/Main'}">
+
+    <!-- Due to css-order rendering issue ignoring "includeCssFiles" -->
+    <link rel="stylesheet" type="text/css" href="/typo3conf/ext/ns_basetheme/Resources/Public/Vendor/bootstrap4.3.1.min.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/typo3conf/ext/ns_basetheme/Resources/Public/css/Module/global.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/typo3conf/ext/ns_basetheme/Resources/Public/css/Module/main.css" media="all">
+
 	<div class="typo3-fullDoc">
 		<div id="typo3-docheader">
 			<div class="typo3-docheader-functions">
