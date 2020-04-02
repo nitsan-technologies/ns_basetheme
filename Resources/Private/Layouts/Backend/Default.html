@@ -2,9 +2,9 @@
 <f:be.container pageTitle="{f:translate(key: 'pagetitle')}" includeRequireJsModules="{0:'TYPO3/CMS/NsBasetheme/Main'}">
 
     <!-- Due to css-order rendering issue ignoring "includeCssFiles" -->
-    <link rel="stylesheet" type="text/css" href="/typo3conf/ext/ns_basetheme/Resources/Public/Vendor/bootstrap4.3.1.min.css" media="all">
-    <link rel="stylesheet" type="text/css" href="/typo3conf/ext/ns_basetheme/Resources/Public/css/Module/global.css" media="all">
-    <link rel="stylesheet" type="text/css" href="/typo3conf/ext/ns_basetheme/Resources/Public/css/Module/main.css" media="all">
+    <link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'Vendor/bootstrap4.3.1.min.css', extensionName: 'ns_basetheme')}" media="all">
+    <link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'css/Module/global.css', extensionName: 'ns_basetheme')}" media="all">
+    <link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'css/Module/main.css', extensionName: 'ns_basetheme')}" media="all">
 
 	<div class="typo3-fullDoc">
 		<div id="typo3-docheader">
