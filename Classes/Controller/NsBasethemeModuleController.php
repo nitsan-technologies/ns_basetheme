@@ -2,12 +2,10 @@
 namespace NITSAN\NsBasetheme\Controller;
 
 use NITSAN\NsBasetheme\NsTemplate\TypoScriptTemplateConstantEditorModuleFunctionController;
-use NITSAN\NsBasetheme\NsTemplate\TypoScriptTemplateModuleController;
-use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\TypoScript\ExtendedTemplateService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\Inject as inject;
+use TYPO3\CMS\Tstemplate\Controller\TypoScriptTemplateModuleController;
 
 /***
  *
@@ -54,12 +52,6 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     */
     protected $pObj;
 
-    /*
-    * ts
-    * @var TypoScriptTemplateConstantEditorModuleFunctionController
-    */
-    protected $ts;
-
     protected $contentObject = null;
 
     protected $pid = null;
@@ -73,7 +65,6 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     {
         $this->contentObject = GeneralUtility::makeInstance('TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer');
         $this->templateService = GeneralUtility::makeInstance(ExtendedTemplateService::class);
-        $this->ts = GeneralUtility::makeInstance(TypoScriptTemplateModuleController::class);
         $this->constantObj = GeneralUtility::makeInstance(TypoScriptTemplateConstantEditorModuleFunctionController::class);
     }
 
@@ -117,8 +108,6 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
         //GET CONSTANTs
         $this->constantObj->init($this->pObj);
         $this->constants = $this->constantObj->main();
-        $this->ts->init();
-        $this->actions = $this->ts->main();
     }
 
     /**
@@ -146,7 +135,6 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     {
         $this->view->assign('action', 'generalSettings');
         $this->view->assign('constant', $this->constants);
-        $this->view->assign('constantAttrib', $this->actions);
     }
 
     /**
@@ -158,7 +146,6 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     {
         $this->view->assign('action', 'seoSettings');
         $this->view->assign('constant', $this->constants);
-        $this->view->assign('constantAttrib', $this->actions);
     }
 
     /**
@@ -170,7 +157,6 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     {
         $this->view->assign('action', 'gdprSettings');
         $this->view->assign('constant', $this->constants);
-        $this->view->assign('constantAttrib', $this->actions);
     }
 
     /**
@@ -182,7 +168,6 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     {
         $this->view->assign('action', 'styleSettings');
         $this->view->assign('constant', $this->constants);
-        $this->view->assign('constantAttrib', $this->actions);
     }
 
     /**
@@ -194,7 +179,6 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     {
         $this->view->assign('action', 'integrationSettings');
         $this->view->assign('constant', $this->constants);
-        $this->view->assign('constantAttrib', $this->actions);
     }
 
     /**
@@ -203,68 +187,6 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     public function saveConstantAction()
     {
         $this->constantObj->main();
-
-//        $this->templateService->changed = 0;
-//        $constant = $this->constantObj->getConstant();
-//        $templateRow = $this->constantObj->getTemplateRow();
-//        $rawConstant = $this->constantObj->getRawConstant();
-//        $this->templateService->ext_procesInput(GeneralUtility::_POST(), [], $constant, $templateRow);
-//
-//        if ($this->templateService->changed) {
-//            // Set the data to be saved
-//            $recData = [];
-//            $recData['sys_template'][$this->pid]['constants'] = implode($this->templateService->raw, LF);
-//            // Create new  tce-object
-//            $tce = GeneralUtility::makeInstance(DataHandler::class);
-//            $tce->start($recData, []);
-//            $tce->process_datamap();
-//            // Clear the cache (note: currently only admin-users can clear the cache in tce_main.php)
-//            $tce->clear_cacheCmd('all');
-//            // re-read the template ...
-//            // re-read the constants as they have changed
-        ////            $this->initialize_editor($this->id, $template_uid);
-//        }
-
-        $returnAction = $_REQUEST['tx_nsfaq_nitsan_nsfaqfaqbackend']['__referrer']['@action']; //get action name
-//        $constantRawData = GeneralUtility::_GP('data');
-//
-//        foreach ($constantRawData as $key => $v){
-//            if(is_array($v)){
-//                $constantRawData[$key] = implode(',',$v);
-//            }
-//        }
-//        $pid = GeneralUtility::_GP('id');
-//        $constantForDb ='';
-//        array_walk(
-//            $constantRawData,
-//            function ($item, $key) use (&$constantForDb) {
-//                $constantForDb .= $key ." = " . preg_replace('/\n+/','',$item) ."\r\n";
-//            }
-//        );
-//
-//        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_template');
-//        $newConstantsValue = $this->addConstantsConfiguration($constantForDb,$pid);
-//        $query = $queryBuilder
-//            ->update('sys_template')
-//            ->where(
-//                $queryBuilder->expr()->eq(
-//                    'pid',
-//                    $queryBuilder->createNamedParameter($pid)
-//                )
-//            )
-//            ->set('constants', '');
-//        $query = $queryBuilder->execute();
-//
-//        $query = $queryBuilder
-//            ->update('sys_template')
-//            ->where(
-//                $queryBuilder->expr()->eq(
-//                    'pid',
-//                    $queryBuilder->createNamedParameter($pid)
-//                )
-//            )
-//            ->set('constants', $newConstantsValue);
-//        $query = $queryBuilder->execute();
         return false;
     }
 

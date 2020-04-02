@@ -163,19 +163,19 @@ ns_basetheme {
             #cat = ns_integration/500/01; type=boolean; label=Enable Responsive Layout: Enable or display responsive behaviour of Template by removing meta > viewport eg., width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no
             integration_responsive_layout = 1
 
-            #cat = ns_integration/500/02; type=string; label=Custom CSS: Add your own custom CSS into <head> tag
+            #cat = ns_integration/500/02; type=textarea; label=Custom CSS: Add your own custom CSS into <head> tag
             integration_custom_css =
 
             #cat = ns_integration/500/03; type=boolean; label=Enable Header Code: Enable or disable your code from <head> tag (which is configured at Code into <head>)
             integration_enable_head =
 
-            #cat = ns_integration/500/04; type=string; label=Code into <head>: Add you own html code to insert at <head> tag
+            #cat = ns_integration/500/04; type=textarea; label=Code into <head>: Add you own html code to insert at <head> tag
             integration_code_head =
 
             #cat = ns_integration/500/05; type=boolean; label=Enable Body Code: Enable or disable your code at the end of <body> tag (which is configured at Code at <body>)
             integration_enable_body =
 
-            #cat = ns_integration/500/06; type=string; label=Code before <body>: Add you own html code to insert before <body> tag
+            #cat = ns_integration/500/06; type=textarea; label=Code before <body>: Add you own html code to insert before <body> tag
             integration_code_body =
         }
 
