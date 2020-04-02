@@ -2,7 +2,7 @@
 
 // Provide detailed information and depenencies of EXT:ns_basetheme
 $EM_CONF[$_EXTKEY] = [
-    'title' => '[NITSAN] TYPO3 Parent/Base Theme',
+    'title' => '[NITSAN] Base Theme/Template',
     'description' => 'The TYPO3 theme which is design for parent and child theme concept, This parent theme have common and global configuration to support the child theme. Read more at documentation.',
     'category' => 'templates',
     'author' => 'Team NITSAN',
