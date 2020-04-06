@@ -105,42 +105,6 @@ page {
         )
     }
 
-    bodyTagCObject = COA
-    bodyTagCObject {
-        wrap = |
-
-        10 = COA
-        10 {
-            # page uid
-            10 = TEXT
-            10 {
-                field = alias // uid
-                wrap = id_|
-            }
-
-            # tree level (NOTE: 0 is first level, ID=1)
-            20 = TEXT
-            20 {
-                data = level : 1
-                noTrimWrap = | tree||
-            }
-
-            # parent uid
-            30 = TEXT
-            30 {
-                field = pid
-                noTrimWrap = | parent||
-            }
-
-            # language uid
-            40 = TEXT
-            40 {
-                data = TSFE : sys_language_uid
-                noTrimWrap = | lang| |
-            }
-        }
-    }
-
     // Initiate all the css-together
     includeCSS {
         10 = typo3conf/ext/ns_basetheme/Resources/Public/vendor/bootstrap/css/bootstrap.min.css
