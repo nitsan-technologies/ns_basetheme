@@ -71,7 +71,7 @@ ns_basetheme {
             back_to_top = 0
 
 
-            #cat = ns_basetheme/130/01; type=boolean; label=Cache Enable/Disable: You can enable or disable TYPO3 core's cache framework. We recommend to keep enable to boost your website's speed and performance.
+            #cat = ns_basetheme/130/01; type=boolean; label=Disable Cache: You can enable or disable TYPO3 core's cache framework. We recommend to keep enable to boost your website's speed and performance.
             no_cache = 1
 
             #cat = ns_basetheme/130/02; type=boolean; label=Compress & Merge CSS/JS: You can enable or merge of CSS and JS files. We recommend to keep enable to boost your website's speed and performance.
