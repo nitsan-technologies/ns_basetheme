@@ -12,7 +12,7 @@ if (TYPO3_MODE === 'BE') {
         ['nitsan' => ''] +
         array_slice($GLOBALS['TBE_MODULES'], 1, count($GLOBALS['TBE_MODULES']) - 1, true);
 
-    if (version_compare(TYPO3_branch, '9.0', '>=')) {
+    if (version_compare(TYPO3_branch, '8.0', '>=')) {
         $GLOBALS['TBE_MODULES']['_configuration']['nitsan'] = [
             'iconIdentifier' => 'module-nsbasetheme',
             'labels' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/BackendModule.xlf',

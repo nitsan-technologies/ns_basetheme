@@ -327,7 +327,7 @@ class ExtendedTemplateService extends TemplateService
      */
     public function generateConfig_constants()
     {
-        if (isset($_POST['data'])) {
+        if ($_POST['data']) {
             foreach ($_POST['data'] as $key => $v) {
                 if (is_array($v)) {
                     $_POST['data'][$key] = implode(',', $v);
@@ -1147,6 +1147,7 @@ class ExtendedTemplateService extends TemplateService
                     $raname = substr(md5($params['name']), 0, 10);
                     $aname = '\'' . $raname . '\'';
                     list($fN, $fV, $params, $idName) = $this->ext_fNandV($params);
+
                     $idName = htmlspecialchars($idName);
                     $hint = '';
                     switch ($typeDat['type']) {
@@ -1207,6 +1208,7 @@ class ExtendedTemplateService extends TemplateService
                                     $vParts = explode('=', $val, 2);
                                     $label = $vParts[0];
                                     $val = $vParts[1] ?? $vParts[0];
+
                                     $checked = strpos($params['value'], $val) !== false ? "checked='checked'" : '';
                                     $p_field .= '
                                         <div class="custom-control custom-checkbox">
@@ -1259,7 +1261,7 @@ class ExtendedTemplateService extends TemplateService
                             break;
                         default:
                             $p_field = '<input class="form-control" id="' . $idName . '" type="text" name="' . $fN . '" value="' . $fV . '"'
-                                . ' onChange="uFormUrl(' . $aname . ')" />';
+                                . '/>';
                     }
                     // Define default names and IDs
                     $checkboxName = 'check[' . $params['name'] . ']';
@@ -1449,14 +1451,18 @@ class ExtendedTemplateService extends TemplateService
         $W3data = $http_post_vars['W3data'];
         $W4data = $http_post_vars['W4data'];
         $W5data = $http_post_vars['W5data'];
+
         if (is_array($data)) {
             foreach ($data as $key => $var) {
                 if (isset($theConstants[$key])) {
                     // If checkbox is set, update the value
                     if ($this->ext_dontCheckIssetValues || isset($check[$key])) {
                         // Exploding with linebreak, just to make sure that no multiline input is given!
-                        list($var) = explode(LF, $var);
                         $typeDat = $this->ext_getTypeData($theConstants[$key]['type']);
+                        if ($typeDat['type'] != 'textarea') {
+                            list($var) = explode(LF, $var);
+                        }
+
                         switch ($typeDat['type']) {
                             case 'int':
                                 if ($typeDat['paramstr']) {
@@ -1521,6 +1527,11 @@ class ExtendedTemplateService extends TemplateService
                                 if ($var) {
                                     $var = $typeDat['paramstr'] ? $typeDat['paramstr'] : 1;
                                 }
+                                break;
+                            case 'textarea':
+                                    if ($var) {
+                                        $var = str_replace("\r", '', str_replace("\n", '', $var));
+                                    }
                                 break;
                         }
                         if ($this->ext_printAll || (string)$theConstants[$key]['value'] !== (string)$var) {
