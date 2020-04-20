@@ -59,7 +59,7 @@ foreach ($arrAllComponents as $extKey => $extValue) {
 }
 
 // Let's add default PageTSConfig for Backend layout, TCE form, Components etc.,
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKEY . '/Configuration/PageTSconfig/setup.ts">');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKEY . '/Configuration/PageTSconfig/setup.typoscript">');
 
 // Settled constatant to access from "Everywhere"
 define('ALL_COMPONENTS', $allComponents);
@@ -166,7 +166,7 @@ foreach ($allComponents as $extKey => $extValue) {
     }
 }
 
-// Add TypoScript for tt_content as setup.ts
+// Add TypoScript for tt_content as setup.typoscript
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScript($_EXTKEY, 'setup', "
     tt_content {
         $tsComponents

@@ -3,7 +3,7 @@ paths:
   - Configuration/TypoScript
 
 filePatterns:
-  - "*.ts"
+  - "*.typoscript"
 
 sniffs:
   - class: Indentation
