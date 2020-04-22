@@ -8,16 +8,28 @@ $_EXTKEY = 'ns_basetheme';
 if (TYPO3_MODE === 'BE') {
     $isVersion9Up = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9000000;
 
-    $GLOBALS['TBE_MODULES'] = array_slice($GLOBALS['TBE_MODULES'], 0, 1, true) +
-        ['nitsan' => ''] +
-        array_slice($GLOBALS['TBE_MODULES'], 1, count($GLOBALS['TBE_MODULES']) - 1, true);
-
+    
     if (version_compare(TYPO3_branch, '8.0', '>=')) {
-        $GLOBALS['TBE_MODULES']['_configuration']['nitsan'] = [
-            'iconIdentifier' => 'module-nsbasetheme',
-            'labels' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/BackendModule.xlf',
-            'name' => 'nitsan'
-        ];
+
+    	// Add module 'nitsan' after 'Web'
+	    if (!isset($GLOBALS['TBE_MODULES']['nitsan'])) {
+	        $temp_TBE_MODULES = [];
+	        foreach ($GLOBALS['TBE_MODULES'] as $key => $val) {
+	            if ($key == 'web') {
+	                $temp_TBE_MODULES[$key] = $val;
+	                $temp_TBE_MODULES['nitsan'] = '';
+	            } else {
+	                $temp_TBE_MODULES[$key] = $val;
+	            }
+	        }
+	        $GLOBALS['TBE_MODULES'] = $temp_TBE_MODULES;
+	        $GLOBALS['TBE_MODULES']['_configuration']['nitsan'] = [
+            	'iconIdentifier' => 'module-nsbasetheme',
+            	'labels' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/BackendModule.xlf',
+            	'name' => 'nitsan'
+        	];
+	    }
+
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
             'NITSAN.NsBasetheme',
             'nitsan', // Make module a submodule of 'nitsan'
@@ -35,15 +47,6 @@ if (TYPO3_MODE === 'BE') {
             ]
         );
     }
-    //else {
-    //     $GLOBALS['TBE_MODULES']['_configuration']['nitsan'] = [
-    //         'iconIdentifier' => 'module-nsbasetheme',
-    //         'labels' => [
-    //             'll_ref' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/BackendModule.xlf'
-    //         ],
-    //         'name' => 'nitsan'
-    //     ];
-    // }
 }
 
 // Add default include static TypoScript (for root page)
