@@ -167,7 +167,7 @@ class TypoScriptTemplateConstantEditorModuleFunctionController
                 $view->assign('link', $aHref);
             }
             $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName(
-                'EXT:ns_faq/Resources/Private/Backend/NoConstant.html'
+                'EXT:ns_basetheme/Resources/Private/Templates/NsBasethemeModule/NoConstant.html'
             ));
             $theOutput = $view->render();
         }
