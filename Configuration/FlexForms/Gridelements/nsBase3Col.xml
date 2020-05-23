@@ -17,6 +17,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeLeft</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -85,6 +86,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeMiddle</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -153,6 +155,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeRight</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -221,6 +224,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetLeft</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -289,6 +293,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetMiddle</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -357,6 +362,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetRight</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -435,6 +441,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeLeft</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -498,6 +505,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeMiddle</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -561,6 +569,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeRight</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -624,6 +633,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetLeft</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -692,6 +702,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetMiddle</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -760,6 +771,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetRight</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -838,6 +850,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeLeft</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -901,6 +914,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeMiddle</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -964,6 +978,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeRight</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -1027,6 +1042,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetLeft</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -1095,6 +1111,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetMiddle</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -1163,6 +1180,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetRight</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -1241,6 +1259,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeLeft</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -1304,6 +1323,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeMiddle</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -1367,6 +1387,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeRight</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -1430,6 +1451,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetLeft</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -1498,6 +1520,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetMiddle</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -1566,6 +1589,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetRight</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -1644,6 +1668,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeLeft</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -1707,6 +1732,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeMiddle</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -1770,6 +1796,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:sizeRight</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -1834,6 +1861,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetLeft</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -1902,6 +1930,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetMiddle</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
@@ -1970,6 +1999,7 @@
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:offsetRight</label>
 							<config>
 								<type>select</type>
+								<renderType>selectSingle</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/Language/locallang.xlf:notDefined</numIndex>
