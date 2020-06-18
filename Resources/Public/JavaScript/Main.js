@@ -2,7 +2,6 @@ define([
     'jquery',
     'TYPO3/CMS/Backend/Modal',
     'TYPO3/CMS/NsBasetheme/Main',
-    'datatables',
     'TYPO3/CMS/Backend/jquery.clearable'
 ], function ($, Model) {
    
