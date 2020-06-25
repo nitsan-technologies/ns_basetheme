@@ -22,6 +22,7 @@ use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\RootlineUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Tstemplate\Controller\TypoScriptTemplateModuleController;
 
 /**
  * TypoScript Constant editor
@@ -120,7 +121,11 @@ class TypoScriptTemplateConstantEditorModuleFunctionController
                 if ($this->templateService->changed) {
                     // Set the data to be saved
                     $recData = [];
-                    $recData['sys_template'][$saveId]['constants'] = implode($this->templateService->raw, LF);
+                    if (PHP_VERSION >= 7.4) {
+                        $recData['sys_template'][$saveId]['constants'] = implode(LF, $this->templateService->raw);
+                    } else {
+                        $recData['sys_template'][$saveId]['constants'] = implode($this->templateService->raw, LF);
+                    }
                     // Create new  tce-object
                     $tce = GeneralUtility::makeInstance(DataHandler::class);
                     $tce->start($recData, []);
@@ -132,8 +137,11 @@ class TypoScriptTemplateConstantEditorModuleFunctionController
                     $this->initialize_editor($this->id, $template_uid);
                 }
             }
-
+            if (empty($this->pObj)) {
+                $this->pObj = new \TYPO3\CMS\Tstemplate\Controller\TypoScriptTemplateModuleController;
+            }
             $this->pObj->MOD_MENU['constant_editor_cat'] = $this->templateService->ext_getCategoryLabelArray();
+
             $this->pObj->MOD_SETTINGS = BackendUtility::getModuleData($this->pObj->MOD_MENU, GeneralUtility::_GP('SET'), 'web_ts');
             // Resetting the menu (stop)
             if (!empty($this->pObj->MOD_MENU['constant_editor_cat'])) {
