@@ -1,15 +1,15 @@
 <?php
 
 // Provide detailed information and depenencies of EXT:ns_basetheme
-$EM_CONF[$_EXTKEY] = [
-    'title' => '[NITSAN] Base Theme/Template',
-    'description' => 'The TYPO3 theme which is design for parent and child theme concept, This parent theme have common and global configuration to support the child theme. Read more at documentation.',
+$EM_CONF["ns_basetheme"] = [
+    'title' => '[NITSAN] Base Template',
+    'description' => 'The TYPO3 template which is design for parent and child theme concept, This parent theme have common and global configuration to support the child theme. Read more at documentation. Read more at https://t3terminal.com/blog/typo3-templates-builder/',
     'category' => 'templates',
     'author' => 'Team NITSAN',
     'author_email' => 'sanjay@nitsan.in',
     'author_company' => 'NITSAN Technologies Pvt Ltd',
     'state' => 'stable',
-    'version' => '10.2.0',
+    'version' => '10.3.0',
     'constraints' => [
         'depends' => [
             'typo3' => '8.0.0-10.9.99'
