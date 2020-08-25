@@ -58,3 +58,9 @@ if (version_compare(TYPO3_branch, '9.0', '>')) {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['Backend\Template\Components\ButtonBar']['getButtonsHook'][] = 'NITSAN\NsBasetheme\Hooks\SaveCloseHook->addSaveCloseButton';
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['Backend\Template\Components\ButtonBar']['getButtonsHook'][] = 'NITSAN\NsBasetheme\Hooks\SaveCloseHook->addSaveShowButton';
 }
+
+// Add Custom TYPO3 Backend Login Screen
+$arrBackendLogin = array(
+    'loginBackgroundImage' => 'EXT:ns_basetheme/Resources/Public/Images/BackendLogin/TYPO3-Login-Background.png',
+);
+$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend'] = $arrBackendLogin;
