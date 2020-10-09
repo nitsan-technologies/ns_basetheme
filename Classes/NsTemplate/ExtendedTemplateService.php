@@ -1178,7 +1178,7 @@ class ExtendedTemplateService extends TemplateService
                                     </span>
                                 </div>
                                 <input class="form-control" id="' . $idName . '" type="number"'
-                                . ' name="' . $fN . '" value="' . $fV . '"' . ' data-value="'. $dV .'"  aria-describedby="basic-' . $idName . '" onChange="uFormUrl(' . $aname . ')"' . $additionalAttributes . ' />
+                                . ' name="' . $fN . '" value="' . $fV . '"' . ' data-value="' . $dV . '"  aria-describedby="basic-' . $idName . '" onChange="uFormUrl(' . $aname . ')"' . $additionalAttributes . ' />
                             </div>';
                             break;
                         case 'color':
@@ -1273,7 +1273,7 @@ class ExtendedTemplateService extends TemplateService
                                         <i aria-hidden="true" class="fa fa-repeat"></i>
                                     </span>
                                 </div>
-                                <input class="form-control" id="' . $idName . '" type="text" name="' . $fN . '" value="' . $fV . '" data-value="'. $dV .'" aria-describedby="basic-' . $idName . '" />
+                                <input class="form-control" id="' . $idName . '" type="text" name="' . $fN . '" value="' . $fV . '" data-value="' . $dV . '" aria-describedby="basic-' . $idName . '" />
                             </div>';
                     }
                     // Define default names and IDs
