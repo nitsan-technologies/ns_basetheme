@@ -1146,6 +1146,7 @@ class ExtendedTemplateService extends TemplateService
                     $p_field = '';
                     $raname = substr(md5($params['name']), 0, 10);
                     $aname = '\'' . $raname . '\'';
+                    $dV = $params['default_value'];
                     list($fN, $fV, $params, $idName) = $this->ext_fNandV($params);
 
                     $idName = htmlspecialchars($idName);
@@ -1170,9 +1171,15 @@ class ExtendedTemplateService extends TemplateService
                                 $additionalAttributes .= ' max="' . (int)$typeDat['max'] . '" ';
                             }
 
-                            $p_field =
-                                '<input class="form-control" id="' . $idName . '" type="number"'
-                                . ' name="' . $fN . '" value="' . $fV . '"' . ' onChange="uFormUrl(' . $aname . ')"' . $additionalAttributes . ' />';
+                            $p_field ='<div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text custom-reset" data-id="' . $idName . '" id="basic-' . $idName . '">
+                                        <i aria-hidden="true" class="fa fa-repeat"></i>
+                                    </span>
+                                </div>
+                                <input class="form-control" id="' . $idName . '" type="number"'
+                                . ' name="' . $fN . '" value="' . $fV . '"' . ' data-value="'. $dV .'"  aria-describedby="basic-' . $idName . '" onChange="uFormUrl(' . $aname . ')"' . $additionalAttributes . ' />
+                            </div>';
                             break;
                         case 'color':
                             $p_field = '<div class="ns-ext-color-pick-wrap d-flex align-items-center">
@@ -1257,11 +1264,17 @@ class ExtendedTemplateService extends TemplateService
                             $p_field = GeneralUtility::callUserFunction($userFunction, $userFunctionParams, $this);
                             break;
                         case 'textarea':
-                            $p_field = '<textarea name="' . $fN . '" id="' . $idName . '" cols="30" rows="8" class="form-control">' . $fV . '</textarea>';
+                            $p_field = '<textarea name="' . $fN . '" id="' . $idName . '" cols="30" rows="5" class="form-control ckeditor">' . $fV . '</textarea>';
                             break;
                         default:
-                            $p_field = '<input class="form-control" id="' . $idName . '" type="text" name="' . $fN . '" value="' . $fV . '"'
-                                . '/>';
+                            $p_field = '<div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text custom-reset" data-id="' . $idName . '" id="basic-' . $idName . '">
+                                        <i aria-hidden="true" class="fa fa-repeat"></i>
+                                    </span>
+                                </div>
+                                <input class="form-control" id="' . $idName . '" type="text" name="' . $fN . '" value="' . $fV . '" data-value="'. $dV .'" aria-describedby="basic-' . $idName . '" />
+                            </div>';
                     }
                     // Define default names and IDs
                     $checkboxName = 'check[' . $params['name'] . ']';

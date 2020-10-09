@@ -84,7 +84,7 @@ ns_basetheme {
             #cat = ns_basetheme/140/01; type=string; label=Headline: What "headeline" do you want to display when Website maintenance mode is enable?
             maintenance_headline = We&rsquo;ll be back soon!
 
-            #cat = ns_basetheme/140/02; type=string; label=Text Message: What "message" do you want to display when Website maintenance mode is enable?
+            #cat = ns_basetheme/140/02; type=textarea; label=Text Message: What "message" do you want to display when Website maintenance mode is enable?
             maintenance_message = Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment. If you need to you can always <a href="mailto:#">contact us</a>, otherwise we&rsquo;ll be back online shortly!
 
             #cat = ns_seo/200/01; type=string; label=Page Title Prefix: Display default prefix at each page's title

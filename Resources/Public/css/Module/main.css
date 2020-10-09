@@ -124,3 +124,8 @@ hr{
         padding: 13px 20px;
     }
 }
+
+.form__field {
+    border-color: #228B22;
+    box-shadow: 0 0 1px 1px #228B22;
+}
