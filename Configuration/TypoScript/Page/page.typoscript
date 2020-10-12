@@ -32,7 +32,7 @@ page {
     typeNum = 0
 
     // Setup favion
-    shortcutIcon = typo3conf/exit/ns_basetheme/Resources/Public/images/favicon.ico
+    shortcutIcon = EXT:ns_basetheme/Resources/Public/Icons/favicon.ico
 
     // Set viewport
     meta {

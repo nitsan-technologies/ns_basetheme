@@ -1183,7 +1183,14 @@ class ExtendedTemplateService extends TemplateService
                             break;
                         case 'color':
                             $p_field = '<div class="ns-ext-color-pick-wrap d-flex align-items-center">
-                                            <input class="" type="color" id="input-' . $idName . '" rel="' . $idName . '" name="' . $fN . '" value="' . $fV . '" />
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text custom-reset" data-id="' . $idName . '" id="basic-' . $idName . '">
+                                                        <i aria-hidden="true" class="fa fa-repeat"></i>
+                                                    </span>
+                                                </div>
+                                                <input class="" type="color" id="' . $idName . '" rel="' . $idName . '" name="' . $fN . '" value="' . $fV . '" data-value="' . $dV . '"  aria-describedby="basic-' . $idName . '"/>
+                                            </div>
                                         </div>';
 
                             if (empty($this->inlineJavaScript[$typeDat['type']])) {
