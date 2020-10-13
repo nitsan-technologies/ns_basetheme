@@ -11,7 +11,7 @@ class Setup
 {
     public function executeOnSignal($extname = null)
     {
-        if(strpos($extname, 'ns_theme_') !== false){
+        if (strpos($extname, 'ns_theme_') !== false) {
             if (version_compare(TYPO3_branch, '9.0', '>') && version_compare(TYPO3_branch, '10.1', '<')) {
                 if (Environment::isComposerMode()) {
                     $folder = Environment::getProjectPath() . '/config/sites/' . $extname . '/';
