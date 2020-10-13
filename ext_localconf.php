@@ -4,7 +4,7 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 $_EXTKEY = 'ns_basetheme';
-if (TYPO3_MODE === 'BE') {
+if (TYPO3_MODE === 'BE' && version_compare(TYPO3_branch, '9.0', '>') && version_compare(TYPO3_branch, '10.1', '<')) {
     $class = 'TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher';
     $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance($class);
     $dispatcher->connect(
