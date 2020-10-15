@@ -105,11 +105,11 @@ call_user_func(function () {
             ];
         }
     }
-    
+
     // Container related configuration
     if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('container')) {
         $container = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\B13\Container\Tca\Registry::class);
-        
+
         // 2 Column grid element
         $container->addContainer(
             'ns_base_container', // CType
