@@ -167,5 +167,32 @@ call_user_func(function () {
             ], // Grid configuration
             'EXT:ns_basetheme/Resources/Public/Icons/Container/container-4col.svg' // Icon
         );
+
+        $grids = ['ns_base_2Cols', 'ns_base_3Cols', 'ns_base_4Cols'];
+        foreach ($grids as $grid) {
+            \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+                '',
+                'FILE:EXT:ns_basetheme/Configuration/FlexForms/Container/' . $grid . '.xml',
+                $grid
+            );
+            $GLOBALS['TCA']['tt_content']['types'][$grid]['showitem'] = '
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+                    --palette--;;general,
+                    header,pi_flexform;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header.ALT.div_formlabel,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
+                    --palette--;;frames,
+                    --palette--;;appearanceLinks,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+                    --palette--;;language,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+                    --palette--;;hidden,
+                    --palette--;;access,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
+                    categories,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+                    rowDescription,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
+                ';
+        }
     }
 });

@@ -6,5 +6,6 @@ tt_content.ns_base_container {
     }
     dataProcessing {
         100 = B13\Container\DataProcessing\ContainerProcessor
+        110 = NITSAN\NsBasetheme\DataProcessing\DefaultProcessor
     }
 }
