@@ -134,7 +134,10 @@ call_user_func(function () {
                     ['name' => 'right side', 'colPos' => 102]
                 ]
             ], // Grid configuration
-            'EXT:ns_basetheme/Resources/Public/Icons/Container/container-2col.svg' // Icon
+            'EXT:ns_basetheme/Resources/Public/Icons/Container/container-2col.svg', // Icon
+            'EXT:container/Resources/Private/Templates/Container.html',
+            'EXT:container/Resources/Private/Templates/Grid.html',
+            false
         );
 
         // 3 Column grid element
@@ -149,7 +152,10 @@ call_user_func(function () {
                     ['name' => 'Content', 'colPos' => 103]
                 ]
             ], // Grid configuration
-            'EXT:ns_basetheme/Resources/Public/Icons/Container/container-3col.svg' // Icon
+            'EXT:ns_basetheme/Resources/Public/Icons/Container/container-3col.svg', // Icon
+            'EXT:container/Resources/Private/Templates/Container.html',
+            'EXT:container/Resources/Private/Templates/Grid.html',
+            false
         );
 
         // 4 Column grid element
@@ -165,7 +171,10 @@ call_user_func(function () {
                     ['name' => 'Content', 'colPos' => 104]
                 ]
             ], // Grid configuration
-            'EXT:ns_basetheme/Resources/Public/Icons/Container/container-4col.svg' // Icon
+            'EXT:ns_basetheme/Resources/Public/Icons/Container/container-4col.svg', // Icon
+            'EXT:container/Resources/Private/Templates/Container.html',
+            'EXT:container/Resources/Private/Templates/Grid.html',
+            false
         );
 
         $grids = ['ns_base_2Cols', 'ns_base_3Cols', 'ns_base_4Cols'];
