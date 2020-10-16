@@ -7,18 +7,14 @@
 # Includes EXT:Form Configuration
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/Form" extensions="typoscript">
 
-[userFunc = TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('container')]
-	# Includes EXT:Grids Configuration
-	<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/GridElements" extensions="typoscript">
-[global]
+# Includes EXT:Grids Configuration
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/GridElements" extensions="typoscript">
 
 # Includes EXT:Fluid Configuration
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/Fluid" extensions="typoscript">
 
-[userFunc = TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('container')]
-	# Includes EXT:News Configuration
-	<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/News" extensions="typoscript">
-[global]
+# Includes EXT:News Configuration
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/News" extensions="typoscript">
 
 # Includes EXT:Custom
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Components" extensions="typoscript">
@@ -26,7 +22,8 @@
 # Includes Page Configuration
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Page" extensions="typoscript">
 
-[userFunc = TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('container')]
+[NITSAN\NsBasetheme\ExpressionLanguage\ConditionProvider]
+[CheckContainerExtension]
 	# Includes EXT:Container Configuration
 	<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/Container" extensions="typoscript">
 [global]
