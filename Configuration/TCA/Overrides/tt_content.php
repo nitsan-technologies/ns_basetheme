@@ -70,6 +70,12 @@ call_user_func(function () {
             'textpic' => 'image'
         ];
 
+        if (version_compare(TYPO3_branch, '9.0', '>')) {
+            $imgLl = 'LLL:EXT:core/Resources/Private/Language/locallang_wizards.xlf:';
+        } else {
+            $imgLl = 'LLL:EXT:lang/Resources/Private/Language/locallang_wizards.xlf:';
+        }
+
         foreach ($imageManipulation as $key => $value) {
             $GLOBALS['TCA']['tt_content']['types'][$key]['columnsOverrides'][$value]['config']['overrideChildTca']['columns']['crop']['config'] = [
                 'type' => 'imageManipulation',
@@ -78,7 +84,7 @@ call_user_func(function () {
                         'title' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:imageManipulation.mobile',
                         'allowedAspectRatios' => [
                             'NaN' => [
-                                'title' => 'LLL:EXT:lang/Resources/Private/Language/locallang_wizards.xlf:imwizard.ratio.free',
+                                'title' => $imgLl . 'imwizard.ratio.free',
                                 'value' => 0.0
                             ],
                         ],
@@ -87,7 +93,7 @@ call_user_func(function () {
                         'title' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:imageManipulation.tablet',
                         'allowedAspectRatios' => [
                             'NaN' => [
-                                'title' => 'LLL:EXT:lang/Resources/Private/Language/locallang_wizards.xlf:imwizard.ratio.free',
+                                'title' => $imgLl . 'imwizard.ratio.free',
                                 'value' => 0.0
                             ],
                         ],
@@ -96,7 +102,7 @@ call_user_func(function () {
                         'title' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:imageManipulation.desktop',
                         'allowedAspectRatios' => [
                             'NaN' => [
-                                'title' => 'LLL:EXT:lang/Resources/Private/Language/locallang_wizards.xlf:imwizard.ratio.free',
+                                'title' => $imgLl . 'imwizard.ratio.free',
                                 'value' => 0.0
                             ],
                         ],
