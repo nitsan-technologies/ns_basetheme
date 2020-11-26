@@ -45,7 +45,11 @@ foreach ($arrAllExtensions as $key => $extKey) {
         }
     }
 }
-
+if (array_key_exists('ns_theme_extend', $arrAllComponents)) {
+    $themeExtend = $arrAllComponents['ns_theme_extend'];
+    unset($arrAllComponents['ns_theme_extend']);
+    $arrAllComponents['ns_theme_extend'] = $themeExtend;
+}
 // Preparing final array with ALL components from ALL themes
 foreach ($arrAllComponents as $extKey => $extValue) {
     foreach ($extValue as $key => $value) {
