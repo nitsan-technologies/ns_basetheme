@@ -24,7 +24,7 @@ class Setup
                 }
                 // Logger configuration
                 $this->logger = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Log\LogManager::class)->getLogger(__CLASS__);
-                if (!file_exists($dConfig)) {
+                if (!file_exists($dConfig) && file_exists($sConfig)) {
                     if (is_dir($folder) === false) {
                         // Make directory
                         mkdir($folder, 0775, true);
