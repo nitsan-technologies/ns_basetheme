@@ -214,7 +214,7 @@ ajaxData {
 ### Render Back To Top ###
 ##########################
 
-[{$ns_basetheme.website.settings.back_to_top} == 1]
+["{$ns_basetheme.website.settings.back_to_top}" == 1]
     page.footerData {
         9901 = TEXT
         9901.value = <!-- Render from EXT:ns_basetheme --><a href="#" id="ns_basetheme_back_to_top" title="Back to top">&uarr;</a>
@@ -225,7 +225,7 @@ ajaxData {
 ### Disable Responsive Behaviour ###
 ####################################
 
-[{$ns_basetheme.website.settings.integration_responsive_layout} == 0]
+["{$ns_basetheme.website.settings.integration_responsive_layout}" == 0]
     page.meta.viewport >
 [global]
 
@@ -233,7 +233,7 @@ ajaxData {
 ### Enable Debugging ###
 ########################
 
-[{$ns_basetheme.website.settings.integration_admpanel} == 1]
+["{$ns_basetheme.website.settings.integration_admpanel}" == 1]
     config.admPanel = 1
 [global]
 
@@ -250,7 +250,7 @@ page.headerData {
 ### <head> Code ###
 ###################
 
-[{$ns_basetheme.website.settings.integration_enable_head} == 1]
+["{$ns_basetheme.website.settings.integration_enable_head}" == 1]
     page.headerData {
         9903 = TEXT
         9903.value = {$ns_basetheme.website.settings.integration_code_head}
@@ -261,7 +261,7 @@ page.headerData {
 ### <body> Code ###
 ###################
 
-[{$ns_basetheme.website.settings.integration_enable_body} == 1]
+["{$ns_basetheme.website.settings.integration_enable_body}" == 1]
     page.footerData {
         9904 = TEXT
         9904.value = {$ns_basetheme.website.settings.integration_code_body}
@@ -272,7 +272,7 @@ page.headerData {
 ### Maintenance Mode ###
 ########################
 
-[{$ns_basetheme.website.settings.maintenance_mode} == 1]
+["{$ns_basetheme.website.settings.maintenance_mode}" == 1]
 
     # Remove main PAGE Object
     page >
@@ -311,29 +311,10 @@ page.headerData {
 ### Disable Cookie Consent ###
 ##############################
 
-[{$ns_basetheme.website.settings.cookie.settings.cookie_enable} == 0]
+["{$ns_basetheme.website.settings.cookie.settings.cookie_enable}" == 0]
     page.headerData.998 >
 [global]
 
-
-[globalVar = _COOKIE|cookieconsent_status = allow]
-page {
-    headerData {
-        987 = TEXT
-        987.value (
-            <script>
-              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-              ga('create', '{$ns_basetheme.website.settings.googleanalytics}', 'auto');
-              ga('send', 'pageview');
-            </script>
-        )
-    }
-}
-[end]
 [request.getCookieParams()['cookieconsent_status'] == 'allow']
 page {
     headerData {

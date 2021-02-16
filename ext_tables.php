@@ -48,12 +48,7 @@ if (TYPO3_MODE === 'BE') {
     }
 }
 
-// Add default include static TypoScript (for root page)
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
-    $_EXTKEY,
-    'Configuration/TypoScript',
-    '[NITSAN] Parent theme'
-);
+
 if (version_compare(TYPO3_branch, '9.0', '>')) {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['Backend\Template\Components\ButtonBar']['getButtonsHook'][] = 'NITSAN\NsBasetheme\Hooks\SaveCloseHook->addSaveCloseButton';
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['Backend\Template\Components\ButtonBar']['getButtonsHook'][] = 'NITSAN\NsBasetheme\Hooks\SaveCloseHook->addSaveShowButton';
