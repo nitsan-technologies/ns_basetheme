@@ -148,7 +148,6 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
                 if ($isAvailable && $params['overwrite'] == 1) {
                     $ltsext = end($licenseData->extension_download_url);
                     $this->nsBasethemeLicenseRepository->updateData($licenseData, 1);
-                    $errors;
                     $extKey = $licenseData->extension_key . '.zip';
                     $extKeyPath = $this->siteRoot . 'typo3temp/' . $extKey;
                     $this->downloadZipFile($ltsext, $licenseData->license_key, $extKeyPath);
@@ -163,7 +162,6 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
                 } elseif (!$isAvailable) {
                     $ltsext = end($licenseData->extension_download_url);
                     $this->nsBasethemeLicenseRepository->insertNewData($licenseData);
-                    $errors;
                     $extKey = $licenseData->extension_key . '.zip';
                     $extKeyPath = $this->siteRoot . 'typo3temp/' . $extKey;
                     $this->downloadZipFile($ltsext, $licenseData->license_key, $extKeyPath);
