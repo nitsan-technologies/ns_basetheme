@@ -203,3 +203,7 @@ $iconRegistry->registerIcon(
     \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
     ['source' => 'EXT:ns_basetheme/Resources/Public/Icons/module-nitsan.svg']
 );
+
+// Register hook on successful BE user login
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_userauthgroup.php']['backendUserLogin'][] =
+    \NITSAN\NsBasetheme\Hooks\BackendUserLogin::class . '->dispatch';
