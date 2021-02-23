@@ -96,6 +96,53 @@
                 <source>Sorry, Configuration not available for this category!</source>
             </trans-unit>
             <!-- Module LLL End-->
+            <!-- License LLL Start-->
+            <trans-unit id="license-activation">
+                <source>License Activation</source>
+            </trans-unit>
+            <trans-unit id="license-activation.extkey">
+                <source>Extension key</source>
+            </trans-unit>
+            <trans-unit id="license-activation.version">
+                <source>Version</source>
+            </trans-unit>
+            <trans-unit id="license-activation.license">
+                <source>License</source>
+            </trans-unit>
+            <trans-unit id="license-activation.action">
+                <source>Action</source>
+            </trans-unit>
+            <trans-unit id="license-activation.updateTo">
+                <source>Update to</source>
+            </trans-unit>
+            <trans-unit id="license-activation.latest">
+                <source>Latest</source>
+            </trans-unit>
+            <trans-unit id="license-activation.licenseKey">
+                <source>License key</source>
+            </trans-unit>
+            <trans-unit id="license-activation.overwriteExtension">
+                <source>Overwrite extension</source>
+            </trans-unit>
+            <trans-unit id="license-activation.licensepLaceholder">
+                <source>Enter your purchase license key</source>
+            </trans-unit>
+            <trans-unit id="license-activation.btn-activate">
+                <source>Activate</source>
+            </trans-unit>
+            <trans-unit id="license-activation.update_extension">
+                <source>Update Extension</source>
+            </trans-unit>
+            <trans-unit id="license-activation.update_extension_msg">
+                <source>It will overwrite all the changes, So are you sure to update extension</source>
+            </trans-unit>
+            <trans-unit id="license-activation.update_extension_btn_cancel">
+                <source>Cancel</source>
+            </trans-unit>
+            <trans-unit id="license-activation.update_extension_btn_update">
+                <source>Update</source>
+            </trans-unit>
+            <!-- License LLL End-->
 		</body>
 	</file>
 </xliff>

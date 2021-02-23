@@ -82,12 +82,38 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
      */
     public function connectToServer()
     {
+        $this->initializeAction();
+        $allExtensionskey = scandir($this->siteRoot . '/typo3conf/ext/');
+        foreach ($allExtensionskey as $key => $value) {
+            $exp_key = explode('_theme', $value);
+            if ($exp_key[0] == 'ns') {
+                $allExtensions[] = $value;
+            }
+        }
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
         $nsBasethemeLicenseRepository = $objectManager->get(\NITSAN\NsBasetheme\Domain\Repository\NsBasethemeLicenseRepository::class);
-        $extensions = $nsBasethemeLicenseRepository->fetchData();
-        foreach ($extensions as $extension) {
-            $licenseData = $this->fetchLicense($extension['license_key']);
-            $nsBasethemeLicenseRepository->updateData($licenseData);
+        $packageManager = $objectManager->get(\TYPO3\CMS\Core\Package\PackageManager::class);
+        foreach ($allExtensions as $extension) {
+            $extData = $nsBasethemeLicenseRepository->fetchData($extension);
+            if (empty($extData)) {
+                $licenseData = $this->fetchLicense('ns_key=' . $extension);
+                if ($licenseData->status) {
+                    $extFolder = $this->siteRoot . '/typo3conf/ext/' . $extension . '/';
+                    if (file_exists($extFolder . 'ext_tables.php')) {
+                        rename($extFolder . 'ext_tables.php', $extFolder . 'copy_ext_tables.txt');
+                    }
+                    if (file_exists($extFolder . 'Configuration/TCA/Overrides/sys_template.php')) {
+                        rename($extFolder . 'Configuration/TCA/Overrides/sys_template.php', $extFolder . 'Configuration/TCA/Overrides/copy_sys_template.txt');
+                    }
+                    if (is_dir($extFolder . 'Configuration')) {
+                        rename($extFolder . 'Configuration', $extFolder . 'Copy_Configuration');
+                    }
+                    $packageManager->deactivatePackage($extension);
+                }
+            } else {
+                $licenseData = $this->fetchLicense('ns_license=' . $extData[0]['license_key']);
+                $nsBasethemeLicenseRepository->updateData($licenseData);
+            }
         }
     }
 
@@ -99,14 +125,17 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
     {
         $params = $this->request->getArguments();
         if (isset($params['extension']['license_key']) && $params['extension']['license_key'] != '') {
-            $uploadFolder = $this->siteRoot . 'uploads/ns_basetheme/' . $params['extension']['extension_key'] . '/' . $params['extension']['version'];
-            try {
-                \TYPO3\CMS\Core\Utility\GeneralUtility::rmdir($uploadFolder, true);
-                \TYPO3\CMS\Core\Utility\GeneralUtility::mkdir_deep($uploadFolder);
-                rename($this->siteRoot . 'typo3conf/ext/' . $params['extension']['extension_key'], $uploadFolder);
-            } catch (\Exception $e) {
-                $this->addFlashMessage($e->getMessage(), 'Extension not updated', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
-                $this->redirect('list');
+            $souceFolder = $this->siteRoot . 'typo3conf/ext/' . $params['extension']['extension_key'];
+            if (is_dir($souceFolder)) {
+                $uploadFolder = $this->siteRoot . 'uploads/ns_basetheme/' . $params['extension']['extension_key'] . '/' . $params['extension']['version'];
+                try {
+                    \TYPO3\CMS\Core\Utility\GeneralUtility::rmdir($uploadFolder, true);
+                    \TYPO3\CMS\Core\Utility\GeneralUtility::mkdir_deep($uploadFolder);
+                    rename($souceFolder, $uploadFolder);
+                } catch (\Exception $e) {
+                    $this->addFlashMessage($e->getMessage(), 'Extension not updated', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+                    $this->redirect('list');
+                }
             }
             $params['extension']['license'] = $params['extension']['license_key'];
             $params['extension']['overwrite'] = true;
@@ -142,7 +171,7 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
     {
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
         if (isset($params['license']) && $params['license'] != '') {
-            $licenseData = $this->fetchLicense($params['license']);
+            $licenseData = $this->fetchLicense('ns_license=' . $params['license']);
             if ($licenseData->status) {
                 $isAvailable = $this->nsBasethemeLicenseRepository->fetchData($licenseData->extension_key);
                 if ($isAvailable && $params['overwrite'] == 1) {
@@ -188,7 +217,7 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
 
     public function fetchLicense($license)
     {
-        $url = 'https://composer-t3terminal.ddev.site/API/GetComposerDetails.php?ns_license=' . $license;
+        $url = 'https://composer-t3terminal.ddev.site/API/GetComposerDetails.php?' . $license;
         $curl = curl_init();
         curl_setopt_array($curl, [
           CURLOPT_URL => $url,

@@ -4,6 +4,16 @@ define([
     'TYPO3/CMS/NsBasetheme/Main',
     'TYPO3/CMS/Backend/jquery.clearable'
 ], function ($, Model) {
+    $('.license-activation .license-activation-latest').on('click', function(e){
+        e.preventDefault();
+        $(this).addClass('active');
+        $('#activation-modal').modal('show');
+    });
+    $('#activation-modal .activation-modal-update').on('click', function(e){
+        var url = $('.license-activation .license-activation-latest.active').attr('href');
+        $('.license-activation .license-activation-latest.active').removeClass('active');
+        window.location = url;
+    });
     $('.custom-reset').on('click', function(){
         var that = $(this);
         that.find('i').addClass('fa-spin');
