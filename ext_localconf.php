@@ -34,6 +34,13 @@ if (version_compare(TYPO3_branch, '9.0', '>')) {
 } else {
     $arrAllExtensions = scandir(PATH_typo3conf . 'ext/');
 }
+if ($_COOKIE['NsLicense'] != '') {
+    $disableExtensions = explode(',', $_COOKIE['NsLicense']);
+    foreach ($disableExtensions as $ext) {
+        $key = array_search($ext, $arrAllExtensions);
+        unset($arrAllExtensions[$key]);
+    }
+}
 foreach ($arrAllExtensions as $key => $extKey) {
     // Get only extension which are child theme eg., EXT:ns_theme_cleanblog
     $extensionPrefixKey = substr($extKey, 0, 9);

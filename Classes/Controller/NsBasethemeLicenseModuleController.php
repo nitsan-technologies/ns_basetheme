@@ -92,12 +92,12 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
         }
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
         $nsBasethemeLicenseRepository = $objectManager->get(\NITSAN\NsBasetheme\Domain\Repository\NsBasethemeLicenseRepository::class);
-        $packageManager = $objectManager->get(\TYPO3\CMS\Core\Package\PackageManager::class);
         foreach ($allExtensions as $extension) {
             $extData = $nsBasethemeLicenseRepository->fetchData($extension);
             if (empty($extData)) {
                 $licenseData = $this->fetchLicense('ns_key=' . $extension);
                 if ($licenseData->status) {
+                    $disableExtensions[] = $extension;
                     $extFolder = $this->siteRoot . '/typo3conf/ext/' . $extension . '/';
                     if (file_exists($extFolder . 'ext_tables.php')) {
                         rename($extFolder . 'ext_tables.php', $extFolder . 'copy_ext_tables.txt');
@@ -105,16 +105,25 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
                     if (file_exists($extFolder . 'Configuration/TCA/Overrides/sys_template.php')) {
                         rename($extFolder . 'Configuration/TCA/Overrides/sys_template.php', $extFolder . 'Configuration/TCA/Overrides/copy_sys_template.txt');
                     }
-                    if (is_dir($extFolder . 'Configuration')) {
-                        rename($extFolder . 'Configuration', $extFolder . 'Copy_Configuration');
-                    }
-                    $packageManager->deactivatePackage($extension);
                 }
             } else {
                 $licenseData = $this->fetchLicense('ns_license=' . $extData[0]['license_key']);
-                $nsBasethemeLicenseRepository->updateData($licenseData);
+                if ($licenseData->status) {
+                    $nsBasethemeLicenseRepository->updateData($licenseData);
+                } else {
+                    $disableExtensions[] = $extension;
+                    $extFolder = $this->siteRoot . '/typo3conf/ext/' . $extension . '/';
+                    if (file_exists($extFolder . 'ext_tables.php')) {
+                        rename($extFolder . 'ext_tables.php', $extFolder . 'copy_ext_tables.txt');
+                    }
+                    if (file_exists($extFolder . 'Configuration/TCA/Overrides/sys_template.php')) {
+                        rename($extFolder . 'Configuration/TCA/Overrides/sys_template.php', $extFolder . 'Configuration/TCA/Overrides/copy_sys_template.txt');
+                    }
+                }
             }
         }
+        $disableExtensions = implode(',', $disableExtensions);
+        setcookie('NsLicense', $disableExtensions, time()+3600, '/', '', 0);
     }
 
     /**
