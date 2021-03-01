@@ -1,4 +1,5 @@
 <?php
+
 namespace NITSAN\NsBasetheme\Controller;
 
 use NITSAN\NsBasetheme\NsTemplate\TypoScriptTemplateConstantEditorModuleFunctionController;
@@ -19,12 +20,12 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
  ***/
 
 /**
- * NsBasethemeModuleController
+ * NsBasethemeModuleController.
  */
 class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
     /**
-     * nsBasethemeRepository
+     * nsBasethemeRepository.
      *
      * @var \NITSAN\NsBasetheme\Domain\Repository\NsBasethemeLicenseRepository
      * @inject
@@ -40,19 +41,20 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
     protected $siteRoot = null;
 
     /**
-     * Initializes this object
+     * Initializes this object.
      *
      * @return void
      */
     public function initializeObject()
     {
+        $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
         $this->contentObject = GeneralUtility::makeInstance('TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer');
         $this->templateService = GeneralUtility::makeInstance(ExtendedTemplateService::class);
         $this->constantObj = GeneralUtility::makeInstance(TypoScriptTemplateConstantEditorModuleFunctionController::class);
     }
 
     /**
-     * Initialize Action
+     * Initialize Action.
      *
      * @return void
      */
@@ -67,7 +69,8 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
     }
 
     /**
-     * action list
+     * action list.
+     *
      * @return void
      */
     public function listAction()
@@ -77,7 +80,8 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
     }
 
     /**
-     * action list
+     * action list.
+     *
      * @return void
      */
     public function connectToServer()
@@ -90,8 +94,8 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
                 $allExtensions[] = $value;
             }
         }
-        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-        $nsBasethemeLicenseRepository = $objectManager->get(\NITSAN\NsBasetheme\Domain\Repository\NsBasethemeLicenseRepository::class);
+        $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+        $nsBasethemeLicenseRepository = $this->objectManager->get(\NITSAN\NsBasetheme\Domain\Repository\NsBasethemeLicenseRepository::class);
         foreach ($allExtensions as $extension) {
             $extData = $nsBasethemeLicenseRepository->fetchData($extension);
             if (empty($extData)) {
@@ -110,7 +114,7 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
                 $licenseData = $this->fetchLicense('ns_license=' . $extData[0]['license_key']);
                 if ($licenseData->status) {
                     $nsBasethemeLicenseRepository->updateData($licenseData);
-                } else {
+                } elseif (!$licenseData->status) {
                     $disableExtensions[] = $extension;
                     $extFolder = $this->siteRoot . '/typo3conf/ext/' . $extension . '/';
                     if (file_exists($extFolder . 'ext_tables.php')) {
@@ -123,11 +127,12 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
             }
         }
         $disableExtensions = implode(',', $disableExtensions);
-        setcookie('NsLicense', $disableExtensions, time()+3600, '/', '', 0);
+        setcookie('NsLicense', $disableExtensions, time() + 3600, '/', '', 0);
     }
 
     /**
-     * action list
+     * action list.
+     *
      * @return void
      */
     public function updateAction()
@@ -138,9 +143,9 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
             if (is_dir($souceFolder)) {
                 $uploadFolder = $this->siteRoot . 'uploads/ns_basetheme/' . $params['extension']['extension_key'] . '/' . $params['extension']['version'];
                 try {
-                    \TYPO3\CMS\Core\Utility\GeneralUtility::rmdir($uploadFolder, true);
-                    \TYPO3\CMS\Core\Utility\GeneralUtility::mkdir_deep($uploadFolder);
-                    rename($souceFolder, $uploadFolder);
+                    GeneralUtility::rmdir($uploadFolder, true);
+                    GeneralUtility::mkdir_deep($uploadFolder);
+                    GeneralUtility::copyDirectory($souceFolder, $uploadFolder);
                 } catch (\Exception $e) {
                     $this->addFlashMessage($e->getMessage(), 'Extension not updated', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
                     $this->redirect('list');
@@ -156,7 +161,8 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
     }
 
     /**
-     * action activation
+     * action activation.
+     *
      * @return void
      */
     public function activationAction()
@@ -173,7 +179,8 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
 
     /**
      * action activation
-     * params array $params
+     * params array $params.
+     *
      * @return void
      */
     public function downloadExtension($params = null)
@@ -182,10 +189,18 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
         if (isset($params['license']) && $params['license'] != '') {
             $licenseData = $this->fetchLicense('ns_license=' . $params['license']);
             if ($licenseData->status) {
+                if ($_COOKIE['NsLicense'] != '') {
+                    $disableExtensions = explode(',', $_COOKIE['NsLicense']);
+                    $key = array_search($licenseData->extension_key, $disableExtensions);
+                    if ($key) {
+                        unset($disableExtensions[$key]);
+                        $disableExtensions = implode(',', $disableExtensions);
+                        setcookie('NsLicense', $disableExtensions, time() + 3600, '/', '', 0);
+                    }
+                }
                 $isAvailable = $this->nsBasethemeLicenseRepository->fetchData($licenseData->extension_key);
                 if ($isAvailable && $params['overwrite'] == 1) {
                     $ltsext = end($licenseData->extension_download_url);
-                    $this->nsBasethemeLicenseRepository->updateData($licenseData, 1);
                     $extKey = $licenseData->extension_key . '.zip';
                     $extKeyPath = $this->siteRoot . 'typo3temp/' . $extKey;
                     $this->downloadZipFile($ltsext, $licenseData->license_key, $extKeyPath);
@@ -197,9 +212,9 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
                         $this->addFlashMessage($e->getMessage(), $licenseData->extension_key, \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
                         $this->redirect('list');
                     }
+                    $this->nsBasethemeLicenseRepository->updateData($licenseData, 1);
                 } elseif (!$isAvailable) {
                     $ltsext = end($licenseData->extension_download_url);
-                    $this->nsBasethemeLicenseRepository->insertNewData($licenseData);
                     $extKey = $licenseData->extension_key . '.zip';
                     $extKeyPath = $this->siteRoot . 'typo3temp/' . $extKey;
                     $this->downloadZipFile($ltsext, $licenseData->license_key, $extKeyPath);
@@ -211,6 +226,7 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
                         $this->addFlashMessage($e->getMessage(), $licenseData->extension_key, \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
                         $this->redirect('list');
                     }
+                    $this->nsBasethemeLicenseRepository->insertNewData($licenseData);
                 } else {
                     $this->addFlashMessage('The extension is already available. If you want to install it, then select the overwrite option.', $licenseData->extension_key, \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
                     $this->redirect('list');
@@ -243,6 +259,7 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
             echo 'Error :- ' . curl_error($curl);
         }
         curl_close($curl);
+
         return json_decode($response);
     }
 
@@ -260,7 +277,7 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
           CURLOPT_CUSTOMREQUEST => 'GET',
           CURLOPT_HTTPHEADER => [
-            'Authorization: ' . $authorization
+            'Authorization: ' . $authorization,
           ],
         ]);
         $response = curl_exec($curl);

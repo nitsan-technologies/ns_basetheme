@@ -1,4 +1,5 @@
 <?php
+
 // TYPO3 Security Check
 if (!defined('TYPO3_MODE')) {
     die('Access denied.');
@@ -27,12 +28,13 @@ if (version_compare(TYPO3_branch, '9.0', '>')) {
     $siteRoot = PATH_typo3conf;
     $arrAllComponents['ns_basetheme'] = scandir(PATH_typo3conf . 'ext/ns_basetheme/Configuration/FlexForms');
 }
-
-// Get list of all the extensions
-if (version_compare(TYPO3_branch, '9.0', '>')) {
-    $arrAllExtensions = scandir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/typo3conf/ext/');
-} else {
-    $arrAllExtensions = scandir(PATH_typo3conf . 'ext/');
+$arrAllExtensions = [];
+$activePackages = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Package\PackageManager::class)->getActivePackages();
+foreach ($activePackages as $package) {
+    $extensionPrefixKey = substr($package->getPackageKey(), 0, 9);
+    if ($extensionPrefixKey == 'ns_theme_') {
+        $arrAllExtensions[] = $package->getPackageKey();
+    }
 }
 if ($_COOKIE['NsLicense'] != '') {
     $disableExtensions = explode(',', $_COOKIE['NsLicense']);
@@ -199,7 +201,7 @@ foreach ($allComponents as $extKey => $extValue) {
         $iconRegistry->registerIcon(
             $theComponent,
             \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-            ['source' => (file_exists($siteRoot . 'ext/' . $extKey . '/Resources/Public/Icons/' . $theComponent . '.png')) ? 'EXT:' . $extKey . '/Resources/Public/Icons/' . $theComponent . '.png' :  'EXT:ns_basetheme/Resources/Public/Icons/default_icon.png' ]
+            ['source' => (file_exists($siteRoot . 'ext/' . $extKey . '/Resources/Public/Icons/' . $theComponent . '.png')) ? 'EXT:' . $extKey . '/Resources/Public/Icons/' . $theComponent . '.png' : 'EXT:ns_basetheme/Resources/Public/Icons/default_icon.png']
         );
     }
 }
