@@ -7,6 +7,7 @@ use TYPO3\CMS\Core\TypoScript\ExtendedTemplateService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\Inject as inject;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Core\Core\Environment;
 
 /***
  *
@@ -63,8 +64,10 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
         parent::initializeAction();
         if (version_compare(TYPO3_branch, '9.0', '>')) {
             $this->siteRoot = \TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/';
+            $this->composerSiteRoot = \TYPO3\CMS\Core\Core\Environment::getProjectPath() . '/';
         } else {
             $this->siteRoot = PATH_site;
+            $this->composerSiteRoot = str_replace('public', '', GeneralUtility::getIndpEnv('TYPO3_DOCUMENT_ROOT'));
         }
     }
 
@@ -99,7 +102,7 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
         foreach ($allExtensions as $extension) {
             $extData = $nsBasethemeLicenseRepository->fetchData($extension);
             if (empty($extData)) {
-                $licenseData = $this->fetchLicense('ns_key=' . $extension);
+                $licenseData = $this->fetchLicense('domain='. GeneralUtility::getIndpEnv('HTTP_HOST') . '&ns_key=' . $extension);
                 if ($licenseData->status) {
                     $disableExtensions[] = $extension;
                     $extFolder = $this->siteRoot . '/typo3conf/ext/' . $extension . '/';
@@ -111,7 +114,7 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
                     }
                 }
             } else {
-                $licenseData = $this->fetchLicense('ns_license=' . $extData[0]['license_key']);
+                $licenseData = $this->fetchLicense('domain='. GeneralUtility::getIndpEnv('HTTP_HOST') . '&ns_license=' . $extData[0]['license_key']);
                 if ($licenseData->status) {
                     $nsBasethemeLicenseRepository->updateData($licenseData);
                 } elseif (!$licenseData->status) {
@@ -187,7 +190,7 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
     {
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
         if (isset($params['license']) && $params['license'] != '') {
-            $licenseData = $this->fetchLicense('ns_license=' . $params['license']);
+            $licenseData = $this->fetchLicense('domain='. GeneralUtility::getIndpEnv('HTTP_HOST') . '&ns_license=' . $params['license']);
             if ($licenseData->status) {
                 if ($_COOKIE['NsLicense'] != '') {
                     $disableExtensions = explode(',', $_COOKIE['NsLicense']);
@@ -206,7 +209,18 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
                     $this->downloadZipFile($ltsext, $licenseData->license_key, $extKeyPath);
                     $this->uploadExtension = $objectManager->get(\TYPO3\CMS\Extensionmanager\Controller\UploadExtensionFileController::class);
                     try {
-                        $this->uploadExtension->extractExtensionFromFile($extKeyPath, $extKey, ($params['overwrite'] ? true : false));
+                        if (Environment::isComposerMode()) {
+                            $zipService = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Service\Archive\ZipService::class);
+                            $extensionDir = $this->composerSiteRoot . 'extensions/' . $licenseData->extension_key;
+                            if ($zipService->verify($extKeyPath)) {
+                                if (!is_dir($extensionDir)) {
+                                    GeneralUtility::mkdir_deep($extensionDir);
+                                }
+                                $zipService->extract($extKeyPath, $extensionDir);
+                            }
+                        } else {
+                            $this->uploadExtension->extractExtensionFromFile($extKeyPath, $extKey, ($params['overwrite'] ? true : false));
+                        }
                         unlink($extKeyPath);
                     } catch (\Exception $e) {
                         $this->addFlashMessage($e->getMessage(), $licenseData->extension_key, \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
@@ -220,7 +234,18 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
                     $this->downloadZipFile($ltsext, $licenseData->license_key, $extKeyPath);
                     $this->uploadExtension = $objectManager->get(\TYPO3\CMS\Extensionmanager\Controller\UploadExtensionFileController::class);
                     try {
-                        $this->uploadExtension->extractExtensionFromFile($extKeyPath, $extKey, ($params['overwrite'] ? true : false));
+                        if (Environment::isComposerMode()) {
+                            $zipService = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Service\Archive\ZipService::class);
+                            $extensionDir = $this->composerSiteRoot . 'extensions/' . $licenseData->extension_key;
+                            if ($zipService->verify($extKeyPath)) {
+                                if (!is_dir($extensionDir)) {
+                                    GeneralUtility::mkdir_deep($extensionDir);
+                                }
+                                $zipService->extract($extKeyPath, $extensionDir);
+                            }
+                        } else {
+                            $this->uploadExtension->extractExtensionFromFile($extKeyPath, $extKey, ($params['overwrite'] ? true : false));
+                        }
                         unlink($extKeyPath);
                     } catch (\Exception $e) {
                         $this->addFlashMessage($e->getMessage(), $licenseData->extension_key, \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
@@ -242,7 +267,7 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
 
     public function fetchLicense($license)
     {
-        $url = 'https://composer-t3terminal.ddev.site/API/GetComposerDetails.php?' . $license;
+        $url = 'https://composer.t3terminal.com/API/GetComposerDetails.php?' . $license;
         $curl = curl_init();
         curl_setopt_array($curl, [
           CURLOPT_URL => $url,
@@ -252,7 +277,7 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
           CURLOPT_TIMEOUT => 0,
           CURLOPT_FOLLOWLOCATION => true,
           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-          CURLOPT_CUSTOMREQUEST => 'GET',
+          CURLOPT_CUSTOMREQUEST => 'POST',
         ]);
         $response = curl_exec($curl);
         if (!$response) {
@@ -275,7 +300,7 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
           CURLOPT_TIMEOUT => 0,
           CURLOPT_FOLLOWLOCATION => true,
           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-          CURLOPT_CUSTOMREQUEST => 'GET',
+          CURLOPT_CUSTOMREQUEST => 'POST',
           CURLOPT_HTTPHEADER => [
             'Authorization: ' . $authorization,
           ],
