@@ -3,11 +3,11 @@
 namespace NITSAN\NsBasetheme\Controller;
 
 use NITSAN\NsBasetheme\NsTemplate\TypoScriptTemplateConstantEditorModuleFunctionController;
+use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\TypoScript\ExtendedTemplateService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\Inject as inject;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
-use TYPO3\CMS\Core\Core\Environment;
 
 /***
  *
@@ -102,7 +102,7 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
         foreach ($allExtensions as $extension) {
             $extData = $nsBasethemeLicenseRepository->fetchData($extension);
             if (empty($extData)) {
-                $licenseData = $this->fetchLicense('domain='. GeneralUtility::getIndpEnv('HTTP_HOST') . '&ns_key=' . $extension);
+                $licenseData = $this->fetchLicense('domain=' . GeneralUtility::getIndpEnv('HTTP_HOST') . '&ns_key=' . $extension);
                 if ($licenseData->status) {
                     $disableExtensions[] = $extension;
                     $extFolder = $this->siteRoot . '/typo3conf/ext/' . $extension . '/';
@@ -114,7 +114,7 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
                     }
                 }
             } else {
-                $licenseData = $this->fetchLicense('domain='. GeneralUtility::getIndpEnv('HTTP_HOST') . '&ns_license=' . $extData[0]['license_key']);
+                $licenseData = $this->fetchLicense('domain=' . GeneralUtility::getIndpEnv('HTTP_HOST') . '&ns_license=' . $extData[0]['license_key']);
                 if ($licenseData->status) {
                     $nsBasethemeLicenseRepository->updateData($licenseData);
                 } elseif (!$licenseData->status) {
@@ -190,7 +190,7 @@ class NsBasethemeLicenseModuleController extends \TYPO3\CMS\Extbase\Mvc\Controll
     {
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
         if (isset($params['license']) && $params['license'] != '') {
-            $licenseData = $this->fetchLicense('domain='. GeneralUtility::getIndpEnv('HTTP_HOST') . '&ns_license=' . $params['license']);
+            $licenseData = $this->fetchLicense('domain=' . GeneralUtility::getIndpEnv('HTTP_HOST') . '&ns_license=' . $params['license']);
             if ($licenseData->status) {
                 if ($_COOKIE['NsLicense'] != '') {
                     $disableExtensions = explode(',', $_COOKIE['NsLicense']);
