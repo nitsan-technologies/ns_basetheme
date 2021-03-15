@@ -45,21 +45,6 @@ if (TYPO3_MODE === 'BE') {
                 'inheritNavigationComponentFromMainModule' => false
             ]
         );
-
-        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-            'NITSAN.NsBasetheme',
-            'nitsan', // Make module a submodule of 'nitsan'
-            'nsbasethememoduleLicense', // Submodule key
-            '', // Position
-            [
-                'NsBasethemeLicenseModule' => 'list, update, activation',
-            ],
-            [
-                'access' => 'user,group',
-                'icon' => 'EXT:ns_basetheme/Resources/Public/Icons/Extension.svg',
-                'labels' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_basethemelicensemodule.xlf'
-            ]
-        );
     }
 }
 
