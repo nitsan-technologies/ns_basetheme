@@ -1189,7 +1189,7 @@ class ExtendedTemplateService extends TemplateService
                                                         <i aria-hidden="true" class="fa fa-repeat"></i>
                                                     </span>
                                                 </div>
-                                                <input class="" type="color" id="' . $idName . '" rel="' . $idName . '" name="' . $fN . '" value="' . $fV . '" data-value="' . $dV . '"  aria-describedby="basic-' . $idName . '"/>
+                                                <input class="form-control" type="color" id="' . $idName . '" rel="' . $idName . '" name="' . $fN . '" value="' . $fV . '" data-value="' . $dV . '"  aria-describedby="basic-' . $idName . '"/>
                                             </div>
                                         </div>';
 

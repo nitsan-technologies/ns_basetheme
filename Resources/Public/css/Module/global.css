@@ -448,7 +448,9 @@ label {
     width: 35px;
     height: 35px;
     padding: 0;
-    margin-right: 10px;
+    margin: 0 5px 0 5px;
+    min-width: 35px;
+    flex: 0;
 }
 .ns-ext-color-pick-wrap  span{
     color: #555555;
