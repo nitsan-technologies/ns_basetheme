@@ -35,14 +35,6 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
 
     protected $constantObj;
 
-    protected $sidebarData;
-
-    protected $dashboardSupportData;
-
-    protected $generalFooterData;
-
-    protected $aboutExtensionData;
-
     protected $constants;
 
     protected $actions;
@@ -76,34 +68,6 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     public function initializeAction()
     {
         parent::initializeAction();
-        //Links for the All Dashboard VIEW from API...
-        $sidebarUrl = 'https://composer.t3terminal.com/API/ExtBackendModuleAPI.php?extKey=ns_basetheme&blockName=DashboardRightSidebar';
-        $dashboardSupportUrl = 'https://composer.t3terminal.com/API/ExtBackendModuleAPI.php?extKey=ns_basetheme&blockName=DashboardSupport';
-        $generalFooterUrl = 'https://composer.t3terminal.com/API/ExtBackendModuleAPI.php?extKey=ns_basetheme&blockName=GeneralFooter';
-        $aboutExtensionUrl = 'https://composer.t3terminal.com/API/ExtBackendModuleAPI.php?extKey=ns_basetheme&blockName=AboutExtension';
-
-        $this->nsBasethemeRepository->deleteOldApiData();
-        $checkApiData = $this->nsBasethemeRepository->checkApiData();
-        if (!$checkApiData) {
-            $this->sidebarData = $this->nsBasethemeRepository->curlInitCall($sidebarUrl);
-            $this->dashboardSupportData = $this->nsBasethemeRepository->curlInitCall($dashboardSupportUrl);
-            $this->generalFooterData = $this->nsBasethemeRepository->curlInitCall($generalFooterUrl);
-            $this->aboutExtensionData = $this->nsBasethemeRepository->curlInitCall($aboutExtensionUrl);
-
-            $data = [
-                'right_sidebar_html' => $this->sidebarData,
-                'support_html'=> $this->dashboardSupportData,
-                'footer_html' => $this->generalFooterData,
-                'premuim_extension_html' => $this->aboutExtensionData,
-                'extension_key' => 'ns_faq',
-                'last_update' => date('Y-m-d')
-            ];
-            $this->nsBasethemeRepository->insertNewData($data);
-        } else {
-            $this->sidebarData = $checkApiData['right_sidebar_html'];
-            $this->dashboardSupportData = $checkApiData['support_html'];
-            $this->aboutExtensionData = $checkApiData['premuim_extension_html'];
-        }
 
         //GET CONSTANTs
         $this->constantObj->init($this->pObj);
@@ -119,9 +83,7 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     {
         //Assign variables values
         $assign = [
-          'action' => 'dashboard',
-          'rightSide' => $this->sidebarData,
-          'dashboardSupport' => $this->dashboardSupportData
+          'action' => 'dashboard'
         ];
         $this->view->assignMultiple($assign);
     }
@@ -195,16 +157,5 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
         $getConstants = $this->nsBasethemeRepository->fetchConstants($pid)['constants'];
         $buildAdditionalConstant = $constantForDb;
         return $getConstants . $buildAdditionalConstant;
-    }
-
-    /**
-     * action aboutExtension
-     *
-     * @return void
-     */
-    public function aboutExtensionAction()
-    {
-        $this->view->assign('action', 'aboutExtension');
-        $this->view->assign('aboutExdata', $this->aboutExtensionData);
     }
 }

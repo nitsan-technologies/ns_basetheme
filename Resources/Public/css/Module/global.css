@@ -495,7 +495,7 @@ label {
         height: 45px;
     }
     div#typo3-docbody {
-        top: 45px;
+        top: 0;
     }
     .ns-ext-button-bar .button-group {
         margin-bottom: 0;

@@ -7,26 +7,28 @@
     <link rel="stylesheet" type="text/css" href="{f:uri.resource(path:'css/Module/main.css', extensionName: 'ns_basetheme')}" media="all">
 
 	<div class="typo3-fullDoc">
-		<div id="typo3-docheader">
-			<div class="typo3-docheader-functions">
-				<f:be.buttons.csh />
-				<div class="ns-ext-button-bar">
-					<!-- <a class="btn btn-primary btn-backup-wizard-modal text-white" href="javascript:;" type="button">
-						<em class="fa fa-cogs" aria-hidden="true"></em><f:translate key="globalsettings" />
-					</a> -->
-					<div class="button-group float-sm-right">
-						<a target="_blank" href="https://docs.t3terminal.com/en/latest/ExtThemes/Index.html" class="btn btn-success text-white btn-sm"><em class="fa fa-file-o"
-								aria-hidden="true"></em><f:translate key="documentaiton" /></a>
-						<a target="_blank" href="https://t3terminal.com/support-submit-ticket" class="btn btn-info text-white btn-sm"><em class="fa fa-question"
-								aria-hidden="true"></em><f:translate key="helpsupport" /></a>
-						<a target="_blank" href="https://www.patreon.com/NITSAN_Tech" class="btn btn-secondary text-white btn-sm"><em class="fa fa-dollar"
-                                aria-hidden="true"></em><f:translate key="donate" /></a>
-                        <a target="_blank" href="https://t3terminal.com/customer/account/" class="btn btn-warning text-white btn-sm"><em class="fa fa-dollar"
-                            aria-hidden="true"></em><f:translate key="loginT3Terminal" /></a>
+		<f:comment>
+			<div id="typo3-docheader">
+				<div class="typo3-docheader-functions">
+					<f:be.buttons.csh />
+					<div class="ns-ext-button-bar">
+						<!-- <a class="btn btn-primary btn-backup-wizard-modal text-white" href="javascript:;" type="button">
+							<em class="fa fa-cogs" aria-hidden="true"></em><f:translate key="globalsettings" />
+						</a> -->
+						<div class="button-group float-sm-right">
+							<a target="_blank" href="https://docs.t3terminal.com/en/latest/ExtThemes/Index.html" class="btn btn-success text-white btn-sm"><em class="fa fa-file-o"
+									aria-hidden="true"></em><f:translate key="documentaiton" /></a>
+							<a target="_blank" href="https://t3terminal.com/support-submit-ticket" class="btn btn-info text-white btn-sm"><em class="fa fa-question"
+									aria-hidden="true"></em><f:translate key="helpsupport" /></a>
+							<a target="_blank" href="https://www.patreon.com/NITSAN_Tech" class="btn btn-secondary text-white btn-sm"><em class="fa fa-dollar"
+	                                aria-hidden="true"></em><f:translate key="donate" /></a>
+	                        <a target="_blank" href="https://t3terminal.com/customer/account/" class="btn btn-warning text-white btn-sm"><em class="fa fa-dollar"
+	                            aria-hidden="true"></em><f:translate key="loginT3Terminal" /></a>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</f:comment>
 		<div id="typo3-docbody">
 			<div id="typo3-inner-docbody">
 				<div class="ns-ext-navigation">
@@ -65,11 +67,6 @@
                                 <li class="nav-item {f:if(condition: '{action}==integrationSettings', then: 'active')}">
 									<f:link.action action="integrationSettings" additionalParams="{cat:'ns_integration'}" class="nav-link">
 										<em class="fa fas fa-code" aria-hidden="true"></em><f:translate key="integrationSettings" />
-									</f:link.action>
-								</li>
-								<li class="nav-item {f:if(condition: '{action}==aboutExtension', then: 'active')}">
-									<f:link.action action="aboutExtension" class="nav-link">
-										<em class="fa fa-empire" aria-hidden="true"></em><f:translate key="aboutExtension" />
 									</f:link.action>
 								</li>
 							</ul>
