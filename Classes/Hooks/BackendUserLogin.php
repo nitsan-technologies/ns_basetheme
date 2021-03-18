@@ -6,7 +6,7 @@ use TYPO3\CMS\Core\Package\PackageManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Hook to display verbose information about the felogin plugin
+ *
  *
  */
 class BackendUserLogin
