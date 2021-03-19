@@ -55,10 +55,12 @@ class Setup
                     $this->updateFiles($extFolder, $extname);
                 }
             } else {
-                $licenseData = $this->fetchLicense('domain=' . GeneralUtility::getIndpEnv('HTTP_HOST') . '&ns_key=' . $extname);
-                if ($licenseData->status) {
-                    $extFolder = $this->siteRoot . '/typo3conf/ext/' . $extname . '/';
-                    $this->updateFiles($extFolder, $extname);
+                if (strpos($extname, 'ns_theme_') !== false) {
+                    $licenseData = $this->fetchLicense('domain=' . GeneralUtility::getIndpEnv('HTTP_HOST') . '&ns_key=' . $extname);
+                    if ($licenseData->status) {
+                        $extFolder = $this->siteRoot . '/typo3conf/ext/' . $extname . '/';
+                        $this->updateFiles($extFolder, $extname);
+                    }
                 }
             }
         }
