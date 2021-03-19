@@ -30,8 +30,11 @@ class BackendUserLogin
                 $exp_key = explode('_theme', $key);
                 if ($exp_key[0] == 'ns') {
                     if ($key != 'ns_basetheme' && $key != 'ns_license') {
-                        $extFolder = $this->siteRoot . '/typo3conf/ext/' . $key . '/';
-                        $this->setup->updateFiles($extFolder, $key);
+                        $licenseData = $this->setup->fetchLicense('domain=' . GeneralUtility::getIndpEnv('HTTP_HOST') . '&ns_key=' . $key);
+                        if ($licenseData->status) {
+                            $extFolder = $this->siteRoot . '/typo3conf/ext/' . $key . '/';
+                            $this->setup->updateFiles($extFolder, $key);
+                        }
                     }
                 }
             }
