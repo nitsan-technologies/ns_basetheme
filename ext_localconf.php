@@ -79,6 +79,29 @@ foreach ($arrAllComponents as $extKey => $extValue) {
         }
     }
 }
+if (TYPO3_MODE === 'BE') {
+    // Let's check if our child themes are available
+    if (count($arrAllExtensions) > 0) {
+        foreach ($arrAllExtensions as $key => $extKey) {
+            // Get only extension which are child theme eg., EXT:ns_theme_cleanblog
+            $extensionPrefixKey = substr($extKey, 0, 9);
+            if ($extensionPrefixKey == 'ns_theme_') {
+                // Render Custom CSS and Javascript
+                $renderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Page\PageRenderer::class);
+                $css = $siteRoot . 'ext/' . $extKey . '/Resources/Public/Backend/Css/Backend.css';
+                $js = $siteRoot . 'ext/' . $extKey . '/Resources/Public/Backend/JavaScript/Backend.js';
+                if (file_exists($css)) {
+                    $renderer->addCssFile('EXT:' . $extKey . '/Resources/Public/Backend/Css/Backend.css', 'stylesheet', 'all');
+                }
+                if (file_exists($js)) {
+                    $renderer->addJsFile('EXT:' . $extKey . '/Resources/Public/Backend/JavaScript/Backend.js', 'text/javascript', false);
+                }
+                unset($css);
+                unset($js);
+            }
+        }
+    }
+}
 
 // Let's add default PageTSConfig for Backend layout, TCE form, Components etc.,
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKEY . '/Configuration/PageTSconfig/setup.typoscript">');
