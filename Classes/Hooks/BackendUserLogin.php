@@ -14,10 +14,7 @@ class BackendUserLogin
     public function dispatch(array $backendUser)
     {
         $activePackages = GeneralUtility::makeInstance(PackageManager::class)->isPackageActive('ns_license');
-        if ($activePackages) {
-            $this->nsLicenseModule = GeneralUtility::makeInstance(\NITSAN\NsLicense\Controller\NsLicenseModuleController::class);
-            $this->nsLicenseModule->connectToServer();
-        } else {
+        if (!$activePackages) {
             if (version_compare(TYPO3_branch, '9.0', '>')) {
                 $this->siteRoot = \TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/';
             } else {
