@@ -237,6 +237,71 @@ ajaxData {
     config.admPanel = 1
 [global]
 
+############################
+### Seo meta description ###
+############################
+
+["{$ns_basetheme.website.settings.seo_meta_description}"]
+    page {
+        meta {
+            description.if.isFalse.field = description
+            description = {$ns_basetheme.website.settings.seo_meta_description}
+        }
+    }
+[global]
+
+############################
+### Seo meta keywords ###
+############################
+
+["{$ns_basetheme.website.settings.seo_meta_keywords}"]
+    page {
+        meta {
+            keywords.if.isFalse.field = keywords
+            keywords = {$ns_basetheme.website.settings.seo_meta_keywords}
+        }
+    }
+[global]
+
+###############################
+### Enable seo title sufix ###
+###############################
+
+["{$ns_basetheme.website.settings.seo_title_sufix}"]
+    config.noPageTitle =  2
+    page {
+        headerData.5 = COA
+        headerData.5 {
+            20 = TEXT
+            20.value.field = title
+            30 = TEXT
+            30.value = {$ns_basetheme.website.settings.seo_title_sufix}
+            30.value.stdWrap.noTrimWrap = |  -  ||
+            stdWrap.noTrimWrap = |<title>|</title>|
+        }
+    }
+[global]
+
+###############################
+### Enable seo title prefix ###
+###############################
+
+["{$ns_basetheme.website.settings.seo_title_prefix}"]
+    config.noPageTitle =  2
+    page {
+        headerData.5 >
+        headerData.5 = COA
+        headerData.5 {
+            20 = TEXT
+            20.value = {$ns_basetheme.website.settings.seo_title_prefix}
+            30 = TEXT
+            30.value.field = title
+            30.value.stdWrap.noTrimWrap = |  -  ||
+            stdWrap.noTrimWrap = |<title>|</title>|
+        }
+    }
+[global]
+
 ####################################
 ### Disable Responsive Behaviour ###
 ####################################
