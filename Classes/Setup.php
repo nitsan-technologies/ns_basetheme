@@ -47,7 +47,7 @@ class Setup
                 }
             }
             $activePackages = GeneralUtility::makeInstance(PackageManager::class)->isPackageActive('ns_license');
-            if ($activePackages) {
+            if ($activePackages && strpos($extname, 'ns_theme_') !== false) {
                 $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
                 $this->nsLicenseModule = $this->objectManager->get(\NITSAN\NsLicense\Controller\NsLicenseModuleController::class);
                 $installed = $this->nsLicenseModule->connectToServer($extname);
