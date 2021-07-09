@@ -19,6 +19,13 @@ config {
     # For Debugging
     contentObjectExceptionHandler = 0
 
+    # Add header comment
+    headerComment (
++---------------------------------------------------------------+
+|   A website based on the TYPO3 template from T3Terminal.com   |
++---------------------------------------------------------------+
+    )
+
     # For TYPO3 v9 EXT:realurl
     # tx_realurl_enable = 1
 
