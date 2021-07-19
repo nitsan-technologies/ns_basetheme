@@ -19,16 +19,9 @@ stages:
   only:
     - branches
   before_script:
-    - export TYPO3_PATH_WEB="$PWD/.Build/Web"
-    - export COMPOSER_CACHE_DIR=.composer
-    - curl -OLs https://composer.github.io/installer.sig
-    - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-    - php -r "if (hash_file('SHA384', 'composer-setup.php') === trim(file_get_contents('installer.sig'))) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-    - php composer-setup.php --no-ansi --install-dir=/usr/bin --filename=composer
-    - php -r "unlink('composer-setup.php'); unlink('installer.sig');"
-    - composer require friendsofphp/php-cs-fixer
+    - wget https://cs.symfony.com/download/php-cs-fixer-v2.phar
   script:
-    .Build/bin/php-cs-fixer fix --dry-run --config=.php_cs --diff
+    - php php-cs-fixer-v2.phar fix --dry-run --diff
 
 # Tests in PHP 7.2 and TYPO3 9.5 version
 php:testphp72:typo3_95:
