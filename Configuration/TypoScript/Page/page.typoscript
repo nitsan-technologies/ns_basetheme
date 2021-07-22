@@ -94,15 +94,15 @@ page {
 
     // Initiate all the css-together
     includeCSS {
-        10 = typo3conf/ext/ns_basetheme/Resources/Public/vendor/bootstrap/css/bootstrap.min.css
-        9901 = typo3conf/ext/ns_basetheme/Resources/Public/css/ns_basetheme.css
+        10 = EXT:ns_basetheme/Resources/Public/vendor/bootstrap/css/bootstrap.min.css
+        9901 = EXT:ns_basetheme/Resources/Public/css/ns_basetheme.css
     }
 
     // Initiate all the js-together
     includeJSFooter {
-        10 = typo3conf/ext/ns_basetheme/Resources/Public/vendor/jquery/jquery.min.js
-        20 = typo3conf/ext/ns_basetheme/Resources/Public/vendor/bootstrap/js/bootstrap.bundle.min.js
-        9901 = typo3conf/ext/ns_basetheme/Resources/Public/js/ns_basetheme.js
+        10 = EXT:ns_basetheme/Resources/Public/vendor/jquery/jquery.min.js
+        20 = EXT:ns_basetheme/Resources/Public/vendor/bootstrap/js/bootstrap.bundle.min.js
+        9901 = EXT:ns_basetheme/Resources/Public/js/ns_basetheme.js
     }
 
     // Let's start fluid_styled_content
