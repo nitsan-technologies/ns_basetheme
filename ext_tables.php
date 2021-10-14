@@ -2,7 +2,6 @@
 // TYPO3 Security Check
 defined('TYPO3_MODE') or die();
 
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 use NITSAN\NsBasetheme\Controller\NsBasethemeModuleController;
 
@@ -32,42 +31,27 @@ if (TYPO3_MODE === 'BE') {
                 'name' => 'nitsan'
             ];
         }
-
         if (version_compare(TYPO3_branch, '11.0', '>=')) {
-            ExtensionUtility::registerModule(
-                'NITSAN.NsBasetheme',
-                'nitsan', // Make module a submodule of 'nitsan'
-                'nsbasethememodule', // Submodule key
-                '', // Position
-                [
-                    NsBasethemeModuleController::class => 'generalSettings, seoSettings, gdprSettings, styleSettings, integrationSettings, aboutExtension, saveConstant',
-                ],
-                [
-                    'access' => 'user,group',
-                    'icon' => 'EXT:ns_basetheme/Resources/Public/Icons/Extension.svg',
-                    'labels' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_basethememodule.xlf',
-                    'navigationComponentId' => ($isVersion9Up ? 'TYPO3/CMS/Backend/PageTree/PageTreeElement' : 'typo3-pagetree'),
-                    'inheritNavigationComponentFromMainModule' => false
-                ]
-            );
+            $moduleClass = NsBasethemeModuleController::class;
         } else {
-            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-                'NITSAN.NsBasetheme',
-                'nitsan', // Make module a submodule of 'nitsan'
-                'nsbasethememodule', // Submodule key
-                '', // Position
-                [
-                    'NsBasethemeModule' => 'generalSettings, seoSettings, gdprSettings, styleSettings, integrationSettings, aboutExtension, saveConstant',
-                ],
-                [
-                    'access' => 'user,group',
-                    'icon' => 'EXT:ns_basetheme/Resources/Public/Icons/Extension.svg',
-                    'labels' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_basethememodule.xlf',
-                    'navigationComponentId' => ($isVersion9Up ? 'TYPO3/CMS/Backend/PageTree/PageTreeElement' : 'typo3-pagetree'),
-                    'inheritNavigationComponentFromMainModule' => false
-                ]
-            );
+            $moduleClass = 'NsBasethemeModule';
         }
+        ExtensionUtility::registerModule(
+            'NITSAN.NsBasetheme',
+            'nitsan', // Make module a submodule of 'nitsan'
+            'nsbasethememodule', // Submodule key
+            '', // Position
+            [
+                $moduleClass => 'generalSettings, seoSettings, gdprSettings, styleSettings, integrationSettings, aboutExtension, saveConstant',
+            ],
+            [
+                'access' => 'user,group',
+                'icon' => 'EXT:ns_basetheme/Resources/Public/Icons/Extension.svg',
+                'labels' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_basethememodule.xlf',
+                'navigationComponentId' => ($isVersion9Up ? 'TYPO3/CMS/Backend/PageTree/PageTreeElement' : 'typo3-pagetree'),
+                'inheritNavigationComponentFromMainModule' => false
+            ]
+        );
     }
 }
 
