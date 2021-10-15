@@ -5,7 +5,7 @@ tt_content.gridelements_pi1.20.10.setup {
     nsBase1Col {
         cObject = FLUIDTEMPLATE
         cObject {
-            file = typo3conf/ext/ns_basetheme/Resources/Private/Extensions/Gridelements/nsBase1col.html
+            file = EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/nsBase1col.html
         }
     }
 
@@ -14,7 +14,7 @@ tt_content.gridelements_pi1.20.10.setup {
     nsBase2Col {
         cObject = FLUIDTEMPLATE
         cObject {
-            file = typo3conf/ext/ns_basetheme/Resources/Private/Extensions/Gridelements/nsBase2col.html
+            file = EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/nsBase2col.html
         }
     }
 
@@ -23,7 +23,7 @@ tt_content.gridelements_pi1.20.10.setup {
     nsBase3Col {
         cObject = FLUIDTEMPLATE
         cObject {
-            file = typo3conf/ext/ns_basetheme/Resources/Private/Extensions/Gridelements/nsBase3col.html
+            file = EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/nsBase3col.html
         }
     }
 
@@ -32,7 +32,7 @@ tt_content.gridelements_pi1.20.10.setup {
     nsBase4Col {
         cObject = FLUIDTEMPLATE
         cObject {
-            file = typo3conf/ext/ns_basetheme/Resources/Private/Extensions/Gridelements/nsBase4col.html
+            file = EXT:ns_basetheme/Resources/Private/Extensions/Gridelements/nsBase4col.html
         }
     }
 }

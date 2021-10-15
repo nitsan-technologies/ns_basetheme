@@ -1,26 +1,26 @@
 # Includes Basic Configuration of website
-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Configuration" extensions="typoscript">
+@import 'EXT:ns_basetheme/Configuration/TypoScript/Configuration/*.typoscript'
 
 # Includes EXT:IndexedSearch Configuration
-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/IndexedSearch" extensions="typoscript">
+@import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/IndexedSearch/*.typoscript'
 
 # Includes EXT:Form Configuration
-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/Form" extensions="typoscript">
+@import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/Form/*.typoscript'
 
 # Includes EXT:Grids Configuration
-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/GridElements" extensions="typoscript">
+@import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/GridElements/*.typoscript'
 
 # Includes EXT:Fluid Configuration
-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/Fluid" extensions="typoscript">
+@import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/Fluid/*.typoscript'
 
 # Includes EXT:News Configuration
-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/News" extensions="typoscript">
+@import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/News/*.typoscript'
 
 # Includes EXT:Custom
-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Components" extensions="typoscript">
+@import 'EXT:ns_basetheme/Configuration/TypoScript/Components/*.typoscript'
 
 # Includes Page Configuration
-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Page" extensions="typoscript">
+@import 'EXT:ns_basetheme/Configuration/TypoScript/Page/*.typoscript'
 
 # Includes EXT:Container Configuration
-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/Container" extensions="typoscript">
+@import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/Container/*.typoscript'
