@@ -1,8 +1,8 @@
 // Include the BackendLayouts
-@import 'EXT:ns_basetheme/Configuration/PageTSconfig/BackendLayouts/*.typoscript'
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/PageTSconfig/BackendLayouts" extensions="typoscript">
 
 // Include the BackendLayouts
-@import 'EXT:ns_basetheme/Configuration/PageTSconfig/TceForm/*.typoscript'
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/PageTSconfig/TceForm" extensions="typoscript">
 
 // Include the BackendLayouts
-@import 'EXT:ns_basetheme/Configuration/PageTSconfig/GridElements/*.typoscript'
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/PageTSconfig/GridElements" extensions="typoscript">

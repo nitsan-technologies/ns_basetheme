@@ -1,26 +1,26 @@
 # Includes Basic Configuration of website
-@import 'EXT:ns_basetheme/Configuration/TypoScript/Configuration/*.typoscript'
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Configuration" extensions="typoscript">
 
 # Includes EXT:IndexedSearch Configuration
-@import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/IndexedSearch/*.typoscript'
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/IndexedSearch" extensions="typoscript">
 
 # Includes EXT:Form Configuration
-@import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/Form/*.typoscript'
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/Form" extensions="typoscript">
 
 # Includes EXT:Grids Configuration
-@import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/GridElements/*.typoscript'
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/GridElements" extensions="typoscript">
 
 # Includes EXT:Fluid Configuration
-@import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/Fluid/*.typoscript'
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/Fluid" extensions="typoscript">
 
 # Includes EXT:News Configuration
-@import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/News/*.typoscript'
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/News" extensions="typoscript">
 
 # Includes EXT:Custom
-@import 'EXT:ns_basetheme/Configuration/TypoScript/Components/*.typoscript'
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Components" extensions="typoscript">
 
 # Includes Page Configuration
-@import 'EXT:ns_basetheme/Configuration/TypoScript/Page/*.typoscript'
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Page" extensions="typoscript">
 
 # Includes EXT:Container Configuration
-@import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/Container/*.typoscript'
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/Container" extensions="typoscript">
