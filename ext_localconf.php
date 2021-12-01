@@ -6,28 +6,11 @@ if (!defined('TYPO3_MODE')) {
 }
 $_EXTKEY = 'ns_basetheme';
 
-if (TYPO3_MODE === 'BE') {
-    call_user_func(
-        function ($_EXTKEY) {
-            // Let's find out current theme from Include TypoScript from sys_template table
-            $objNsBasetheme = TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\NITSAN\NsBasetheme\NsBaseUtility::class);
-            $currentChildThemes = $objNsBasetheme->getChildThemeName();
+// Let's find out current theme from Include TypoScript from sys_template table
+$objNsBasetheme = TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\NITSAN\NsBasetheme\NsBaseUtility::class);
+$themeName = $objNsBasetheme->getChildThemeName();
 
-            $currentTheme = $extendTheme = '';
-            foreach($currentChildThemes as $key=>$value) {
-                if($value == 'ns_theme_extend') {
-                    $extendTheme = 1;
-                }
-                else {
-                    $currentTheme = $value;
-                }
-            }
-            define('CURRENT_CHILD_THEME', $currentTheme);
-            define('IS_EXTEND_THEME', $extendTheme);
-        },
-        $_EXTKEY
-    );
-}
+define('CURRENT_CHILD_THEME', $themeName);
 
 if (TYPO3_MODE === 'BE' && version_compare(TYPO3_branch, '8.0', '>') && version_compare(TYPO3_branch, '9.0', '<')) {
     $class = 'TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher';
@@ -63,10 +46,8 @@ if (version_compare(TYPO3_branch, '9.0', '>')) {
 $arrAllExtensions = [];
 $activePackages = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Package\PackageManager::class)->getActivePackages();
 foreach ($activePackages as $package) {
-    //$extensionPrefixKey = substr($package->getPackageKey(), 0, 9);
-    //if ($extensionPrefixKey == 'ns_theme_') {
-    $extKey = $package->getPackageKey();
-    if($extKey == constant('CURRENT_CHILD_THEME') || ($extKey == 'ns_theme_extend' && constant('IS_EXTEND_THEME'))) {
+    $extensionPrefixKey = substr($package->getPackageKey(), 0, 9);
+    if ($extensionPrefixKey == 'ns_theme_') {
         $arrAllExtensions[] = $package->getPackageKey();
     }
 }
@@ -82,7 +63,7 @@ foreach ($arrAllExtensions as $key => $extKey) {
     // Get only extension which are child theme eg., EXT:ns_theme_cleanblog
     //$extensionPrefixKey = substr($extKey, 0, 9);
     //if ($extensionPrefixKey == 'ns_theme_') {
-    if($extKey == constant('CURRENT_CHILD_THEME') || ($extKey == 'ns_theme_extend' && constant('IS_EXTEND_THEME'))) {
+    if(empty(constant('CURRENT_CHILD_THEME')) || $extKey == constant('CURRENT_CHILD_THEME')) {
         if (version_compare(TYPO3_branch, '9.0', '>')) {
             $arrAllComponents[$extKey] = scandir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . "/typo3conf/ext/$extKey/Configuration/FlexForms");
         } else {
@@ -90,7 +71,6 @@ foreach ($arrAllExtensions as $key => $extKey) {
         }
     }
 }
-
 if (array_key_exists('ns_theme_extend', $arrAllComponents)) {
     $themeExtend = $arrAllComponents['ns_theme_extend'];
     unset($arrAllComponents['ns_theme_extend']);
@@ -107,7 +87,6 @@ foreach ($arrAllComponents as $extKey => $extValue) {
         }
     }
 }
-
 if (TYPO3_MODE === 'BE') {
     // Let's check if our child themes are available
     if (count($arrAllExtensions) > 0) {
@@ -115,8 +94,7 @@ if (TYPO3_MODE === 'BE') {
             // Get only extension which are child theme eg., EXT:ns_theme_cleanblog
             //$extensionPrefixKey = substr($extKey, 0, 9);
             //if ($extensionPrefixKey == 'ns_theme_') {
-            //if(empty(constant('CURRENT_CHILD_THEME')) || $extKey == constant('CURRENT_CHILD_THEME')) {
-            if($extKey == constant('CURRENT_CHILD_THEME') || ($extKey == 'ns_theme_extend' && constant('IS_EXTEND_THEME'))) {
+            if(empty(constant('CURRENT_CHILD_THEME')) || $extKey == constant('CURRENT_CHILD_THEME')) {
                 // Render Custom CSS and Javascript
                 $renderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Page\PageRenderer::class);
                 $css = $siteRoot . 'ext/' . $extKey . '/Resources/Public/Backend/Css/Backend.css';
@@ -137,8 +115,6 @@ if (TYPO3_MODE === 'BE') {
 // Let's add default PageTSConfig for Backend layout, TCE form, Components etc.,
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKEY . '/Configuration/PageTSconfig/setup.typoscript">');
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' .constant('CURRENT_CHILD_THEME'). '/Configuration/PageTSconfig/setup.typoscript">');
-
 // Settled constatant to access from "Everywhere"
 define('ALL_COMPONENTS', $allComponents);
 
@@ -148,24 +124,22 @@ if (TYPO3_MODE === 'BE') {
         function ($_EXTKEY) {
             // Get Components from ext_localconf.php
             $allComponents = constant('ALL_COMPONENTS');
-            //echo "<pre>";print_r($allComponents);die;
 
             // Let's prepare CType components to add at PageTS Config
             $collectComponent = $listComponent = $tsComponents = '';
             foreach ($allComponents as $extKey => $extValue) {
 
                 // Let's grab only elements which are available for CURRENT CHILD THEME
-                //if(empty(constant('CURRENT_CHILD_THEME')) || $extKey == constant('CURRENT_CHILD_THEME')) {
-                if($extKey == constant('CURRENT_CHILD_THEME') || ($extKey == 'ns_theme_extend' && constant('IS_EXTEND_THEME'))) {
+                if(empty(constant('CURRENT_CHILD_THEME')) || $extKey == constant('CURRENT_CHILD_THEME')) {
                     foreach ($extValue as $key => $theComponent) {
                         $collectComponent .= "
                         $theComponent {
-                            iconIdentifier = $theComponent
-                            title = LLL:EXT:$extKey/Resources/Private/Language/locallang_db.xlf:wizard.$theComponent
-                            description = LLL:EXT:$extKey/Resources/Private/Language/locallang_db.xlf:wizard.$theComponent.desc
-                            tt_content_defValues {
-                                CType = $theComponent
-                            }
+                        iconIdentifier = $theComponent
+                        title = LLL:EXT:$extKey/Resources/Private/Language/locallang_db.xlf:wizard.$theComponent
+                        description = LLL:EXT:$extKey/Resources/Private/Language/locallang_db.xlf:wizard.$theComponent.desc
+                        tt_content_defValues {
+                            CType = $theComponent
+                        }
                         }
                     ";
                         $listComponent .= $theComponent . ',';
@@ -205,8 +179,7 @@ $tsComponents = '';
 foreach ($allComponents as $extKey => $extValue) {
 
     // Let's grab only elements which are available for CURRENT CHILD THEME
-    //if(empty(constant('CURRENT_CHILD_THEME')) || $extKey == constant('CURRENT_CHILD_THEME')) {
-    if($extKey == constant('CURRENT_CHILD_THEME') || ($extKey == 'ns_theme_extend' && constant('IS_EXTEND_THEME'))) {
+    if(empty(constant('CURRENT_CHILD_THEME')) || $extKey == constant('CURRENT_CHILD_THEME')) {
         foreach ($extValue as $key => $theComponent) {
             $arrTemplateName = explode('_', $theComponent);
             $templateName = ucfirst($arrTemplateName[0]) . '' . ucfirst($arrTemplateName[1]);
@@ -275,8 +248,7 @@ $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
 foreach ($allComponents as $extKey => $extValue) {
 
     // Let's grab only elements which are available for CURRENT CHILD THEME
-    //if(empty(constant('CURRENT_CHILD_THEME')) || $extKey == constant('CURRENT_CHILD_THEME')) {
-    if($extKey == constant('CURRENT_CHILD_THEME') || ($extKey == 'ns_theme_extend' && constant('IS_EXTEND_THEME'))) {
+    if(empty(constant('CURRENT_CHILD_THEME')) || $extKey == constant('CURRENT_CHILD_THEME')) {
         foreach ($extValue as $key => $theComponent) {
             $iconRegistry->registerIcon(
                 $theComponent,

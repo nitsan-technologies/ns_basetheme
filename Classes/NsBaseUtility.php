@@ -2,7 +2,6 @@
 
 namespace NITSAN\NsBasetheme;
 
-use Symfony\Component\Config\ConfigCacheFactory;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -17,44 +16,18 @@ class NsBaseUtility {
      * @return void
      **/
     public function getChildThemeName() {
+
         $currentPageId = GeneralUtility::_GP('id');
-        if(empty($currentPageId)) {
-            $arrEditPage = GeneralUtility::_GP('edit');
-
-            // If Edit Page
-            if(isset($arrEditPage['pages'])) {
-                $currentPageId = key($arrEditPage['pages']);
-            }
-            // If Add/Edit Content
-            if(isset($arrEditPage['tt_content'])) {
-                
-                // Let's clear the Flush cache to re-generate ext_localconf
-                $this->clearAll();
-
-                $contentId = key($arrEditPage['tt_content']);
-                $isNewElement = $arrEditPage['tt_content'][$contentId];
-                if($isNewElement == 'new') {
-                    $currentPageId = $contentId;
-                }
-                else {
-                    $queryBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)->getQueryBuilderForTable('tt_content');
-                    $statement = $queryBuilder
-                        ->select('pid')
-                        ->from('tt_content')
-                        ->where(
-                            $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($contentId))
-                        )
-                        ->execute();
-                    $arrPages = $statement->fetch();
-                    $currentPageId = $arrPages['pid'];
-                }
-            }
-        }
-        //echo $currentPageId;die;
-        
         $rootPageId = 1;
-        $arrMatchTheme = array();
+        $themeName = '';
+
+        // Get root page of current page
+        //$rootline = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Utility\RootlineUtility::class, $currentPageId);
+        //$rootline = $rootLineUtility->get();
+        //echo $rootline;die;
+
         $queryBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)->getQueryBuilderForTable('pages');
+
         $statement = $queryBuilder
             ->select('uid', 'pid')
             ->from('pages')
@@ -65,9 +38,11 @@ class NsBaseUtility {
         }
 
         $arrTree = $this->createPageTree($arrPages, 'uid', 'pid');
-        $rootPageId = $this->getRootPageId($currentPageId, $arrTree);
 
+        $rootPageId = $this->getRootPageId($currentPageId, $arrTree);
+        
         $queryBuilder = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)->getQueryBuilderForTable('sys_template');
+
         $statement = $queryBuilder
             ->select('uid', 'include_static_file')
             ->from('sys_template')
@@ -76,23 +51,17 @@ class NsBaseUtility {
             )
             ->execute();
         $arrStaticFile = $statement->fetch();
-        $needle = 'ns_theme_';
+
         if(!empty($arrStaticFile['include_static_file'])) {
-            $matchTheme = preg_match_all('/\b(' . preg_quote($needle, '/') . '\w+)/', $arrStaticFile['include_static_file'], $arrMatchTheme);
-            if(is_array($arrMatchTheme) && count($arrMatchTheme)) {
-                $arrMatchTheme = $arrMatchTheme[0];
-            }
-            /*if (preg_match_all('/\b(' . preg_quote($needle, '/') . '\w+)/', $arrStaticFile['include_static_file'], $match)) {
-                $arrMatchThemeName = array_values(array_diff($match[0], ['ns_theme_extend']));
-            }
+            $matchThemeName = preg_match('/\bns_theme_\S*/', $arrStaticFile['include_static_file'], $arrMatchThemeName);
             if(isset($arrMatchThemeName)) {
-                $arrThemeName = $arrMatchThemeName[0];
-                if(isset($arrThemeName)) {
-                    $themeName = $arrThemeName;
+                $arrThemeName = explode("/",$arrMatchThemeName[0]);
+                if(isset($arrThemeName[0])) {
+                    $themeName = $arrThemeName[0];
                 }
-            }*/
+            }
         }
-        return $arrMatchTheme;
+        return $themeName;
     }
 
     function createPageTree($results, $idField='id', $parentIdField='parent', $childrenField='children') {
@@ -145,13 +114,5 @@ class NsBaseUtility {
             }
         }
         return false;
-    }
-
-    public function clearAll()
-    {
-        $cacheManager = new \TYPO3\CMS\Core\Cache\CacheManager();
-        $cacheManager->setCacheConfigurations($GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']);
-        // Cache manager needs cache factory. cache factory injects itself to manager in __construct()
-        $cacheManager->flushCaches();
     }
 }
