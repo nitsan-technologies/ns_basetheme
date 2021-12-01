@@ -39,13 +39,10 @@ class CmsLayout implements PageLayoutViewDrawItemHookInterface
 
         // Finalize components
         foreach ($allComponents as $extKey => $extValue) {
-            // Let's grab only elements which are available for CURRENT CHILD THEME
-            if(empty(constant('CURRENT_CHILD_THEME')) || $extKey == constant('CURRENT_CHILD_THEME')) {
-                foreach ($extValue as $key => $theComponent) {
-                    if ($row['CType'] == $theComponent) {
-                        $rowFlag = 1;
-                        $extensionKey = $extKey;
-                    }
+            foreach ($extValue as $key => $theComponent) {
+                if ($row['CType'] == $theComponent) {
+                    $rowFlag = 1;
+                    $extensionKey = $extKey;
                 }
             }
         }

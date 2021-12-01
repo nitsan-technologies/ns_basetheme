@@ -5,13 +5,6 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 $_EXTKEY = 'ns_basetheme';
-
-// Let's find out current theme from Include TypoScript from sys_template table
-$objNsBasetheme = TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\NITSAN\NsBasetheme\NsBaseUtility::class);
-$themeName = $objNsBasetheme->getChildThemeName();
-
-define('CURRENT_CHILD_THEME', $themeName);
-
 if (TYPO3_MODE === 'BE' && version_compare(TYPO3_branch, '8.0', '>') && version_compare(TYPO3_branch, '9.0', '<')) {
     $class = 'TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher';
     $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance($class);
@@ -61,9 +54,8 @@ if ($_COOKIE['NsLicense'] != '') {
 }
 foreach ($arrAllExtensions as $key => $extKey) {
     // Get only extension which are child theme eg., EXT:ns_theme_cleanblog
-    //$extensionPrefixKey = substr($extKey, 0, 9);
-    //if ($extensionPrefixKey == 'ns_theme_') {
-    if(empty(constant('CURRENT_CHILD_THEME')) || $extKey == constant('CURRENT_CHILD_THEME')) {
+    $extensionPrefixKey = substr($extKey, 0, 9);
+    if ($extensionPrefixKey == 'ns_theme_') {
         if (version_compare(TYPO3_branch, '9.0', '>')) {
             $arrAllComponents[$extKey] = scandir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . "/typo3conf/ext/$extKey/Configuration/FlexForms");
         } else {
@@ -92,9 +84,8 @@ if (TYPO3_MODE === 'BE') {
     if (count($arrAllExtensions) > 0) {
         foreach ($arrAllExtensions as $key => $extKey) {
             // Get only extension which are child theme eg., EXT:ns_theme_cleanblog
-            //$extensionPrefixKey = substr($extKey, 0, 9);
-            //if ($extensionPrefixKey == 'ns_theme_') {
-            if(empty(constant('CURRENT_CHILD_THEME')) || $extKey == constant('CURRENT_CHILD_THEME')) {
+            $extensionPrefixKey = substr($extKey, 0, 9);
+            if ($extensionPrefixKey == 'ns_theme_') {
                 // Render Custom CSS and Javascript
                 $renderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Page\PageRenderer::class);
                 $css = $siteRoot . 'ext/' . $extKey . '/Resources/Public/Backend/Css/Backend.css';
@@ -115,6 +106,7 @@ if (TYPO3_MODE === 'BE') {
 // Let's add default PageTSConfig for Backend layout, TCE form, Components etc.,
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKEY . '/Configuration/PageTSconfig/setup.typoscript">');
 
+
 // Settled constatant to access from "Everywhere"
 define('ALL_COMPONENTS', $allComponents);
 
@@ -128,26 +120,22 @@ if (TYPO3_MODE === 'BE') {
             // Let's prepare CType components to add at PageTS Config
             $collectComponent = $listComponent = $tsComponents = '';
             foreach ($allComponents as $extKey => $extValue) {
-
-                // Let's grab only elements which are available for CURRENT CHILD THEME
-                if(empty(constant('CURRENT_CHILD_THEME')) || $extKey == constant('CURRENT_CHILD_THEME')) {
-                    foreach ($extValue as $key => $theComponent) {
-                        $collectComponent .= "
-                        $theComponent {
-                        iconIdentifier = $theComponent
-                        title = LLL:EXT:$extKey/Resources/Private/Language/locallang_db.xlf:wizard.$theComponent
-                        description = LLL:EXT:$extKey/Resources/Private/Language/locallang_db.xlf:wizard.$theComponent.desc
-                        tt_content_defValues {
-                            CType = $theComponent
-                        }
-                        }
-                    ";
-                        $listComponent .= $theComponent . ',';
-                        $tsComponents .= '
-                        ' . $theComponent . ' < .ns_default
-                        ' . $theComponent . '.templateName = ' . ucfirst($theComponent) . '
-                    ';
+                foreach ($extValue as $key => $theComponent) {
+                    $collectComponent .= "
+                    $theComponent {
+                      iconIdentifier = $theComponent
+                      title = LLL:EXT:$extKey/Resources/Private/Language/locallang_db.xlf:wizard.$theComponent
+                      description = LLL:EXT:$extKey/Resources/Private/Language/locallang_db.xlf:wizard.$theComponent.desc
+                      tt_content_defValues {
+                          CType = $theComponent
+                      }
                     }
+                ";
+                    $listComponent .= $theComponent . ',';
+                    $tsComponents .= '
+                    ' . $theComponent . ' < .ns_default
+                    ' . $theComponent . '.templateName = ' . ucfirst($theComponent) . '
+                ';
                 }
             }
 
@@ -177,53 +165,49 @@ if (TYPO3_MODE === 'BE') {
 // Let's prepare CType components to add at TypoScript Config
 $tsComponents = '';
 foreach ($allComponents as $extKey => $extValue) {
-
-    // Let's grab only elements which are available for CURRENT CHILD THEME
-    if(empty(constant('CURRENT_CHILD_THEME')) || $extKey == constant('CURRENT_CHILD_THEME')) {
-        foreach ($extValue as $key => $theComponent) {
-            $arrTemplateName = explode('_', $theComponent);
-            $templateName = ucfirst($arrTemplateName[0]) . '' . ucfirst($arrTemplateName[1]);
-            if (!empty($templateName)) {
-                $tsComponents .= "
-                    $theComponent = FLUIDTEMPLATE
-                    $theComponent {
-                        templateRootPaths {
-                            0 = EXT:fluid_styled_content/Resources/Private/Templates/
-                            10 = EXT:$extKey/Resources/Private/Components/
-                        }
-                        partialRootPaths {
-                            0 = EXT:fluid_styled_content/Resources/Private/Partials/
-                            10 = EXT:$extKey/Resources/Private/Partials/
-                        }
-                        variables {
-                        }
-                        templateName = $templateName
-                        dataProcessing {
-                            10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-                            10 {
-                                references.fieldName = image
-                                as = image
-                            }
-                            20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-                            20 {
-                                references.fieldName = media
-                                as = media
-                            }
-                            30 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-                            30 {
-                                references.fieldName = file2
-                                as = file2
-                            }
-                            40 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-                            40 {
-                                references.fieldName = file3
-                                as = file3
-                            }
-                            50 = NITSAN\\NsBasetheme\\DataProcessing\\DefaultProcessor
-                        }
+    foreach ($extValue as $key => $theComponent) {
+        $arrTemplateName = explode('_', $theComponent);
+        $templateName = ucfirst($arrTemplateName[0]) . '' . ucfirst($arrTemplateName[1]);
+        if (!empty($templateName)) {
+            $tsComponents .= "
+                $theComponent = FLUIDTEMPLATE
+                $theComponent {
+                    templateRootPaths {
+                        0 = EXT:fluid_styled_content/Resources/Private/Templates/
+                        10 = EXT:$extKey/Resources/Private/Components/
                     }
-                ";
-            }
+                    partialRootPaths {
+                        0 = EXT:fluid_styled_content/Resources/Private/Partials/
+                        10 = EXT:$extKey/Resources/Private/Partials/
+                    }
+                    variables {
+                    }
+                    templateName = $templateName
+                    dataProcessing {
+                        10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                        10 {
+                            references.fieldName = image
+                            as = image
+                        }
+                        20 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                        20 {
+                            references.fieldName = media
+                            as = media
+                        }
+                        30 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                        30 {
+                            references.fieldName = file2
+                            as = file2
+                        }
+                        40 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                        40 {
+                            references.fieldName = file3
+                            as = file3
+                        }
+                        50 = NITSAN\\NsBasetheme\\DataProcessing\\DefaultProcessor
+                    }
+                }
+            ";
         }
     }
 }
@@ -246,20 +230,16 @@ $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
     \TYPO3\CMS\Core\Imaging\IconRegistry::class
 );
 foreach ($allComponents as $extKey => $extValue) {
-
-    // Let's grab only elements which are available for CURRENT CHILD THEME
-    if(empty(constant('CURRENT_CHILD_THEME')) || $extKey == constant('CURRENT_CHILD_THEME')) {
-        foreach ($extValue as $key => $theComponent) {
-            $iconRegistry->registerIcon(
-                $theComponent,
-                \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-                ['source' => (file_exists($siteRoot . 'ext/' . $extKey . '/Resources/Public/Icons/' . $theComponent . '.png')) ? 'EXT:' . $extKey . '/Resources/Public/Icons/' . $theComponent . '.png' : 'EXT:ns_basetheme/Resources/Public/Icons/default_icon.png']
-            );
-        }
+    foreach ($extValue as $key => $theComponent) {
+        $iconRegistry->registerIcon(
+            $theComponent,
+            \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
+            ['source' => (file_exists($siteRoot . 'ext/' . $extKey . '/Resources/Public/Icons/' . $theComponent . '.png')) ? 'EXT:' . $extKey . '/Resources/Public/Icons/' . $theComponent . '.png' : 'EXT:ns_basetheme/Resources/Public/Icons/default_icon.png']
+        );
     }
 }
 
-// Module Icon
+//Module Icon
 $iconRegistry->registerIcon(
     'module-nsbasetheme',
     \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
