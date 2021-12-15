@@ -135,7 +135,7 @@ ns_basetheme {
                     dismissOnScroll =
 
                     # cat=ns_gdpr/300; type=options[info,opt-out]; label = Type: Select type from two options of info or opt-out
-                    type = info
+                    type = opt-out
 
                     palette {
                         popup {
