@@ -628,7 +628,7 @@
 										<numIndex index="1">not</numIndex>
 									</numIndex>
 								</items>
-								<default>col-sm-6</default>
+								<default></default>
 							</config>
 						</TCEforms>
 					</width_column_sm_1>
@@ -697,7 +697,7 @@
 										<numIndex index="1">not</numIndex>
 									</numIndex>
 								</items>
-								<default>col-sm-6</default>
+								<default></default>
 							</config>
 						</TCEforms>
 					</width_column_sm_2>
