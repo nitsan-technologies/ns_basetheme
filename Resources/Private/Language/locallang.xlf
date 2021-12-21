@@ -15,19 +15,19 @@
             </trans-unit>
 
             <trans-unit id="message">
-                <source>We use cookies and other tracking technologies to personalize and improve your experience. By continuing to use our website you consent to this.</source>
+                <source>We use cookies and other tracking technologies to personalize and improve your experience. By continuing to use our website, you consent to this.</source>
             </trans-unit>
             <trans-unit id="dismiss">
-                <source>allow cookies</source>
+                <source>Accept</source>
             </trans-unit>
             <trans-unit id="deny">
-                <source>decline</source>
+                <source>Decline</source>
             </trans-unit>
             <trans-unit id="policy">
                 <source>Cookie Policy</source>
             </trans-unit>
             <trans-unit id="link">
-                <source>More info</source>
+                <source>Learn More</source>
             </trans-unit>
 
             <!-- Module LLL Start-->
