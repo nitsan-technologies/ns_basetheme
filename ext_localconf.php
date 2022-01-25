@@ -29,6 +29,9 @@ if (TYPO3_MODE === 'BE' && version_compare(TYPO3_branch, '8.0', '>') && version_
 // Let's get configuration of this extension from "Extension Manager"
 // $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$_EXTKEY] = unserialize($_EXTCONF);
 
+// Get sites' rootPath
+$siteRoot = (version_compare(TYPO3_branch, '9.0', '>')) ? \TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/typo3conf/' : PATH_typo3conf;
+
 // Initiate NsBaseThemeUtility
 $objNsBasetheme = TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\NITSAN\NsBasetheme\NsBasethemeUtility::class);
 
@@ -48,7 +51,7 @@ define('ALL_COMPONENTS', $allComponents);
 if (TYPO3_MODE === 'BE') {
 
     // Let's make beautiful backend preview by adding custom CSS/JS
-    $objNsBasetheme->setupBackendPreviewCssJs($arrAllExtensions);
+    $objNsBasetheme->setupBackendPreviewCssJs($arrAllExtensions, $siteRoot);
 
     // Let's prepare CType components to add at PageTS Config
     $pageTSConfig = $objNsBasetheme->prepareWizardPageTSConfig($allComponents);

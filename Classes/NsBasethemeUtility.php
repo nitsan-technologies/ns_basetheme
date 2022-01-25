@@ -17,10 +17,8 @@ class NsBasethemeUtility {
 
         // Get default components from EXT:ns_basetheme
         if (version_compare(TYPO3_branch, '9.0', '>')) {
-            $siteRoot = \TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/typo3conf/';
             $arrAllComponents['ns_basetheme'] = scandir(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/typo3conf/ext/ns_basetheme/Configuration/FlexForms');
         } else {
-            $siteRoot = PATH_typo3conf;
             $arrAllComponents['ns_basetheme'] = scandir(PATH_typo3conf . 'ext/ns_basetheme/Configuration/FlexForms');
         }
 
@@ -109,7 +107,8 @@ class NsBasethemeUtility {
      *
      * @return void
      **/
-    public function setupBackendPreviewCssJs($arrAllExtensions) {
+    public function setupBackendPreviewCssJs($arrAllExtensions, $siteRoot) {
+
         // Let's check if our child themes are available
         if (count($arrAllExtensions) > 0) {
             foreach ($arrAllExtensions as $key => $extKey) {
