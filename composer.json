@@ -1,7 +1,7 @@
 {
   "name": "nitsan/ns-basetheme",
   "type": "typo3-cms-extension",
-  "description": "The TYPO3 theme which is design for parent and child theme concept, This parent theme have common and global configuration to support the child theme. Read more at documentation.",
+  "description": "The architecture of parent/child TYPO3 theme concept. Explore https://t3terminal.com and https://nitsantech.com",
   "keywords": [
     "TYPO3 CMS",
     "Basetheme",
@@ -34,7 +34,7 @@
     }
   },
   "replace": {
-      "nitsan/ns-basetheme": "self.version"
+      "typo3-ter/ns-basetheme": "self.version"
   },
   "config": {
     "vendor-dir": ".Build/vendor/",
