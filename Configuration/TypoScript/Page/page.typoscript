@@ -19,6 +19,9 @@ module.tx_nsbasetheme {
         partialRootPaths.0 = EXT:ns_basetheme/Resources/Private/Backend/Partials/
         layoutRootPaths.0 = EXT:ns_basetheme/Resources/Private/Backend/Layouts/
     }
+    settings {
+        bootAttr = data-
+    }
 }
 
 ########################
@@ -399,3 +402,7 @@ page {
     }
 }
 [global]
+
+[typo3.version >= "11"]
+    module.tx_nsbasetheme.settings.bootAttr = data-bs-
+[end]

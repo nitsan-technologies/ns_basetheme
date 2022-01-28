@@ -15,22 +15,6 @@ div.sticky{
     color: rgba(0, 0, 0, 0.5);
 }
 
-.field-info-text {
-    width: 100%;
-    display: inline-block;
-    position: relative;
-    display: none;
-}
-
-.field-info-text p {
-    font-size: 14px;
-    color: #444;
-    margin-bottom: 0;
-    margin-top: 12px;
-    display: inline-block;
-    width: 100%;
-}
-
 .custom-switch {
     position: relative;
     display: inline-block;
@@ -54,10 +38,6 @@ div.sticky{
     width: 2.5rem;
 }
 
-.custom-switch .custom-control-input:checked~.custom-control-label::after {
-    -webkit-transform: translateX(1rem);
-    transform: translateX(1rem);
-}
 .custom-control.custom-checkbox,
 .custom-control.custom-radio {
     margin-bottom: 10px;
@@ -108,23 +88,6 @@ hr{
 #plugin-tx_nsfaq_faq-styleSettings-toggleSymbol-categoryIcon option:not(:first-child) , #plugin-tx_nsfaq_faq-styleSettings-toggleSymbol-categoryIcon {
     font-family: 'FontAwesome';
 }
-@media(min-width:576px) {}
-
-@media(min-width:768px) {
-    .ns-ext-form select.form-control{
-        max-width: 280px;
-        width: 100%;
-    }
-}
-
-@media(min-width:992px) {}
-
-@media(min-width:1200px) {
-    .ns-ext-navigation .navbar-nav .nav-link {
-        padding: 13px 20px;
-    }
-}
-
 .form__field {
     border-color: #228B22;
     box-shadow: 0 0 1px 1px #228B22;
