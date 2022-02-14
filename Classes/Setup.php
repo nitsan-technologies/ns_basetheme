@@ -15,6 +15,10 @@ class Setup
 {
     public function executeOnSignal($extname = null)
     {
+        if (version_compare(TYPO3_branch, '11', '>=')) {
+            $extname = array_key_first($extname->getPackageKeys());
+        }
+        
         if (strpos($extname, 'ns_') !== false && $extname != 'ns_license' && $extname != 'ns_basetheme') {
             if (version_compare(TYPO3_branch, '9.0', '>')) {
                 $this->siteRoot = \TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/';
