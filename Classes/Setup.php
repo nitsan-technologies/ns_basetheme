@@ -13,6 +13,11 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
  */
 class Setup
 {
+    /**
+     * executeOnSignal
+     *
+     * @return void
+     */
     public function executeOnSignal($extname = null)
     {
         if (is_object($extname) && $extname instanceof \TYPO3\CMS\Core\Package\Event\BeforePackageActivationEvent) {
@@ -65,6 +70,34 @@ class Setup
                         $extFolder = $this->siteRoot . '/typo3conf/ext/' . $extname . '/';
                         $this->updateFiles($extFolder, $extname);
                     }
+                }
+            }
+        }
+    }
+
+    /**
+     * executeOnSignalAfter
+     *
+     * @return void
+     */
+    public function executeOnSignalAfter($extname = null)
+    {
+        if (is_object($extname)) {
+			$extname = $extname->getPackageKey();
+		}
+        
+        if (strpos($extname, 'ns_') !== false && $extname != 'ns_license' && $extname != 'ns_basetheme') {
+            if (version_compare(TYPO3_branch, '9.0', '>')) {
+                $this->siteRoot = \TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/';
+            } else {
+                $this->siteRoot = PATH_site;
+            }
+            if (strpos($extname, 'ns_theme_') !== false && version_compare(TYPO3_branch, '9.0', '>')) {
+                
+                // Check SQL import file, and rename it
+                $extFolder = $this->siteRoot . '/typo3conf/ext/' . $extname . '/';
+                if (file_exists($extFolder . 'ext_tables_static+adt.sql')) {
+                    rename($extFolder . 'ext_tables_static+adt.sql', $extFolder . 'ext_tables_static+adt..sql');
                 }
             }
         }

@@ -7,7 +7,8 @@ if (!defined('TYPO3_MODE')) {
 
 // Setup for before and after extension Installation
 $_EXTKEY = 'ns_basetheme';
-if (TYPO3_MODE === 'BE' && version_compare(TYPO3_branch, '8.0', '>') && version_compare(TYPO3_branch, '9.0', '<')) {
+if (TYPO3_MODE === 'BE' && version_compare(TYPO3_branch, '8.0', '=')) {
+    // Before Activate Extension
     $class = 'TYPO3\\CMS\\Extbase\\SignalSlot\\Dispatcher';
     $dispatcher = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance($class);
     $dispatcher->connect(
@@ -16,13 +17,23 @@ if (TYPO3_MODE === 'BE' && version_compare(TYPO3_branch, '8.0', '>') && version_
         'NITSAN\\NsBasetheme\\Setup',
         'executeOnSignal'
     );
-} elseif (TYPO3_MODE === 'BE' && version_compare(TYPO3_branch, '9.0', '>')) {
+} elseif (TYPO3_MODE === 'BE' && version_compare(TYPO3_branch, '9.0', '=')) {
+    // Before Activate Extension
     $signalSlotDispatcher = TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
     $signalSlotDispatcher->connect(
         \TYPO3\CMS\Extensionmanager\Utility\InstallUtility::class,
         'afterExtensionInstall',
         \NITSAN\NsBasetheme\Setup::class,
         'executeOnSignal'
+    );
+
+    // After Activate Extension
+    $signalSlotDispatcher = TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
+    $signalSlotDispatcher->connect(
+        \TYPO3\CMS\Extensionmanager\Utility\InstallUtility::class,
+        'afterExtensionInstall',
+        \NITSAN\NsBasetheme\Setup::class,
+        'executeOnSignalAfter'
     );
 }
 
