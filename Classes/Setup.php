@@ -61,13 +61,14 @@ class Setup
                 $this->nsLicenseModule = $this->objectManager->get(\NITSAN\NsLicense\Controller\NsLicenseModuleController::class);
                 $installed = $this->nsLicenseModule->connectToServer($extname);
                 if (!$installed) {
+                    $extFolder = (Environment::isComposerMode()) ? $this->siteRoot . '/extensions/' . $extname . '/' : $this->siteRoot . '/typo3conf/ext/' . $extname . '/';
                     $this->updateFiles($extFolder, $extname);
                 }
             } else {
                 if (strpos($extname, 'ns_theme_') !== false) {
                     $licenseData = $this->fetchLicense('domain=' . GeneralUtility::getIndpEnv('HTTP_HOST') . '&ns_key=' . $extname);
                     if ($licenseData->status) {
-                        $extFolder = $this->siteRoot . '/typo3conf/ext/' . $extname . '/';
+                        $extFolder = (Environment::isComposerMode()) ? $this->siteRoot . '/extensions/' . $extname . '/' : $this->siteRoot . '/typo3conf/ext/' . $extname . '/';
                         $this->updateFiles($extFolder, $extname);
                     }
                 }
@@ -88,14 +89,14 @@ class Setup
         
         if (strpos($extname, 'ns_') !== false && $extname != 'ns_license' && $extname != 'ns_basetheme') {
             if (version_compare(TYPO3_branch, '9.0', '>')) {
-                $this->siteRoot = \TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/';
+                $this->siteRoot = \TYPO3\CMS\Core\Core\Environment::getPublicPath();
             } else {
                 $this->siteRoot = PATH_site;
             }
             if (strpos($extname, 'ns_theme_') !== false && version_compare(TYPO3_branch, '9.0', '>')) {
                 
                 // Check SQL import file, and rename it
-                $extFolder = $this->siteRoot . '/typo3conf/ext/' . $extname . '/';
+                $extFolder = (Environment::isComposerMode()) ? $this->siteRoot . '/extensions/' . $extname . '/' : $this->siteRoot . '/typo3conf/ext/' . $extname . '/';
                 if (file_exists($extFolder . 'ext_tables_static+adt.sql')) {
                     rename($extFolder . 'ext_tables_static+adt.sql', $extFolder . 'ext_tables_static+adt..sql');
                 }
