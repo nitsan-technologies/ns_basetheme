@@ -89,6 +89,7 @@ class NsBasethemeUtility {
         }
 
         // Check premium extensions with license activation
+        /*
         if ($_COOKIE['NsLicense'] != '') {
             $disableExtensions = explode(',', $_COOKIE['NsLicense']);
             if(count($disableExtensions) > 0) {
@@ -98,6 +99,7 @@ class NsBasethemeUtility {
                 }
             }
         }
+        */
 
         return $arrAllExtensions;
     }
