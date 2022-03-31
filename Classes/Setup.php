@@ -7,12 +7,15 @@ use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Package\PackageManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Core\Http\RequestFactory;
 
 /**
  * Setup
  */
 class Setup
 {
+    protected $requestFactory = null;
+
     /**
      * executeOnSignal
      *
@@ -113,24 +116,23 @@ class Setup
     public function fetchLicense($license)
     {
         $url = 'https://composer.t3terminal.com/API/GetComposerDetails.php?' . $license;
-        $curl = curl_init();
-        curl_setopt_array($curl, [
-          CURLOPT_URL => $url,
-          CURLOPT_RETURNTRANSFER => true,
-          CURLOPT_ENCODING => '',
-          CURLOPT_MAXREDIRS => 10,
-          CURLOPT_TIMEOUT => 0,
-          CURLOPT_FOLLOWLOCATION => true,
-          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-          CURLOPT_CUSTOMREQUEST => 'POST',
-        ]);
-        $response = curl_exec($curl);
-        if (!$response) {
-            echo 'Error :- ' . curl_error($curl);
-        }
-        curl_close($curl);
+        $request = GeneralUtility::makeInstance(RequestFactory::class);
+        
+        try {
 
-        return json_decode($response);
+            $response = $request->request(
+                $url,
+                'POST',
+                []
+             );
+
+            $rawResponse = $response->getBody()->getContents();
+            
+            return json_decode($rawResponse);
+
+        } catch (\Throwable $th) {
+            
+        }
     }
 
     /**
