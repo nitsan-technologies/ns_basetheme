@@ -88,19 +88,6 @@ class NsBasethemeUtility {
             }
         }
 
-        // Check premium extensions with license activation
-        /*
-        if ($_COOKIE['NsLicense'] != '') {
-            $disableExtensions = explode(',', $_COOKIE['NsLicense']);
-            if(count($disableExtensions) > 0) {
-                foreach ($disableExtensions as $ext) {
-                    $key = array_search($ext, $arrAllExtensions);
-                    unset($arrAllExtensions[$key]);
-                }
-            }
-        }
-        */
-
         return $arrAllExtensions;
     }
 

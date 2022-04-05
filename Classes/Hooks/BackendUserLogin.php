@@ -4,6 +4,7 @@ namespace NITSAN\NsBasetheme\Hooks;
 
 use TYPO3\CMS\Core\Package\PackageManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /**
  *
@@ -13,25 +14,18 @@ class BackendUserLogin
 {
     public function dispatch(array $backendUser)
     {
-        $activePackages = GeneralUtility::makeInstance(PackageManager::class)->isPackageActive('ns_license');
-        if (!$activePackages) {
-            if (version_compare(TYPO3_branch, '9.0', '>')) {
-                $this->siteRoot = \TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/';
-            } else {
-                $this->siteRoot = PATH_site;
-            }
-            $this->setup = GeneralUtility::makeInstance(\NITSAN\NsBasetheme\Setup::class);
-            $activePackages = GeneralUtility::makeInstance(PackageManager::class)->getActivePackages();
-            $allExtensions = [];
+        // Let's check license system
+        $isLicenseActivate = GeneralUtility::makeInstance(PackageManager::class)->isPackageActive('ns_license');
+        $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+        $this->nsLicenseModule = $this->objectManager->get(\NITSAN\NsLicense\Controller\NsLicenseModuleController::class);
+
+        if ($isLicenseActivate) {
+            $activePackages = GeneralUtility::makeInstance(PackageManager::class)->getAvailablePackages();
             foreach ($activePackages as $key => $value) {
                 $exp_key = explode('_theme', $key);
                 if ($exp_key[0] == 'ns') {
                     if ($key != 'ns_basetheme' && $key != 'ns_license') {
-                        $licenseData = $this->setup->fetchLicense('domain=' . GeneralUtility::getIndpEnv('HTTP_HOST') . '&ns_key=' . $key);
-                        if ($licenseData->status) {
-                            $extFolder = $this->siteRoot . '/typo3conf/ext/' . $key . '/';
-                            $this->setup->updateFiles($extFolder, $key);
-                        }
+                        $this->nsLicenseModule->connectToServer($key, 1);
                     }
                 }
             }
