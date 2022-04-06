@@ -17,9 +17,9 @@ class BackendUserLogin
         // Let's check license system
         $isLicenseActivate = GeneralUtility::makeInstance(PackageManager::class)->isPackageActive('ns_license');
         $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-        $this->nsLicenseModule = $this->objectManager->get(\NITSAN\NsLicense\Controller\NsLicenseModuleController::class);
 
         if ($isLicenseActivate) {
+            $this->nsLicenseModule = $this->objectManager->get(\NITSAN\NsLicense\Controller\NsLicenseModuleController::class);
             $activePackages = GeneralUtility::makeInstance(PackageManager::class)->getAvailablePackages();
             foreach ($activePackages as $key => $value) {
                 $exp_key = explode('_theme', $key);
