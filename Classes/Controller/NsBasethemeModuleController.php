@@ -97,6 +97,11 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     {
         $this->view->assign('action', 'generalSettings');
         $this->view->assign('constant', $this->constants);
+        $cat = 'ns_basetheme';
+        if (GeneralUtility::_GP('cat')){
+            $cat = GeneralUtility::_GP('cat');
+        }
+        $this->view->assign('cat', $cat);
     }
 
     /**
@@ -108,6 +113,11 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     {
         $this->view->assign('action', 'seoSettings');
         $this->view->assign('constant', $this->constants);
+        $cat = 'ns_basetheme';
+        if (GeneralUtility::_GP('cat')){
+            $cat = GeneralUtility::_GP('cat');
+        }
+        $this->view->assign('cat', $cat);
     }
 
     /**
@@ -117,8 +127,14 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
      */
     public function gdprSettingsAction()
     {
+
         $this->view->assign('action', 'gdprSettings');
         $this->view->assign('constant', $this->constants);
+        $cat = 'ns_basetheme';
+        if (GeneralUtility::_GP('cat')){
+            $cat = GeneralUtility::_GP('cat');
+        }
+        $this->view->assign('cat', $cat);
     }
 
     /**
@@ -130,6 +146,11 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     {
         $this->view->assign('action', 'styleSettings');
         $this->view->assign('constant', $this->constants);
+        $cat = 'ns_basetheme';
+        if (GeneralUtility::_GP('cat')){
+            $cat = GeneralUtility::_GP('cat');
+        }
+        $this->view->assign('cat', $cat);
     }
 
     /**
@@ -141,15 +162,24 @@ class NsBasethemeModuleController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     {
         $this->view->assign('action', 'integrationSettings');
         $this->view->assign('constant', $this->constants);
+        $cat = 'ns_basetheme';
+        if (GeneralUtility::_GP('cat')){
+            $cat = GeneralUtility::_GP('cat');
+        }
+        $this->view->assign('cat', $cat);
     }
 
     /**
      * action saveConstant
+     * @return void
      */
     public function saveConstantAction()
     {
-        $this->constantObj->main();
-        return false;
+        $param = GeneralUtility::_GP('tx_nsbasetheme_nitsan_nsbasethemensbasethememodule');
+        $action = $param['currentAction'];
+        $cat = $param['defCat'];
+        $uri = $this->uriBuilder->reset()->setCreateAbsoluteUri(true)->setArguments(['tx_nsbasetheme_nitsan_nsbasethemensbasethememodule[action]' => $action, 'tx_nsbasetheme_nitsan_nsbasethemensbasethememodule[controller]' => 'NsBasethemeModule', 'cat' => $cat])->build();
+        $this->redirectToUri($uri);
     }
 
     public function addConstantsConfiguration($constantForDb, $pid)

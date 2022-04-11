@@ -2,8 +2,7 @@ define([
     'jquery',
     'TYPO3/CMS/Backend/Modal',
     'TYPO3/CMS/NsBasetheme/Main',
-    'TYPO3/CMS/Backend/jquery.clearable'
-], function ($, Model) {
+], function ($, Modal) {
     $('.license-activation .license-activation-latest').on('click', function(e){
         e.preventDefault();
         $(this).addClass('active');
@@ -29,21 +28,11 @@ define([
     $('.field-info-trigger').on('click', function(){
         $(this).parents('.form-group').find('.field-info-text').slideToggle();
     });
-    
+
     $('#TypoScriptTemplateModuleController').on('submit',function(e){
-        e.preventDefault();
-        url = $(this).attr('action');
-        $.ajax({
-            url:url,
-            method:'post',
-            data:$(this).serializeArray(),
-            success:function(){
-                window.location.reload();
-                require(['TYPO3/CMS/Backend/Notification'], function(Notification) {
-                  Notification.success('Well done', 'Your configuration is updated successfully.');
-                });
-            }
-        })
+        require(['TYPO3/CMS/Backend/Notification'], function(Notification) {
+            Notification.success('Well done', 'Your configuration is updated successfully.');
+        });
     });
 
 });
