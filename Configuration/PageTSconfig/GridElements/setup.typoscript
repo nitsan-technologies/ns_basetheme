@@ -5,6 +5,7 @@ tx_gridelements.setup {
         title = LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.1column
         description = LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.1column.des
         icon = EXT:ns_basetheme/Resources/Public/Icons/gridelements.svg
+        frame = 3
         config {
             colCount = 1
             rowCount = 1
@@ -12,7 +13,7 @@ tx_gridelements.setup {
                 1 {
                     columns {
                         1 {
-                            name = Column 1
+                            name = Container
                             colPos = 1
                         }
                     }
@@ -25,6 +26,7 @@ tx_gridelements.setup {
         description = LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.2column.des
         icon = EXT:ns_basetheme/Resources/Public/Icons/gridelements.svg
         flexformDS = FILE:EXT:ns_basetheme/Configuration/FlexForms/Gridelements/nsBase2Col.xml
+        frame = 3
         config {
             colCount = 2
             rowCount = 1
@@ -49,6 +51,7 @@ tx_gridelements.setup {
         description = LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.3column.des
         icon = EXT:ns_basetheme/Resources/Public/Icons/gridelements.svg
         flexformDS = FILE:EXT:ns_basetheme/Configuration/FlexForms/Gridelements/nsBase3Col.xml
+        frame = 3
         config {
             colCount = 3
             rowCount = 1
@@ -77,6 +80,7 @@ tx_gridelements.setup {
         description = LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.4column.des
         icon = EXT:ns_basetheme/Resources/Public/Icons/gridelements.svg
         flexformDS = FILE:EXT:ns_basetheme/Configuration/FlexForms/Gridelements/nsBase4Col.xml
+        frame = 3
         config {
             colCount = 4
             rowCount = 1
