@@ -15,18 +15,9 @@ if (TYPO3_MODE === 'BE' && version_compare(TYPO3_branch, '8.0', '=')) {
         'TYPO3\\CMS\\Extensionmanager\\Service\\ExtensionManagementService',
         'hasInstalledExtensions',
         'NITSAN\\NsBasetheme\\Setup',
-        'executeOnSignal'
+        'executeOnSignalAfter'
     );
 } elseif (TYPO3_MODE === 'BE' && version_compare(TYPO3_branch, '9.0', '=')) {
-    // Before Activate Extension
-    $signalSlotDispatcher = TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
-    $signalSlotDispatcher->connect(
-        \TYPO3\CMS\Extensionmanager\Utility\InstallUtility::class,
-        'afterExtensionInstall',
-        \NITSAN\NsBasetheme\Setup::class,
-        'executeOnSignal'
-    );
-
     // After Activate Extension
     $signalSlotDispatcher = TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class);
     $signalSlotDispatcher->connect(
