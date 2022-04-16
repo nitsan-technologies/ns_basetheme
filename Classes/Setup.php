@@ -82,10 +82,12 @@ class Setup
 
             // Let's check license system
             $activePackages = GeneralUtility::makeInstance(PackageManager::class)->isPackageActive('ns_license');
-            $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-            $this->nsLicenseModule = $this->objectManager->get(\NITSAN\NsLicense\Controller\NsLicenseModuleController::class);
-            if ($activePackages && strpos($extname, 'ns_theme_') !== false) {
-                $this->nsLicenseModule->connectToServer($extname);
+            if($activePackages) {
+                $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+                $this->nsLicenseModule = $this->objectManager->get(\NITSAN\NsLicense\Controller\NsLicenseModuleController::class);
+                if ($activePackages && strpos($extname, 'ns_theme_') !== false) {
+                    $this->nsLicenseModule->connectToServer($extname);
+                }
             }
         }
     }
