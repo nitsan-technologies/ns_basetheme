@@ -81,13 +81,17 @@ class Setup
             }
 
             // Let's check license system
-            $activePackages = GeneralUtility::makeInstance(PackageManager::class)->isPackageActive('ns_license');
-            if($activePackages) {
+            $activePackages = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Package\PackageManager::class)->getActivePackages();
+            $isLicenseCheck = false;
+            foreach ($activePackages as $key => $value) {
+                if ($key == 'ns_license') {
+                    $isLicenseCheck = true;
+                }
+            }
+            if($isLicenseCheck && strpos($extname, 'ns_theme_') !== false) {
                 $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
                 $this->nsLicenseModule = $this->objectManager->get(\NITSAN\NsLicense\Controller\NsLicenseModuleController::class);
-                if ($activePackages && strpos($extname, 'ns_theme_') !== false) {
-                    $this->nsLicenseModule->connectToServer($extname);
-                }
+                $this->nsLicenseModule->connectToServer($extname, 1);
             }
         }
     }
