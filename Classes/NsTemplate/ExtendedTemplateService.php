@@ -1122,6 +1122,11 @@ class ExtendedTemplateService extends TemplateService
                 asort($this->categories[$category]);
             }
             $i = 0;
+
+            // PATCH: by Sanjay for Backend Preview Image
+            $previewBaseUrl = '/typo3conf/ext/ns_theme_t3karma/Resources/Public/Backend/Preview/';
+            $siteRootPath = (version_compare(TYPO3_branch, '9.0', '>')) ? \TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' : PATH_site;
+
             foreach ($this->categories[$category] as $name => $type) {
                 $params = $theConstants[$name];
                 if (is_array($params)) {
@@ -1200,6 +1205,11 @@ class ExtendedTemplateService extends TemplateService
                             break;
                         case 'options':
                             if (is_array($typeDat['params'])) {
+
+                                // PATCH: by Sanjay for Backend Preview Image
+                                $arrSelectBox = explode('-',$idName);
+                                $selectBoxName = end($arrSelectBox);
+                                
                                 $p_field = '';
                                 foreach ($typeDat['params'] as $val) {
                                     $vParts = explode('=', $val, 2);
@@ -1210,9 +1220,19 @@ class ExtendedTemplateService extends TemplateService
                                     if ($val === $params['value']) {
                                         $sel = ' selected';
                                     }
-                                    $p_field .= '<option value="' . htmlspecialchars($val) . '"' . $sel . '>' . $this->getLanguageService()->sL($label) . '</option>';
+
+                                    // PATCH: by Sanjay for Backend Preview Image
+                                    $previewImagePath = $previewBaseUrl.$selectBoxName.'/'.htmlspecialchars($val).'.png';
+                                    $p_field .= '<option data-img-src="'.$previewImagePath.'" value="' . htmlspecialchars($val) . '"' . $sel . '>' . $this->getLanguageService()->sL($label) . '</option>';
                                 }
-                                $p_field = '<select class="form-control" id="' . $idName . '" name="' . $fN . '">' . $p_field . '</select>';
+                                $p_field = '<select data-id="' . $selectBoxName . '" class="form-control themePreviewSelect" id="' . $idName . '" name="' . $fN . '">' . $p_field . '</select>';
+
+                                // PATCH: by Sanjay for Backend Preview Image
+                                $previewImagePath = $previewBaseUrl.$selectBoxName.'/'.$params['value'].'.png';
+                                if(is_file($siteRootPath.$previewImagePath)) {
+                                    $p_field .= '<br>';
+                                    $p_field .= '<img class="themePreviewImg_'.$selectBoxName.'" src="'.$previewImagePath.'" />';
+                                }
                             }
                             break;
                         case 'checkbox':
