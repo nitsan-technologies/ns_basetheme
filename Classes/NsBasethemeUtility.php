@@ -108,6 +108,22 @@ class NsBasethemeUtility {
                     
                     // Render Custom CSS and Javascript
                     $renderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Page\PageRenderer::class);
+
+                    // Grab CSS/JS of EXT.ns_basetheme
+                    $css = $siteRoot . 'ext/ns_basetheme/Resources/Public/css/Backend.css';
+                    if (file_exists($css)) {
+                        $renderer->addCssFile('EXT:ns_basetheme/Resources/Public/css/Backend.css', 'stylesheet', 'all');
+                    }
+                    $jsNaBaseThemeBackend = $siteRoot . 'ext/ns_basetheme/Resources/Public/JavaScript/Backend.js';
+                    $jsNaBaseThemeImagePreview = $siteRoot . 'ext/ns_basetheme/Resources/Public/JavaScript/ImagePreview.js';
+                    if (file_exists($jsNaBaseThemeImagePreview)) {
+                        $renderer->addJsFile('EXT:ns_basetheme/Resources/Public/JavaScript/ImagePreview.js', 'text/javascript', false);
+                    }
+                    if (file_exists($jsNaBaseThemeBackend)) {
+                        $renderer->addJsFile('EXT:ns_basetheme/Resources/Public/JavaScript/Backend.js', 'text/javascript', false);
+                    }
+
+                    // Grab CSS/JS of EXT.ns_theme_name
                     $css = $siteRoot . 'ext/' . $extKey . '/Resources/Public/Backend/Css/Backend.css';
                     $js = $siteRoot . 'ext/' . $extKey . '/Resources/Public/Backend/JavaScript/Backend.js';
                     if (file_exists($css)) {
