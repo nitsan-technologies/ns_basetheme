@@ -8,7 +8,19 @@ define([
     $('.themePreviewSelect').on('change', function() {
         $('.themePreviewImg_'+$(this).attr('data-id')).attr("src", $( this ).find( "option:selected" ).data( "img-src" ));
     });
+
+    // Toggle each panel
+    $('.card-header').on('click', function(e){
+        $(this).find('h5 em').toggleClass('fa-caret-down fa-caret-up');
+        $(this).next('.card-body').slideToggle();
+    });
+
+    // Disable toggle feature on every Submit/Save button
+    $('.card-header .btn-primary').on('click', function(e){
+        e.stopPropagation();
+    });
     
+    // Toggle question icon
     $('.field-info-trigger').on('click', function(){
         $(this).parents('.form-group').find('.field-info-text').slideToggle();
     });
