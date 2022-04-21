@@ -741,6 +741,7 @@ New Common Style
     align-items: center;
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .custom-card .card-header h5 {
