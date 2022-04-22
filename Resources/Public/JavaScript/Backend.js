@@ -13,7 +13,7 @@ require(["jquery"], function($) {
                         var elementName = $(this).find('.media-left .t3js-icon').attr('data-identifier');
                         if(elementName.indexOf('ns_') !== -1) {
                             $(this).find('button').addClass('NsBaseThemeElementWizardPreview');
-                            $(this).find('button').attr('data-src','/typo3conf/ext/'+childThemeName+'/Resources/Public/Backend/ElementPreview/'+elementName+'.jpeg');
+                            $(this).find('button').attr('data-src','/typo3conf/ext/'+childThemeName+'/Resources/Public/Backend/ElementPreview/'+elementName+'.png');
                         }
                     });
                 });
