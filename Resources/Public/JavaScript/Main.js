@@ -18,6 +18,7 @@ define([
     // Disable toggle feature on every Submit/Save button
     $('.card-header .btn-primary').on('click', function(e){
         e.stopPropagation();
+        $('#nsLicenseLoader').show();
     });
     
     // Toggle question icon
