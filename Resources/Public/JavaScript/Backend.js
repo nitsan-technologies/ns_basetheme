@@ -3,6 +3,8 @@ require(["jquery"], function($) {
     // Check if current theme have preview feature of Backend elements?
     // Grab from typo3conf/ext/ns_theme_t3karma/Resources/Public/Backend/JavaScript/Backend.js
     if(typeof(childThemeName) != 'undefined') {
+
+        // Preparing live preview for New element wizard
         $(document).on('click', '.t3js-modal-body .t3-new-content-element-wizard-inner .t3js-tabs .t3js-tabmenu-item', function() {
             $('.t3js-modal-body .t3-new-content-element-wizard-inner .tab-content').each(function( ) {
                 
@@ -10,6 +12,7 @@ require(["jquery"], function($) {
                     
                     $(this).find('.t3js-media-new-content-element-wizard').each(function( ) {
                         
+                        // Let's check if on "ns_elementName"
                         var elementName = $(this).find('.media-left .t3js-icon').attr('data-identifier');
                         if(elementName.indexOf('ns_') !== -1) {
                             $(this).find('button').addClass('NsBaseThemeElementWizardPreview');
@@ -20,6 +23,33 @@ require(["jquery"], function($) {
             });
             $('.NsBaseThemeElementWizardPreview').anarchytip();
         });
+
+        // Add/Edit form Check if current them have preview feature
+        var isNsThemeElement = $('.typo3-TCEforms .tab-content .tab-pane:first-child fieldset.form-section:first-child .form-group:first-child .formengine-field-item .form-wizards-element select').find(":selected").val();
+        //console.log(isNsThemeElement);
+
+        if(typeof(isNsThemeElement) != 'undefined') {
+            
+            // Let's check if on "ns_elementName"
+            if(isNsThemeElement.indexOf('ns_') !== -1) {
+
+                setTimeout(function() {
+                    
+                    // Check every form fields
+                    $('.typo3-TCEforms .tab-content .tab-pane:first-child fieldset.form-section').children().eq(1).each(function( ) {
+                        $(this).find('.form-section').each(function( ) {
+
+                            // Check if element == selectbox + iconbox
+                            var isSelextIcon = $(this).find('.form-group .formengine-field-item .input-group span.input-group-icon');
+
+                            if(typeof(isSelextIcon) != 'undefined') {
+                                $(this).find('.form-group .formengine-field-item .input-group').after(isSelextIcon.html());
+                            }
+                        });
+                    });
+                }, 500);
+            }
+        }
     }
 
     /*
