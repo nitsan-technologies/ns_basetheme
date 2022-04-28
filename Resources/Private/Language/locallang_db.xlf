@@ -11,13 +11,13 @@
             </trans-unit>
 
             <trans-unit id="imageManipulation.desktop">
-                <source>[Desktop] Default image dimension</source>
+                <source>[Desktop] Default Image Dimension</source>
             </trans-unit>
             <trans-unit id="imageManipulation.tablet">
-                <source>[Tablet] Default image dimension</source>
+                <source>[Tablet] Default Image Dimension</source>
             </trans-unit>
             <trans-unit id="imageManipulation.mobile">
-                <source>[Mobile] Default image dimension</source>
+                <source>[Mobile] Default Image Dimension</source>
             </trans-unit>
 
             <trans-unit id="wizard.ns_imageteaser">
@@ -73,28 +73,28 @@
             </trans-unit>
 
             <trans-unit id="grid.1column">
-                <source>1 column Grid</source>
+                <source>1 Column Container</source>
             </trans-unit>
             <trans-unit id="grid.1column.des">
-                <source>Standard One Column Grid</source>
+                <source>Default one column grid conatiner</source>
             </trans-unit>
             <trans-unit id="grid.2column">
-                <source>2 column Grid</source>
+                <source>2 Column Container</source>
             </trans-unit>
             <trans-unit id="grid.2column.des">
-                <source>Standard Two Column Grid</source>
+                <source>Flexible two column grid container</source>
             </trans-unit>
             <trans-unit id="grid.3column">
-                <source>3 column Grid</source>
+                <source>3 Column Container</source>
             </trans-unit>
             <trans-unit id="grid.3column.des">
-                <source>Standard Three Column Grid</source>
+                <source>Flexible three column grid container</source>
             </trans-unit>
             <trans-unit id="grid.4column">
-                <source>4 column Grid</source>
+                <source>4 Column Container</source>
             </trans-unit>
             <trans-unit id="grid.4column.des">
-                <source>Standard Four Column Grid</source>
+                <source>Flexible four column grid container</source>
             </trans-unit>
 		</body>
 	</file>

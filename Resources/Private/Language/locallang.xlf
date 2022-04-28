@@ -13,7 +13,6 @@
             <trans-unit id="ns_imageteaser.readmore">
                 <source>Read more!</source>
             </trans-unit>
-
             <trans-unit id="message">
                 <source>We use cookies and other tracking technologies to personalize and improve your experience. By continuing to use our website, you consent to this.</source>
             </trans-unit>
@@ -70,7 +69,6 @@
             <trans-unit id="integrationSettings">
                 <source>Integration</source>
             </trans-unit>
-
             <trans-unit id="sorry">
                 <source>Sorry!</source>
             </trans-unit>
@@ -81,7 +79,7 @@
                 <source>Option 1. To configure template glbally, Click on your main/root page. </source>
             </trans-unit>
             <trans-unit id="noconstantline3">
-                <source>Option 2: To create custom configuration at particular page, Go to the Template Module and create new extension Template for this page.</source>
+                <source>Option 2: To create custom configuration at particular page, Go to the Template Module > Create Extension Template for this page.</source>
             </trans-unit>
             <trans-unit id="noconstantline4">
                 <source>Do you want to create specific page-level configuration? Then, "Create Extension Template" from </source>
