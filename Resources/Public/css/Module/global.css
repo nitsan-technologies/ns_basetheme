@@ -927,7 +927,7 @@ select.form-control[size="1"]:not(.form-select-no-siblings) {
 @media (min-width: 768px) {
     .ns-ext-form .form-group > .row,
     .ns-ext-form .form-group > .row .col-md-5 .d-flex {
-        align-items: center;
+        align-items: top;
     }
     .ns-ext-form .form-group .t3js-formengine-label {
         margin-bottom: 0;

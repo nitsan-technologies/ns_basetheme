@@ -1137,6 +1137,10 @@ class ExtendedTemplateService extends TemplateService
             $previewBaseUrl = '/typo3conf/ext/'.$currentThemeName.'/Resources/Public/Backend/ThemeOptionsPreview/';
 
             foreach ($this->categories[$category] as $name => $type) {
+
+                // PATCH: Let's alway blank image preview
+                $themeOptionsImagesContainer = '';
+                
                 $params = $theConstants[$name];
                 if (is_array($params)) {
                     if ($subcat != $params['subcat_name']) {
@@ -1239,7 +1243,7 @@ class ExtendedTemplateService extends TemplateService
                                 // PATCH: by Sanjay for Backend Preview Image
                                 $previewImagePath = $previewBaseUrl.$selectBoxName.'/'.$params['value'].'.png';
                                 if(is_file($siteRootPath.$previewImagePath)) {
-                                    $p_field .= '<div class="themeOptionsImagesContainer"><img class="themePreviewImg_'.$selectBoxName.'" src="'.$previewImagePath.'" /></div>';
+                                    $themeOptionsImagesContainer = '<div class="themeOptionsImagesContainer"><img class="themePreviewImg_'.$selectBoxName.'" src="'.$previewImagePath.'" /></div>';
                                 }
                             }
                             break;
@@ -1314,7 +1318,7 @@ class ExtendedTemplateService extends TemplateService
 
                             // PATCH: Let's check if it's image e.g., Logo image path
                             if(is_file($siteRootPath.$fV)) {
-                                $p_field .= '<div class="themeOptionsImagesContainer"><img class="themeOptionsImages" src="'.$fV.'" /></div>';
+                                $themeOptionsImagesContainer = '<div class="themeOptionsImagesContainer"><img class="themeOptionsImages" src="'.$fV.'" /></div>';
                             }
                     }
                     // Define default names and IDs
@@ -1351,6 +1355,7 @@ class ExtendedTemplateService extends TemplateService
                                     . $p_field
                                     . $constantDescription
                                     . $constantData
+                                    . $themeOptionsImagesContainer
                                 . '</div>'
                             . '</div>'
                         . '</div>';
