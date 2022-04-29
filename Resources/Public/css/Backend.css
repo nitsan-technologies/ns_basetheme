@@ -20,6 +20,14 @@ p#NsBaseThemeElementWizardPreview:before {
   z-index: -1;
 }
 
+.themeOptionsImagesContainer {
+  margin-top: 15px;
+}
+.themeOptionsImages {
+  max-width: 140px;
+  max-height: 40px;
+}
+
 .ns-license-loader,
 .ns-license-loader img {
     position: absolute;

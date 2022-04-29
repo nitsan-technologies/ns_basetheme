@@ -1124,8 +1124,17 @@ class ExtendedTemplateService extends TemplateService
             $i = 0;
 
             // PATCH: by Sanjay for Backend Preview Image
-            $previewBaseUrl = '/typo3conf/ext/ns_theme_t3karma/Resources/Public/Backend/Preview/';
             $siteRootPath = (version_compare(TYPO3_branch, '9.0', '>')) ? \TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' : PATH_site;
+            
+            // Initiate NsBaseThemeUtility
+            $objNsBasetheme = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\NITSAN\NsBasetheme\NsBasethemeUtility::class);
+            
+            // Get list of all the themes which starts from EXT.ns_theme_*
+            $arrAllExtensions = $objNsBasetheme->getInstalledChildTheme();
+
+            // Get Exact Theme Name
+            $currentThemeName = $arrAllExtensions[0];
+            $previewBaseUrl = '/typo3conf/ext/'.$currentThemeName.'/Resources/Public/Backend/ThemeOptionsPreview/';
 
             foreach ($this->categories[$category] as $name => $type) {
                 $params = $theConstants[$name];
@@ -1230,8 +1239,7 @@ class ExtendedTemplateService extends TemplateService
                                 // PATCH: by Sanjay for Backend Preview Image
                                 $previewImagePath = $previewBaseUrl.$selectBoxName.'/'.$params['value'].'.png';
                                 if(is_file($siteRootPath.$previewImagePath)) {
-                                    $p_field .= '<br>';
-                                    $p_field .= '<img class="themePreviewImg_'.$selectBoxName.'" src="'.$previewImagePath.'" />';
+                                    $p_field .= '<div class="themeOptionsImagesContainer"><img class="themePreviewImg_'.$selectBoxName.'" src="'.$previewImagePath.'" /></div>';
                                 }
                             }
                             break;
@@ -1303,6 +1311,11 @@ class ExtendedTemplateService extends TemplateService
                                 </div>
                                 <input class="form-control" id="' . $idName . '" type="text" name="' . $fN . '" value="' . $fV . '" data-value="' . $dV . '" aria-describedby="basic-' . $idName . '" />
                             </div>';
+
+                            // PATCH: Let's check if it's image e.g., Logo image path
+                            if(is_file($siteRootPath.$fV)) {
+                                $p_field .= '<div class="themeOptionsImagesContainer"><img class="themeOptionsImages" src="'.$fV.'" /></div>';
+                            }
                     }
                     // Define default names and IDs
                     $checkboxName = 'check[' . $params['name'] . ']';
