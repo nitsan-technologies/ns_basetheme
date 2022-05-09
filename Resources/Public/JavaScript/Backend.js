@@ -40,14 +40,34 @@ require(["jquery"], function($) {
                         $(this).find('.form-section').each(function( ) {
 
                             // Check if element == selectbox + iconbox
-                            var isSelextIcon = $(this).find('.form-group .formengine-field-item .input-group span.input-group-icon');
+                            var elementsIcon = $(this);
+                            var isSelextIcon = elementsIcon.find('.form-group .formengine-field-item .input-group span.input-group-icon');
 
                             if(typeof(isSelextIcon) != 'undefined') {
-                                $(this).find('.form-group .formengine-field-item .input-group').after(isSelextIcon.html());
+
+                                if(isSelextIcon.length > 0) {
+
+                                    elementsIcon.find('.form-group .formengine-field-item .input-group .NsBasethemeElementIconContainerAtVariance').remove();
+                                    elementsIcon.find('.form-group .formengine-field-item .input-group').after('<div class="NsBasethemeElementIconContainerAtVariance">'+isSelextIcon.html()+'</div>');
+
+                                    var selectElement = $(this).find('.form-group .formengine-field-item .input-group select.form-select');
+                                    $(selectElement).on('change', function() {
+                                        
+                                        var findIcon = $('option:selected', this).attr('data-icon');
+
+                                        if(typeof(findIcon) != 'undefined') {
+
+                                            if(findIcon.length > 0) {
+                                                elementsIcon.find('.NsBasethemeElementIconContainerAtVariance').remove();
+                                                elementsIcon.find('.form-group .formengine-field-item .input-group').after('<div class="NsBasethemeElementIconContainerAtVariance">'+isSelextIcon.html()+'</div>');
+                                            }
+                                        }
+                                    });
+                                }
                             }
                         });
                     });
-                }, 500);
+                }, 700);
             }
         }
     }
