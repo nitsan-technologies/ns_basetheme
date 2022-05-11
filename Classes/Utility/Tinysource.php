@@ -1,0 +1,224 @@
+<?php
+namespace NITSAN\NsBasetheme\Utility;
+
+/*  | This extension is made with love for TYPO3 CMS and is licensed
+ *  | under GNU General Public License.
+ *  |
+ *  | (c) 2011-2022 Armin Vieweg <info@v.ieweg.de>
+ *  |     2012 Dennis Römmich <dennis@roemmich.eu>
+ */
+use TYPO3\CMS\Core\Utility\StringUtility;
+
+/**
+ * Class Tinysource
+ *
+ * @package NITSAN\NsBasetheme
+ */
+class Tinysource
+{
+    /**
+     * @var array Configuration of ns_basetheme
+     */
+    public $conf = [];
+
+    /**
+     * @var array
+     */
+    protected $protectedCode = [];
+
+    /**
+     * @var string
+     */
+    const TINYSOURCE_HEAD = 'head.';
+
+    /**
+     * @var string
+     */
+    const TINYSOURCE_BODY = 'body.';
+
+    /**
+     * Method called by "contentPostProc-all" TYPO3 core hook.
+     * It checks the typoscript configuration and do the minify of source code.
+     *
+     * @param mixed $params
+     * @param mixed $obj
+     * @return void
+     */
+    public function tinysource(&$params, &$obj)
+    {
+        $this->conf = $GLOBALS['TSFE']->tmpl->setup['plugin.']['ns_basetheme.']['tinysource.'] ?? [];
+
+        if (($this->conf['enable'] ?? false) && !($GLOBALS['TSFE']->config['config']['disableAllHeaderCode'] ?? false)) {
+            $source = $GLOBALS['TSFE']->content;
+
+            $headOffset = strpos($source, '<head');
+            $headEndOffset = strpos($source, '>', $headOffset);
+            $closingHeadOffset = strpos($source, '</head>');
+            $bodyOffset = strpos($source, '<body');
+            $bodyEndOffset = strpos($source, '>', $bodyOffset);
+            $closingBodyOffset = strpos($source, '</body>');
+
+            if (($headOffset !== false && $headEndOffset !== false && $closingHeadOffset !== false) ||
+                ($bodyOffset !== false && $bodyEndOffset !== false && $closingBodyOffset !== false)
+            ) {
+                $beforeHead = substr($source, 0, $headEndOffset + 1);
+                $head = substr($source, $headEndOffset + 1, $closingHeadOffset - $headEndOffset - 1);
+                $afterHead = substr($source, $closingHeadOffset, $bodyEndOffset - $closingHeadOffset + 1);
+                $body = substr($source, $bodyEndOffset + 1, $closingBodyOffset - $bodyEndOffset - 1);
+                $afterBody = substr($source, $closingBodyOffset);
+
+                $head = $this->makeTiny($head, self::TINYSOURCE_HEAD);
+                $body = $this->makeTiny($body, self::TINYSOURCE_BODY);
+
+                if ($this->conf['oneLineMode'] ?? false) {
+                    $beforeHead = $this->makeTiny($beforeHead, self::TINYSOURCE_HEAD);
+                    $afterHead = $this->makeTiny($afterHead, self::TINYSOURCE_HEAD);
+                    $afterBody = $this->makeTiny($afterBody, self::TINYSOURCE_BODY);
+                }
+
+                $GLOBALS['TSFE']->content = $beforeHead . $head . $afterHead . $body . $afterBody;
+                if ($this->conf['oneLineMode'] ?? false) {
+                    $source = $this->protectCode($GLOBALS['TSFE']->content);
+                    $source = str_replace(['> <', '" />'], ['><', '"/>'], $source);
+                    $GLOBALS['TSFE']->content = $this->restoreProtectedCode($source);
+                }
+            }
+        }
+    }
+
+    /**
+     * Gets the configuration and makes the source tiny, <head> and <body>
+     * separated
+     *
+     * @param string $source
+     * @param string $type BODY or HEAD
+     * @return string the tiny source code
+     */
+    private function makeTiny(string $source, string $type) : string
+    {
+        // Get replacements
+        $replacements = ["\t", "\n", "\r"];
+
+        // Protect whitespace sensitive code
+        $source = $this->protectCode($source);
+
+        // Do replacements
+        $source = str_replace($replacements, ' ', $source);
+
+        // Strip comments (only for <body>)
+        if (($this->conf[$type]['stripComments'] ?? false) && $type === self::TINYSOURCE_BODY) {
+            // Prevent Strip of Search Comment if preventStripOfSearchComment is true
+            if ($this->conf[$type]['preventStripOfSearchComment'] ?? null) {
+                $source = $this->keepTypo3SearchTagAndStripHtmlComments($source);
+            } else {
+                $source = $this->stripHtmlComments($source);
+            }
+        }
+
+        // Strip double spaces
+        $source = preg_replace('/( {2,})/', ' ', $source);
+
+        // Strip two or more line breaks to one
+        $source = preg_replace('/(\n{2,})/i', "\n", $source);
+
+        if ($this->conf[$type]['removeTypeInScriptTags'] ?? false) {
+            $source = str_replace(
+                [
+                    ' type="text/javascript"',
+                    ' type=\'text/javascript\'',
+                ],
+                '',
+                $source
+            );
+        }
+
+        // Restore protected code
+        return $this->restoreProtectedCode($source);
+    }
+
+    /**
+     * Strips html comments from given string, but keep TYPO3SEARCH_ strings
+     *
+     * @param string $source
+     * @return string source without html comments, except TYPO3SEARCH comments
+     */
+    protected function keepTypo3SearchTagAndStripHtmlComments(string $source) : string
+    {
+        $originalSearchTagBegin = '<!--TYPO3SEARCH_begin-->';
+        $originalSearchTagEnd = '<!--TYPO3SEARCH_end-->';
+        $hash = StringUtility::getUniqueId('t3search_replacement_');
+        $hashedSearchTagBegin = '$$$' . $hash . '_start$$$';
+        $hashedSearchTagEnd = '$$$' . $hash . '_end$$$';
+
+        $source = str_replace(
+            [$originalSearchTagBegin, $originalSearchTagEnd],
+            [$hashedSearchTagBegin, $hashedSearchTagEnd],
+            $source
+        );
+        $source = $this->stripHtmlComments($source);
+        $source = str_replace(
+            [$hashedSearchTagBegin, $hashedSearchTagEnd],
+            [$originalSearchTagBegin, $originalSearchTagEnd],
+            $source
+        );
+        return $source;
+    }
+
+    /**
+     * Strips html comments from given string
+     *
+     * @param string $source
+     * @return string source without html comments
+     */
+    protected function stripHtmlComments(string $source) : string
+    {
+        $source = preg_replace(
+            '/<\!\-\-(?!INT_SCRIPT\.)(?!HD_)(?!TDS_)(?!FD_)(?!CSS_INCLUDE_)(?!CSS_INLINE_)(?!JS_LIBS)' .
+            '(?!JS_INCLUDE)(?!JS_INLINE)(?!HEADERDATA)(?!JS_LIBS_FOOTER)(?!JS_INCLUDE_FOOTER)' .
+            '(?!JS_INLINE_FOOTER)(?!FOOTERDATA)(?!\s\#\#\#).*?\-\->/s',
+            '',
+            $source
+        );
+        return $source;
+    }
+
+    /**
+     * Protects code from making it tiny
+     *
+     * @param string $source which contains the code you want to protect
+     * @return string Given source, protected code parts are replaced by placeholders
+     */
+    protected function protectCode(string $source) : string
+    {
+        $expressions = $this->conf['protectCode.'] ?? [];
+        if (!empty($expressions)) {
+            foreach ($expressions as $protectedCodeExpression) {
+                preg_match_all($protectedCodeExpression, $source, $match);
+                if (!empty($match[1])) {
+                    foreach ($match[1] as $occurrence) {
+                        $uniqueKey = '#!#' . StringUtility::getUniqueId('protected_') . '#!#';
+                        $this->protectedCode[$uniqueKey] = $occurrence;
+                        $source = str_replace($occurrence, $uniqueKey, $source);
+                    }
+                }
+            }
+        }
+        return $source;
+    }
+
+    /**
+     * Restores placeholders with stored, protected code
+     *
+     * @param string $source with placeholders
+     * @return string
+     */
+    protected function restoreProtectedCode(string $source) : string
+    {
+        if (\is_array($this->conf['protectCode.'] ?? null) && !empty($this->conf['protectCode.'] ?? [])) {
+            foreach ($this->protectedCode as $key => $code) {
+                $source = str_replace($key, $code, $source);
+            }
+        }
+        return $source;
+    }
+}

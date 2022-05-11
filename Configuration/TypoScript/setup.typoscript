@@ -24,3 +24,6 @@
 
 # Includes EXT:Container Configuration
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/Extensions/Container" extensions="typoscript">
+
+# Includes HTML Minified Configuration
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:ns_basetheme/Configuration/TypoScript/HtmlMinified" extensions="typoscript">
