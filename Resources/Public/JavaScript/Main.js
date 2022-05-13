@@ -31,5 +31,14 @@ define([
             Notification.success('Well done', 'Your configuration is updated successfully.');
         });
     });
-
+    $('#createExtensionTemplate').on('click', function(e) {
+        e.preventDefault();
+        $.ajax({
+            url:$(this).attr('href'),
+            method:'post',
+            success:function(){
+                window.location.reload();
+            }
+        })
+    })
 });
