@@ -1235,15 +1235,17 @@ class ExtendedTemplateService extends TemplateService
                                     }
 
                                     // PATCH: by Sanjay for Backend Preview Image
-                                    $previewImagePath = $previewBaseUrl.$selectBoxName.'/'.htmlspecialchars($val).'.png';
+                                    $imageExtension = ($selectBoxName == 'loader') ? '.gif' : '.png';
+                                    $previewImagePath = $previewBaseUrl.$selectBoxName.'/'.htmlspecialchars($val).$imageExtension;
                                     $p_field .= '<option data-img-src="'.$previewImagePath.'" value="' . htmlspecialchars($val) . '"' . $sel . '>' . $this->getLanguageService()->sL($label) . '</option>';
                                 }
                                 $p_field = '<select data-id="' . $selectBoxName . '" class="form-control themePreviewSelect" id="' . $idName . '" name="' . $fN . '">' . $p_field . '</select>';
 
                                 // PATCH: by Sanjay for Backend Preview Image
-                                $previewImagePath = $previewBaseUrl.$selectBoxName.'/'.$params['value'].'.png';
+                                $imageExtension = ($selectBoxName == 'loader') ? '.gif' : '.png';
+                                $previewImagePath = $previewBaseUrl.$selectBoxName.'/'.$params['value'].$imageExtension;
                                 if(is_file($siteRootPath.$previewImagePath)) {
-                                    $themeOptionsImagesContainer = '<div class="themeOptionsImagesContainer"><img class="themePreviewImg_'.$selectBoxName.'" src="'.$previewImagePath.'" /></div>';
+                                    $themeOptionsImagesContainer = '<div class="themeOptionsImagesContainer '.$selectBoxName.'"><img class="themePreviewImg_'.$selectBoxName.'" src="'.$previewImagePath.'" /></div>';
                                 }
                             }
                             break;
@@ -1317,8 +1319,14 @@ class ExtendedTemplateService extends TemplateService
                             </div>';
 
                             // PATCH: Let's check if it's image e.g., Logo image path
-                            if(is_file($siteRootPath.$fV)) {
-                                $themeOptionsImagesContainer = '<div class="themeOptionsImagesContainer"><img class="themeOptionsImages" src="'.$fV.'" /></div>';
+                            // Let's check if field == basetheme's favicon icon
+                            if($idName == 'ns_basetheme-website-settings-favicon' && (is_file($siteRootPath.$fV))) {
+                                $themeOptionsImagesContainerImageName = '/'.$fV;
+                                $themeOptionsImagesContainerImageName = str_replace('//','/',$themeOptionsImagesContainerImageName);
+                                $themeOptionsImagesContainer = '<div class="themeOptionsImagesContainer '.$idName.'"><img class="themeOptionsImages" src="'.$themeOptionsImagesContainerImageName.'" /></div>';
+                            }
+                            else if(is_file($siteRootPath.$fV)) {
+                                $themeOptionsImagesContainer = '<div class="themeOptionsImagesContainer '.$idName.'"><img class="themeOptionsImages" src="'.$fV.'" /></div>';
                             }
                     }
                     // Define default names and IDs
