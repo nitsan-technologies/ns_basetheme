@@ -183,14 +183,14 @@ ns_basetheme {
             #cat = ns_basetheme/130/03; type=boolean; label=Enable HTML Minified
             enable = 0
 
-            #cat = ns_basetheme/130/04; type=boolean; label=Strip Comments: Remove comment from the source
-            stripComments = 1
+            #cat = ns_basetheme/130/04; type=boolean; label=One Line HTML Minified: With this option enabled, all line-breaks (except for protected code) will be removed, in HTML source.
+            oneLineMode = 0
 
-            #cat = ns_basetheme/130/05; type=boolean; label=Remove Type from Script: Remove type attribute from the script tag
-            removeTypeInScriptTags = 1
+            #cat = ns_basetheme/130/05; type=boolean; label=Strip Comments: Remove comment from the source
+            stripComments = 0
 
-            #cat = ns_basetheme/130/06; type=boolean; label=One line mode: With this option enabled, all line-breaks (except for protected code) will be removed, in HTML source.
-            oneLineMode = 1
+            #cat = ns_basetheme/130/06; type=boolean; label=Remove Type from Script: Remove type attribute from the script tag
+            removeTypeInScriptTags = 0
         }
 
         # Define paths for templates, layout and partial

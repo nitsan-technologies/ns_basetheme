@@ -76,16 +76,16 @@
                 <source>No Extension Template available for this Page.</source>
             </trans-unit>
             <trans-unit id="noconstantline2">
-                <source>Option 1. To configure template glbally, Click on your main/root page. </source>
+                <source>Option 1. To configure template globally, Click on your main root page. </source>
             </trans-unit>
             <trans-unit id="noconstantline3">
                 <source>Option 2: To create custom configuration at particular page, Go to the Template Module > Create Extension Template for this page.</source>
             </trans-unit>
             <trans-unit id="noconstantline4">
-                <source>Do you want to create specific page-level configuration? Then, "Create Extension Template" from </source>
+                <source>Do you want to go with Option 2? Then </source>
             </trans-unit>
             <trans-unit id="templatelinkText">
-                <source>Template</source>
+                <source>Click Here</source>
             </trans-unit>
             <trans-unit id="save">
                 <source>Save Changes</source>
