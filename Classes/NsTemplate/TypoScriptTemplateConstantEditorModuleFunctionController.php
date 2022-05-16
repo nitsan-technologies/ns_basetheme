@@ -172,11 +172,17 @@ class TypoScriptTemplateConstantEditorModuleFunctionController
         } else {
             $view = GeneralUtility::makeInstance(StandaloneView::class);
             $id = (int)GeneralUtility::_GP('id');
+            $rootlineUtility = GeneralUtility::makeInstance(RootlineUtility::class, $id);
+            $rootLine = $rootlineUtility->get();
+            $isRootPage = $rootLine[array_key_first($rootLine)];
             if ($id) {
                 $urlParameters = [
                     'id' => $id,
                     'template' => 'all'
                 ];
+                if (!$isRootPage['is_siteroot']) {
+                    $urlParameters['createExtension'] = 'new';
+                }
                 if (version_compare(TYPO3_branch, '10', '>=')) {
                     $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
                     $aHref = (string)$uriBuilder->buildUriFromRoute('web_ts', $urlParameters);

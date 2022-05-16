@@ -66,7 +66,7 @@ if (TYPO3_MODE === 'BE') {
 }
 
 // Let's add default PageTSConfig for Backend layout, TCE form, Components etc.,
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKEY . '/Configuration/PageTSconfig/setup.typoscript">');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $_EXTKEY . '/Configuration/PageTSconfig/setup.tsconfig">');
 
 // Let's prepare CType components to add at TypoScript Config
 $tsComponents = $objNsBasetheme->setupComponentWiseTypoScript($allComponents);
@@ -113,3 +113,14 @@ $iconRegistry->registerIcon(
 // Register hook on successful BE user login
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_userauthgroup.php']['backendUserLogin'][] =
     \NITSAN\NsBasetheme\Hooks\BackendUserLogin::class . '->dispatch';
+
+// Register tiny source
+if (!isset($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-all'])) {
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-all'] = [];
+}
+array_unshift(
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-all'],
+    'NITSAN\NsBasetheme\Utility\Tinysource->tinysource'
+);
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-output'][] =
+    'NITSAN\NsBasetheme\Utility\Tinysource->tinysource';
