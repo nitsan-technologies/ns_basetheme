@@ -180,16 +180,16 @@ ns_basetheme {
         }
 
         tinysource {
-            #cat = ns_basetheme/130/03; type=boolean; label=Enable HTML Minified
+            #cat = ns_basetheme/130/03; type=boolean; label=Enable HTML Minified: Do you want to Minified HTML source code at Frontend?
             enable = 0
 
             #cat = ns_basetheme/130/04; type=boolean; label=One Line HTML Minified: With this option enabled, all line-breaks (except for protected code) will be removed, in HTML source.
             oneLineMode = 0
 
-            #cat = ns_basetheme/130/05; type=boolean; label=Strip Comments: Remove comment from the source
+            #cat = ns_basetheme/130/05; type=boolean; label=Strip Comments: Remove comments from the HTML source at Frontend
             stripComments = 0
 
-            #cat = ns_basetheme/130/06; type=boolean; label=Remove Type from Script: Remove type attribute from the script tag
+            #cat = ns_basetheme/130/06; type=boolean; label=Remove Type from Script: Remove type attribute from the script tag at Frontend
             removeTypeInScriptTags = 0
         }
 
