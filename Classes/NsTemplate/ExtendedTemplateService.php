@@ -1326,7 +1326,11 @@ class ExtendedTemplateService extends TemplateService
                                 $themeOptionsImagesContainer = '<div class="themeOptionsImagesContainer '.$idName.'"><img class="themeOptionsImages" src="'.$themeOptionsImagesContainerImageName.'" /></div>';
                             }
                             else if(is_file($siteRootPath.$fV)) {
-                                $themeOptionsImagesContainer = '<div class="themeOptionsImagesContainer '.$idName.'"><img class="themeOptionsImages" src="'.$fV.'" /></div>';
+
+                                // Ignore files e.g., WOFF
+                                if($idName != 'ns_theme_t3karma-website-fonts-font_woff2') {
+                                    $themeOptionsImagesContainer = '<div class="themeOptionsImagesContainer '.$idName.'"><img class="themeOptionsImages" src="'.$fV.'" /></div>';
+                                }
                             }
                     }
                     // Define default names and IDs
