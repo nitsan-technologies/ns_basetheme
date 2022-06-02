@@ -1134,7 +1134,17 @@ class ExtendedTemplateService extends TemplateService
 
             // Get Exact Theme Name
             $currentThemeName = $arrAllExtensions[0];
-            $previewBaseUrl = '/typo3conf/ext/'.$currentThemeName.'/Resources/Public/Backend/ThemeOptionsPreview/';
+
+            // Check if sub-folders based TYPO3 installation
+            $arrWhatsMyScriptPath = explode('/',$_SERVER['SCRIPT_NAME']);
+            $NsBaseThemeRootPath = '/';
+            foreach($arrWhatsMyScriptPath as $myPathKey => $myPathValue) {
+                if($myPathValue == '' || $myPathValue == '.' || $myPathValue == '..') continue;
+                if($myPathValue == 'typo3') break;
+                $NsBaseThemeRootPath .= $myPathValue.'/';
+            }
+            $NsBaseThemeRootPath .= 'typo3conf/ext/'.$currentThemeName.'/Resources/Public/Backend/ThemeOptionsPreview/';
+            $NsBaseThemeFilePath = $siteRootPath.'/typo3conf/ext/'.$currentThemeName.'/Resources/Public/Backend/ThemeOptionsPreview/';
 
             foreach ($this->categories[$category] as $name => $type) {
 
@@ -1236,15 +1246,15 @@ class ExtendedTemplateService extends TemplateService
 
                                     // PATCH: by Sanjay for Backend Preview Image
                                     $imageExtension = ($selectBoxName == 'loader') ? '.gif' : '.png';
-                                    $previewImagePath = $previewBaseUrl.$selectBoxName.'/'.htmlspecialchars($val).$imageExtension;
+                                    $previewImagePath = $NsBaseThemeRootPath.$selectBoxName.'/'.htmlspecialchars($val).$imageExtension;
                                     $p_field .= '<option data-img-src="'.$previewImagePath.'" value="' . htmlspecialchars($val) . '"' . $sel . '>' . $this->getLanguageService()->sL($label) . '</option>';
                                 }
                                 $p_field = '<select data-id="' . $selectBoxName . '" class="form-control themePreviewSelect" id="' . $idName . '" name="' . $fN . '">' . $p_field . '</select>';
 
                                 // PATCH: by Sanjay for Backend Preview Image
                                 $imageExtension = ($selectBoxName == 'loader') ? '.gif' : '.png';
-                                $previewImagePath = $previewBaseUrl.$selectBoxName.'/'.$params['value'].$imageExtension;
-                                if(is_file($siteRootPath.$previewImagePath)) {
+                                $previewImagePath = $NsBaseThemeRootPath.$selectBoxName.'/'.$params['value'].$imageExtension;
+                                if(is_file($NsBaseThemeFilePath.$selectBoxName.'/'.$params['value'].$imageExtension)) {
                                     $themeOptionsImagesContainer = '<div class="themeOptionsImagesContainer '.$selectBoxName.'"><img class="themePreviewImg_'.$selectBoxName.'" src="'.$previewImagePath.'" /></div>';
                                 }
                             }
@@ -1320,12 +1330,12 @@ class ExtendedTemplateService extends TemplateService
 
                             // PATCH: Let's check if it's image e.g., Logo image path
                             // Let's check if field == basetheme's favicon icon
-                            if($idName == 'ns_basetheme-website-settings-favicon' && (is_file($siteRootPath.$fV))) {
+                            if($idName == 'ns_basetheme-website-settings-favicon' && (is_file($_SERVER['DOCUMENT_ROOT'].$fV))) {
                                 $themeOptionsImagesContainerImageName = '/'.$fV;
                                 $themeOptionsImagesContainerImageName = str_replace('//','/',$themeOptionsImagesContainerImageName);
                                 $themeOptionsImagesContainer = '<div class="themeOptionsImagesContainer '.$idName.'"><img class="themeOptionsImages" src="'.$themeOptionsImagesContainerImageName.'" /></div>';
                             }
-                            else if(is_file($siteRootPath.$fV)) {
+                            else if(is_file($_SERVER['DOCUMENT_ROOT'].$fV)) {
 
                                 // Ignore files e.g., WOFF
                                 if($idName != 'ns_theme_t3karma-website-fonts-font_woff2') {
