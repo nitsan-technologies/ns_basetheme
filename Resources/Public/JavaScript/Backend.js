@@ -4,6 +4,12 @@ require(["jquery"], function($) {
     // Grab from typo3conf/ext/ns_theme_t3karma/Resources/Public/Backend/JavaScript/Backend.js
     if(typeof(childThemeName) != 'undefined') {
 
+        // PATCH for sub-domains of our demo server
+        var isDemoServerPath = '';
+        if(window.location.hostname == 'demo.t3terminal.com') {
+            isDemoServerPath = '/t3-karma';
+        }
+
         // Preparing live preview for New element wizard
         $(document).on('click', '.t3js-modal-body .t3-new-content-element-wizard-inner .t3js-tabs .t3js-tabmenu-item', function() {
             $('.t3js-modal-body .t3-new-content-element-wizard-inner .tab-content').each(function( ) {
@@ -16,7 +22,7 @@ require(["jquery"], function($) {
                         var elementName = $(this).find('.media-left .t3js-icon').attr('data-identifier');
                         if(elementName.indexOf('ns_') !== -1) {
                             $(this).find('button').addClass('NsBaseThemeElementWizardPreview');
-                            $(this).find('button').attr('data-src','/typo3conf/ext/'+childThemeName+'/Resources/Public/Backend/ComponentPreview/'+elementName+'.png');
+                            $(this).find('button').attr('data-src',isDemoServerPath+'/typo3conf/ext/'+childThemeName+'/Resources/Public/Backend/ComponentPreview/'+elementName+'.png');
                         }
                     });
                 });
