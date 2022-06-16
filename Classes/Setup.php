@@ -91,7 +91,7 @@ class Setup
             if($isLicenseCheck && strpos($extname, 'ns_theme_') !== false) {
                 $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
                 $this->nsLicenseModule = $this->objectManager->get(\NITSAN\NsLicense\Controller\NsLicenseModuleController::class);
-                $this->nsLicenseModule->connectToServer($extname, 1);
+                $this->nsLicenseModule->connectToServer($extname, 0);
             }
         }
     }
