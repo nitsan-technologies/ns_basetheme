@@ -7,7 +7,8 @@ require(["jquery"], function($) {
         // PATCH for sub-domains of our demo server
         var isDemoServerPath = '';
         if(window.location.hostname == 'demo.t3terminal.com') {
-            isDemoServerPath = '/t3-karma';
+            const subDirectory = window.location.pathname.split('/');
+            isDemoServerPath = '/'+subDirectory[1];
         }
 
         // Preparing live preview for New element wizard
