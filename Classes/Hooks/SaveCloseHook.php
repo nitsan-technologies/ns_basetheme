@@ -18,8 +18,16 @@ class SaveCloseHook
      */
     public function addSaveCloseButton($params, &$buttonBar)
     {
+       
         $buttons = $params['buttons'];
-        $saveButton = $buttons[\TYPO3\CMS\Backend\Template\Components\ButtonBar::BUTTON_POSITION_LEFT][2][0];
+        $saveButton = [];
+        if (!empty($buttons)) {
+            $buttonAvail = array_key_exists(2, $buttons[\TYPO3\CMS\Backend\Template\Components\ButtonBar::BUTTON_POSITION_LEFT]);
+        }
+        if (!empty($buttonAvail)) {
+            $saveButton = $buttons[\TYPO3\CMS\Backend\Template\Components\ButtonBar::BUTTON_POSITION_LEFT][2][0];
+        }
+        
         if ($saveButton instanceof InputButton) {
             $iconFactory = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconFactory::class);
 
@@ -41,9 +49,15 @@ class SaveCloseHook
      * @return array
      */
     public function addSaveShowButton($params, &$buttonBar)
-    {
+    { 
         $buttons = $params['buttons'];
-        $saveButton = $buttons[\TYPO3\CMS\Backend\Template\Components\ButtonBar::BUTTON_POSITION_LEFT][2][0];
+        $saveButton = [];
+        if (!empty($buttons)) {
+            $buttonAvail = array_key_exists(2, $buttons[\TYPO3\CMS\Backend\Template\Components\ButtonBar::BUTTON_POSITION_LEFT]);
+        }
+        if (!empty($buttonAvail)) {
+            $saveButton = $buttons[\TYPO3\CMS\Backend\Template\Components\ButtonBar::BUTTON_POSITION_LEFT][2][0];
+        }
         if ($saveButton instanceof InputButton) {
             $iconFactory = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconFactory::class);
 

@@ -383,7 +383,8 @@ page.headerData {
     page.headerData.998 >
 [global]
 
-[request.getCookieParams()['cookieconsent_status'] == 'allow']
+
+[cookieconsent_status == 'allow']
 page {
     headerData {
         987 = TEXT
