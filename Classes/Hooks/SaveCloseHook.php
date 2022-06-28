@@ -21,8 +21,11 @@ class SaveCloseHook
        
         $buttons = $params['buttons'];
         $saveButton = [];
-        if (!empty($buttons)) {
-            $buttonAvail = array_key_exists(2, $buttons[\TYPO3\CMS\Backend\Template\Components\ButtonBar::BUTTON_POSITION_LEFT]);
+ 
+        if (!empty($buttons['left'])) {
+            if(is_array($buttons[\TYPO3\CMS\Backend\Template\Components\ButtonBar::BUTTON_POSITION_LEFT])){
+                $buttonAvail = array_key_exists(2, $buttons[\TYPO3\CMS\Backend\Template\Components\ButtonBar::BUTTON_POSITION_LEFT]);
+            }
         }
         if (!empty($buttonAvail)) {
             $saveButton = $buttons[\TYPO3\CMS\Backend\Template\Components\ButtonBar::BUTTON_POSITION_LEFT][2][0];
@@ -52,8 +55,10 @@ class SaveCloseHook
     { 
         $buttons = $params['buttons'];
         $saveButton = [];
-        if (!empty($buttons)) {
-            $buttonAvail = array_key_exists(2, $buttons[\TYPO3\CMS\Backend\Template\Components\ButtonBar::BUTTON_POSITION_LEFT]);
+        if (!empty($buttons['left'])) {
+            if(is_array($buttons[\TYPO3\CMS\Backend\Template\Components\ButtonBar::BUTTON_POSITION_LEFT])){
+                $buttonAvail = array_key_exists(2, $buttons[\TYPO3\CMS\Backend\Template\Components\ButtonBar::BUTTON_POSITION_LEFT]);
+            }
         }
         if (!empty($buttonAvail)) {
             $saveButton = $buttons[\TYPO3\CMS\Backend\Template\Components\ButtonBar::BUTTON_POSITION_LEFT][2][0];
