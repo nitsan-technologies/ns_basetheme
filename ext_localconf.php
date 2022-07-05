@@ -124,3 +124,6 @@ array_unshift(
 );
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-output'][] =
     'NITSAN\NsBasetheme\Utility\Tinysource->tinysource';
+
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['nsBasetheme_gridToContainerWizard']
+    = \NITSAN\NsBasetheme\Updates\GridToContainerWizard::class;
