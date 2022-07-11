@@ -128,6 +128,16 @@ class GridToContainerWizard implements UpgradeWizardInterface, RepeatableInterfa
                 ->set('tx_container_parent', $record['tx_gridelements_container']);
             $queryBuilder->execute();
         }
+
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('pages');
+        $queryBuilder = $connection->createQueryBuilder();
+        $queryBuilder
+            ->update('pages')
+            ->where(
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter('1' , \PDO::PARAM_INT))
+            )
+            ->set('TSconfig', 'tx_gridelements.setup >')
+            ->execute();
         return true;
     }
 
