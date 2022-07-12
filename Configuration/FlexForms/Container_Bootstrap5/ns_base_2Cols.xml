@@ -349,7 +349,8 @@
 										<numIndex index="0">12/12</numIndex>
 										<numIndex index="1">col-md-12</numIndex>
 									</numIndex>
-								</items>								
+								</items>		
+								<default>col-md-6</default>						
 							</config>
 						</TCEforms>
 					</width_column_md_1>
@@ -413,10 +414,12 @@
 										<numIndex index="0">12/12</numIndex>
 										<numIndex index="1">col-md-12</numIndex>
 									</numIndex>
-								</items>								
+								</items>
+								<default>col-md-6</default>								
 							</config>
 						</TCEforms>
 					</width_column_md_2>
+
 					<offset_column_md_1>
 						<TCEforms>
 							<exclude>0</exclude>

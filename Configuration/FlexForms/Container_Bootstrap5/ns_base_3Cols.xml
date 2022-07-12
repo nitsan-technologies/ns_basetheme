@@ -480,10 +480,6 @@
 										<numIndex index="0">12/12</numIndex>
 										<numIndex index="1">col-md-12</numIndex>
 									</numIndex>
-									<numIndex index="13" type="array">
-										<numIndex index="0">Not</numIndex>
-										<numIndex index="1">not</numIndex>
-									</numIndex>
 								</items>
 								<default>col-md-4</default>
 							</config>
@@ -549,10 +545,6 @@
 										<numIndex index="0">12/12</numIndex>
 										<numIndex index="1">col-md-12</numIndex>
 									</numIndex>
-									<numIndex index="13" type="array">
-										<numIndex index="0">Not</numIndex>
-										<numIndex index="1">not</numIndex>
-									</numIndex>
 								</items>
 								<default>col-md-4</default>
 							</config>
@@ -617,10 +609,6 @@
 									<numIndex index="12" type="array">
 										<numIndex index="0">12/12</numIndex>
 										<numIndex index="1">col-md-12</numIndex>
-									</numIndex>
-									<numIndex index="13" type="array">
-										<numIndex index="0">Not</numIndex>
-										<numIndex index="1">not</numIndex>
 									</numIndex>
 								</items>
 								<default>col-md-4</default>
