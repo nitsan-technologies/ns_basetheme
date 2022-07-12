@@ -1321,7 +1321,7 @@
 					<offset_column_xxl_2>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:offsetMiddle</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:offsetRight</label>
 							<config>
 								<type>select</type>
 								<renderType>selectSingle</renderType>
