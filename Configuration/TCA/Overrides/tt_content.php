@@ -186,13 +186,13 @@ call_user_func(function () {
         );
         $nsbasethemeUtility = GeneralUtility::makeInstance(\NITSAN\NsBasetheme\NsBasethemeUtility::class);
         $installedTheme = $nsbasethemeUtility->getInstalledChildTheme();
-        $basePath =  Environment::getPublicPath().'/typo3conf/ext/'.$installedTheme[0].'/Resources/Public/bootstrap5.css';
+        $basePath =  Environment::getPublicPath().'/typo3conf/ext/'.$installedTheme[0].'/Resources/Public/CheckBootstrapVersion';
         $checkfile = file_exists($basePath); 
-
+        $CheckBootstrapVersion = file_get_contents($basePath);
        
             $grids = ['ns_base_2Cols', 'ns_base_3Cols', 'ns_base_4Cols'];
             foreach ($grids as $grid) {
-                if($checkfile){
+                if($CheckBootstrapVersion == 'Bootstrap5'){
                     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
                         '',
                         'FILE:EXT:ns_basetheme/Configuration/FlexForms/Container_Bootstrap5/' . $grid . '.xml',

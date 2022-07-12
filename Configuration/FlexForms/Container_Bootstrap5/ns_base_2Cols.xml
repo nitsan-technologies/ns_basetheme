@@ -1187,7 +1187,7 @@
 					<width_column_xxl_2>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:sizeMiddle</label>
+							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:sizeRight</label>
 							<config>
 								<type>select</type>
 								<renderType>selectSingle</renderType>
