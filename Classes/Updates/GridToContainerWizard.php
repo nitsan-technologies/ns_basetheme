@@ -116,6 +116,11 @@ class GridToContainerWizard implements UpgradeWizardInterface, RepeatableInterfa
                     )
                 )
                 ->set('colPos', $colPos)
+                ->set('tx_gridelements_backend_layout', 0)
+                ->set('tx_gridelements_children', 0)
+                ->set('tx_gridelements_children', 0)
+                ->set('tx_gridelements_container', 0)
+                ->set('tx_gridelements_columns', 0)
                 ->set('tx_container_parent', $record['tx_gridelements_container']);
             $queryBuilder->execute();
         }
