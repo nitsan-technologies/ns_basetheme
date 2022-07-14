@@ -59,7 +59,7 @@ class GridToContainerWizard implements UpgradeWizardInterface, RepeatableInterfa
             )
             ->execute()->fetchColumn(0);
 
-        return (bool)$elementCount && \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('container');
+            return (bool)$elementCount && \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('container') && ($installedTheme[0] == 'ns_theme_t3karma' || $installedTheme[0] == 'ns_theme_bootstrap') ;
     }
 
     /**
@@ -71,7 +71,10 @@ class GridToContainerWizard implements UpgradeWizardInterface, RepeatableInterfa
      */
     public function executeUpdate(): bool
     {
-
+        $nsbasethemeUtility = GeneralUtility::makeInstance(\NITSAN\NsBasetheme\NsBasethemeUtility::class);
+        $installedTheme = $nsbasethemeUtility->getInstalledChildTheme();
+        
+    
         $connection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('tt_content');
         $queryBuilder = $connection->createQueryBuilder();
         $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
@@ -82,8 +85,14 @@ class GridToContainerWizard implements UpgradeWizardInterface, RepeatableInterfa
             )
             ->execute();
         while ($record = $statement->fetch()) {
-            $containerCtype = ['ns_base_container', 'ns_base_container', 'ns_base_2Cols', 'ns_base_3Cols', 'ns_base_4Cols','ns_base_5Cols', 'ns_base_6Cols'];
-            $gridsCtype = ['sectionGrid','nsBase1Col', 'nsBase2Col', 'nsBase3Col', 'nsBase4Col', 'nsBase5Col', 'nsBase6Col'];
+                $containerCtype = ['ns_base_container', 'ns_base_container', 'ns_base_2Cols', 'ns_base_3Cols', 'ns_base_4Cols','ns_base_5Cols', 'ns_base_6Cols'];
+                $gridsCtype = ['sectionGrid','nsBase1Col', 'nsBase2Col', 'nsBase3Col', 'nsBase4Col', 'nsBase5Col', 'nsBase6Col'];
+         
+            if($installedTheme[0] == 'ns_theme_t3karma'){
+                $containerCtype = ['ns_base_container', 'ns_base_container', 'ns_base_container', 'ns_base_2Cols', 'ns_base_3Cols', 'ns_base_4Cols','ns_base_5Cols', 'ns_base_6Cols'];
+                $gridsCtype = ['nsCustomContainer','nsKarma1Col', 'nsBaseContainer', 'nsBase2Col', 'nsBase3Col', 'nsBase4Col', 'nsBase5Col', 'nsBase6Col'];
+           
+            }
             $cType = str_replace($gridsCtype, $containerCtype, $record['tx_gridelements_backend_layout']);
             $queryBuilder = $connection->createQueryBuilder();
             $queryBuilder->update('tt_content')
@@ -124,6 +133,28 @@ class GridToContainerWizard implements UpgradeWizardInterface, RepeatableInterfa
                 ->set('tx_container_parent', $record['tx_gridelements_container']);
             $queryBuilder->execute();
         }
+
+       
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('pages');
+        $queryBuilder = $connection->createQueryBuilder();
+
+        $result = $queryBuilder
+                    ->select('*')
+                    ->from('pages')
+                    ->where(
+                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter('1' , \PDO::PARAM_INT))
+                    )
+                    ->executeQuery()
+                    ->fetch();
+
+        $ts = $result['TSconfig']."\n".'tx_gridelements.setup >';
+        $queryBuilder
+            ->update('pages')
+            ->where(
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter('1' , \PDO::PARAM_INT))
+            )
+            ->set('TSconfig', $ts)
+            ->execute();
         return true;
     }
 

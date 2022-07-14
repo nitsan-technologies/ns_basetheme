@@ -300,19 +300,19 @@
             </trans-unit>
 
             <trans-unit id="colNormal">
-                <source><![CDATA[Medium (≥789px)]]></source>
-            </trans-unit>
-            <trans-unit id="colXtraSmall">
-                <source><![CDATA[Extra small (<576px)]]></source>
+                <source><![CDATA[Medium (≥768px)]]></source>
             </trans-unit>
             <trans-unit id="colSmall">
                 <source><![CDATA[Small (≥576px)]]></source>
             </trans-unit>
             <trans-unit id="colBig">
-                <source><![CDATA[Large (≥960px)]]></source>
+                <source><![CDATA[Large (≥992px)]]></source>
             </trans-unit>
             <trans-unit id="Extralarge">
                 <source><![CDATA[Extra large (≥1200px)]]></source>
+            </trans-unit>
+            <trans-unit id="ExtraExtralarge">
+                <source><![CDATA[Extra Extra large (≥1400px)]]></source>
             </trans-unit>
 
             <trans-unit id="sizeLeft">
