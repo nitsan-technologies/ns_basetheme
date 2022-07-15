@@ -49,7 +49,9 @@ class GridToContainerWizard implements UpgradeWizardInterface, RepeatableInterfa
      * @return bool Whether an update is required (TRUE) or not (FALSE)
      */
     public function updateNecessary(): bool
-    {
+    {   $nsbasethemeUtility = GeneralUtility::makeInstance(\NITSAN\NsBasetheme\NsBasethemeUtility::class);
+        $installedTheme = $nsbasethemeUtility->getInstalledChildTheme();
+        
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_content');
         $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
         $elementCount = $queryBuilder->count('uid')
@@ -59,7 +61,7 @@ class GridToContainerWizard implements UpgradeWizardInterface, RepeatableInterfa
             )
             ->execute()->fetchColumn(0);
 
-            return (bool)$elementCount && \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('container') && ($installedTheme[0] == 'ns_theme_t3karma' || $installedTheme[0] == 'ns_theme_bootstrap') ;
+            return (bool)$elementCount && \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('container') && ($installedTheme[0] == 'ns_theme_bootstrap') ;
     }
 
     /**
@@ -125,6 +127,11 @@ class GridToContainerWizard implements UpgradeWizardInterface, RepeatableInterfa
                     )
                 )
                 ->set('colPos', $colPos)
+                ->set('tx_gridelements_backend_layout', 0)
+                ->set('tx_gridelements_children', 0)
+                ->set('tx_gridelements_children', 0)
+                ->set('tx_gridelements_container', 0)
+                ->set('tx_gridelements_columns', 0)
                 ->set('tx_container_parent', $record['tx_gridelements_container']);
             $queryBuilder->execute();
         }
