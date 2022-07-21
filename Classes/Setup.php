@@ -26,7 +26,7 @@ class Setup
         
         if (strpos($extname, 'ns_') !== false && $extname != 'ns_license' && $extname != 'ns_basetheme') {
             if (version_compare(TYPO3_branch, '9.0', '>')) {
-                $this->siteRoot = \TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/';
+                $this->siteRoot = \TYPO3\CMS\Core\Core\Environment::getPublicPath();
             } else {
                 $this->siteRoot = PATH_site;
             }
@@ -75,7 +75,7 @@ class Setup
             }
 
             // Check SQL import file, and rename it
-            $extFolder = (Environment::isComposerMode()) ? $this->siteRoot . '/extensions/' . $extname . '/' : $this->siteRoot . '/typo3conf/ext/' . $extname . '/';
+            $extFolder = (Environment::isComposerMode()) ? Environment::getProjectPath() . '/extensions/' . $extname . '/' : $this->siteRoot . '/typo3conf/ext/' . $extname . '/';
             if (file_exists($extFolder . 'ext_tables_static+adt.sql')) {
                 rename($extFolder . 'ext_tables_static+adt.sql', $extFolder . 'ext_tables_static+adt..sql');
             }
