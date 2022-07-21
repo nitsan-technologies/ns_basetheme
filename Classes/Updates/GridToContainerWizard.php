@@ -61,7 +61,7 @@ class GridToContainerWizard implements UpgradeWizardInterface, RepeatableInterfa
             )
             ->execute()->fetchColumn(0);
 
-            return (bool)$elementCount && \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('container') && ($installedTheme[0] == 'ns_theme_bootstrap') ;
+            return (bool)$elementCount && \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('container') && ($installedTheme[0] == 'ns_theme_t3karma' || $installedTheme[0] == 'ns_theme_bootstrap') ;
     }
 
     /**
@@ -128,7 +128,6 @@ class GridToContainerWizard implements UpgradeWizardInterface, RepeatableInterfa
                 )
                 ->set('colPos', $colPos)
                 ->set('tx_gridelements_backend_layout', 0)
-                ->set('tx_gridelements_children', 0)
                 ->set('tx_gridelements_children', 0)
                 ->set('tx_gridelements_container', 0)
                 ->set('tx_gridelements_columns', 0)

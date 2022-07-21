@@ -188,7 +188,9 @@ call_user_func(function () {
         $installedTheme = $nsbasethemeUtility->getInstalledChildTheme();
         $basePath =  Environment::getPublicPath().'/typo3conf/ext/'.$installedTheme[0].'/Resources/Public/CheckBootstrapVersion';
         $checkfile = file_exists($basePath); 
-        $CheckBootstrapVersion = file_get_contents($basePath);
+        if ($checkfile) {
+            $CheckBootstrapVersion = file_get_contents($basePath);
+        }
        
             $grids = ['ns_base_2Cols', 'ns_base_3Cols', 'ns_base_4Cols'];
             foreach ($grids as $grid) {
