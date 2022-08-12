@@ -113,77 +113,79 @@ call_user_func(function () {
             ];
         }
     }
-
-    // Container related configuration
     if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('container')) {
-        $container = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\B13\Container\Tca\Registry::class);
-
-        // 2 Column grid element
-        $container->addContainer(
-            'ns_base_container', // CType
-            'Container Grid', // Label
-            'Standard Container grid element', // Description
-            [
+        \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\B13\Container\Tca\Registry::class)->configureContainer(
+            (
+                new \B13\Container\Tca\ContainerConfiguration(
+                    'ns_base_container', // CType
+                    'Container Grid', // label
+                    'Standard Container grid element', // description
+                    [
+                        [
+                            ['name' => 'Content', 'colPos' => 101]
+                        ]
+                    ] // grid configuration
+                )
+            )
+            // set an optional icon configuration
+            ->setIcon('EXT:ns_basetheme/Resources/Public/Icons/Container/container.svg')
+            
+    );
+    \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\B13\Container\Tca\Registry::class)->configureContainer(
+        (
+            new \B13\Container\Tca\ContainerConfiguration(
+                'ns_base_2Cols', // CType
+                '2 Column Grid', // label
+                'Standard Container grid element', // description
                 [
-                    ['name' => 'Content', 'colPos' => 101]
-                ]
-            ], // Grid configuration
-            'EXT:ns_basetheme/Resources/Public/Icons/Container/container.svg' // Icon
-        );
-
-        // 2 Column grid element
-        $container->addContainer(
-            'ns_base_2Cols', // CType
-            '2 Column Grid', // Label
-            'Standard 2 Column grid element', // Description
-            [
+                    [
+                        ['name' => 'Content', 'colPos' => 101],
+                        ['name' => 'Content', 'colPos' => 102]
+                    ]
+                ] // grid configuration
+            )
+        )
+        // set an optional icon configuration
+        ->setIcon('EXT:ns_basetheme/Resources/Public/Icons/Container/container-2col.svg')
+    );
+    \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\B13\Container\Tca\Registry::class)->configureContainer(
+        (
+            new \B13\Container\Tca\ContainerConfiguration(
+                'ns_base_3Cols', // CType
+                '3 Column Grid', // label
+                'Standard 3 Column grid element', // description
                 [
-                    ['name' => 'left side', 'colPos' => 101],
-                    ['name' => 'right side', 'colPos' => 102]
-                ]
-            ], // Grid configuration
-            'EXT:ns_basetheme/Resources/Public/Icons/Container/container-2col.svg', // Icon
-            'EXT:container/Resources/Private/Templates/Container.html',
-            'EXT:container/Resources/Private/Templates/Grid.html',
-            false
-        );
+                    [
+                        ['name' => 'Content', 'colPos' => 101],
+                        ['name' => 'Content', 'colPos' => 102],
+                        ['name' => 'Content', 'colPos' => 103]
+                    ]
+                ] // grid configuration
+            )
+        )
+        // set an optional icon configuration
+        ->setIcon('EXT:ns_basetheme/Resources/Public/Icons/Container/container-3col.svg')
+    );
 
-        // 3 Column grid element
-        $container->addContainer(
-            'ns_base_3Cols', // CType
-            '3 Column Grid', // Label
-            'Standard 3 Column grid element', // Description
-            [
+    \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\B13\Container\Tca\Registry::class)->configureContainer(
+        (
+            new \B13\Container\Tca\ContainerConfiguration(
+                'ns_base_4Cols', // CType
+                '4 Column Grid', // label
+                'Standard 4 Column grid element', // description
                 [
-                    ['name' => 'Content', 'colPos' => 101],
-                    ['name' => 'Content', 'colPos' => 102],
-                    ['name' => 'Content', 'colPos' => 103]
-                ]
-            ], // Grid configuration
-            'EXT:ns_basetheme/Resources/Public/Icons/Container/container-3col.svg', // Icon
-            'EXT:container/Resources/Private/Templates/Container.html',
-            'EXT:container/Resources/Private/Templates/Grid.html',
-            false
-        );
-
-        // 4 Column grid element
-        $container->addContainer(
-            'ns_base_4Cols', // CType
-            '4 Column Grid', // Label
-            'Standard 4 Column grid element', // Description
-            [
-                [
-                    ['name' => 'Content', 'colPos' => 101],
-                    ['name' => 'Content', 'colPos' => 102],
-                    ['name' => 'Content', 'colPos' => 103],
-                    ['name' => 'Content', 'colPos' => 104]
-                ]
-            ], // Grid configuration
-            'EXT:ns_basetheme/Resources/Public/Icons/Container/container-4col.svg', // Icon
-            'EXT:container/Resources/Private/Templates/Container.html',
-            'EXT:container/Resources/Private/Templates/Grid.html',
-            false
-        );
+                    [
+                        ['name' => 'Content', 'colPos' => 101],
+                        ['name' => 'Content', 'colPos' => 102],
+                        ['name' => 'Content', 'colPos' => 103],
+                        ['name' => 'Content', 'colPos' => 104]
+                    ]
+                ] // grid configuration
+            )
+        )
+        // set an optional icon configuration
+        ->setIcon('EXT:ns_basetheme/Resources/Public/Icons/Container/container-4col.svg')
+    );
         $nsbasethemeUtility = GeneralUtility::makeInstance(\NITSAN\NsBasetheme\NsBasethemeUtility::class);
         $installedTheme = $nsbasethemeUtility->getInstalledChildTheme();
         $basePath =  Environment::getPublicPath().'/typo3conf/ext/'.$installedTheme[0].'/Resources/Public/CheckBootstrapVersion';
