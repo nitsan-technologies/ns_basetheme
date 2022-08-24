@@ -5,8 +5,11 @@ p#NsBaseThemeElementWizardPreview {
   padding: 5px;
   display: none;
   color: #fff;
-  width: 360x;
+  width: 360px;
   height: 210px;
+}
+p#NsBaseThemeElementWizardPreview img {
+	width: 100%;
 }
 p#NsBaseThemeElementWizardPreview:before {
   content: '';
