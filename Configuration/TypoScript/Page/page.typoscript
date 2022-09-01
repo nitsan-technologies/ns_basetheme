@@ -384,20 +384,43 @@ page.headerData {
 [global]
 
 
-[cookieconsent_status == 'allow']
+[cookieconsent_status == 'allow' && "{$ns_basetheme.website.settings.googleanalyticsstatus}" == 0 && "{$ns_basetheme.website.settings.googleanalyticstype}" == 'GAv3']
 page {
     headerData {
+        987 >
         987 = TEXT
         987.value (
-                    <script>
-                      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+            <!-- Google Analytics GAv3 -->
+            <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-                      ga('create', '{$ns_basetheme.website.settings.googleanalytics}', 'auto');
-                      ga('send', 'pageview');
-                    </script>
+                ga('create', '{$ns_basetheme.website.settings.googleanalytics}', 'auto');
+                ga('send', 'pageview');
+            </script>
+        )
+        8999 = TEXT
+    }
+}
+[global]
+
+[cookieconsent_status == 'allow' && "{$ns_basetheme.website.settings.googleanalyticsstatus}" == 0 && "{$ns_basetheme.website.settings.googleanalyticstype}" == 'GAv4']
+page {
+    headerData {
+        987 >
+        987 = TEXT
+        987.value (
+            <!-- Global site tag (gtag.js) - Google Analytics GAv4 -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id={$ns_basetheme.website.settings.googleanalytics}"></script>
+            <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', '{$ns_basetheme.website.settings.googleanalytics}');
+            </script>
         )
         8999 = TEXT
     }

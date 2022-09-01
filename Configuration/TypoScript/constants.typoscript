@@ -102,10 +102,16 @@ ns_basetheme {
             #cat = ns_seo/200/05; type=string; label=Default Meta Robots: Set meta robots data
             seo_robots_default = FOLLOW,INDEX
 
-            #cat = ns_seo/210/01; type=string; label=Google Analytics ID: Setup Google Analytics Tracking ID to enable Google access to track your website
+            #cat = ns_seo/210/01; type=boolean; label=Disable Google Analytics: Do you want to disable Google Analytics?
+            googleanalyticsstatus = 0
+
+            # cat=ns_seo/210/02; type=options[GAv3,GAv4]; label=Google Analytics Type: Which Google analytics property do you want to integrate?
+            googleanalyticstype = GAv3
+
+            #cat = ns_seo/210/03; type=string; label=Google Analytics ID: Setup Google Analytics Tracking ID to enable Google access to track your website
             googleanalytics =
 
-            #cat = ns_seo/210/02; type=string; label=Google Map API Key: Setup your Google map's API key for displaying Google map
+            #cat = ns_seo/210/04; type=string; label=Google Map API Key: Setup your Google map's API key for displaying Google map
             seo_google_map =
 
             #cat = ns_seo/220/01; type=string; label=Twitter Profile Link: Configure your Twitter page's link
