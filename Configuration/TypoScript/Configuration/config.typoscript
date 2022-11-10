@@ -21,9 +21,9 @@ config {
 
     # Add header comment
     headerComment (
-+-----------------------------------------------------------------------------+
-|   A website based on the TYPO3 template by NITSANTech.com | T3Terminal.com  |
-+-----------------------------------------------------------------------------+
++---------------------------------------------------------------------------+
+|   A website based on the TYPO3 template by NITSANTech.com | T3Planet.com  |
++---------------------------------------------------------------------------+
     )
 
     # For TYPO3 v9 EXT:realurl
