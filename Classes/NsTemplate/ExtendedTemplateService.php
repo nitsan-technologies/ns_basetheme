@@ -1330,7 +1330,7 @@ class ExtendedTemplateService extends TemplateService
 
                             // PATCH: Let's check if it's image e.g., Logo image path
                             // Let's check if field == basetheme's favicon icon
-                            if($idName == 'ns_basetheme-website-settings-favicon' && (is_file($_SERVER['DOCUMENT_ROOT'].$fV))) {
+                            if($idName == 'ns_basetheme-website-settings-favicon' && (is_file($_SERVER['DOCUMENT_ROOT'].'/'.$fV))) {
                                 $themeOptionsImagesContainerImageName = '/'.$fV;
                                 $themeOptionsImagesContainerImageName = str_replace('//','/',$themeOptionsImagesContainerImageName);
                                 $themeOptionsImagesContainer = '<div class="themeOptionsImagesContainer '.$idName.'"><img class="themeOptionsImages" src="'.$themeOptionsImagesContainerImageName.'" /></div>';
