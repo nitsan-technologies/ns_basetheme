@@ -64,3 +64,11 @@ if (version_compare(TYPO3_branch, '9.0', '>')) {
 if (empty($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['loginBackgroundImage'])) {
     $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['loginBackgroundImage'] = 'EXT:ns_basetheme/Resources/Public/Images/BackendLogin/TYPO3-Rise-Background-2022.png';
 }
+
+// if Mask installed
+if (array_key_exists('tx_mask_animation',$GLOBALS['TCA']['tt_content']['columns'])){
+    $GLOBALS['TCA']['tt_content']['columns']['tx_mask_animation']['config']['items'] = \NITSAN\NsBasetheme\Utility\AnimationUtility::animationEffect('typo3conf/ext/ns_basetheme/Resources/Public/JavaScript/animations.json');
+} 
+if (array_key_exists('tx_mask_easing',$GLOBALS['TCA']['tt_content']['columns'])){
+    $GLOBALS['TCA']['tt_content']['columns']['tx_mask_easing']['config']['items'] = \NITSAN\NsBasetheme\Utility\AnimationUtility::animationEasing('typo3conf/ext/ns_basetheme/Resources/Public/JavaScript/animations.json');
+}

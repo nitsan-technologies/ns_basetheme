@@ -1,7 +1,10 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-	<picture>
-		<source srcset="{f:uri.image(image: '{file}', maxWidth: '1920', cropVariant: 'default')}" media="(min-width: 1200px)">
-		<source srcset="{f:uri.image(image: '{file}', maxWidth: '1200', cropVariant: 'specialTablet')}" media="(min-width: 768px)">
-		<img class="image-embed-item" title="{file.title}" srcset="{f:uri.image(image: '{file}', maxWidth: '768', cropVariant: 'specialMobile')}" alt="{file.alternative}" >
-	</picture>
+	<f:if condition="{f:cObject(typoscriptObjectPath: 'lib.globalLazyLoad')}">
+		<f:then>
+			<img class="image-embed-item lazy" src="data:," data-src="{f:uri.image(image: '{file}', width: '{dimensions.width}', height:'{dimensions.height}')}" alt="{file.alternative}" title="{file.title}">
+		</f:then>
+		<f:else>
+			<f:media class="image-embed-item" file="{file}" width="{dimensions.width}" height="{dimensions.height}" alt="{file.alternative}" title="{file.title}" loading="{settings.media.lazyLoading}" decoding="{settings.media.imageDecoding}" />
+		</f:else>
+	</f:if>
 </html>

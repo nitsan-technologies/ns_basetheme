@@ -193,6 +193,13 @@ lib {
     rootPageId {
         data = leveluid : 0
     }
+
+    // Lazyload
+    globalLazyLoad = TEXT
+    globalLazyLoad {
+        value = {$ns_basetheme.website.settings.lazyLoad}
+        wrap = |
+    }
 }
 
 #########################
