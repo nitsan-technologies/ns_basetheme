@@ -123,6 +123,9 @@ ns_basetheme {
             #cat = ns_seo/220/03; type=string; label=LinkedIn Profile Link: Configure your Linkedin page's link
             seo_linkedin_link = https://linkedin.com/
 
+            #cat = ns_basetheme/130/07; type=boolean; label=Enable Lazyload: If its enable please check vanilla-lazyload(https://github.com/verlok/vanilla-lazyload) is added if not then please add otherwiese its not work.
+            lazyLoad = 0
+
             cookie {
                 settings {
                     # cat=ns_gdpr/300; type=boolean; label= Enable Cookie Consent: Enable or Disable Cookie Consent Box

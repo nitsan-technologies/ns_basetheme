@@ -1,0 +1,31 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+	<f:if condition="{file.extension} == 'mp4'">
+		<f:then>
+			<f:if condition="{f:cObject(typoscriptObjectPath: 'lib.globalLazyLoad')}">
+				<f:then>
+					<video {f:if(condition: '{file.properties.autoplay}', then: 'autoplay muted loop playsinline', else: 'controls')} preload="metadata" class="lazy">
+						<source src="data:," data-src="{f:uri.image(image: '{file}', width:'{dimensions.width}c')}" type="video/mp4">
+					</video>
+				</f:then>
+				<f:else>
+					<video {f:if(condition: '{file.properties.autoplay}', then: 'autoplay muted loop playsinline', else: 'controls')} preload="metadata">
+						<source src="{f:uri.image(image: '{file}', width:'{dimensions.width}c')}" type="video/mp4">
+					</video>
+				</f:else>
+			</f:if>
+		</f:then>
+		<f:else>
+			<f:if condition="{file.extension}=='youtube' && {f:cObject(typoscriptObjectPath: 'lib.globalLazyLoad')}">
+				<f:then>
+					<iframe src="data:," data-src="https://www.youtube-nocookie.com/embed/{file.contents}?autohide=1&controls=1{f:if(condition: '{file.properties.autoplay}', then: '&autoplay=1&mute=1&enablejsapi=1')}" width="{dimensions.width}" height="{dimensions.height}" title="{file.title}" class="video-embed-item lazy" allow="{f:if(condition: '{file.properties.autoplay}', then: 'autoplay;')}fullscreen"></iframe>
+				</f:then>
+				<f:else if="{file.extension}=='vimeo' && {f:cObject(typoscriptObjectPath: 'lib.globalLazyLoad')}">
+					<iframe src="data:," data-src="https://player.vimeo.com/video/{file.contents}?byline=0&portrait=0{f:if(condition: '{file.properties.autoplay}', then: '&autoplay=1&muted=1')}" width="{dimensions.width}" height="{dimensions.height}" title="{file.title}" class="video-embed-item lazy" allow="{f:if(condition: '{file.properties.autoplay}', then: 'autoplay;')}fullscreen"></iframe>
+				</f:else>
+				<f:else>
+					<f:media class="video-embed-item" file="{file}" width="{dimensions.width}" height="{dimensions.height}" alt="{file.alternative}" title="{file.title}" additionalConfig="{settings.media.additionalConfig}" />
+				</f:else>
+			</f:if>
+		</f:else>
+	</f:if>
+</html>
