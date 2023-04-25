@@ -61,7 +61,7 @@ class GridToContainerWizard implements UpgradeWizardInterface, RepeatableInterfa
             )
             ->execute()->fetchColumn(0);
 
-            return (bool)$elementCount && \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('container') && ($installedTheme[0] == 'ns_theme_t3karma' || $installedTheme[0] == 'ns_theme_bootstrap') ;
+            return (bool)$elementCount && \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('container');
     }
 
     /**
@@ -109,6 +109,12 @@ class GridToContainerWizard implements UpgradeWizardInterface, RepeatableInterfa
             if($installedTheme[0] == 'ns_theme_ngo'){
                 $containerCtype = ['ns_base_container','ns_base_1Cols','ns_base_2Cols', 'ns_base_3Cols', 'ns_base_4Cols'];
                 $gridsCtype = ['nsBase1Col','nsContainer','nsBase2Col', 'nsBase3Col', 'nsBase4Col'];
+            }
+
+            if($installedTheme[0] == 'ns_theme_t3shri'){
+                $containerCtype = ['nsShriSection','ns_base_container','ns_base_2Cols', 'ns_base_3Cols', 'ns_base_4Cols'];
+                $gridsCtype = ['nsShriSection', 'nsBase1Col', 'nsBase2Col', 'nsBase3Col', 'nsBase4Col'];
+           
             }
             $cType = str_replace($gridsCtype, $containerCtype, $record['tx_gridelements_backend_layout']);
             $queryBuilder = $connection->createQueryBuilder();
