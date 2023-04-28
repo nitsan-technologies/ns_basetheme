@@ -140,6 +140,13 @@ class GridToContainerWizard implements UpgradeWizardInterface, RepeatableInterfa
                 $gridsCtype = ['1', '2', '3', '4', '5'];
            
             }
+
+            if($installedTheme[0] == 'ns_theme_healthy'){
+                $containerCtype = ['ns_base_2Cols', 'ns_base_3Cols', 'ns_base_4Cols', 'ns_base_container'];
+                $gridsCtype = ['1','2', '3', '4'];
+            }
+
+            
             $cType = str_replace($gridsCtype, $containerCtype, $record['tx_gridelements_backend_layout']);
             $queryBuilder = $connection->createQueryBuilder();
             $queryBuilder->update('tt_content')
