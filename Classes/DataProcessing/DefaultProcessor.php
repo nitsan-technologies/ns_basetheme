@@ -53,11 +53,11 @@ class DefaultProcessor implements DataProcessorInterface
                                 foreach ($subArrayItem as $subsubArrayItem) {
                                     if (isset($subsubArrayItem['el'])) {
                                         foreach ($subsubArrayItem['el'] as $subkey => $value) {
-                                            if (!is_array($options[$optionKey])) {
+                                            if (!is_array($options[$optionKey]?? null)) {
                                                 $options[$optionKey] = [];
                                             }
 
-                                            if (!is_array($options[$optionKey][$subprekey])) {
+                                            if (!is_array($options[$optionKey][$subprekey]?? null)) {
                                                 $options[$optionKey][$subprekey] = [];
                                             }
 
