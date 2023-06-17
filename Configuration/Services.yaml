@@ -1,7 +1,0 @@
-services:
-  NITSAN\NsBasetheme\Setup:
-    tags:
-      - name: event.listener
-        identifier: 'ns-basetheme-after'
-        method: 'executeOnSignalAfter'
-        event: TYPO3\CMS\Extensionmanager\Event\AfterExtensionSiteFilesHaveBeenImportedEvent
