@@ -1,0 +1,53 @@
+p#NsBaseThemeElementWizardPreview {
+  z-index: 9999;
+  position: absolute;
+  background: #292929;
+  padding: 5px;
+  display: none;
+  color: #fff;
+  width: 360px;
+  height: 210px;
+}
+p#NsBaseThemeElementWizardPreview img {
+	width: 100%;
+}
+p#NsBaseThemeElementWizardPreview:before {
+  content: '';
+  position: absolute;
+  top: 17px;
+  left: -5px;
+  background-color: #292929;
+  height: 10px;
+  width: 10px;
+  transform: rotate(42deg);
+  z-index: -1;
+}
+
+.themeOptionsImagesContainer {
+  margin-top: 15px;
+}
+.themeOptionsImages {
+  max-width: 140px;
+  max-height: 40px;
+}
+
+.ns-license-loader,
+.ns-license-loader img {
+    position: absolute;
+}
+.ns-license-loader {
+	background-color: rgba(0,0,0, 0.7);
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 9;
+}
+.ns-license-loader img {
+    top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+    max-width: 120px;
+    width: 100%;
+}

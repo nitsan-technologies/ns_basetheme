@@ -1,0 +1,104 @@
+<?php
+defined('TYPO3') or die();
+
+use NITSAN\NsBasetheme\Hooks\BackendUserLogin;
+use TYPO3\CMS\Core\Core\Environment;
+
+// Setup for before and after extension Installation
+$_EXTKEY = 'ns_basetheme';
+
+
+// Get sites' rootPath
+$siteRoot = \TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/typo3conf/ext/';
+if (Environment::isComposerMode()) {
+    $siteRoot = Environment::getProjectPath() . '/extensions/';
+}
+// Let's register icon for each TYPO3 Components
+$iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
+    \TYPO3\CMS\Core\Imaging\IconRegistry::class
+);
+
+if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('mask')) {
+    // Initiate NsBaseThemeUtility
+    $objNsBasetheme = TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\NITSAN\NsBasetheme\NsBasethemeUtility::class);
+
+    // Initiate with blank list of themes + components
+    $allComponents = $arrAllExtensions = [];
+
+    // Get list of all the themes which starts from EXT.ns_theme_*
+    $arrAllExtensions = $objNsBasetheme->getInstalledChildTheme();
+
+    // Get list of all the components from EXT.ns_theme_*
+    $allComponents = $objNsBasetheme->getChildThemeComponents($arrAllExtensions);
+
+    // Settled constatant to access from "Everywhere"
+    if (!defined('ALL_COMPONENTS')) define('ALL_COMPONENTS', $allComponents);
+    if (!defined('ALL_CHILD_THEMES')) define('ALL_CHILD_THEMES', $allComponents);
+
+    // Let's prepare CType components to add at PageTS Config
+    $pageTSConfig = $objNsBasetheme->prepareWizardPageTSConfig($allComponents);
+
+    // Adding final CType and extra tab call "Custom Components"
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig($pageTSConfig);
+
+    // Let's prepare CType components to add at TypoScript Config
+    $tsComponents = $objNsBasetheme->setupComponentWiseTypoScript($allComponents);
+
+    // Add TypoScript for tt_content as setup.typoscript
+    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScript($_EXTKEY, 'setup', "
+        tt_content {
+            $tsComponents
+        }
+    ");
+
+    if (count($allComponents) > 0) {
+        foreach ($allComponents as $extKey => $extValue) {
+            if (count($extValue) > 0) {
+                foreach ($extValue as $key => $theComponent) {
+                    $iconRegistry->registerIcon(
+                        $theComponent,
+                        \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
+                        ['source' => (file_exists($siteRoot . $extKey . '/Resources/Public/Icons/' . $theComponent . '.png')) ? 'EXT:' . $extKey . '/Resources/Public/Icons/' . $theComponent . '.png' : 'EXT:ns_basetheme/Resources/Public/Icons/default_icon.png']
+                    );
+                }
+            }
+        }
+    }
+}
+
+// Let's add default PageTS for "Form"
+$GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['default'] = 'EXT:ns_basetheme/Configuration/RTE/Default.yaml';
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('
+    @import "EXT:' . $_EXTKEY . '/Configuration/PageTSconfig/setup.tsconfig"
+');
+
+$iconIdentifiers = [
+    'submodule-nsbasetheme',
+    'module-nsbasetheme',
+];
+// Let's register module's icon
+foreach ($iconIdentifiers as $identifier) {
+    $iconRegistry->registerIcon(
+        $identifier,
+        \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        ['source' => 'EXT:ns_basetheme/Resources/Public/Icons/'.$identifier.'.svg']
+    );
+}
+
+// Draw content into content elements
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem'][] = 'NITSAN\\NsBasetheme\\Hooks\\CmsLayout';
+
+// Manipulate data if needed
+// $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = 'EXT:' . $_EXTKEY . '/Classes/Hooks/PreProcessFields.php:NITSAN\NsBasetheme\Hooks\PreProcessFields';
+
+// Register tiny source
+if (!isset($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-all'])) {
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-all'] = [];
+}
+array_unshift(
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-all'],
+    'NITSAN\NsBasetheme\Utility\Tinysource->tinysource'
+);
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-output'][] =
+    'NITSAN\NsBasetheme\Utility\Tinysource->tinysource';

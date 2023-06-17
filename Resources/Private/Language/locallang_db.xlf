@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-01-06T20:41:06Z" product-name="NITSANpageadds">
+		<header/>
+		<body>
+            <trans-unit id="palette.access">
+                <source>Access</source>
+            </trans-unit>
+            <trans-unit id="headline">
+                <source>Headline</source>
+            </trans-unit>
+
+            <trans-unit id="imageManipulation.desktop">
+                <source>[Desktop] Default Image Dimension</source>
+            </trans-unit>
+            <trans-unit id="imageManipulation.tablet">
+                <source>[Tablet] Default Image Dimension</source>
+            </trans-unit>
+            <trans-unit id="imageManipulation.mobile">
+                <source>[Mobile] Default Image Dimension</source>
+            </trans-unit>
+
+            <trans-unit id="wizard.ns_imageteaser">
+                <source>[Component] Image Teaser</source>
+            </trans-unit>
+            <trans-unit id="tab.ns_imageteaser">
+                <source>Image Setting</source>
+            </trans-unit>
+            <trans-unit id="wizard.ns_imageteaser.desc">
+                <source>Display teaser box with image and text</source>
+            </trans-unit>
+
+            <trans-unit id="wizard.ns_slider">
+                <source>[Component] Slider</source>
+            </trans-unit>
+            <trans-unit id="wizard.ns_slider.desc">
+                <source>Integrate slider with multiple images and headline</source>
+            </trans-unit>
+
+            <trans-unit id="header">
+                <source>Header Settings</source>
+            </trans-unit>
+            <trans-unit id="menu">
+                <source>Menu and Pages Settings</source>
+            </trans-unit>
+            <trans-unit id="footer">
+                <source>Footer Settings</source>
+            </trans-unit>
+            <trans-unit id="speed">
+                <source>Speed and Performance</source>
+            </trans-unit>
+            <trans-unit id="maintenance">
+                <source>Site Maintenance</source>
+            </trans-unit>
+            <trans-unit id="seo">
+                <source>SEO Settings</source>
+            </trans-unit>
+            <trans-unit id="google">
+                <source>Google</source>
+            </trans-unit>
+            <trans-unit id="style">
+                <source>Style Settings</source>
+            </trans-unit>
+            <trans-unit id="integration">
+                <source>Custom Integration</source>
+            </trans-unit>
+
+            <trans-unit id="social">
+                <source>Social Media</source>
+            </trans-unit>
+            <trans-unit id="cookie">
+                <source>Cookie Consent</source>
+            </trans-unit>
+
+            <trans-unit id="grid.1column">
+                <source>1 Column Container</source>
+            </trans-unit>
+            <trans-unit id="grid.1column.des">
+                <source>Default one column grid conatiner</source>
+            </trans-unit>
+            <trans-unit id="grid.2column">
+                <source>2 Column Container</source>
+            </trans-unit>
+            <trans-unit id="grid.2column.des">
+                <source>Flexible two column grid container</source>
+            </trans-unit>
+            <trans-unit id="grid.3column">
+                <source>3 Column Container</source>
+            </trans-unit>
+            <trans-unit id="grid.3column.des">
+                <source>Flexible three column grid container</source>
+            </trans-unit>
+            <trans-unit id="grid.4column">
+                <source>4 Column Container</source>
+            </trans-unit>
+            <trans-unit id="grid.4column.des">
+                <source>Flexible four column grid container</source>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>

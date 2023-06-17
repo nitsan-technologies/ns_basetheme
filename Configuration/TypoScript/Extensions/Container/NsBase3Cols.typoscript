@@ -1,0 +1,11 @@
+tt_content.ns_base_3Cols < lib.contentElement
+tt_content.ns_base_3Cols {
+    templateName = NsBase3Cols
+    templateRootPaths {
+        10 = EXT:ns_basetheme/Resources/Private/Extensions/Container/
+    }
+    dataProcessing {
+        100 = B13\Container\DataProcessing\ContainerProcessor
+        110 = NITSAN\NsBasetheme\DataProcessing\DefaultProcessor
+    }
+}

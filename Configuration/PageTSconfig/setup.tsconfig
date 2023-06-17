@@ -1,0 +1,5 @@
+// Include the BackendLayouts
+@import 'EXT:ns_basetheme/Configuration/PageTSconfig/BackendLayouts/Default.tsconfig'
+
+// Include the BackendLayouts
+@import 'EXT:ns_basetheme/Configuration/PageTSconfig/TceForm/Page.tsconfig'

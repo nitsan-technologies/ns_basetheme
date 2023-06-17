@@ -1,0 +1,7 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+	<picture>
+		<source srcset="{f:uri.image(image: '{file}', maxWidth: '1920', cropVariant: 'default')}" media="(min-width: 1200px)">
+		<source srcset="{f:uri.image(image: '{file}', maxWidth: '1200', cropVariant: 'specialTablet')}" media="(min-width: 768px)">
+		<img class="image-embed-item" title="{file.title}" srcset="{f:uri.image(image: '{file}', maxWidth: '768', cropVariant: 'specialMobile')}" alt="{file.alternative}" >
+	</picture>
+</html>
