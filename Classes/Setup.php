@@ -44,7 +44,7 @@ class Setup
             }
             if ($isLicenseCheck && str_contains($extname, 'ns_theme_')) {
                 $nsLicenseModule = GeneralUtility::makeInstance(NsLicenseModuleController::class);
-                $nsLicenseModule->connectToServer($extname, 0);
+                $nsLicenseModule->connectToServer($extname, 1, 'checkTheme');
             }
         }
     }
