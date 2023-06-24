@@ -86,8 +86,6 @@ foreach ($iconIdentifiers as $identifier) {
     );
 }
 
-// Draw content into content elements
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem'][] = 'NITSAN\\NsBasetheme\\Hooks\\CmsLayout';
 
 // Manipulate data if needed
 // $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = 'EXT:' . $_EXTKEY . '/Classes/Hooks/PreProcessFields.php:NITSAN\NsBasetheme\Hooks\PreProcessFields';
