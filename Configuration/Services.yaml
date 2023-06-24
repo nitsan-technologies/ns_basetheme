@@ -39,3 +39,8 @@ services:
         identifier: 'ns-basetheme-backend-login'
         method: 'dispatch'
         event: TYPO3\CMS\Core\Authentication\Event\AfterUserLoggedInEvent
+  NITSAN\NsBasetheme\EventListener\PageLayoutView:
+    tags:
+      - name: event.listener
+        identifier: 'flexform-process'
+        event: TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent
