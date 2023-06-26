@@ -20,6 +20,8 @@ final class PageLayoutView
         $allComponents = constant('ALL_COMPONENTS');
         $rowFlag = $extensionKey = '';
         $row = $event->getRecord();
+        $flexFormService = '';
+        $extKey ='';
         // Finalize components
         foreach ($allComponents as $extKey => $extValue) {
             foreach ($extValue as $key => $theComponent) {
@@ -43,6 +45,7 @@ final class PageLayoutView
                     $extensionKey
                 );
 
+
             if (!empty($row['pi_flexform'])) {
                 $flexFormService = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Service\FlexFormService::class);
             }
@@ -50,7 +53,8 @@ final class PageLayoutView
             $view->assign('flexformData', $flexFormService->convertFlexFormContentToArray($row['pi_flexform']));
             $view->assign('data', $row);
             $view->assign('image', $images);
-            
+
+                   
             // return the preview
             $event->setPreviewContent($view->render());
         
