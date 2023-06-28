@@ -302,6 +302,9 @@
             <trans-unit id="colNormal">
                 <source><![CDATA[Medium (≥768px)]]></source>
             </trans-unit>
+            <trans-unit id="colXtraSmall">
+                <source><![CDATA[Extra small (<576px)]]></source>
+            </trans-unit>
             <trans-unit id="colSmall">
                 <source><![CDATA[Small (≥576px)]]></source>
             </trans-unit>
