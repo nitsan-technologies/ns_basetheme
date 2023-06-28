@@ -44,3 +44,8 @@ services:
       - name: event.listener
         identifier: 'flexform-process'
         event: TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent
+
+  NITSAN\NsBasetheme\EventListener\Tinysource:
+    tags:
+      - name: event.listener
+        identifier: 'my-package/content-modifier'

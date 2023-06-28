@@ -1,18 +1,11 @@
 <?php
+declare(strict_types=1);
 
-namespace NITSAN\NsBasetheme\Utility;
+namespace NITSAN\NsBasetheme\EventListener;
 
-/*  | This extension is made with love for TYPO3 CMS and is licensed
- *  | under GNU General Public License.
- *  |
- *  | (c) 2011-2022 Armin Vieweg <info@v.ieweg.de>
- *  |     2012 Dennis Römmich <dennis@roemmich.eu>
- */
+use TYPO3\CMS\Frontend\Event\AfterCacheableContentIsGeneratedEvent;
 use TYPO3\CMS\Core\Utility\StringUtility;
 
-/**
- * Class Tinysource
- */
 class Tinysource
 {
     /**
@@ -35,20 +28,11 @@ class Tinysource
      */
     public const TINYSOURCE_BODY = 'body.';
 
-    /**
-     * Method called by "contentPostProc-all" TYPO3 core hook.
-     * It checks the typoscript configuration and do the minify of source code.
-     *
-     * @param mixed $params
-     * @param mixed $obj
-     */
-    public function tinysource(&$params, &$obj)
+    public function __invoke(AfterCacheableContentIsGeneratedEvent $event): void
     {
         $this->conf = $GLOBALS['TSFE']->tmpl->setup['plugin.']['ns_basetheme.']['tinysource.'] ?? [];
-
         if (($this->conf['enable'] ?? false) && !($GLOBALS['TSFE']->config['config']['disableAllHeaderCode'] ?? false)) {
             $source = $GLOBALS['TSFE']->content;
-
             $headOffset = strpos($source, '<head');
             $headEndOffset = strpos($source, '>', $headOffset);
             $closingHeadOffset = strpos($source, '</head>');
@@ -82,6 +66,11 @@ class Tinysource
                 }
             }
         }
+// Only do this when caching is enabled
+        if (!$event->isCachingEnabled()) {
+            return;
+        }
+        $event->getController()->content = str_replace('foo', 'bar', $event->getController()->content);
     }
 
     /**

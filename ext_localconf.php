@@ -85,18 +85,3 @@ foreach ($iconIdentifiers as $identifier) {
         ['source' => 'EXT:ns_basetheme/Resources/Public/Icons/'.$identifier.'.svg']
     );
 }
-
-
-// Manipulate data if needed
-// $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass'][] = 'EXT:' . $_EXTKEY . '/Classes/Hooks/PreProcessFields.php:NITSAN\NsBasetheme\Hooks\PreProcessFields';
-
-// Register tiny source
-if (!isset($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-all'])) {
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-all'] = [];
-}
-array_unshift(
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-all'],
-    'NITSAN\NsBasetheme\Utility\Tinysource->tinysource'
-);
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-output'][] =
-    'NITSAN\NsBasetheme\Utility\Tinysource->tinysource';
