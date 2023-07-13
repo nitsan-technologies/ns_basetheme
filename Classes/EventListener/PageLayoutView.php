@@ -16,23 +16,26 @@ final class PageLayoutView
 {
     public function __invoke(PageContentPreviewRenderingEvent $event): void
     {
-
-        $allComponents = constant('ALL_COMPONENTS');
         $rowFlag = $extensionKey = '';
-        $row = $event->getRecord();
-        $flexFormService = '';
-        $extKey ='';
-        // Finalize components
-        foreach ($allComponents as $extKey => $extValue) {
-            foreach ($extValue as $key => $theComponent) {
-                if ($row['CType'] == $theComponent) {
-                    $rowFlag = 1;
-                    $extensionKey = $extKey;
+        if (defined('ALL_COMPONENTS')) {
+            $allComponents = constant('ALL_COMPONENTS');
+           
+           
+            $row = $event->getRecord();
+            $flexFormService = '';
+            $extKey ='';
+            // Finalize components
+            foreach ($allComponents as $extKey => $extValue) {
+                foreach ($extValue as $key => $theComponent) {
+                    if ($row['CType'] == $theComponent) {
+                        $rowFlag = 1;
+                        $extensionKey = $extKey;
+                    }
                 }
             }
         }
 
-
+       
        // Let's check if our components is going to be load in backned?
        if ($rowFlag == 1 && $extensionKey != '') {
             //Get image from tt_content table
