@@ -29,7 +29,10 @@ class Setup
             $this->siteRoot = \TYPO3\CMS\Core\Core\Environment::getPublicPath();
 
             // Check SQL import file, and rename it
-            $extFolder = (Environment::isComposerMode()) ? Environment::getProjectPath() . '/extensions/' . $extname . '/' : $this->siteRoot . '/typo3conf/ext/' . $extname . '/';
+            if (Environment::isComposerMode()) {
+                $packageName = str_replace('_', '-', $extname);
+            }
+            $extFolder = (Environment::isComposerMode()) ? Environment::getProjectPath() . '/vendor/nitsan/' . $packageName . '/' : $this->siteRoot . '/typo3conf/ext/' . $extname . '/';
             if (file_exists($extFolder . 'ext_tables_static+adt.sql')) {
                 rename($extFolder . 'ext_tables_static+adt.sql', $extFolder . 'ext_tables_static+adt..sql');
             }

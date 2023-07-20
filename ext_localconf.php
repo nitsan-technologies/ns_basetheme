@@ -11,7 +11,7 @@ $_EXTKEY = 'ns_basetheme';
 // Get sites' rootPath
 $siteRoot = \TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/typo3conf/ext/';
 if (Environment::isComposerMode()) {
-    $siteRoot = Environment::getProjectPath() . '/extensions/';
+    $siteRoot = Environment::getProjectPath() . '/vendor/nitsan/';
 }
 // Let's register icon for each TYPO3 Components
 $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
