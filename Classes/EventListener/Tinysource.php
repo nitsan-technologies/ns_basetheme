@@ -70,7 +70,7 @@ class Tinysource
         if (!$event->isCachingEnabled()) {
             return;
         }
-        $event->getController()->content = str_replace('foo', 'bar', $event->getController()->content);
+      
     }
 
     /**
