@@ -15,6 +15,7 @@ class BackendUserLogin
      */
     public function dispatch(AfterUserLoggedInEvent $backendUser): void
     {
+        // @extensionScannerIgnoreLine
         $isLicenseActivate = GeneralUtility::makeInstance(PackageManager::class)->isPackageActive('ns_license');
         if ($isLicenseActivate) {
             $activePackages = GeneralUtility::makeInstance(PackageManager::class)->getAvailablePackages();

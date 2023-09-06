@@ -16,7 +16,7 @@ class Setup
      * @var string
      */
     protected string $siteRoot;
-    
+
    /**
      * executeOnSignalAfter
      */
@@ -38,6 +38,7 @@ class Setup
             }
 
             // Let's check license system
+            // @extensionScannerIgnoreLine
             $activePackages = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Package\PackageManager::class)->getActivePackages();
             $isLicenseCheck = false;
             foreach ($activePackages as $key => $value) {

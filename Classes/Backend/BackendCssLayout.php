@@ -43,6 +43,7 @@ class BackendCssLayout
                     // Grab CSS/JS of EXT.ns_basetheme
                     $css = $siteRoot . $extKey . '/Resources/Public/css/Backend.css';
                     if (file_exists($css)) {
+                        // @extensionScannerIgnoreLine
                         $this->renderer->addStyleSheet('Base', 'EXT:ns_basetheme/Resources/Public/css/Backend.css');
                     }
                     $jsNaBaseThemeBackend = $siteRoot . $extKey . '/Resources/Public/JavaScript/Backend.js';
@@ -58,6 +59,7 @@ class BackendCssLayout
                     $css = $siteRoot . $extKey . '/Resources/Public/Backend/Css/Backend.css';
                     $js = $siteRoot . $extKey . '/Resources/Public/Backend/JavaScript/Backend.js';
                     if (file_exists($css)) {
+                        // @extensionScannerIgnoreLine
                         $this->renderer->addStyleSheet('Childbase', $css);
                     }
                     if (file_exists($js)) {

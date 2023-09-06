@@ -72,7 +72,7 @@ class NsBasethemeUtility
     public function getInstalledChildTheme()
     {
         $arrAllExtensions = [];
-
+        // @extensionScannerIgnoreLine
         $activePackages = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Package\PackageManager::class)->getActivePackages();
         if (count($activePackages) > 0) {
             foreach ($activePackages as $package) {

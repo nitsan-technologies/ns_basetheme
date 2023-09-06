@@ -32,6 +32,7 @@ class Tinysource
     {
         $this->conf = $GLOBALS['TSFE']->tmpl->setup['plugin.']['ns_basetheme.']['tinysource.'] ?? [];
         if (($this->conf['enable'] ?? false) && !($GLOBALS['TSFE']->config['config']['disableAllHeaderCode'] ?? false)) {
+            // @extensionScannerIgnoreLine
             $source = $GLOBALS['TSFE']->content;
             $headOffset = strpos($source, '<head');
             $headEndOffset = strpos($source, '>', $headOffset);
@@ -57,7 +58,7 @@ class Tinysource
                     $afterHead = $this->makeTiny($afterHead, self::TINYSOURCE_HEAD);
                     $afterBody = $this->makeTiny($afterBody, self::TINYSOURCE_BODY);
                 }
-
+                // @extensionScannerIgnoreLine
                 $GLOBALS['TSFE']->content = $beforeHead . $head . $afterHead . $body . $afterBody;
                 if ($this->conf['oneLineMode'] ?? false) {
                     $source = $this->protectCode($GLOBALS['TSFE']->content);
@@ -66,7 +67,7 @@ class Tinysource
                 }
             }
         }
-// Only do this when caching is enabled
+        // Only do this when caching is enabled
         if (!$event->isCachingEnabled()) {
             return;
         }
