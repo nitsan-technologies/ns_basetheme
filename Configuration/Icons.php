@@ -31,10 +31,11 @@ if (count($allComponents) > 0) {
                             : 'EXT:ns_basetheme/Resources/Public/Icons/default_icon.png'
                     ];
                 } else {
+
                     $iconList[$identifier] = [
                         'provider' => BitmapIconProvider::class,
                         'source' => (
-                        file_exists($siteRoot . $extPackKey . '/Resources/Public/Icons/' . $theComponent . '.png')
+                        file_exists($siteRoot . $extKey . '/Resources/Public/Icons/' . $theComponent . '.png')
                         )
                             ? 'EXT:' . $extKey . '/Resources/Public/Icons/' . $theComponent . '.png'
                             : 'EXT:ns_basetheme/Resources/Public/Icons/default_icon.png'
