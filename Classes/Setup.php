@@ -17,6 +17,8 @@ class Setup
      */
     protected string $siteRoot;
 
+    protected $logger;
+
    /**
      * executeOnSignalAfter
      */

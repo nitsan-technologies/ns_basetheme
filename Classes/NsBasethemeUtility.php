@@ -148,7 +148,7 @@ class NsBasethemeUtility
                     foreach ($extValue as $key => $theComponent) {
                         $collectComponent .= "
                         $theComponent {
-                        iconIdentifier = $theComponent
+                        iconIdentifier = ".str_replace('_','-',$theComponent)."
                         title = LLL:EXT:$extKey/Resources/Private/Language/locallang_db.xlf:wizard.$theComponent
                         description = LLL:EXT:$extKey/Resources/Private/Language/locallang_db.xlf:wizard.$theComponent.desc
                         tt_content_defValues {

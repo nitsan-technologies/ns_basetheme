@@ -50,25 +50,10 @@ if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('mask')) {
             $tsComponents
         }
     ");
-
-    if (count($allComponents) > 0) {
-        foreach ($allComponents as $extKey => $extValue) {
-            if (count($extValue) > 0) {
-                foreach ($extValue as $key => $theComponent) {
-                    $iconRegistry->registerIcon(
-                        $theComponent,
-                        \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-                        ['source' => (file_exists($siteRoot . $extKey . '/Resources/Public/Icons/' . $theComponent . '.png')) ? 'EXT:' . $extKey . '/Resources/Public/Icons/' . $theComponent . '.png' : 'EXT:ns_basetheme/Resources/Public/Icons/default_icon.png']
-                    );
-                }
-            }
-        }
-    }
 }
 
 // Let's add default PageTS for "Form"
 $GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['default'] = 'EXT:ns_basetheme/Configuration/RTE/Default.yaml';
-
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('
     @import "EXT:' . $_EXTKEY . '/Configuration/PageTSconfig/setup.tsconfig"
 ');
