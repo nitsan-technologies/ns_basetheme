@@ -194,7 +194,12 @@ call_user_func(function () {
         //@TODO Change /typo3conf/
         $checkFile = '';
         if ($installedTheme) {
-            $basePath =  Environment::getPublicPath() . '/typo3conf/ext/' . $installedTheme[0] . '/Resources/Public/CheckBootstrapVersion';
+            if (Environment::isComposerMode()) {
+                $installedTheme = str_replace('_', '-', $installedTheme);
+                $basePath =  Environment::getProjectPath() . '/vendor/nitsan/' . $installedTheme[0] . '/Resources/Public/CheckBootstrapVersion';
+            }else{
+                $basePath =  Environment::getPublicPath() . '/typo3conf/ext/' . $installedTheme[0] . '/Resources/Public/CheckBootstrapVersion';
+            }
             $checkFile = @file_exists($basePath);
         }
         $CheckBootstrapVersion = '';
