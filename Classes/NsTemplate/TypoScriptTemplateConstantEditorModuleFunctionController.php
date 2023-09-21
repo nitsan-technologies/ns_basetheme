@@ -109,11 +109,11 @@ class TypoScriptTemplateConstantEditorModuleFunctionController
     {
         $assigns = [];
         $assigns['LLPrefix'] = 'LLL:EXT:tstemplate/Resources/Private/Language/locallang_ceditor.xlf:';
-
+        $template_uid = 0;
         // initialize
         $existTemplate = $this->initialize_editor($this->id, $template_uid);
         if ($existTemplate) {
-            $saveId = $this->templateRow['_ORIG_uid'] ?: $this->templateRow['uid'];
+            $saveId = isset($this->templateRow['_ORIG_uid']) ? $this->templateRow['_ORIG_uid'] : $this->templateRow['uid'];
             // Update template ?
             if (GeneralUtility::_POST('_savedok')) {
                 $this->templateService->changed = 0;
@@ -160,7 +160,11 @@ class TypoScriptTemplateConstantEditorModuleFunctionController
             }
 
             // Let's call default "ns_basetheme" constant category
-            $getCurrentCategory = strtolower(GeneralUtility::_GP('cat'));
+            if(GeneralUtility::_GP('cat')){
+                $getCurrentCategory = strtolower(GeneralUtility::_GP('cat'));
+            }else {
+                $getCurrentCategory = 'ns_basetheme';
+            }
             $category = (!empty($getCurrentCategory)) ? $getCurrentCategory : 'ns_basetheme';
 
             // Category and constant editor config:
@@ -174,7 +178,7 @@ class TypoScriptTemplateConstantEditorModuleFunctionController
             $id = (int)GeneralUtility::_GP('id');
             $rootlineUtility = GeneralUtility::makeInstance(RootlineUtility::class, $id);
             $rootLine = $rootlineUtility->get();
-            $isRootPage = $rootLine[array_key_first($rootLine)];
+            $isRootPage = $rootLine[array_key_first($rootLine)] ?? false;
             if ($id) {
                 $urlParameters = [
                     'id' => $id,

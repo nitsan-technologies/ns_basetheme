@@ -328,7 +328,7 @@ class ExtendedTemplateService extends TemplateService
      */
     public function generateConfig_constants()
     {
-        if ($_POST['data']) {
+        if (isset($_POST['data'])) {
             foreach ($_POST['data'] as $key => $v) {
                 if (is_array($v)) {
                     $_POST['data'][$key] = implode(',', $v);
@@ -960,11 +960,13 @@ class ExtendedTemplateService extends TemplateService
                                 // This is the subcategory. Must be a key in $this->subCategories[].
                                 // catSplit[2] represents the search-order within the subcat.
                                 $catSplit[1] = trim($catSplit[1]);
-                                if ($catSplit[1] && isset($this->subCategories[$catSplit[1]])) {
+                                if (isset($catSplit[1]) && isset($this->subCategories[$catSplit[1]])) {
                                     $editableComments[$const]['subcat_name'] = $catSplit[1];
                                     $orderIdentifier = isset($catSplit[2]) ? trim($catSplit[2]) : $counter;
-                                    $editableComments[$const]['subcat'] = $this->subCategories[$catSplit[1]][1]
-                                        . '/' . $catSplit[1] . '/' . $orderIdentifier . 'z';
+                                    if(isset($catSplit[1][1])){
+                                        $editableComments[$const]['subcat'] = $this->subCategories[$catSplit[1]][0]
+                                            . '/' . $catSplit[1] . '/' . $orderIdentifier . 'z';
+                                    }
                                 } elseif (isset($catSplit[2])) {
                                     $editableComments[$const]['subcat'] = 'x' . '/' . trim($catSplit[2]) . 'z';
                                 } else {
@@ -1060,7 +1062,9 @@ class ExtendedTemplateService extends TemplateService
                 $p = trim(substr($type, $m));
                 $reg = [];
                 preg_match('/\\[(.*)\\]/', $p, $reg);
-                $p = trim($reg[1]);
+                if(isset($reg[1])){
+                    $p = trim($reg[1]);
+                }
                 if ($p) {
                     $retArr['paramstr'] = $p;
                     switch ($retArr['type']) {
@@ -1117,279 +1121,287 @@ class ExtendedTemplateService extends TemplateService
         reset($theConstants);
         $output = '';
         $subcat = '';
-        if (is_array($this->categories[$category])) {
-            if (!$this->doNotSortCategoriesBeforeMakingForm) {
-                asort($this->categories[$category]);
-            }
-            $i = 0;
-
-            // PATCH: by Sanjay for Backend Preview Image
-            $siteRootPath = (version_compare(TYPO3_branch, '9.0', '>')) ? \TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' : PATH_site;
-            
-            // Initiate NsBaseThemeUtility
-            $objNsBasetheme = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\NITSAN\NsBasetheme\NsBasethemeUtility::class);
-            
-            // Get list of all the themes which starts from EXT.ns_theme_*
-            $arrAllExtensions = $objNsBasetheme->getInstalledChildTheme();
-
-            // Get Exact Theme Name
-            $currentThemeName = $arrAllExtensions[0];
-
-            // Check if sub-folders based TYPO3 installation
-            $arrWhatsMyScriptPath = explode('/',$_SERVER['SCRIPT_NAME']);
-            $NsBaseThemeRootPath = '/';
-            foreach($arrWhatsMyScriptPath as $myPathKey => $myPathValue) {
-                if($myPathValue == '' || $myPathValue == '.' || $myPathValue == '..') continue;
-                if($myPathValue == 'typo3') break;
-                $NsBaseThemeRootPath .= $myPathValue.'/';
-            }
-            $NsBaseThemeRootPath .= 'typo3conf/ext/'.$currentThemeName.'/Resources/Public/Backend/ThemeOptionsPreview/';
-            $NsBaseThemeFilePath = $siteRootPath.'/typo3conf/ext/'.$currentThemeName.'/Resources/Public/Backend/ThemeOptionsPreview/';
-
-            foreach ($this->categories[$category] as $name => $type) {
-
-                // PATCH: Let's alway blank image preview
-                $themeOptionsImagesContainer = '';
+        if(isset($this->categories[$category])){
+            if (is_array($this->categories[$category])) {
+                if (!$this->doNotSortCategoriesBeforeMakingForm) {
+                    asort($this->categories[$category]);
+                }
+                $i = 0;
+    
+                // PATCH: by Sanjay for Backend Preview Image
+                $siteRootPath = (version_compare(TYPO3_branch, '9.0', '>')) ? \TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' : PATH_site;
                 
-                $params = $theConstants[$name];
-                if (is_array($params)) {
-                    if ($subcat != $params['subcat_name']) {
-                        $subcat = $params['subcat_name'];
-                        $subcat_name = $params['subcat_name'] ? $this->subCategories[$params['subcat_name']][0] : 'Others';
-                        if ($i == 0) {
-                            $output .= '<div class="card custom-card"><div class="card-header"><h5><em class="fa fa-caret-down" aria-hidden="true"></em> &nbsp;' . $subcat_name . '</h5><button class="btn btn-primary" name="_savedok" form="TypoScriptTemplateModuleController">'.LocalizationUtility::translate('save','ns_basetheme').'</button><input type="hidden" name="_savedok" value="1"></div><div class="card-body">';
-                        } else {
-                            $output .= '</div></div><div class="card custom-card"><div class="card-header"><h5><em class="fa fa-caret-down" aria-hidden="true"></em> &nbsp;' . $subcat_name . '</h5><button class="btn btn-primary" name="_savedok" form="TypoScriptTemplateModuleController">'.LocalizationUtility::translate('save','ns_basetheme').'</button><input type="hidden" name="_savedok" value="1"></div><div class="card-body">';
-                        }
-                    }
-                    $label = $this->getLanguageService()->sL($params['label']);
-                    $label_parts = explode(':', $label, 2);
-                    if (count($label_parts) === 2) {
-                        $head = trim($label_parts[0]);
-                        $body = trim($label_parts[1]);
-                    } else {
-                        $head = trim($label_parts[0]);
-                        $body = '';
-                    }
-                    $typeDat = $this->ext_getTypeData($params['type']);
-                    $p_field = '';
-                    $raname = substr(md5($params['name']), 0, 10);
-                    $aname = '\'' . $raname . '\'';
-                    $dV = $params['default_value'];
-                    list($fN, $fV, $params, $idName) = $this->ext_fNandV($params);
-
-                    $idName = htmlspecialchars($idName);
-                    $hint = '';
-                    switch ($typeDat['type']) {
-                        case 'int':
-                        case 'int+':
-                            $additionalAttributes = '';
-                            if ($typeDat['paramstr']) {
-                                $hint = ' Range: ' . $typeDat['paramstr'];
-                            } elseif ($typeDat['type'] === 'int+') {
-                                $hint = ' Range: 0 - ';
-                                $typeDat['min'] = 0;
+                // Initiate NsBaseThemeUtility
+                $objNsBasetheme = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\NITSAN\NsBasetheme\NsBasethemeUtility::class);
+                
+                // Get list of all the themes which starts from EXT.ns_theme_*
+                $arrAllExtensions = $objNsBasetheme->getInstalledChildTheme();
+    
+                // Get Exact Theme Name
+                $currentThemeName = isset($arrAllExtensions[0]) ? $arrAllExtensions[0] : '';
+    
+                // Check if sub-folders based TYPO3 installation
+                $arrWhatsMyScriptPath = explode('/',$_SERVER['SCRIPT_NAME']);
+                $NsBaseThemeRootPath = '/';
+                foreach($arrWhatsMyScriptPath as $myPathKey => $myPathValue) {
+                    if($myPathValue == '' || $myPathValue == '.' || $myPathValue == '..') continue;
+                    if($myPathValue == 'typo3') break;
+                    $NsBaseThemeRootPath .= $myPathValue.'/';
+                }
+                if($currentThemeName){
+                    $NsBaseThemeRootPath .= 'typo3conf/ext/'.$currentThemeName.'/Resources/Public/Backend/ThemeOptionsPreview/';
+                    $NsBaseThemeFilePath = $siteRootPath.'/typo3conf/ext/'.$currentThemeName.'/Resources/Public/Backend/ThemeOptionsPreview/';
+                }
+    
+                foreach ($this->categories[$category] as $name => $type) {
+    
+                    // PATCH: Let's alway blank image preview
+                    $themeOptionsImagesContainer = '';
+                    
+                    $params = $theConstants[$name];
+                    if (is_array($params)) {
+                        if ($subcat != $params['subcat_name']) {
+                            $subcat = $params['subcat_name'];
+                            $subcat_name = $params['subcat_name'] ? $this->subCategories[$params['subcat_name']][0] : 'Others';
+                            if ($i == 0) {
+                                $output .= '<div class="card custom-card"><div class="card-header"><h5><em class="fa fa-caret-down" aria-hidden="true"></em> &nbsp;' . $subcat_name . '</h5><button class="btn btn-primary" name="_savedok" form="TypoScriptTemplateModuleController">'.LocalizationUtility::translate('save','ns_basetheme').'</button><input type="hidden" name="_savedok" value="1"></div><div class="card-body">';
                             } else {
-                                $hint = ' (Integer)';
+                                $output .= '</div></div><div class="card custom-card"><div class="card-header"><h5><em class="fa fa-caret-down" aria-hidden="true"></em> &nbsp;' . $subcat_name . '</h5><button class="btn btn-primary" name="_savedok" form="TypoScriptTemplateModuleController">'.LocalizationUtility::translate('save','ns_basetheme').'</button><input type="hidden" name="_savedok" value="1"></div><div class="card-body">';
                             }
-
-                            if (isset($typeDat['min'])) {
-                                $additionalAttributes .= ' min="' . (int)$typeDat['min'] . '" ';
-                            }
-                            if (isset($typeDat['max'])) {
-                                $additionalAttributes .= ' max="' . (int)$typeDat['max'] . '" ';
-                            }
-
-                            $p_field ='<div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text custom-reset" data-id="' . $idName . '" id="basic-' . $idName . '">
-                                        <i aria-hidden="true" class="fa fa-repeat"></i>
-                                    </span>
-                                </div>
-                                <input class="form-control" id="' . $idName . '" type="number"'
-                                . ' name="' . $fN . '" value="' . $fV . '"' . ' data-value="' . $dV . '"  aria-describedby="basic-' . $idName . '" onChange="uFormUrl(' . $aname . ')"' . $additionalAttributes . ' />
-                            </div>';
-                            break;
-                        case 'color':
-                            $p_field = '<div class="ns-ext-color-pick-wrap d-flex align-items-center">
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text custom-reset" data-id="' . $idName . '" id="basic-' . $idName . '">
-                                                        <i aria-hidden="true" class="fa fa-repeat"></i>
-                                                    </span>
+                        }
+                        $label = $this->getLanguageService()->sL($params['label']);
+                        $label_parts = explode(':', $label, 2);
+                        if (count($label_parts) === 2) {
+                            $head = trim($label_parts[0]);
+                            $body = trim($label_parts[1]);
+                        } else {
+                            $head = trim($label_parts[0]);
+                            $body = '';
+                        }
+                        $typeDat = $this->ext_getTypeData($params['type']);
+                        $p_field = '';
+                        $raname = substr(md5($params['name']), 0, 10);
+                        $aname = '\'' . $raname . '\'';
+                        $dV = $params['default_value'];
+                        list($fN, $fV, $params, $idName) = $this->ext_fNandV($params);
+    
+                        $idName = htmlspecialchars($idName);
+                        $hint = '';
+                        switch ($typeDat['type']) {
+                            case 'int':
+                            case 'int+':
+                                $additionalAttributes = '';
+                                if (isset($typeDat['paramstr'])) {
+                                    $hint = ' Range: ' . $typeDat['paramstr'];
+                                } elseif ($typeDat['type'] === 'int+') {
+                                    $hint = ' Range: 0 - ';
+                                    $typeDat['min'] = 0;
+                                } else {
+                                    $hint = ' (Integer)';
+                                }
+    
+                                if (isset($typeDat['min'])) {
+                                    $additionalAttributes .= ' min="' . (int)$typeDat['min'] . '" ';
+                                }
+                                if (isset($typeDat['max'])) {
+                                    $additionalAttributes .= ' max="' . (int)$typeDat['max'] . '" ';
+                                }
+    
+                                $p_field ='<div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text custom-reset" data-id="' . $idName . '" id="basic-' . $idName . '">
+                                            <i aria-hidden="true" class="fa fa-repeat"></i>
+                                        </span>
+                                    </div>
+                                    <input class="form-control" id="' . $idName . '" type="number"'
+                                    . ' name="' . $fN . '" value="' . $fV . '"' . ' data-value="' . $dV . '"  aria-describedby="basic-' . $idName . '" onChange="uFormUrl(' . $aname . ')"' . $additionalAttributes . ' />
+                                </div>';
+                                break;
+                            case 'color':
+                                $p_field = '<div class="ns-ext-color-pick-wrap d-flex align-items-center">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text custom-reset" data-id="' . $idName . '" id="basic-' . $idName . '">
+                                                            <i aria-hidden="true" class="fa fa-repeat"></i>
+                                                        </span>
+                                                    </div>
+                                                    <input class="form-control" type="color" id="' . $idName . '" rel="' . $idName . '" name="' . $fN . '" value="' . $fV . '" data-value="' . $dV . '"  aria-describedby="basic-' . $idName . '"/>
                                                 </div>
-                                                <input class="form-control" type="color" id="' . $idName . '" rel="' . $idName . '" name="' . $fN . '" value="' . $fV . '" data-value="' . $dV . '"  aria-describedby="basic-' . $idName . '"/>
-                                            </div>
-                                        </div>';
-
-                            if (empty($this->inlineJavaScript[$typeDat['type']])) {
-                                $this->inlineJavaScript[$typeDat['type']] = 'require([\'TYPO3/CMS/Backend/ColorPicker\'], function(ColorPicker){ColorPicker.initialize()});';
-                            }
-                            break;
-                        case 'options':
-                            if (is_array($typeDat['params'])) {
-
-                                // PATCH: by Sanjay for Backend Preview Image
-                                $arrSelectBox = explode('-',$idName);
-                                $selectBoxName = end($arrSelectBox);
-                                
-                                $p_field = '';
-                                foreach ($typeDat['params'] as $val) {
-                                    $vParts = explode('=', $val, 2);
-                                    $label = $vParts[0];
-                                    $val = $vParts[1] ?? $vParts[0];
-                                    // option tag:
-                                    $sel = '';
-                                    if ($val === $params['value']) {
-                                        $sel = ' selected';
+                                            </div>';
+    
+                                if (empty($this->inlineJavaScript[$typeDat['type']])) {
+                                    $this->inlineJavaScript[$typeDat['type']] = 'require([\'TYPO3/CMS/Backend/ColorPicker\'], function(ColorPicker){ColorPicker.initialize()});';
+                                }
+                                break;
+                            case 'options':
+                                if (is_array($typeDat['params'])) {
+    
+                                    // PATCH: by Sanjay for Backend Preview Image
+                                    $arrSelectBox = explode('-',$idName);
+                                    $selectBoxName = end($arrSelectBox);
+                                    
+                                    $p_field = '';
+                                    foreach ($typeDat['params'] as $val) {
+                                        $vParts = explode('=', $val, 2);
+                                        $label = $vParts[0];
+                                        $val = $vParts[1] ?? $vParts[0];
+                                        // option tag:
+                                        $sel = '';
+                                        if ($val === $params['value']) {
+                                            $sel = ' selected';
+                                        }
+    
+                                        // PATCH: by Sanjay for Backend Preview Image
+                                        $imageExtension = ($selectBoxName == 'loader') ? '.gif' : '.png';
+                                        $previewImagePath = $NsBaseThemeRootPath.$selectBoxName.'/'.htmlspecialchars($val).$imageExtension;
+                                        $p_field .= '<option data-img-src="'.$previewImagePath.'" value="' . htmlspecialchars($val) . '"' . $sel . '>' . $this->getLanguageService()->sL($label) . '</option>';
                                     }
-
+                                    $p_field = '<select data-id="' . $selectBoxName . '" class="form-control themePreviewSelect" id="' . $idName . '" name="' . $fN . '">' . $p_field . '</select>';
+    
                                     // PATCH: by Sanjay for Backend Preview Image
                                     $imageExtension = ($selectBoxName == 'loader') ? '.gif' : '.png';
-                                    $previewImagePath = $NsBaseThemeRootPath.$selectBoxName.'/'.htmlspecialchars($val).$imageExtension;
-                                    $p_field .= '<option data-img-src="'.$previewImagePath.'" value="' . htmlspecialchars($val) . '"' . $sel . '>' . $this->getLanguageService()->sL($label) . '</option>';
+                                    $previewImagePath = $NsBaseThemeRootPath.$selectBoxName.'/'.$params['value'].$imageExtension;
+                                    if($currentThemeName){
+                                        if(is_file($NsBaseThemeFilePath.$selectBoxName.'/'.$params['value'].$imageExtension)) {
+                                            $themeOptionsImagesContainer = '<div class="themeOptionsImagesContainer '.$selectBoxName.'"><img class="themePreviewImg_'.$selectBoxName.'" src="'.$previewImagePath.'" /></div>';
+                                        }
+                                    }
                                 }
-                                $p_field = '<select data-id="' . $selectBoxName . '" class="form-control themePreviewSelect" id="' . $idName . '" name="' . $fN . '">' . $p_field . '</select>';
-
-                                // PATCH: by Sanjay for Backend Preview Image
-                                $imageExtension = ($selectBoxName == 'loader') ? '.gif' : '.png';
-                                $previewImagePath = $NsBaseThemeRootPath.$selectBoxName.'/'.$params['value'].$imageExtension;
-                                if(is_file($NsBaseThemeFilePath.$selectBoxName.'/'.$params['value'].$imageExtension)) {
-                                    $themeOptionsImagesContainer = '<div class="themeOptionsImagesContainer '.$selectBoxName.'"><img class="themePreviewImg_'.$selectBoxName.'" src="'.$previewImagePath.'" /></div>';
+                                break;
+                            case 'checkbox':
+                                if (is_array($typeDat['params'])) {
+                                    $p_field = '';
+                                    $i = 0;
+                                    foreach ($typeDat['params'] as $val) {
+                                        $vParts = explode('=', $val, 2);
+                                        $label = $vParts[0];
+                                        $val = $vParts[1] ?? $vParts[0];
+    
+                                        $checked = strpos($params['value'], $val) !== false ? "checked='checked'" : '';
+                                        $p_field .= '
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" id="' . $idName . $i . '" name="' . $fN . '[]" class="custom-control-input" value="' . htmlspecialchars($val) . '" ' . $checked . '>
+                                                <label class="custom-control-label" for="' . $idName . $i . '">' . $this->getLanguageService()->sL($label) . '</label>
+                                            </div>';
+                                        $i += 1;
+                                    }
                                 }
-                            }
-                            break;
-                        case 'checkbox':
-                            if (is_array($typeDat['params'])) {
-                                $p_field = '';
-                                $i = 0;
-                                foreach ($typeDat['params'] as $val) {
-                                    $vParts = explode('=', $val, 2);
-                                    $label = $vParts[0];
-                                    $val = $vParts[1] ?? $vParts[0];
-
-                                    $checked = strpos($params['value'], $val) !== false ? "checked='checked'" : '';
-                                    $p_field .= '
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" id="' . $idName . $i . '" name="' . $fN . '[]" class="custom-control-input" value="' . htmlspecialchars($val) . '" ' . $checked . '>
-                                            <label class="custom-control-label" for="' . $idName . $i . '">' . $this->getLanguageService()->sL($label) . '</label>
-                                        </div>';
-                                    $i += 1;
+                                break;
+                            case 'boolean':
+                                $sel = $fV ? 'checked' : '';
+                                $typeDat['paramstr'] = isset($typeDat['paramstr']) ? $typeDat['paramstr'] : '';
+                                $p_field =
+                                    '<input type="hidden" name="' . $fN . '" value="0" />'
+                                   . '<div class="custom-control custom-switch">'
+                                        . '<input class="custom-control-input" id="' . $idName . '" type="checkbox" name="' . $fN . '" value="' . ($typeDat['paramstr'] ? $typeDat['paramstr'] : 1) . '" ' . $sel . '>'
+                                        . '<label class="custom-control-label" for="' . $idName . '"></label>'
+                                    . '</div>';
+                                break;
+                            case 'comment':
+                                $sel = $fV ? 'checked' : '';
+                                $p_field =
+                                    '<input type="hidden" name="' . $fN . '" value="#" />'
+                                    . '<label class="btn btn-default btn-checkbox">'
+                                    . '<input id="' . $idName . '" type="checkbox" name="' . $fN . '" value="" ' . $sel . ' onClick="uFormUrl(' . $aname . ')" />'
+                                    . '<span class="t3-icon fa"></span>'
+                                    . '</label>';
+                                break;
+                            case 'file':
+                                // extensionlist
+                                $extList = $typeDat['paramstr'];
+                                if ($extList === 'IMAGE_EXT') {
+                                    $extList = $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'];
                                 }
-                            }
-                            break;
-                        case 'boolean':
-                            $sel = $fV ? 'checked' : '';
-                            $p_field =
-                                '<input type="hidden" name="' . $fN . '" value="0" />'
-                               . '<div class="custom-control custom-switch">'
-                                    . '<input class="custom-control-input" id="' . $idName . '" type="checkbox" name="' . $fN . '" value="' . ($typeDat['paramstr'] ? $typeDat['paramstr'] : 1) . '" ' . $sel . '>'
-                                    . '<label class="custom-control-label" for="' . $idName . '"></label>'
-                                . '</div>';
-                            break;
-                        case 'comment':
-                            $sel = $fV ? 'checked' : '';
-                            $p_field =
-                                '<input type="hidden" name="' . $fN . '" value="#" />'
-                                . '<label class="btn btn-default btn-checkbox">'
-                                . '<input id="' . $idName . '" type="checkbox" name="' . $fN . '" value="" ' . $sel . ' onClick="uFormUrl(' . $aname . ')" />'
-                                . '<span class="t3-icon fa"></span>'
-                                . '</label>';
-                            break;
-                        case 'file':
-                            // extensionlist
-                            $extList = $typeDat['paramstr'];
-                            if ($extList === 'IMAGE_EXT') {
-                                $extList = $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'];
-                            }
-                            $p_field = '<option value="">(' . $extList . ')</option>';
-                            if (trim($params['value'])) {
-                                $val = $params['value'];
-                                $p_field .= '<option value=""></option>';
-                                $p_field .= '<option value="' . htmlspecialchars($val) . '" selected>' . $val . '</option>';
-                            }
-                            $p_field = '<select class="form-select" id="' . $idName . '" name="' . $fN . '" onChange="uFormUrl(' . $aname . ')">' . $p_field . '</select>';
-                            break;
-                        case 'user':
-                            $userFunction = $typeDat['paramstr'];
-                            $userFunctionParams = ['fieldName' => $fN, 'fieldValue' => $fV];
-                            $p_field = GeneralUtility::callUserFunction($userFunction, $userFunctionParams, $this);
-                            break;
-                        case 'textarea':
-                            $p_field = '<textarea name="' . $fN . '" id="' . $idName . '" cols="30" rows="5" class="form-control ckeditor">' . $fV . '</textarea>';
-                            break;
-                        default:
-                            $p_field = '<div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text custom-reset" data-id="' . $idName . '" id="basic-' . $idName . '">
-                                        <i aria-hidden="true" class="fa fa-repeat"></i>
-                                    </span>
-                                </div>
-                                <input class="form-control" id="' . $idName . '" type="text" name="' . $fN . '" value="' . $fV . '" data-value="' . $dV . '" aria-describedby="basic-' . $idName . '" />
-                            </div>';
-
-                            // PATCH: Let's check if it's image e.g., Logo image path
-                            // Let's check if field == basetheme's favicon icon
-                            if($idName == 'ns_basetheme-website-settings-favicon' && (is_file($_SERVER['DOCUMENT_ROOT'].'/'.$fV))) {
-                                $themeOptionsImagesContainerImageName = '/'.$fV;
-                                $themeOptionsImagesContainerImageName = str_replace('//','/',$themeOptionsImagesContainerImageName);
-                                $themeOptionsImagesContainer = '<div class="themeOptionsImagesContainer '.$idName.'"><img class="themeOptionsImages" src="'.$themeOptionsImagesContainerImageName.'" /></div>';
-                            }
-                            else if(is_file($_SERVER['DOCUMENT_ROOT'].$fV)) {
-
-                                // Ignore files e.g., WOFF
-                                if($idName != 'ns_theme_t3karma-website-fonts-font_woff2') {
-                                    $themeOptionsImagesContainer = '<div class="themeOptionsImagesContainer '.$idName.'"><img class="themeOptionsImages" src="'.$fV.'" /></div>';
+                                $p_field = '<option value="">(' . $extList . ')</option>';
+                                if (trim($params['value'])) {
+                                    $val = $params['value'];
+                                    $p_field .= '<option value=""></option>';
+                                    $p_field .= '<option value="' . htmlspecialchars($val) . '" selected>' . $val . '</option>';
                                 }
-                            }
-                    }
-                    // Define default names and IDs
-                    $checkboxName = 'check[' . $params['name'] . ']';
-                    $checkboxID = 'check-' . $idName;
-                    $constantCheckbox = '';
-                    if (!$this->ext_dontCheckIssetValues) {
-                        // Set the default styling options
-                        if (isset($this->objReg[$params['name']])) {
-                            $checkboxValue = 'checked';
-                            $defaultTyposcriptStyle = 'style="display:none;"';
-                        } else {
-                            $checkboxValue = '';
-                            $userTyposcriptStyle = 'style="display:none;"';
-                            $defaultTyposcriptStyle = '';
+                                $p_field = '<select class="form-select" id="' . $idName . '" name="' . $fN . '" onChange="uFormUrl(' . $aname . ')">' . $p_field . '</select>';
+                                break;
+                            case 'user':
+                                $userFunction = $typeDat['paramstr'];
+                                $userFunctionParams = ['fieldName' => $fN, 'fieldValue' => $fV];
+                                $p_field = GeneralUtility::callUserFunction($userFunction, $userFunctionParams, $this);
+                                break;
+                            case 'textarea':
+                                $p_field = '<textarea name="' . $fN . '" id="' . $idName . '" cols="30" rows="5" class="form-control ckeditor">' . $fV . '</textarea>';
+                                break;
+                            default:
+                                $p_field = '<div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text custom-reset" data-id="' . $idName . '" id="basic-' . $idName . '">
+                                            <i aria-hidden="true" class="fa fa-repeat"></i>
+                                        </span>
+                                    </div>
+                                    <input class="form-control" id="' . $idName . '" type="text" name="' . $fN . '" value="' . $fV . '" data-value="' . $dV . '" aria-describedby="basic-' . $idName . '" />
+                                </div>';
+    
+                                // PATCH: Let's check if it's image e.g., Logo image path
+                                // Let's check if field == basetheme's favicon icon
+                                if($idName == 'ns_basetheme-website-settings-favicon' && (is_file($_SERVER['DOCUMENT_ROOT'].'/'.$fV))) {
+                                    $themeOptionsImagesContainerImageName = '/'.$fV;
+                                    $themeOptionsImagesContainerImageName = str_replace('//','/',$themeOptionsImagesContainerImageName);
+                                    $themeOptionsImagesContainer = '<div class="themeOptionsImagesContainer '.$idName.'"><img class="themeOptionsImages" src="'.$themeOptionsImagesContainerImageName.'" /></div>';
+                                }
+                                else if(is_file($_SERVER['DOCUMENT_ROOT'].$fV)) {
+    
+                                    // Ignore files e.g., WOFF
+                                    if($idName != 'ns_theme_t3karma-website-fonts-font_woff2') {
+                                        $themeOptionsImagesContainer = '<div class="themeOptionsImagesContainer '.$idName.'"><img class="themeOptionsImages" src="'.$fV.'" /></div>';
+                                    }
+                                }
                         }
-                        $constantCheckbox = '<input type="hidden" name="' . $checkboxName . '" id="' . $checkboxID . '" value="' . $checkboxValue . '"/>';
-                    }
-                    $constantLabel = '<label class="t3js-formengine-label" for="' . $idName . '"><span>' . htmlspecialchars($head) . '</span></label>';
-                    $constantDescription = $body ? '<div class="field-info-text"><p>' . htmlspecialchars($body) . '</p></div>' : '';
-                    $constantData = '';
-                    $constantData .= $constantCheckbox;
-                    $output .=
-                        '<div class="form-group">'
-                            . '<div class="row">'
-                                . '<a name="' . $raname . '"></a>'
-                                . '<div class="col-md-5 col-lg-3 col-xl-2">'
-                                        . '<div class="d-flex justify-content-between">'
-                                            . $constantLabel
-                                            . ($constantDescription ? '<div class="field-info-trigger"><em class="fa fa-info-circle" aria-hidden="true"></em></div>' : '')
-                                        . '</div>'
+                        // Define default names and IDs
+                        $checkboxName = 'check[' . $params['name'] . ']';
+                        $checkboxID = 'check-' . $idName;
+                        $constantCheckbox = '';
+                        if (!$this->ext_dontCheckIssetValues) {
+                            // Set the default styling options
+                            if (isset($this->objReg[$params['name']])) {
+                                $checkboxValue = 'checked';
+                                $defaultTyposcriptStyle = 'style="display:none;"';
+                            } else {
+                                $checkboxValue = '';
+                                $userTyposcriptStyle = 'style="display:none;"';
+                                $defaultTyposcriptStyle = '';
+                            }
+                            $constantCheckbox = '<input type="hidden" name="' . $checkboxName . '" id="' . $checkboxID . '" value="' . $checkboxValue . '"/>';
+                        }
+                        $constantLabel = '<label class="t3js-formengine-label" for="' . $idName . '"><span>' . htmlspecialchars($head) . '</span></label>';
+                        $constantDescription = $body ? '<div class="field-info-text"><p>' . htmlspecialchars($body) . '</p></div>' : '';
+                        $constantData = '';
+                        $constantData .= $constantCheckbox;
+                        $output .=
+                            '<div class="form-group">'
+                                . '<div class="row">'
+                                    . '<a name="' . $raname . '"></a>'
+                                    . '<div class="col-md-5 col-lg-3 col-xl-2">'
+                                            . '<div class="d-flex justify-content-between">'
+                                                . $constantLabel
+                                                . ($constantDescription ? '<div class="field-info-trigger"><em class="fa fa-info-circle" aria-hidden="true"></em></div>' : '')
+                                            . '</div>'
+                                    . '</div>'
+                                    . '<div class="col-md-7 col-lg-8">'
+                                        . $p_field
+                                        . $constantDescription
+                                        . $constantData
+                                        . $themeOptionsImagesContainer
+                                    . '</div>'
                                 . '</div>'
-                                . '<div class="col-md-7 col-lg-8">'
-                                    . $p_field
-                                    . $constantDescription
-                                    . $constantData
-                                    . $themeOptionsImagesContainer
-                                . '</div>'
-                            . '</div>'
-                        . '</div>';
-                    if (count($this->categories[$category]) - 1 == $i) {
-                        $output .= '</div></div>';
+                            . '</div>';
+                        if (count($this->categories[$category]) - 1 == $i) {
+                            $output .= '</div></div>';
+                        }
+                    } else {
+                        debug('Error. Constant did not exist. Should not happen.');
                     }
-                } else {
-                    debug('Error. Constant did not exist. Should not happen.');
+                    $i += 1;
                 }
-                $i += 1;
             }
         }
+
         return $output;
     }
 
@@ -1531,11 +1543,11 @@ class ExtendedTemplateService extends TemplateService
     {
         $data = $http_post_vars['data'];
         $check = $http_post_vars['check'];
-        $Wdata = $http_post_vars['Wdata'];
-        $W2data = $http_post_vars['W2data'];
-        $W3data = $http_post_vars['W3data'];
-        $W4data = $http_post_vars['W4data'];
-        $W5data = $http_post_vars['W5data'];
+        $Wdata = isset($http_post_vars['Wdata'])?$http_post_vars['Wdata']:[];
+        $W2data = isset($http_post_vars['W2data'])?$http_post_vars['W2data']:[];
+        $W3data = isset($http_post_vars['W3data'])?$http_post_vars['W3data']:[];
+        $W4data = isset($http_post_vars['W4data'])?$http_post_vars['W4data']:[];
+        $W5data = isset($http_post_vars['W5data'])?$http_post_vars['W5data']:[];
 
         if (is_array($data)) {
             foreach ($data as $key => $var) {
@@ -1550,7 +1562,7 @@ class ExtendedTemplateService extends TemplateService
 
                         switch ($typeDat['type']) {
                             case 'int':
-                                if ($typeDat['paramstr']) {
+                                if (isset($typeDat['paramstr'])) {
                                     $var = MathUtility::forceIntegerInRange($var, $typeDat['params'][0], $typeDat['params'][1]);
                                 } else {
                                     $var = (int)$var;
@@ -1610,7 +1622,7 @@ class ExtendedTemplateService extends TemplateService
                                 break;
                             case 'boolean':
                                 if ($var) {
-                                    $var = $typeDat['paramstr'] ? $typeDat['paramstr'] : 1;
+                                    $var = isset($typeDat['paramstr']) ? $typeDat['paramstr'] : 1;
                                 }
                                 break;
                             case 'textarea':

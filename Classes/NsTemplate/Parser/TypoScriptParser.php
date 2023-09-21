@@ -250,7 +250,11 @@ class TypoScriptParser
                     $preUppercase === '[END]' ||
                     !$this->lastConditionTrue && $preUppercase === '[ELSE]')
             ) {
-                $pre = trim($this->parseSub($this->setup));
+                if($this->parseSub($this->setup) == null || $this->parseSub($this->setup) == ''){
+                    $pre = '';
+                }else {
+                    $pre = trim($this->parseSub($this->setup));
+                }
                 $this->lastConditionTrue = true;
             } else {
                 // We're in a specific section. Therefore we log this section
@@ -423,7 +427,7 @@ class TypoScriptParser
                                                 $setup[$objStrName] = trim(substr($line, 1));
                                                 if ($this->lastComment && $this->regComments) {
                                                     // Setting comment..
-                                                    $setup[$objStrName . '..'] .= $this->lastComment;
+                                                    $setup[$objStrName . '..'] = $this->lastComment;
                                                 }
                                                 if ($this->regLinenumbers) {
                                                     $setup[$objStrName . '.ln..'][] = $this->lineNumberOffset + $this->rawP - 1;
@@ -705,7 +709,7 @@ class TypoScriptParser
                     $setup[$subKey] = $value[1];
                 }
                 if ($this->lastComment && $this->regComments) {
-                    $setup[$key . '..'] .= $this->lastComment;
+                    $setup[$key . '..'] = $this->lastComment;
                 }
                 if ($this->regLinenumbers && !$lnRegisDone) {
                     $setup[$key . '.ln..'][] = $this->lineNumberOffset + $this->rawP - 1;
@@ -824,7 +828,7 @@ class TypoScriptParser
         $string = self::addImportsFromExternalFiles($string, $cycle_counter, $returnFiles, $includedFiles, $parentFilenameOrPath);
 
         // If no tags found, no need to do slower preg_split
-        if (strpos($string, '<INCLUDE_TYPOSCRIPT:') !== false) {
+        if (!empty($string) && strpos($string, '<INCLUDE_TYPOSCRIPT:') !== false) {
             $splitRegEx = '/\r?\n\s*<INCLUDE_TYPOSCRIPT:\s*(?i)source\s*=\s*"((?i)file|dir):\s*([^"]*)"(.*)>[\ \t]*/';
             $parts = preg_split($splitRegEx, LF . $string . LF, -1, PREG_SPLIT_DELIM_CAPTURE);
             // First text part goes through
@@ -941,25 +945,27 @@ class TypoScriptParser
     protected static function addImportsFromExternalFiles($typoScript, $cycleCounter, $returnFiles, &$includedFiles, &$parentFilenameOrPath)
     {
         // Check for new syntax "@import 'EXT:bennilove/Configuration/TypoScript/*'"
-        if (strpos($typoScript, '@import \'') !== false || strpos($typoScript, '@import "') !== false) {
-            $splitRegEx = '/\r?\n\s*@import\s[\'"]([^\'"]*)[\'"][\ \t]?/';
-            $parts = preg_split($splitRegEx, LF . $typoScript . LF, -1, PREG_SPLIT_DELIM_CAPTURE);
-            // First text part goes through
-            $newString = $parts[0] . LF;
-            $partCount = count($parts);
-            for ($i = 1; $i + 2 <= $partCount; $i += 2) {
-                $filename = $parts[$i];
-                $tsContentsTillNextInclude = $parts[$i + 1];
-                // Resolve a possible relative paths if a parent file is given
-                if ($parentFilenameOrPath !== '' && $filename[0] === '.') {
-                    $filename = PathUtility::getAbsolutePathOfRelativeReferencedFileOrPath($parentFilenameOrPath, $filename);
+        if(!empty($typoScript)){
+            if (strpos($typoScript, '@import \'') !== false || strpos($typoScript, '@import "') !== false) {
+                $splitRegEx = '/\r?\n\s*@import\s[\'"]([^\'"]*)[\'"][\ \t]?/';
+                $parts = preg_split($splitRegEx, LF . $typoScript . LF, -1, PREG_SPLIT_DELIM_CAPTURE);
+                // First text part goes through
+                $newString = $parts[0] . LF;
+                $partCount = count($parts);
+                for ($i = 1; $i + 2 <= $partCount; $i += 2) {
+                    $filename = $parts[$i];
+                    $tsContentsTillNextInclude = $parts[$i + 1];
+                    // Resolve a possible relative paths if a parent file is given
+                    if ($parentFilenameOrPath !== '' && $filename[0] === '.') {
+                        $filename = PathUtility::getAbsolutePathOfRelativeReferencedFileOrPath($parentFilenameOrPath, $filename);
+                    }
+                    $newString .= self::importExternalTypoScriptFile($filename, $cycleCounter, $returnFiles, $includedFiles);
+                    // Prepend next normal (not file) part to output string
+                    $newString .= $tsContentsTillNextInclude;
                 }
-                $newString .= self::importExternalTypoScriptFile($filename, $cycleCounter, $returnFiles, $includedFiles);
-                // Prepend next normal (not file) part to output string
-                $newString .= $tsContentsTillNextInclude;
+                // Add a line break before and after the included code in order to make sure that the parser always has a LF.
+                $typoScript = LF . trim($newString) . LF;
             }
-            // Add a line break before and after the included code in order to make sure that the parser always has a LF.
-            $typoScript = LF . trim($newString) . LF;
         }
         return $typoScript;
     }
