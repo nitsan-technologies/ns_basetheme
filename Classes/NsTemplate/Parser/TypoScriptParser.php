@@ -250,11 +250,8 @@ class TypoScriptParser
                     $preUppercase === '[END]' ||
                     !$this->lastConditionTrue && $preUppercase === '[ELSE]')
             ) {
-                if($this->parseSub($this->setup) == null || $this->parseSub($this->setup) == ''){
-                    $pre = '';
-                }else {
-                    $pre = trim($this->parseSub($this->setup));
-                }
+                $pre = $this->parseSub($this->setup) ?? '';
+                $pre = trim($pre);
                 $this->lastConditionTrue = true;
             } else {
                 // We're in a specific section. Therefore we log this section
@@ -662,7 +659,7 @@ class TypoScriptParser
             }
             return $retArr;
         }
-        if ($setup[$subKey]) {
+        if (isset($setup[$subKey])) {
             return $this->getVal($remainingKey, $setup[$subKey]);
         }
 

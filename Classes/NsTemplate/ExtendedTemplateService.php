@@ -1182,7 +1182,7 @@ class ExtendedTemplateService extends TemplateService
                         $p_field = '';
                         $raname = substr(md5($params['name']), 0, 10);
                         $aname = '\'' . $raname . '\'';
-                        $dV = $params['default_value'];
+                        $dV = $params['default_value'] ?? '';
                         list($fN, $fV, $params, $idName) = $this->ext_fNandV($params);
     
                         $idName = htmlspecialchars($idName);
