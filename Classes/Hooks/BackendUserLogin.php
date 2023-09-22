@@ -17,16 +17,16 @@ class BackendUserLogin
         if($backendUser['user']['admin'] == 1) {
             // Let's check license system
             $isLicenseActivate = GeneralUtility::makeInstance(PackageManager::class)->isPackageActive('ns_license');
-            $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+            $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
 
             if ($isLicenseActivate) {
-                $this->nsLicenseModule = $this->objectManager->get(\NITSAN\NsLicense\Controller\NsLicenseModuleController::class);
+                $nsLicenseModule = $objectManager->get(\NITSAN\NsLicense\Controller\NsLicenseModuleController::class);
                 $activePackages = GeneralUtility::makeInstance(PackageManager::class)->getAvailablePackages();
                 foreach ($activePackages as $key => $value) {
                     $exp_key = explode('_theme', $key);
                     if ($exp_key[0] == 'ns') {
                         if ($key != 'ns_basetheme' && $key != 'ns_license') {
-                            $this->nsLicenseModule->connectToServer($key, 0);
+                            $nsLicenseModule->connectToServer($key, 0);
                         }
                     }
                 }
