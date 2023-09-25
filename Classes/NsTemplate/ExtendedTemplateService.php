@@ -1160,13 +1160,15 @@ class ExtendedTemplateService extends TemplateService
                     
                     $params = $theConstants[$name];
                     if (is_array($params)) {
-                        if ($subcat != $params['subcat_name']) {
-                            $subcat = $params['subcat_name'];
-                            $subcat_name = $params['subcat_name'] ? $this->subCategories[$params['subcat_name']][0] : 'Others';
-                            if ($i == 0) {
-                                $output .= '<div class="card custom-card"><div class="card-header"><h5><em class="fa fa-caret-down" aria-hidden="true"></em> &nbsp;' . $subcat_name . '</h5><button class="btn btn-primary" name="_savedok" form="TypoScriptTemplateModuleController">'.LocalizationUtility::translate('save','ns_basetheme').'</button><input type="hidden" name="_savedok" value="1"></div><div class="card-body">';
-                            } else {
-                                $output .= '</div></div><div class="card custom-card"><div class="card-header"><h5><em class="fa fa-caret-down" aria-hidden="true"></em> &nbsp;' . $subcat_name . '</h5><button class="btn btn-primary" name="_savedok" form="TypoScriptTemplateModuleController">'.LocalizationUtility::translate('save','ns_basetheme').'</button><input type="hidden" name="_savedok" value="1"></div><div class="card-body">';
+                        if(isset($params['subcat_name'])){
+                            if ($subcat != $params['subcat_name']) {
+                                $subcat = $params['subcat_name'];
+                                $subcat_name = $params['subcat_name'] ? $this->subCategories[$params['subcat_name']][0] : 'Others';
+                                if ($i == 0) {
+                                    $output .= '<div class="card custom-card"><div class="card-header"><h5><em class="fa fa-caret-down" aria-hidden="true"></em> &nbsp;' . $subcat_name . '</h5><button class="btn btn-primary" name="_savedok" form="TypoScriptTemplateModuleController">'.LocalizationUtility::translate('save','ns_basetheme').'</button><input type="hidden" name="_savedok" value="1"></div><div class="card-body">';
+                                } else {
+                                    $output .= '</div></div><div class="card custom-card"><div class="card-header"><h5><em class="fa fa-caret-down" aria-hidden="true"></em> &nbsp;' . $subcat_name . '</h5><button class="btn btn-primary" name="_savedok" form="TypoScriptTemplateModuleController">'.LocalizationUtility::translate('save','ns_basetheme').'</button><input type="hidden" name="_savedok" value="1"></div><div class="card-body">';
+                                }
                             }
                         }
                         $label = $this->getLanguageService()->sL($params['label']);
