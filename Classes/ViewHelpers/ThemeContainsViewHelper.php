@@ -17,6 +17,13 @@ class ThemeContainsViewHelper extends AbstractViewHelper
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
     ) {
-        return str_starts_with($arguments['value'], 'ns_');
+        switch ($arguments['value']) {
+            case 'ns_basetheme':
+            case 'ns_seo':
+            case 'ns_gdpr':
+            case 'ns_style':
+            case 'ns_integration':
+                return $arguments['value'];
+        }
     }
 }

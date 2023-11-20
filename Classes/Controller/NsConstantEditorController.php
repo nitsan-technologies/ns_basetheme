@@ -376,11 +376,13 @@ class NsConstantEditorController extends AbstractTemplateModuleController
                 $operatorPosition = strcspn($line, ' {=<');
                 $key = substr($line, 0, $operatorPosition);
                 $line = ltrim(substr($line, $operatorPosition));
-                if ($line[0] === '=') {
-                    $constantPositions[$prefix . $key] = $lineCounter - 1;
-                } elseif ($line[0] === '{') {
-                    $braceLevel++;
-                    $this->calculateConstantPositions($rawTemplateConstantsArray, $constantPositions, $prefix . $key . '.', $braceLevel, $lineCounter);
+                if (isset($line[0])) {
+                    if ($line[0] === '=') {
+                        $constantPositions[$prefix . $key] = $lineCounter - 1;
+                    } elseif ($line[0] === '{') {
+                        $braceLevel++;
+                        $this->calculateConstantPositions($rawTemplateConstantsArray, $constantPositions, $prefix . $key . '.', $braceLevel, $lineCounter);
+                    }
                 }
             } elseif ($line[0] === '}') {
                 $braceLevel--;
