@@ -18,7 +18,9 @@ $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
     \TYPO3\CMS\Core\Imaging\IconRegistry::class
 );
 
-if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('mask')) {
+
+function customElements(){
+    $_EXTKEY = 'ns_basetheme';
     // Initiate NsBaseThemeUtility
     $objNsBasetheme = TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\NITSAN\NsBasetheme\NsBasethemeUtility::class);
 
@@ -50,6 +52,18 @@ if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('mask')) {
             $tsComponents
         }
     ");
+}
+
+
+if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('mask')) {
+    customElements();
+    }
+    
+    $extensionConfiguration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)
+    ->get('ns_basetheme');    
+  
+if($extensionConfiguration['enable_mask'] == '1'){
+    customElements();
 }
 
 // Let's add default PageTS for "Form"
