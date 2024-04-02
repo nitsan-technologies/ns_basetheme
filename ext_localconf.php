@@ -58,11 +58,11 @@ function customElements(){
 if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('mask')) {
     customElements();
     }
-    
+
     $extensionConfiguration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)
     ->get('ns_basetheme');    
   
-if($extensionConfiguration['enable_flexform_elements'] == '1'){
+if($extensionConfiguration['enable_mask_flexform'] == '1'){
     customElements();
 }
 
