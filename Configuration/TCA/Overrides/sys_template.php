@@ -9,3 +9,4 @@ $_EXTKEY = 'ns_basetheme';
     'Configuration/TypoScript',
     '[NITSAN] Parent theme'
 );
+
