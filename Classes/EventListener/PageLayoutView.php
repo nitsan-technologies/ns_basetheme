@@ -30,6 +30,7 @@ final class PageLayoutView
                     if ($row['CType'] == $theComponent) {
                         $rowFlag = 1;
                         $extensionKey = $extKey;
+                        break 2;
                     }
                 }
             }
