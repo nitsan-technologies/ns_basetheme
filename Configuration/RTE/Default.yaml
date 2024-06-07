@@ -8,10 +8,19 @@ imports:
 # For complete documentation see http://docs.ckeditor.com/#!/api/CKEDITOR.config
 editor:
   config:
-    contentsCss: "EXT:ns_basetheme/Resources/Public/css/RTE/bootstrap4-rte.min.css"
+   # contentsCss: "EXT:ns_basetheme/Resources/Public/css/RTE/bootstrap4-rte.min.css"
     stylesSet:
       - { name: "Lead", element: "p", attributes: {'class': 'lead'} }
-    format_tags: "p;h1;h2;h3;pre"
+    heading:
+      options:
+        - { model: 'paragraph', title: 'Paragraph' }
+        - { model: 'heading1', view: 'h1', title: 'Heading 1' }
+        - { model: 'heading2', view: 'h2', title: 'Heading 2' }
+        - { model: 'heading3', view: 'h3', title: 'Heading 3' }
+        - { model: 'heading4', view: 'h4', title: 'Heading 4' }
+        - { model: 'heading5', view: 'h5', title: 'Heading 5' }
+        - { model: 'heading6', view: 'h6', title: 'Heading 6' }
+        - { model: 'formatted', view: 'pre', title: 'Pre-Formatted Text' }  
     toolbarGroups:
       - { name: clipboard, groups: [clipboard, undo] }
       - { name: editing, groups: [find, selection, spellchecker] }
