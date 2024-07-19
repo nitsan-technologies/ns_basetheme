@@ -13,21 +13,7 @@
             <trans-unit id="ns_imageteaser.readmore">
                 <source>Read more!</source>
             </trans-unit>
-            <trans-unit id="message">
-                <source>We use cookies and other tracking technologies to personalize and improve your experience. By continuing to use our website, you consent to this.</source>
-            </trans-unit>
-            <trans-unit id="dismiss">
-                <source>Accept</source>
-            </trans-unit>
-            <trans-unit id="deny">
-                <source>Decline</source>
-            </trans-unit>
-            <trans-unit id="policy">
-                <source>Cookie Policy</source>
-            </trans-unit>
-            <trans-unit id="link">
-                <source>Learn More</source>
-            </trans-unit>
+          
 
             <!-- Module LLL Start-->
             <trans-unit id="extensionName">

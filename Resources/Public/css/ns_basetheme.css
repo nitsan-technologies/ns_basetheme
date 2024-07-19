@@ -26,8 +26,3 @@
     height: 2000px;
 }
 
-/* Focefully hide bottom cookieconcen cookie button */
-.cc-revoke.cc-bottom.active,
-.cc-revoke.cc-bottom {
-  display: none !important;
-}

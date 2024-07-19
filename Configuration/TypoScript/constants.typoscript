@@ -7,7 +7,7 @@
 # customsubcategory=120=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:footer
 # customsubcategory=130=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:speed
 # customsubcategory=140=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:maintenance
-# customsubcategory=170=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:cookie
+
 
 ####################
 ### SEO Settings ###
@@ -17,11 +17,7 @@
 # customsubcategory=210=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:google
 # customsubcategory=220=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:social
 
-#####################
-### GDPR Settings ###
-#####################
 
-# customsubcategory=300=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:cookie
 
 #####################
 ### Style Settings ###
@@ -121,47 +117,10 @@ ns_basetheme {
             seo_facebook_link = https://facebook.com/
 
             #cat = ns_seo/220/03; type=string; label=LinkedIn Profile Link: Configure your Linkedin page's link
-            seo_linkedin_link = https://linkedin.com/
-
-            cookie {
-                settings {
-                    # cat=ns_gdpr/300/01; type=boolean; label= Enable Cookie Consent: Enable or Disable Cookie Consent Box
-                    cookie_enable = 1
-
-                    # cat=ns_gdpr/300/02; type=int+; label= Privacy Page Id: Configure page-id of your Privacy & Policy page
-                    url = 1
-
-                    # cat=ns_gdpr/300/03; type=options[edgeless,classic,basic]; label=Layout: Please select layout, how do you want to display cookie consent box
-                    theme = edgeless
-
-                    # cat=ns_gdpr/300/04; type=options[top,top-left,top-right,bottom,bottom-left,bottom-right]; label= Position: Please select position to display at particular location of your website
-                    position = bottom-right
-
-                    # cat=ns_gdpr/300/05; type=int+; label= Dismiss on scroll: Confiugre in px (pixel)
-                    dismissOnScroll =
-
-                    # cat=ns_gdpr/300/06; type=options[info,opt-out]; label = Type: Select type from two options of info or opt-out
-                    type = opt-out
-
-                    palette {
-                        popup {
-                            # cat=ns_gdpr/300/07; type=color; label= Popup Background Color: Select background color of Popup
-                            background = rgba(0,0,0,.8)
-                            # cat=ns_gdpr/300/08; type=color; label= Popup Text Color: Select content color of Popup
-                            text = #fff
-                        }
-                        button {
-                            # cat=ns_gdpr/300/09; type=color; label= Button Background Color: Select background color of Button
-                            background = #b81839
-                            # cat=ns_gdpr/300/10; type=color; label= Button Text Color: Select content color of Button
-                            text = #fff
-                        }
-                    }
-                }
-            }
+            seo_linkedin_link = https://linkedin.com/ 
 
             #cat = ns_style/400/01; type=options[orange,blue,green]; label=Theme Color: Choose your favourite pre-configured Theme/Template color
-            #style_theme_color = blue
+            style_theme_color = blue
 
             #cat = ns_integration/500/00; type=boolean; label=Enable Admin Panel: Enable or disable config.admPanel
             integration_admpanel = 0

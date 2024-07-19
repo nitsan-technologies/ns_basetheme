@@ -42,58 +42,7 @@ page {
         viewport = width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no
     }
 
-    // Cookie Consent
-    headerData {
-        998 = FLUIDTEMPLATE
-        998 {
-            file = EXT:ns_basetheme/Resources/Private/Extensions/Cookie/Layouts/Cookie.html
-
-            templateRootPath = EXT:ns_basetheme/Resources/Private/Extensions/Cookie/Templates/
-            partialRootPath = EXT:ns_basetheme/Resources/Private/Extensions/Cookie/Partials/
-            layoutRootPath = EXT:ns_basetheme/Resources/Private/Extensions/Cookie/Layouts/
-
-            settings {
-                url = {$ns_basetheme.website.settings.cookie.settings.url}
-                theme = {$ns_basetheme.website.settings.cookie.settings.theme}
-                position = {$ns_basetheme.website.settings.cookie.settings.position}
-                type = {$ns_basetheme.website.settings.cookie.settings.type}
-                dismissOnScroll = {$ns_basetheme.website.settings.cookie.settings.dismissOnScroll}
-                barBg = {$ns_basetheme.website.settings.cookie.settings.palette.popup.background}
-                barColor = {$ns_basetheme.website.settings.cookie.settings.palette.popup.text}
-                btnBg = {$ns_basetheme.website.settings.cookie.settings.palette.button.background}
-                btnColor = {$ns_basetheme.website.settings.cookie.settings.palette.button.text}
-            }
-        }
-
-        657 {
-            10 {
-                stdWrap.replacement {
-                    10 {
-                        search = <script
-                        replace = <script data-ignore="1" data-cookieconsent="statistics" type="text/plain"
-                    }
-                    20 {
-                        search = src=
-                        replace = data-src=
-                    }
-                }
-            }
-            20 {
-                stdWrap.replacement {
-                    10 {
-                        search = <script
-                        replace = <script data-ignore="1" data-cookieconsent="statistics" type="text/plain"
-                    }
-                }
-            }
-        }
-
-        90 = COA
-        90 {
-            wrap = <script data-ignore="1" data-cookieconsent="statistics" type="text/plain">|</script>
-            10 < .jsInline.654
-        }
-    }
+  
 
     // Initiate all the css-together
     includeCSS {
@@ -375,16 +324,10 @@ page.headerData {
 [global]
 
 
-##############################
-### Disable Cookie Consent ###
-##############################
-
-["{$ns_basetheme.website.settings.cookie.settings.cookie_enable}" == 0]
-    page.headerData.998 >
-[global]
 
 
-[cookieconsent_status == 'allow' && "{$ns_basetheme.website.settings.googleanalyticsstatus}" == 0 && "{$ns_basetheme.website.settings.googleanalyticstype}" == 'GAv3']
+
+["{$ns_basetheme.website.settings.googleanalyticsstatus}" == 0 && "{$ns_basetheme.website.settings.googleanalyticstype}" == 'GAv3']
 page {
     headerData {
         987 >
@@ -406,7 +349,7 @@ page {
 }
 [global]
 
-[cookieconsent_status == 'allow' && "{$ns_basetheme.website.settings.googleanalyticsstatus}" == 0 && "{$ns_basetheme.website.settings.googleanalyticstype}" == 'GAv4']
+["{$ns_basetheme.website.settings.googleanalyticsstatus}" == 0 && "{$ns_basetheme.website.settings.googleanalyticstype}" == 'GAv4']
 page {
     headerData {
         987 >

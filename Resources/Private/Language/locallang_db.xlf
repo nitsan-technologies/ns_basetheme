@@ -68,9 +68,7 @@
             <trans-unit id="social">
                 <source>Social Media</source>
             </trans-unit>
-            <trans-unit id="cookie">
-                <source>Cookie Consent</source>
-            </trans-unit>
+      
 
             <trans-unit id="grid.1column">
                 <source>1 Column Container</source>
