@@ -78,14 +78,20 @@ class PwaMiddleware implements MiddlewareInterface
     $siteUrl = $this->request->getAttribute('normalizedParams')->getSiteUrl();
     $manifestUrl = $siteUrl.self::MANIFEST_NAME . '?' . time();
 
+    $configurationsName = $configurations['name'] ?? '';
+
+    $configurationsIcon = $configurations['icon'] ?? '';
+
+    $configurationsColor =   $configurations['theme_color'] ?? '';
+
     $headerData = "<link rel='manifest' href='{$manifestUrl}'>";
     $headerData .= '<meta name="apple-mobile-web-app-capable" content="yes">';
     $headerData .= '<meta name="apple-mobile-web-app-status-bar-style" content="black">';
-    $headerData .= "<meta name='apple-mobile-web-app-title' content='{$configurations['name']}'>";
-    $headerData .= "<link rel='apple-touch-icon' href='{$configurations['icon']}'>";
-    $headerData .= "<meta name='msapplication-TileImage' content='{$configurations['icon']}'>";
-    $headerData .= "<meta name='theme-color' content='{$configurations['theme_color']}'>";
-    $headerData .= "<meta name='msapplication-TileColor' content='{$configurations['theme_color']}'>";
+    $headerData .= "<meta name='apple-mobile-web-app-title' content='{$configurationsName}'>";
+    $headerData .= "<link rel='apple-touch-icon' href='{$configurationsIcon}'>";
+    $headerData .= "<meta name='msapplication-TileImage' content='{$configurationsIcon}'>";
+    $headerData .= "<meta name='theme-color' content='{$configurationsColor}'>";
+    $headerData .= "<meta name='msapplication-TileColor' content='{$configurationsColor}'>";
 
     GeneralUtility::makeInstance(PageRenderer::class)->addHeaderData($headerData);
   }
@@ -98,33 +104,48 @@ class PwaMiddleware implements MiddlewareInterface
    */
   protected function prepareJsonData(array $configurations): array
   {
+    $configurationsShortName  = $configurations['short_name'] ?? '';
+    $configurationsName  = $configurations['name'] ?? '';
+    $configurationsIcon_192  = $configurations['icon_192'] ?? '';
+    $configurationsIcon_192_type = $configurations['icon_192_type'] ?? '';
+    $configurationsIcon_512 = $configurations['icon_512'] ?? '';
+    $configurationsIcon_512_type = $configurations['icon_512_type'] ?? '';
+    $configurationsIcon_144 =  $configurations['icon_144'] ?? '';
+    $configurationsIcon_144_type = $configurations['icon_144_type'] ?? '';
+
+    $configurationsStart_URL = $configurations['start_url'] ?? '';
+    $configurationsBackground_color = $configurations['background_color'] ?? '';
+    $configurationsDispaly = $configurations['display'] ?? '';
+    $configurationsScope = $configurations['scope'] ?? '';
+    $configurationsThemeColor = $configurations['theme_color'] ?? '';
+
     $data = [
-        "short_name" => "$configurations[short_name]",
-        "name" => "$configurations[name]",
+        "short_name" => "$configurationsShortName",
+        "name" => "$configurationsName",
         "icons" => [
             [
-              "src" => "$configurations[icon_192]",
+              "src" => "$configurationsIcon_192",
               "sizes" => "192x192",
-              "type" =>  "$configurations[icon_192_type]",
+              "type" =>  "$configurationsIcon_192_type",
               "density" => 4
             ],
             [
-              "src" => "$configurations[icon_512]",
+              "src" => "$configurationsIcon_512",
               "sizes" => "512x512",
-              "type" => "$configurations[icon_512_type]"
+              "type" => "$configurationsIcon_512_type"
             ],
             [
-              "src" => "$configurations[icon_144]",
+              "src" => "$configurationsIcon_144",
               "sizes" => "144x144",
-              "type" => "$configurations[icon_144_type]",
+              "type" => "$configurationsIcon_144_type",
               "purpose" => "maskable"
             ]
         ],
-        "start_url" =>  "$configurations[start_url]",
-        "background_color" => "$configurations[background_color]",
-        "display" => "$configurations[display]",
-        "scope" => "$configurations[scope]",
-        "theme_color" => "$configurations[theme_color]",
+        "start_url" =>  "$configurationsStart_URL",
+        "background_color" => "$configurationsBackground_color",
+        "display" => "$configurationsDispaly",
+        "scope" => "$configurationsScope",
+        "theme_color" => "$configurationsThemeColor",
     ];
 
     // Check if ss_icon_mobile exists and add it to the screenshots array
