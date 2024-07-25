@@ -18,9 +18,12 @@ $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
     \TYPO3\CMS\Core\Imaging\IconRegistry::class
 );
 
-
 function customElements(){
     $_EXTKEY = 'ns_basetheme';
+    $siteRoot = \TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/typo3conf/ext/';
+    if (Environment::isComposerMode()) {
+        $siteRoot = Environment::getProjectPath() . '/vendor/nitsan/';
+    }
     // Initiate NsBaseThemeUtility
     $objNsBasetheme = TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\NITSAN\NsBasetheme\NsBasethemeUtility::class);
 
@@ -32,6 +35,8 @@ function customElements(){
 
     // Get list of all the components from EXT.ns_theme_*
     $allComponents = $objNsBasetheme->getChildThemeComponents($arrAllExtensions);
+
+    $objNsBasetheme->setupBackendPreviewCssJs($arrAllExtensions, $siteRoot);
 
     // Settled constatant to access from "Everywhere"
     if (!defined('ALL_COMPONENTS')) define('ALL_COMPONENTS', $allComponents);
@@ -60,8 +65,8 @@ if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('mask')) {
     }
 
     $extensionConfiguration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)
-    ->get('ns_basetheme');    
-  
+    ->get('ns_basetheme');
+
 if($extensionConfiguration['enable_mask_flexform'] == '1'){
     customElements();
 }

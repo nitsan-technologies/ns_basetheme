@@ -32,8 +32,8 @@ class NsBasethemeUtility
                     }
                     else{
                         $directoryPath = \TYPO3\CMS\Core\Core\Environment::getPublicPath() . "/typo3conf/ext/$extKey/Configuration/FlexForms";
-                      
-                    }  
+
+                    }
                     if (is_dir($directoryPath)) {
                         $arrAllComponents[$extKey] = scandir($directoryPath);
                     }
@@ -92,17 +92,18 @@ class NsBasethemeUtility
      **/
     public function setupBackendPreviewCssJs($arrAllExtensions, $siteRoot)
     {
-        if (Environment::isComposerMode()) {
-            $siteRoot = Environment::getComposerRootPath() . '/vendor/nitsan/';
-        }
         // Let's check if our child themes are available
         if (count($arrAllExtensions) > 0) {
+            $basethemeKey = 'ns_basetheme';
             foreach ($arrAllExtensions as $key => $extKey) {
                 $rExtkey = $extKey;
-                $extKey = str_replace('_', '-', $extKey);
+                if (Environment::isComposerMode()) {
+                    $basethemeKey = str_replace('_', '-', $basethemeKey);
+                    $extKey = str_replace('_', '-', $extKey);
+                }
                 // Get only extension which are child theme eg., EXT:ns_theme_cleanblog
                 $extensionPrefixKey = substr($rExtkey, 0, 9);
-                if ($extensionPrefixKey == 'ns_theme_') {
+                if ($extensionPrefixKey === 'ns_theme_') {
                     // Render Custom CSS and Javascript
                     $renderer = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Page\AssetCollector::class);
                     // Grab CSS/JS of EXT.ns_basetheme
@@ -110,24 +111,28 @@ class NsBasethemeUtility
                     if (file_exists($css)) {
                         $renderer->addStyleSheet('Base', 'EXT:ns_basetheme/Resources/Public/css/Backend.css');
                     }
-                    $jsNaBaseThemeBackend = $siteRoot . $extKey . '/Resources/Public/JavaScript/Backend.js';
-                    $jsNaBaseThemeImagePreview = $siteRoot . $extKey . '/Resources/Public/JavaScript/ImagePreview.js';
+
+                    // If available in basethem...
+                    $jsNaBaseThemeImagePreview = $siteRoot .$basethemeKey. '/Resources/Public/JavaScript/ImagePreview.js';
                     if (file_exists($jsNaBaseThemeImagePreview)) {
-                        $renderer->addJavaScript('BasethemeJS', 'EXT:ns_basetheme/Resources/Public/JavaScript/ImagePreview.js');
+                        $renderer->addJavaScript('Bastheme-ImagePreview-Js', 'EXT:ns_basetheme/Resources/Public/JavaScript/ImagePreview.js');
                     }
+                    $js = $siteRoot . $extKey . '/Resources/Public/Backend/JavaScript/ThemeBackend.js';
+                    if (file_exists($js)) {
+                        $renderer->addJavaScript('ChildbaseJS', 'EXT:' . $rExtkey . '/Resources/Public/Backend/JavaScript/ThemeBackend.js');
+                    }
+
+                    $jsNaBaseThemeBackend = $siteRoot . $basethemeKey . '/Resources/Public/JavaScript/Backend.js';
                     if (file_exists($jsNaBaseThemeBackend)) {
-                        $renderer->addJavaScript('themeBackend', 'EXT:ns_basetheme/Resources/Public/JavaScript/Backend.js');
+                        $renderer->addJavaScript('Bastheme-Backend-Js', 'EXT:ns_basetheme/Resources/Public/JavaScript/Backend.js');
                     }
 
                     // Grab CSS/JS of EXT.ns_theme_name
                     $css = $siteRoot . $extKey . '/Resources/Public/Backend/Css/Backend.css';
-                    $js = $siteRoot . $extKey . '/Resources/Public/Backend/JavaScript/Backend.js';
                     if (file_exists($css)) {
                         $renderer->addStyleSheet('Childbase', $css);
                     }
-                    if (file_exists($js)) {
-                        $renderer->addJavaScript('childbaseJS', 'EXT:' . $extKey . '/Resources/Public/Backend/JavaScript/Backend.js');
-                    }
+
                     unset($css);
                     unset($js);
                 }
