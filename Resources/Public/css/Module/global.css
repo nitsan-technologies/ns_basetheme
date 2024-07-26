@@ -987,3 +987,12 @@ select.form-control[size="1"]:not(.form-select-no-siblings) {
 .ns-ext-navigation .nav-item .nav-link .fa-icon-ns_integration::before {
     height: 16px;
 }
+
+/* Theme option preview */
+.themeOptionsImagesContainer .themeOptionsImages {
+    height: auto;
+    max-height: 60px;
+    max-width: 150px;
+    margin-top: 7px;
+}
+/* Theme option preview */
