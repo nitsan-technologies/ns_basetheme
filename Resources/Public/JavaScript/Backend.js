@@ -47,3 +47,31 @@ document
       }
     }
   });
+
+document
+  .querySelectorAll(".form-group .input-group .form-select")
+  .forEach((selection) => {
+    selection.querySelectorAll("option").forEach((selectedOption) => {
+      if (selectedOption.getAttribute("selected") !== null) {
+        let element = selectedOption.parentElement
+          .getAttribute("data-id")
+          .split("-");
+        let elementType = element[element.length - 1];
+        let imageURL = selectedOption.getAttribute("data-img-src");
+
+        const fragment = document.createDocumentFragment();
+        const selectedImageDiv = document.createElement("div");
+        selectedImageDiv.classList.add(
+          "themeOptionsImagesContainer",
+          `${elementType}`
+        );
+        fragment.appendChild(selectedImageDiv);
+
+        const selectedImage = document.createElement("img");
+        selectedImage.classList.add(`themePreviewImg_${elementType}`);
+        selectedImage.setAttribute("src", imageURL);
+        selectedImageDiv.appendChild(selectedImage);
+        selection.insertAdjacentElement("afterend", selectedImageDiv);
+      }
+    });
+  });
