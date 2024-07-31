@@ -35,6 +35,15 @@ services:
     arguments:
       $renderer: '@TYPO3\CMS\Core\Page\AssetCollector'
 
+  NITSAN\NsBasetheme\Backend\LoadAssetsElementPreview:
+    tags:
+      - name: event.listener
+        identifier: 'ns-basetheme/backend/add-element-backend-js'
+        method: handleEvent
+        event: TYPO3\CMS\Backend\Controller\Event\AfterFormEnginePageInitializedEvent
+    arguments:
+      $renderer: '@TYPO3\CMS\Core\Page\AssetCollector'
+
   NITSAN\NsBasetheme\Hooks\BackendUserLogin:
     tags:
       - name: event.listener

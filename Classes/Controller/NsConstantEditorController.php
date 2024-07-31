@@ -2,7 +2,6 @@
 
 namespace NITSAN\NsBasetheme\Controller;
 
-use NITSAN\NsBasetheme\Backend\BackendCssLayout;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
