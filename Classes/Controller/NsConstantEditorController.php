@@ -2,8 +2,11 @@
 
 namespace NITSAN\NsBasetheme\Controller;
 
+use NITSAN\NsBasetheme\Backend\BackendCssLayout;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Backend\Controller\Event\ModifyPageLayoutContentEvent;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
@@ -34,6 +37,7 @@ class NsConstantEditorController extends AbstractTemplateModuleController
         private readonly AstTraverser $astTraverser,
         private readonly AstBuilderInterface $astBuilder,
         private readonly LosslessTokenizer $losslessTokenizer,
+        private readonly EventDispatcherInterface $eventDispatcher,
     ) {
     }
 
@@ -160,6 +164,7 @@ class NsConstantEditorController extends AbstractTemplateModuleController
         }
 
         $view = $this->moduleTemplateFactory->create($request);
+        $this->eventDispatcher->dispatch(new ModifyPageLayoutContentEvent($request, $view));
         $view->setTitle($languageService->sL($currentModule->getTitle()), $pageRecord['title']);
         $view->getDocHeaderComponent()->setMetaInformation($pageRecord);
         $this->addPreviewButtonToDocHeader($view, $pageUid, (int)$pageRecord['doktype']);

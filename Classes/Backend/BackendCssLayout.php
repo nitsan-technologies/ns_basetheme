@@ -52,13 +52,13 @@ class BackendCssLayout
                     if (file_exists($jsNaBaseThemeImagePreview)) {
                         $this->renderer->addJavaScript('NsBaseThemeImagePreviewJs', 'EXT:ns_basetheme/Resources/Public/JavaScript/ImagePreview.js');
                     }
-                    $jsNaBaseThemeBackend = $siteRoot . $extKey . '/Resources/Public/JavaScript/Backend.js';
+                    $jsNaBaseThemeBackend = $siteRoot . $basethemeKey . '/Resources/Public/JavaScript/Backend.js';
                     if (file_exists($jsNaBaseThemeBackend)) {
                         $this->renderer->addJavaScript('NsBaseThemeBackendJs', 'EXT:ns_basetheme/Resources/Public/JavaScript/Backend.js');
                     }
-                    $js = $siteRoot . $extKey . '/Resources/Public/Backend/JavaScript/Backend.js';
+                    $js = $siteRoot . $extKey . '/Resources/Public/Backend/JavaScript/ThemeBackend.js';
                     if (file_exists($js)) {
-                        $this->renderer->addJavaScript('ChildThemeBackendJs', 'EXT:' . $rExtkey . '/Resources/Public/Backend/JavaScript/Backend.js');
+                        $this->renderer->addJavaScript('ChildThemeBackendJs', 'EXT:' . $rExtkey . '/Resources/Public/Backend/JavaScript/ThemeBackend.js');
                     }
 
                     // Grab CSS/JS of EXT.ns_theme_name
