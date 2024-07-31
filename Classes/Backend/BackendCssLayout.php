@@ -31,45 +31,46 @@ class BackendCssLayout
         }
         $arrAllExtensions = $this->objNsBasetheme->getInstalledChildTheme();
         if (count($arrAllExtensions) > 0) {
+            $basethemeKey = 'ns_basetheme';
             foreach ($arrAllExtensions as $extKey) {
                 $rExtkey = $extKey;
                 if (Environment::isComposerMode()) {
+                    $basethemeKey = str_replace('_', '-', $basethemeKey);
                     $extKey = str_replace('_', '-', $extKey);
                 }
                 // Get only extension which are child theme eg., EXT:ns_theme_cleanblog
                 $extensionPrefixKey = substr($rExtkey, 0, 9);
-
-                if ($extensionPrefixKey == 'ns_theme_') {
+                if ($extensionPrefixKey === 'ns_theme_') {
                     // Grab CSS/JS of EXT.ns_basetheme
                     $css = $siteRoot . $extKey . '/Resources/Public/css/Backend.css';
                     if (file_exists($css)) {
                         // @extensionScannerIgnoreLine
                         $this->renderer->addStyleSheet('Base', 'EXT:ns_basetheme/Resources/Public/css/Backend.css');
                     }
-                    $jsNaBaseThemeBackend = $siteRoot . $extKey . '/Resources/Public/JavaScript/Backend.js';
-                    $jsNaBaseThemeImagePreview = $siteRoot . $extKey . '/Resources/Public/JavaScript/ImagePreview.js';
+
+                    $jsNaBaseThemeImagePreview = $siteRoot .$basethemeKey. '/Resources/Public/JavaScript/ImagePreview.js';
                     if (file_exists($jsNaBaseThemeImagePreview)) {
-                        $this->renderer->addJavaScript('BasethemeJS', 'EXT:ns_basetheme/Resources/Public/JavaScript/ImagePreview.js');
+                        $this->renderer->addJavaScript('NsBaseThemeImagePreviewJs', 'EXT:ns_basetheme/Resources/Public/JavaScript/ImagePreview.js');
                     }
+                    $jsNaBaseThemeBackend = $siteRoot . $extKey . '/Resources/Public/JavaScript/Backend.js';
                     if (file_exists($jsNaBaseThemeBackend)) {
-                        $this->renderer->addJavaScript('themeBackend', 'EXT:ns_basetheme/Resources/Public/JavaScript/Backend.js');
+                        $this->renderer->addJavaScript('NsBaseThemeBackendJs', 'EXT:ns_basetheme/Resources/Public/JavaScript/Backend.js');
+                    }
+                    $js = $siteRoot . $extKey . '/Resources/Public/Backend/JavaScript/Backend.js';
+                    if (file_exists($js)) {
+                        $this->renderer->addJavaScript('ChildThemeBackendJs', 'EXT:' . $rExtkey . '/Resources/Public/Backend/JavaScript/Backend.js');
                     }
 
                     // Grab CSS/JS of EXT.ns_theme_name
                     $css = $siteRoot . $extKey . '/Resources/Public/Backend/Css/Backend.css';
-                    $js = $siteRoot . $extKey . '/Resources/Public/Backend/JavaScript/Backend.js';
                     if (file_exists($css)) {
                         // @extensionScannerIgnoreLine
                         $this->renderer->addStyleSheet('Childbase', $css);
-                    }
-                    if (file_exists($js)) {
-                        $this->renderer->addJavaScript('childbaseJS', 'EXT:' . $extKey . '/Resources/Public/Backend/JavaScript/Backend.js');
                     }
                     unset($css);
                     unset($js);
                 }
             }
         }
-
     }
 }
