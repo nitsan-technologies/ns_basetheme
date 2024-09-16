@@ -44,8 +44,7 @@ class PwaMiddleware implements MiddlewareInterface
    */
   protected function processPwa(): void
   {
-    $caching = GeneralUtility::makeInstance(CacheManager::class);
-    $caching->flushCaches();
+  
     
     $configurations = $this->getConfigurations();
 
@@ -75,7 +74,15 @@ class PwaMiddleware implements MiddlewareInterface
    */
   protected function addHeaderData(array $configurations): void
   {
+
     $siteUrl = $this->request->getAttribute('normalizedParams')->getSiteUrl();
+    $currentUrl = $this->request->getAttribute('normalizedParams')->getRequestUrl();
+   
+    if($siteUrl == $currentUrl){
+      $caching = GeneralUtility::makeInstance(CacheManager::class);
+      $caching->flushCaches();
+    }
+
     $manifestUrl = $siteUrl.self::MANIFEST_NAME . '?' . time();
 
     $configurationsName = $configurations['name'] ?? '';
