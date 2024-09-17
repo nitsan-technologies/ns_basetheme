@@ -49,11 +49,23 @@ final class PageLayoutView
                 );
 
 
+            // Check if 'pi_flexform' is not empty and assign FlexForm data if applicable
             if (!empty($row['pi_flexform'])) {
+                // Instantiate the FlexFormService only when needed
                 $flexFormService = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Service\FlexFormService::class);
+                
+                // Convert FlexForm content to an array, with error handling
+                $flexformData = $flexFormService->convertFlexFormContentToArray($row['pi_flexform']);
+                if ($flexformData !== null) {
+                    $view->assign('flexformData', $flexformData);
+                } else {
+                    // Optionally log or handle the error
+                    $view->assign('flexformData', []);
+                }
+            } else {
+                // Assign an empty array if 'pi_flexform' is empty
+                $view->assign('flexformData', []);
             }
-
-            $view->assign('flexformData', $flexFormService->convertFlexFormContentToArray($row['pi_flexform']));
             $view->assign('data', $row);
             $view->assign('image', $images);
 
