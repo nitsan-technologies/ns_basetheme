@@ -90,17 +90,17 @@ class PwaMiddleware implements MiddlewareInterface
     $configurationsIcon = $configurations['icon'] ?? '';
 
     $configurationsColor =   $configurations['theme_color'] ?? '';
-
-    $headerData = "<link rel='manifest' href='{$manifestUrl}'>";
-    $headerData .= '<meta name="apple-mobile-web-app-capable" content="yes">';
-    $headerData .= '<meta name="apple-mobile-web-app-status-bar-style" content="black">';
-    $headerData .= "<meta name='apple-mobile-web-app-title' content='{$configurationsName}'>";
-    $headerData .= "<link rel='apple-touch-icon' href='{$configurationsIcon}'>";
-    $headerData .= "<meta name='msapplication-TileImage' content='{$configurationsIcon}'>";
-    $headerData .= "<meta name='theme-color' content='{$configurationsColor}'>";
-    $headerData .= "<meta name='msapplication-TileColor' content='{$configurationsColor}'>";
-
-    GeneralUtility::makeInstance(PageRenderer::class)->addHeaderData($headerData);
+    if (isset($configurations["enabled"]) && $configurations["enabled"] == true){
+      $headerData = "<link rel='manifest' href='{$manifestUrl}'>";
+      $headerData .= '<meta name="apple-mobile-web-app-capable" content="yes">';
+      $headerData .= '<meta name="apple-mobile-web-app-status-bar-style" content="black">';
+      $headerData .= "<meta name='apple-mobile-web-app-title' content='{$configurationsName}'>";
+      $headerData .= "<link rel='apple-touch-icon' href='{$configurationsIcon}'>";
+      $headerData .= "<meta name='msapplication-TileImage' content='{$configurationsIcon}'>";
+      $headerData .= "<meta name='theme-color' content='{$configurationsColor}'>";
+      $headerData .= "<meta name='msapplication-TileColor' content='{$configurationsColor}'>";
+      GeneralUtility::makeInstance(PageRenderer::class)->addHeaderData($headerData);
+    }    
   }
 
   /**
@@ -111,6 +111,7 @@ class PwaMiddleware implements MiddlewareInterface
    */
   protected function prepareJsonData(array $configurations): array
   {
+    $configurationsEnabled  = $configurations['enabled'] ?? '';
     $configurationsShortName  = $configurations['short_name'] ?? '';
     $configurationsName  = $configurations['name'] ?? '';
     $configurationsIcon_192  = $configurations['icon_192'] ?? '';

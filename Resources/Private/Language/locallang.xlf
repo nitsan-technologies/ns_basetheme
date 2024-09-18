@@ -79,6 +79,12 @@
             <trans-unit id="noThemeConfiguration">
                 <source>Sorry, Configuration not available for this category!</source>
             </trans-unit>
+            <trans-unit id="settings.enabled.label">
+				<source>Enabled</source>
+			</trans-unit>
+			<trans-unit id="settings.enabled.description">
+				<source>PWA Enabled/Disabled Feature</source>
+			</trans-unit>
             <trans-unit id="settings.short_name.label">
 				<source>Short Name</source>
 			</trans-unit>

@@ -51,6 +51,14 @@ else{
 }
 
 
+$siteColumns['enabled'] = [
+    'label' => $languageFile.'enabled.label',
+    'description' =>$languageFile.'enabled.description',
+    'config' => [
+        'type' => 'check',
+        'default' => false
+    ],
+];
 $siteColumns['short_name'] = [
     'label' => $languageFile.'short_name.label',
     'description' =>$languageFile.'short_name.description',
@@ -212,7 +220,7 @@ $GLOBALS['SiteConfiguration']['site']['palettes'] = array_merge_recursive(
     $GLOBALS['SiteConfiguration']['site']['palettes'], 
     [
         'general' => [
-            'showitem' => 'short_name, name, --linebreak--, start_url, scope, entry_point'
+            'showitem' => 'enabled, --linebreak--, short_name, name, --linebreak--, start_url, scope, entry_point'
         ],
         'theme' => [
             'showitem' => 'background_color, display, theme_color'
