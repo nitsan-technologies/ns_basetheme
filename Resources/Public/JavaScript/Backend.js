@@ -1,24 +1,32 @@
 document
   .querySelectorAll(".form-group .formengine-field-item .input-group")
   .forEach((formFieldIcon) => {
-    formFieldIcon
-      .querySelectorAll(".input-group-icon img")
-      .forEach((selectedIcon) => {
-        const fragment = document.createDocumentFragment();
-        const selectedImageDiv = document.createElement("div");
-        selectedImageDiv.classList.add(
-          "NsBasethemeElementIconContainerAtVariance"
-        );
+    if (
+      formFieldIcon.closest(".tab-pane").querySelector(".visually-hidden")
+        .innerHTML == "General"
+    ) {
+      formFieldIcon
+        .querySelectorAll(".input-group-icon img")
+        .forEach((selectedIcon) => {
+          if(selectedIcon.getAttribute("src").split(".").pop() == "png"){
+            const fragment = document.createDocumentFragment();
+            const selectedImageDiv = document.createElement("div");
+            selectedImageDiv.classList.add(
+              "NsBasethemeElementIconContainerAtVariance"
+            );
 
-        fragment.appendChild(selectedImageDiv);
-        const selectedImage = document.createElement("img");
-        selectedImage.setAttribute("loading", selectedIcon.loading);
-        selectedImage.setAttribute("src", selectedIcon.src);
-        selectedImage.setAttribute("alt", selectedIcon.alt);
-        selectedImage.setAttribute("title", selectedIcon.title);
-        selectedImageDiv.appendChild(selectedImage);
-        formFieldIcon.insertAdjacentElement("afterend", selectedImageDiv);
-      });
+            fragment.appendChild(selectedImageDiv);
+            const selectedImage = document.createElement("img");
+            selectedImage.setAttribute("loading", selectedIcon.loading);
+            selectedImage.setAttribute("src", selectedIcon.src);
+            selectedImage.setAttribute("alt", selectedIcon.alt);
+            selectedImage.setAttribute("title", selectedIcon.title);
+            selectedImageDiv.appendChild(selectedImage);
+
+            formFieldIcon.insertAdjacentElement("afterend", selectedImageDiv);
+          }          
+        });
+    }
   });
 
 document
