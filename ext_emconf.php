@@ -12,7 +12,7 @@ $EM_CONF['ns_basetheme'] = [
     'version' => '12.2.4',
     'constraints' => [
         'depends' => [
-            'typo3' => '12.0.0-12.4.99'
+             'typo3' => '12.0.0-13.9.99',
         ],
         'conflicts' => [],
         'suggests' => [],
