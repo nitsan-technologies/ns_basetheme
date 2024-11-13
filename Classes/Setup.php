@@ -3,7 +3,7 @@ namespace NITSAN\NsBasetheme;
 /**
  * This Class called when Importing database of Templates
  */
-use NITSAN\NsLicense\Controller\NsLicenseModuleController;
+use NITSAN\NsLicense\Service\LicenseService;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -49,7 +49,7 @@ class Setup
                 }
             }
             if ($isLicenseCheck && str_contains($extname, 'ns_theme_')) {
-                $nsLicenseModule = GeneralUtility::makeInstance(NsLicenseModuleController::class);
+                $nsLicenseModule = GeneralUtility::makeInstance(LicenseService::class);
                 $nsLicenseModule->connectToServer($extname, 1, 'checkTheme');
             }
 

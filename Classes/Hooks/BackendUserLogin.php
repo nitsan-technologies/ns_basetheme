@@ -3,7 +3,7 @@
 
 namespace NITSAN\NsBasetheme\Hooks;
 
-use NITSAN\NsLicense\Controller\NsLicenseModuleController;
+use NITSAN\NsLicense\Service\LicenseService;
 use TYPO3\CMS\Core\Authentication\Event\AfterUserLoggedInEvent;
 use TYPO3\CMS\Core\Package\PackageManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -19,7 +19,7 @@ class BackendUserLogin
         $isLicenseActivate = GeneralUtility::makeInstance(PackageManager::class)->isPackageActive('ns_license');
         if ($isLicenseActivate) {
             $activePackages = GeneralUtility::makeInstance(PackageManager::class)->getAvailablePackages();
-            $nsLicenseModule = GeneralUtility::makeInstance(NsLicenseModuleController::class);
+            $nsLicenseModule = GeneralUtility::makeInstance(LicenseService::class);
             foreach ($activePackages as $key => $value) {
                 $exp_key = explode('_theme', $key);
                 if ($exp_key[0] == 'ns') {
