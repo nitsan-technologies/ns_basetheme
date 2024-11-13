@@ -2,7 +2,7 @@
 
 // Provide detailed information and depenencies of EXT:ns_basetheme
 $EM_CONF['ns_basetheme'] = [
-    'title' => '[NITSAN] TYPO3 Base Template',
+    'title' => 'TYPO3 Base Template',
     'description' => 'The architecture of parent/child TYPO3 theme concept. Explore https://t3planet.com and https://nitsantech.com',
     'category' => 'templates',
     'author' => 'Team NITSAN',
