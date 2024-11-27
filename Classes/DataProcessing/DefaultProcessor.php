@@ -66,7 +66,7 @@ class DefaultProcessor implements DataProcessorInterface
                                 }
                             }
                         } else {
-                            $options[$optionKey] = $optionValue['vDEF'] === '1' ? true : $optionValue['vDEF'];
+                            $options[$optionKey] = isset($optionValue['vDEF']) && $optionValue['vDEF'] === '1' ? true : ($optionValue['vDEF'] ?? null);
                         }
                     }
                 }
