@@ -56,7 +56,20 @@ services:
         identifier: 'flexform-process'
         event: TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent
 
-  NITSAN\NsBasetheme\EventListener\Tinysource:
+
+  NITSAN\NsBasetheme\EventListener\AssetRendererEventListener:
     tags:
-      - name: event.listener
-        identifier: 'my-package/content-modifier'
+      -   name: event.listener
+          identifier: 'ext-min-css'
+          event: TYPO3\CMS\Core\Page\Event\BeforeStylesheetsRenderingEvent
+          method: beforeStyleSheetsRendering
+      -   name: event.listener
+          identifier: 'ext-min-js'
+          event: TYPO3\CMS\Core\Page\Event\BeforeJavaScriptsRenderingEvent
+          method: beforeJavaScriptsRendering
+
+  NITSAN\NsBasetheme\EventListener\TinysourceEventListener:
+    tags:
+      -   name: event.listener
+          identifier: 'ext-min-tinysource'
+          event: TYPO3\CMS\Frontend\Event\AfterCacheableContentIsGeneratedEvent
