@@ -1027,3 +1027,8 @@ select.form-control[size="1"]:not(.form-select-no-siblings) {
   border: 1px solid #ccc;
   padding: 0.6rem;
 }
+
+/* Not Required Display Image */
+.themeOptionsImagesContainer.googleanalyticstype {
+  display: none;
+}
