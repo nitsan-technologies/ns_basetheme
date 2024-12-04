@@ -45,7 +45,7 @@ ns_basetheme {
             #cat = ns_basetheme/100/03; type=string; label=Logo Image Height: Set fix height dimension for your logo
             logo_height =
 
-            #cat = ns_basetheme/100/04; type=string; label=Logo Text: Set your website name, If logo image not found then display this Logo text.
+            #cat = ns_basetheme/100/04; type=string; label=Logo Alternate Text: Set your website name, If logo image not found then display this Logo text.
             logo_text =
 
             #cat = ns_basetheme/100/05; type=string; label=Favicon: Go to Filelist > Upload your favicon image and set file path here eg., /fileadmin/images/favicon.png
