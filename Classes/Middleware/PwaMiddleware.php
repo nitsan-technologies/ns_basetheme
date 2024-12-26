@@ -44,8 +44,8 @@ class PwaMiddleware implements MiddlewareInterface
    */
   protected function processPwa(): void
   {
-  
-    
+
+
     $configurations = $this->getConfigurations();
 
     $this->addHeaderData($configurations);
@@ -63,7 +63,8 @@ class PwaMiddleware implements MiddlewareInterface
    */
   protected function getConfigurations(): array
   {
-    return $this->getSite()->getConfiguration();
+    $siteData = $this->request->getAttribute('site');
+    return $siteData->getConfiguration();
   }
 
   /**
@@ -77,7 +78,7 @@ class PwaMiddleware implements MiddlewareInterface
 
     $siteUrl = $this->request->getAttribute('normalizedParams')->getSiteUrl();
     $currentUrl = $this->request->getAttribute('normalizedParams')->getRequestUrl();
-   
+
     if($siteUrl == $currentUrl){
       $caching = GeneralUtility::makeInstance(CacheManager::class);
       $caching->flushCaches();
@@ -100,7 +101,7 @@ class PwaMiddleware implements MiddlewareInterface
       $headerData .= "<meta name='theme-color' content='{$configurationsColor}'>";
       $headerData .= "<meta name='msapplication-TileColor' content='{$configurationsColor}'>";
       GeneralUtility::makeInstance(PageRenderer::class)->addHeaderData($headerData);
-    }    
+    }
   }
 
   /**
@@ -176,7 +177,7 @@ class PwaMiddleware implements MiddlewareInterface
             "form_factor" => "narrow",
             "label" => "For Mobile"
         ];
-    }  
+    }
 
     return $data;
   }
@@ -241,7 +242,7 @@ class PwaMiddleware implements MiddlewareInterface
           mkdir(Environment::getPublicPath() .$pwaFileadminPath);
         }
         $this->copyfolder(Environment::getPublicPath() . "/typo3conf/ext/ns_basetheme/Resources/Public/pwa/icons/", Environment::getPublicPath() . '/' . 'fileadmin/pwa/');
-        
+
         $jsonFile = Environment::getPublicPath().'/'.self::MANIFEST_NAME;
         if (!file_exists($jsonFile)) {
           fopen(Environment::getPublicPath(). "/".self::MANIFEST_NAME, "w") or die("Unable to open file!");
@@ -275,16 +276,16 @@ class PwaMiddleware implements MiddlewareInterface
 
     // Copy files + recursive internal folders
     if (count($all)>0)
-    { 
+    {
       foreach ($all as $a)
       {
         $ff = basename($a); // Current file/folder
         if (is_dir($a))
         {
           $this->copyfolder("$from$ff/", "$to$ff/");
-        } 
+        }
         else {
-          if (!copy($a, "$to$ff")) 
+          if (!copy($a, "$to$ff"))
           {
             exit("Error copying $a to $to$ff");
           }
@@ -300,7 +301,7 @@ class PwaMiddleware implements MiddlewareInterface
   {
       return $GLOBALS['TYPO3_REQUEST'];
   }
-    
+
   /**
   * @return Site
   */
@@ -308,4 +309,4 @@ class PwaMiddleware implements MiddlewareInterface
   {
     return $this->getServerRequest()->getAttribute('site');
   }
-} 
+}

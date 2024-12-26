@@ -6,6 +6,7 @@ namespace NITSAN\NsBasetheme\EventListener;
 use TYPO3\CMS\Frontend\Event\AfterCacheableContentIsGeneratedEvent;
 use TYPO3\CMS\Core\Utility\StringUtility;
 
+// @extensionScannerIgnoreFile
 class Tinysource
 {
     /**
@@ -71,7 +72,7 @@ class Tinysource
         if (!$event->isCachingEnabled()) {
             return;
         }
-      
+
     }
 
     /**

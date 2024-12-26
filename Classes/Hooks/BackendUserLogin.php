@@ -18,6 +18,7 @@ class BackendUserLogin
         // @extensionScannerIgnoreLine
         $isLicenseActivate = GeneralUtility::makeInstance(PackageManager::class)->isPackageActive('ns_license');
         if ($isLicenseActivate) {
+            // @extensionScannerIgnoreLine
             $activePackages = GeneralUtility::makeInstance(PackageManager::class)->getAvailablePackages();
             $nsLicenseModule = GeneralUtility::makeInstance(LicenseService::class);
             foreach ($activePackages as $key => $value) {

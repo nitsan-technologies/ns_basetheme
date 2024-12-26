@@ -40,6 +40,7 @@ function customElements(){
     $pageTSConfig = $objNsBasetheme->prepareWizardPageTSConfig($allComponents);
 
     // Adding final CType and extra tab call "Custom Components"
+    // @extensionScannerIgnoreLine
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig($pageTSConfig);
 
     // Let's prepare CType components to add at TypoScript Config
@@ -64,12 +65,6 @@ if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('mask')) {
 if($extensionConfiguration['enable_mask_flexform'] == '1'){
     customElements();
 }
-
-// Let's add default PageTS for "Form"
-$GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['default'] = 'EXT:ns_basetheme/Configuration/RTE/Default.yaml';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('
-    @import "EXT:' . $_EXTKEY . '/Configuration/PageTSconfig/setup.tsconfig"
-');
 
 $iconIdentifiers = [
     'submodule-nsbasetheme',

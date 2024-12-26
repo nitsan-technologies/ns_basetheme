@@ -58,6 +58,7 @@ class AssetRendererEventListener
                     );
                 } else {
                     $event->getAssetCollector()->removeStyleSheet($uniqueIdentifier);
+                    // @extensionScannerIgnoreLine
                     $event->getAssetCollector()->addStyleSheet(
                         $uniqueIdentifier,
                         $compressedAsset['file'],

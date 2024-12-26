@@ -9,8 +9,11 @@ namespace NITSAN\NsBasetheme;
  *  |     2012 Dennis Römmich <dennis@roemmich.eu>
  */
 use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\TypoScript\FrontendTypoScript;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * Minifies HTML output
@@ -35,7 +38,17 @@ class Tinysource
             return $source;
         }
         $this->conf = $frontendTypoScript->getSetupArray()['plugin.']['ns_basetheme.']['tinysource.'] ?? [];
-        if (($this->conf['enable'] ?? false) && !($GLOBALS['TSFE']->config['config']['disableAllHeaderCode'] ?? false)) {
+
+        $checkTypo3Version = GeneralUtility::makeInstance(Typo3Version::class);
+        if($checkTypo3Version->getMajorVersion() > 12) {
+            $typoScriptFrontendController = $request->getAttribute('frontend.controller');
+            $disableAllHeaderCode = $typoScriptFrontendController->config['config']['disableAllHeaderCode'] ?? false;
+        } else{
+            // @extensionScannerIgnoreLine
+            $disableAllHeaderCode = $GLOBALS['TSFE']->config['config']['disableAllHeaderCode'] ?? false;
+        }
+
+        if (($this->conf['enable'] ?? false) && !($disableAllHeaderCode)) {
             $headOffset = strpos($source, '<head');
             $headEndOffset = strpos($source, '>', $headOffset);
             $closingHeadOffset = strpos($source, '</head>');
@@ -47,7 +60,7 @@ class Tinysource
                 ($bodyOffset !== false && $bodyEndOffset !== false && $closingBodyOffset !== false)
             ) {
                 $beforeHead = substr($source, 0, $headEndOffset + 1);
-               
+
                 $head = substr($source, $headEndOffset + 1, $closingHeadOffset - $headEndOffset - 1);
                 $afterHead = substr($source, $closingHeadOffset, $bodyEndOffset - $closingHeadOffset + 1);
                 $body = substr($source, $bodyEndOffset + 1, $closingBodyOffset - $bodyEndOffset - 1);
@@ -56,19 +69,19 @@ class Tinysource
                 $head = $this->makeTiny($head, self::TINYSOURCE_HEAD);
                 $body = $this->makeTiny($body, self::TINYSOURCE_BODY);
                 if ($this->conf['oneLineMode'] ?? false) {
-    
+
                     $beforeHead = $this->makeTiny($beforeHead, self::TINYSOURCE_HEAD);
-                   
+
                     $afterHead = $this->makeTiny($afterHead, self::TINYSOURCE_HEAD);
 
-           
+
                     $afterBody = $this->makeTiny($afterBody, self::TINYSOURCE_BODY);
 
 
-             
+
                 }
 
-        
+
 
                 $source = $beforeHead . $head . $afterHead . $body . $afterBody;
 
@@ -78,7 +91,7 @@ class Tinysource
                     $source = $this->restoreProtectedCode($source);
 
 
-               
+
                 }
             }
         }
