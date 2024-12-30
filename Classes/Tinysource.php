@@ -13,7 +13,6 @@ use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\TypoScript\FrontendTypoScript;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * Minifies HTML output
@@ -69,19 +68,10 @@ class Tinysource
                 $head = $this->makeTiny($head, self::TINYSOURCE_HEAD);
                 $body = $this->makeTiny($body, self::TINYSOURCE_BODY);
                 if ($this->conf['oneLineMode'] ?? false) {
-
                     $beforeHead = $this->makeTiny($beforeHead, self::TINYSOURCE_HEAD);
-
                     $afterHead = $this->makeTiny($afterHead, self::TINYSOURCE_HEAD);
-
-
                     $afterBody = $this->makeTiny($afterBody, self::TINYSOURCE_BODY);
-
-
-
                 }
-
-
 
                 $source = $beforeHead . $head . $afterHead . $body . $afterBody;
 
@@ -89,13 +79,9 @@ class Tinysource
                     $source = $this->protectCode($source);
                     $source = str_replace('" />', '"/>', $source);
                     $source = $this->restoreProtectedCode($source);
-
-
-
                 }
             }
         }
-
         return $source;
     }
 

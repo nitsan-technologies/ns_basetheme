@@ -2,7 +2,6 @@
 
 namespace NITSAN\NsBasetheme\Middleware;
 
-
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Page\PageRenderer;
@@ -31,11 +30,8 @@ class PwaMiddleware implements MiddlewareInterface
   ): ResponseInterface {
       $this->request = $request;
       $this->processPwa();
-
       return $handler->handle($this->request);
   }
-
-
 
   /**
    * processPwa
@@ -44,16 +40,10 @@ class PwaMiddleware implements MiddlewareInterface
    */
   protected function processPwa(): void
   {
-
-
     $configurations = $this->getConfigurations();
-
     $this->addHeaderData($configurations);
-
     $data = $this->prepareJsonData($configurations);
-
     $this->processFiles($data);
-
   }
 
   /**
@@ -75,7 +65,6 @@ class PwaMiddleware implements MiddlewareInterface
    */
   protected function addHeaderData(array $configurations): void
   {
-
     $siteUrl = $this->request->getAttribute('normalizedParams')->getSiteUrl();
     $currentUrl = $this->request->getAttribute('normalizedParams')->getRequestUrl();
 
@@ -85,9 +74,7 @@ class PwaMiddleware implements MiddlewareInterface
     }
 
     $manifestUrl = $siteUrl.self::MANIFEST_NAME . '?' . time();
-
     $configurationsName = $configurations['name'] ?? '';
-
     $configurationsIcon = $configurations['icon'] ?? '';
 
     $configurationsColor =   $configurations['theme_color'] ?? '';
@@ -121,7 +108,6 @@ class PwaMiddleware implements MiddlewareInterface
     $configurationsIcon_512_type = $configurations['icon_512_type'] ?? '';
     $configurationsIcon_144 =  $configurations['icon_144'] ?? '';
     $configurationsIcon_144_type = $configurations['icon_144_type'] ?? '';
-
     $configurationsStart_URL = $configurations['start_url'] ?? '';
     $configurationsBackground_color = $configurations['background_color'] ?? '';
     $configurationsDispaly = $configurations['display'] ?? '';
@@ -193,31 +179,29 @@ class PwaMiddleware implements MiddlewareInterface
     $versionInformation = GeneralUtility::makeInstance(Typo3Version::class);
     $versionInformation->getMajorVersion();
     $pwaFileadminPath = '/fileadmin/pwa';
+
+    // Get the absolute path to the public directory
+    $publicPath = Environment::getPublicPath();
+
     if (Environment::isComposerMode())
     {
       //Creating PWA Directory
       if(!is_dir(Environment::getPublicPath() .$pwaFileadminPath)){
-        mkdir(Environment::getPublicPath() .$pwaFileadminPath);
+        GeneralUtility::mkdir(Environment::getPublicPath() .$pwaFileadminPath);
       }
       // Copy PWA icons from extension to fileadmin
       if($versionInformation->getMajorVersion() >= 12){
         $this->copyfolder(Environment::getProjectPath() . "/vendor/nitsan/ns-basetheme/Resources/Public/pwa/icons/", Environment::getPublicPath() . '/' . $pwaFileadminPath . '/');
-
-        //Creating JavaScript file and append data
-        $jsonFile = Environment::getPublicPath().'/'.self::MANIFEST_NAME;
-        if (!file_exists($jsonFile)) {
-          fopen(Environment::getPublicPath(). "/".self::MANIFEST_NAME, "w") or die("Unable to open file!");
-        }
-          GeneralUtility::writeFile($jsonFile, json_encode($data));
       }
       else{
         $this->copyfolder(Environment::getPublicPath() . "/typo3conf/ext/ns_basetheme/Resources/Public/pwa/icons/", Environment::getPublicPath() . '/' . $pwaFileadminPath . '/');
-        $jsonFile = Environment::getPublicPath().'/'.self::MANIFEST_NAME;
-        if (!file_exists($jsonFile)) {
-            fopen(Environment::getPublicPath(). "/".self::MANIFEST_NAME, "w") or die("Unable to open file!");
-        }
-        GeneralUtility::writeFile($jsonFile, json_encode($data));
       }
+      //Creating JavaScript file and append data
+      $jsonFile = Environment::getPublicPath().'/'.self::MANIFEST_NAME;
+      if (!file_exists($jsonFile)) {
+        fopen(Environment::getPublicPath(). "/".self::MANIFEST_NAME, "w") or die("Unable to open file!");
+      }
+      GeneralUtility::writeFile($jsonFile, json_encode($data));
     }
     else{
       //File Creation and clone icons folder from extension

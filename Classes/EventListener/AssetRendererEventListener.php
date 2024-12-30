@@ -122,7 +122,6 @@ class AssetRendererEventListener
             if (($asset['options']['priority'] ?? false) !== $event->isPriority()) {
                 continue;
             }
-
             if ($event->isInline()) {
                 $assets[$uniqueIdentifier] = [
                     'compress' => true,
@@ -138,7 +137,6 @@ class AssetRendererEventListener
                 }
             }
         }
-
         return $assets;
     }
 }

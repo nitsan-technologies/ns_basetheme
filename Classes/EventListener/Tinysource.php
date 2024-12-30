@@ -72,7 +72,6 @@ class Tinysource
         if (!$event->isCachingEnabled()) {
             return;
         }
-
     }
 
     /**

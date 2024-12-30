@@ -53,7 +53,7 @@ class ImagePreviewViewHelper extends AbstractViewHelper
         if (empty($currentThemeName)) {
             $objNsBasetheme = GeneralUtility::makeInstance(\NITSAN\NsBasetheme\NsBasethemeUtility::class);
             $arrAllExtensions = $objNsBasetheme->getInstalledChildTheme();
-            $currentThemeName = isset($arrAllExtensions[0]) ? $arrAllExtensions[0] : '';
+            $currentThemeName = $arrAllExtensions[0] ?? '';
         }
 
         $instance = new self();

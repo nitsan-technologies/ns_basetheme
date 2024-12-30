@@ -40,41 +40,41 @@ class DefaultProcessor implements DataProcessorInterface
     protected function getOptionsFromFlexFormData(array $row)
     {
         $options = [];
-        $flexFormAsArray = [];
         if (!empty($row['pi_flexform'])) {
             $flexFormAsArray = GeneralUtility::xml2array($row['pi_flexform']);
-        }
-        if (isset($flexFormAsArray['data']) && is_array($flexFormAsArray['data'])) {
-            foreach ($flexFormAsArray['data'] as $base) {
-                if (!empty($base['lDEF']) && is_array($base['lDEF'])) {
-                    foreach ($base['lDEF'] as $optionKey => $optionValue) {
-                        $optionParts = explode('.', $optionKey);
-                        $optionKey = array_pop($optionParts);
-                        if (isset($optionValue['el']) && is_array($optionValue['el'])) {
-                            foreach ($optionValue['el'] as $subprekey => $subArrayItem) {
-                                foreach ($subArrayItem as $subsubArrayItem) {
-                                    if (isset($subsubArrayItem['el'])) {
-                                        foreach ($subsubArrayItem['el'] as $subkey => $value) {
-                                            if (isset($options[$optionKey]) && !is_array($options[$optionKey])) {
-                                                $options[$optionKey] = [];
-                                            }
+            if (isset($flexFormAsArray['data']) && is_array($flexFormAsArray['data'])) {
+                foreach ($flexFormAsArray['data'] as $base) {
+                    if (!empty($base['lDEF']) && is_array($base['lDEF'])) {
+                        foreach ($base['lDEF'] as $optionKey => $optionValue) {
+                            $optionParts = explode('.', $optionKey);
+                            $optionKey = array_pop($optionParts);
+                            if (isset($optionValue['el']) && is_array($optionValue['el'])) {
+                                foreach ($optionValue['el'] as $subprekey => $subArrayItem) {
+                                    foreach ($subArrayItem as $subsubArrayItem) {
+                                        if (isset($subsubArrayItem['el'])) {
+                                            foreach ($subsubArrayItem['el'] as $subkey => $value) {
+                                                if (isset($options[$optionKey]) && !is_array($options[$optionKey])) {
+                                                    $options[$optionKey] = [];
+                                                }
 
-                                            if (isset($options[$optionKey][$subprekey]) && !is_array($options[$optionKey][$subprekey])) {
-                                                $options[$optionKey][$subprekey] = [];
-                                            }
+                                                if (isset($options[$optionKey][$subprekey]) && !is_array($options[$optionKey][$subprekey])) {
+                                                    $options[$optionKey][$subprekey] = [];
+                                                }
 
-                                            $options[$optionKey][$subprekey][$subkey] = $value['vDEF'];
+                                                $options[$optionKey][$subprekey][$subkey] = $value['vDEF'];
+                                            }
                                         }
                                     }
                                 }
+                            } else {
+                                $options[$optionKey] = isset($optionValue['vDEF']) && $optionValue['vDEF'] === '1' ? true : ($optionValue['vDEF'] ?? null);
                             }
-                        } else {
-                            $options[$optionKey] = isset($optionValue['vDEF']) && $optionValue['vDEF'] === '1' ? true : ($optionValue['vDEF'] ?? null);
                         }
                     }
                 }
             }
         }
+
         return $options;
     }
 }

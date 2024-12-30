@@ -19,8 +19,6 @@ final class PageLayoutView
         $rowFlag = $extensionKey = '';
         if (defined('ALL_COMPONENTS')) {
             $allComponents = constant('ALL_COMPONENTS');
-
-
             $row = $event->getRecord();
             $flexFormService = '';
             $extKey ='';
@@ -69,23 +67,17 @@ final class PageLayoutView
             }
             $view->assign('data', $row);
             $view->assign('image', $images);
-
-
             // return the preview
             $event->setPreviewContent($view->render());
-
         }
     }
 
-
     /**
      * @param string $extKey
-     *
-
      * @param string $templateName
-     * @return \TYPO3\CMS\Fluid\View\StandaloneView the fluid template
+     * @return StandaloneView the fluid template
      */
-    protected function getFluidTemplateComponents($extKey, $templateName)
+    protected function getFluidTemplateComponents(string $extKey, string $templateName): StandaloneView
     {
         // prepare own template
         $fluidTemplateFile = GeneralUtility::getFileAbsFileName('EXT:' . $extKey . '/Resources/Private/Components/Backend/' . $templateName . '.html');

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace NITSAN\NsBasetheme\Hooks;
 
 use NITSAN\NsLicense\Service\LicenseService;
