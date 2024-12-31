@@ -390,3 +390,16 @@ page {
 [typo3.version >= "11"]
     module.tx_nsbasetheme.settings.bootAttr = data-bs-
 [end]
+
+[{$ns_basetheme.website.settings.googleanalytics} != '']
+    page {
+        headerData {
+            1000 >
+            1000 = TEXT
+            1000.value (
+                {$ns_basetheme.website.settings.cookieapiscript}
+            )
+        }
+    }
+[global]
+

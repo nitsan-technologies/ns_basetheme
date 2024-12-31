@@ -18,49 +18,51 @@ $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
     \TYPO3\CMS\Core\Imaging\IconRegistry::class
 );
 
-function customElements(){
-    $_EXTKEY = 'ns_basetheme';
-    // Initiate NsBaseThemeUtility
-    $objNsBasetheme = TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\NITSAN\NsBasetheme\NsBasethemeUtility::class);
+if (!function_exists('customElements')) {
+    function customElements()
+    {
 
-    // Initiate with blank list of themes + components
-    $allComponents = $arrAllExtensions = [];
+        // Initiate NsBaseThemeUtility
+        $objNsBasetheme = TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\NITSAN\NsBasetheme\NsBasethemeUtility::class);
 
-    // Get list of all the themes which starts from EXT.ns_theme_*
-    $arrAllExtensions = $objNsBasetheme->getInstalledChildTheme();
+        // Initiate with blank list of themes + components
+        $allComponents = $arrAllExtensions = [];
 
-    // Get list of all the components from EXT.ns_theme_*
-    $allComponents = $objNsBasetheme->getChildThemeComponents($arrAllExtensions);
+        // Get list of all the themes which starts from EXT.ns_theme_*
+        $arrAllExtensions = $objNsBasetheme->getInstalledChildTheme();
 
-    // Settled constatant to access from "Everywhere"
-    if (!defined('ALL_COMPONENTS')) define('ALL_COMPONENTS', $allComponents);
-    if (!defined('ALL_CHILD_THEMES')) define('ALL_CHILD_THEMES', $allComponents);
+        // Get list of all the components from EXT.ns_theme_*
+        $allComponents = $objNsBasetheme->getChildThemeComponents($arrAllExtensions);
 
-    // Let's prepare CType components to add at PageTS Config
-    $pageTSConfig = $objNsBasetheme->prepareWizardPageTSConfig($allComponents);
+        // Settled constatant to access from "Everywhere"
+        if (!defined('ALL_COMPONENTS')) define('ALL_COMPONENTS', $allComponents);
+        if (!defined('ALL_CHILD_THEMES')) define('ALL_CHILD_THEMES', $allComponents);
 
-    // Adding final CType and extra tab call "Custom Components"
-    // @extensionScannerIgnoreLine
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig($pageTSConfig);
+        // Let's prepare CType components to add at PageTS Config
+        $pageTSConfig = $objNsBasetheme->prepareWizardPageTSConfig($allComponents);
 
-    // Let's prepare CType components to add at TypoScript Config
-    $tsComponents = $objNsBasetheme->setupComponentWiseTypoScript($allComponents);
+        // Adding final CType and extra tab call "Custom Components"
+        // @extensionScannerIgnoreLine
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig($pageTSConfig);
 
-    // Add TypoScript for tt_content as setup.typoscript
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScript($_EXTKEY, 'setup', "
-        tt_content {
-            $tsComponents
-        }
-    ");
+        // Let's prepare CType components to add at TypoScript Config
+        $tsComponents = $objNsBasetheme->setupComponentWiseTypoScript($allComponents);
+
+        // Add TypoScript for tt_content as setup.typoscript
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTypoScript('ns_basetheme', 'setup', "
+            tt_content {
+                $tsComponents
+            }
+        ");
+    }
 }
-
 
 if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('mask')) {
     customElements();
-    }
+}
 
-    $extensionConfiguration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)
-    ->get('ns_basetheme');
+$extensionConfiguration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)
+->get('ns_basetheme');
 
 if($extensionConfiguration['enable_mask_flexform'] == '1'){
     customElements();
