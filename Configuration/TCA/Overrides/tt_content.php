@@ -187,7 +187,7 @@ call_user_func(function () {
             ->setIcon('EXT:ns_basetheme/Resources/Public/Icons/Container/container-4col.svg')
         );
 
-        // Let's check if Bootstrap version in EXT.ns_theme_child
+        // Let's check if Bootstrap version in EXT.ns_theme_mugele
         $nsbasethemeUtility = GeneralUtility::makeInstance(\NITSAN\NsBasetheme\NsBasethemeUtility::class);
         $installedTheme = $nsbasethemeUtility->getInstalledChildTheme();
 

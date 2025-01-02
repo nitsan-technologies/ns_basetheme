@@ -47,7 +47,7 @@ categories:
 
 settings:
   # Logo
-  plugin.ns_basetheme.settings.general.header:
+  plugin.ns_basetheme.settings.general.logo:
     label: 'Logo'
     category: Nsbasetheme.settings.general.header
     type: string
