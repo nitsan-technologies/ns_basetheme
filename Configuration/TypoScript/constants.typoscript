@@ -7,6 +7,7 @@
 # customsubcategory=120=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:footer
 # customsubcategory=130=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:speed
 # customsubcategory=140=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:maintenance
+# customsubcategory=150=LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:cookie
 
 
 ####################
@@ -83,6 +84,9 @@ ns_basetheme {
             #cat = ns_basetheme/140/03; type=textarea; label=Text Message: What "message" do you want to display when Website maintenance mode is enable?
             maintenance_message = Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment. If you need to you can always <a href="mailto:#">contact us</a>, otherwise we&rsquo;ll be back online shortly!
 
+            #cat = ns_basetheme/150/01; type=string; label=API Script: Add your cookie API Script Here
+            cookieapiscript =
+
             #cat = ns_seo/200/01; type=string; label=Page Title Prefix: Display default prefix at each page's title
             seo_title_prefix =
 
@@ -117,7 +121,7 @@ ns_basetheme {
             seo_facebook_link = https://facebook.com/
 
             #cat = ns_seo/220/03; type=string; label=LinkedIn Profile Link: Configure your Linkedin page's link
-            seo_linkedin_link = https://linkedin.com/ 
+            seo_linkedin_link = https://linkedin.com/
 
             #cat = ns_style/400/01; type=options[orange,blue,green]; label=Theme Color: Choose your favourite pre-configured Theme/Template color
             style_theme_color = blue

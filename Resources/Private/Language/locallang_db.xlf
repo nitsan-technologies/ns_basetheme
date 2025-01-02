@@ -52,6 +52,10 @@
             <trans-unit id="maintenance">
                 <source>Site Maintenance</source>
             </trans-unit>
+            <trans-unit id="cookie">
+              <source>Cookie</source>
+            </trans-unit>
+
             <trans-unit id="seo">
                 <source>SEO Settings</source>
             </trans-unit>
@@ -68,7 +72,7 @@
             <trans-unit id="social">
                 <source>Social Media</source>
             </trans-unit>
-      
+
 
             <trans-unit id="grid.1column">
                 <source>1 Column Container</source>

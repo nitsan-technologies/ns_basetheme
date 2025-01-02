@@ -58,6 +58,7 @@ class AssetRendererEventListener
                     );
                 } else {
                     $event->getAssetCollector()->removeStyleSheet($uniqueIdentifier);
+                    // @extensionScannerIgnoreLine
                     $event->getAssetCollector()->addStyleSheet(
                         $uniqueIdentifier,
                         $compressedAsset['file'],
@@ -121,7 +122,6 @@ class AssetRendererEventListener
             if (($asset['options']['priority'] ?? false) !== $event->isPriority()) {
                 continue;
             }
-
             if ($event->isInline()) {
                 $assets[$uniqueIdentifier] = [
                     'compress' => true,
@@ -137,7 +137,6 @@ class AssetRendererEventListener
                 }
             }
         }
-
         return $assets;
     }
 }

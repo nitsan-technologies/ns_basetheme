@@ -6,6 +6,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
+// @extensionScannerIgnoreFile
 class ImagePreviewViewHelper extends AbstractViewHelper
 {
     public function initializeArguments()
@@ -26,7 +27,7 @@ class ImagePreviewViewHelper extends AbstractViewHelper
     {
         $fN = 'data[' . $params['name'] . ']';
         $idName = str_replace('.', '-', $params['name']);
-       
+
         $fV = $params['value'];
         if (preg_match('/^{[\\$][a-zA-Z0-9\\.]*}$/', trim($fV), $reg)) {
             $fV = '';
@@ -42,33 +43,33 @@ class ImagePreviewViewHelper extends AbstractViewHelper
     ) {
         $selectedValue = $arguments['selectedValue'];
         $id = $arguments['id'];
-        $baseThemeRootPath = $arguments['baseThemeRootPath'] ?? ''; 
+        $baseThemeRootPath = $arguments['baseThemeRootPath'] ?? '';
         $currentThemeName = $arguments['currentThemeName'];
         $siteRootPath = $arguments['siteRootPath'];
         $value = $arguments['value'];
         $label = $arguments['label'];
         $params = $arguments['params'];
-    
+
         if (empty($currentThemeName)) {
             $objNsBasetheme = GeneralUtility::makeInstance(\NITSAN\NsBasetheme\NsBasethemeUtility::class);
             $arrAllExtensions = $objNsBasetheme->getInstalledChildTheme();
-            $currentThemeName = isset($arrAllExtensions[0]) ? $arrAllExtensions[0] : '';
+            $currentThemeName = $arrAllExtensions[0] ?? '';
         }
-    
+
         $instance = new self();
         list($fN, $fV, $params, $id) = $instance->ext_fNandV($arguments);
-    
+
         // Make selectBoxName dynamic
         $arrSelectBox = explode('-', $id);
         $selectBoxName = end($arrSelectBox);
-    
+
         // Ensure $baseThemeRootPath is never null
         $NsBaseThemeRootPath = rtrim((string)$baseThemeRootPath, '/') . '/typo3conf/ext/' . $currentThemeName . '/Resources/Public/Backend/ThemeOptionsPreview/';
-    
+
         $imageExtension = ($selectBoxName == 'loader') ? '.gif' : '.png';
         $previewImagePath = $NsBaseThemeRootPath . $selectBoxName . '/' . htmlspecialchars($value) . $imageExtension;
-    
+
         return $previewImagePath;
     }
-    
+
 }

@@ -5,6 +5,7 @@ namespace NITSAN\NsBasetheme\ViewHelpers;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
+// @extensionScannerIgnoreFile
 class ThemeContainsViewHelper extends AbstractViewHelper
 {
     public function initializeArguments()

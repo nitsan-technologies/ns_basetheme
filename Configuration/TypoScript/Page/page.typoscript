@@ -8,6 +8,9 @@ plugin {
             logo = {$ns_basetheme.website.settings.logo}
             rootpage = {$ns_basetheme.website.settings.rootpage}
             copyright = {$ns_basetheme.website.settings.copyright}
+            seo_twitter_link = {$ns_basetheme.website.settings.seo_twitter_link}
+            seo_facebook_link = {$ns_basetheme.website.settings.seo_facebook_link}
+            seo_linkedin_link = {$ns_basetheme.website.settings.seo_linkedin_link}
         }
     }
 }
@@ -35,14 +38,15 @@ page {
     typeNum = 0
 
     // Setup favion
-    shortcutIcon = EXT:ns_basetheme/Resources/Public/Icons/favicon.ico
+    shortcutIcon = {$ns_basetheme.website.settings.favicon}
+    //EXT:ns_basetheme/Resources/Public/Icons/favicon.ico
 
     // Set viewport
     meta {
         viewport = width=device-width,initial-scale=1, maximum-scale=1, user-scalable=no
     }
 
-  
+
 
     // Initiate all the css-together
     includeCSS {
@@ -215,6 +219,19 @@ ajaxData {
     }
 [global]
 
+############################
+### Seo meta Robots ########
+############################
+
+["{$ns_basetheme.website.settings.seo_robots_default}"]
+    page {
+        meta {
+            robots.if.isFalse.field = robots
+            robots = {$ns_basetheme.website.settings.seo_robots_default}
+        }
+    }
+[global]
+
 ###############################
 ### Enable seo title sufix ###
 ###############################
@@ -373,3 +390,16 @@ page {
 [typo3.version >= "11"]
     module.tx_nsbasetheme.settings.bootAttr = data-bs-
 [end]
+
+[{$ns_basetheme.website.settings.googleanalytics} != '']
+    page {
+        headerData {
+            1000 >
+            1000 = TEXT
+            1000.value (
+                {$ns_basetheme.website.settings.cookieapiscript}
+            )
+        }
+    }
+[global]
+

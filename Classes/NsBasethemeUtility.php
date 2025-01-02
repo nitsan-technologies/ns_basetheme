@@ -109,6 +109,7 @@ class NsBasethemeUtility
                     // Grab CSS/JS of EXT.ns_basetheme
                     $css = $siteRoot . $extKey . '/Resources/Public/css/Backend.css';
                     if (file_exists($css)) {
+                        // @extensionScannerIgnoreLine
                         $renderer->addStyleSheet('Base', 'EXT:ns_basetheme/Resources/Public/css/Backend.css');
                     }
 
@@ -130,6 +131,7 @@ class NsBasethemeUtility
                     // Grab CSS/JS of EXT.ns_theme_name
                     $css = $siteRoot . $extKey . '/Resources/Public/Backend/Css/Backend.css';
                     if (file_exists($css)) {
+                        // @extensionScannerIgnoreLine
                         $renderer->addStyleSheet('Childbase', $css);
                     }
 
@@ -152,20 +154,21 @@ class NsBasethemeUtility
                 if (count($extValue) > 0) {
                     foreach ($extValue as $key => $theComponent) {
                         $collectComponent .= "
+                        
                         $theComponent {
-                        iconIdentifier = ".str_replace('_','-',$theComponent)."
-                        title = LLL:EXT:$extKey/Resources/Private/Language/locallang_db.xlf:wizard.$theComponent
-                        description = LLL:EXT:$extKey/Resources/Private/Language/locallang_db.xlf:wizard.$theComponent.desc
-                        tt_content_defValues {
-                            CType = $theComponent
+                            iconIdentifier = ".str_replace('_','-',$theComponent)."
+                            title = LLL:EXT:$extKey/Resources/Private/Language/locallang_db.xlf:wizard.$theComponent
+                            description = LLL:EXT:$extKey/Resources/Private/Language/locallang_db.xlf:wizard.$theComponent.desc
+                            tt_content_defValues {
+                                CType = $theComponent
+                            }
                         }
-                        }
-                    ";
+                        ";
                         $listComponent .= $theComponent . ',';
                         $tsComponents .= '
                         ' . $theComponent . ' < .ns_default
                         ' . $theComponent . '.templateName = ' . ucfirst($theComponent) . '
-                    ';
+                        ';
                     }
                 }
             }

@@ -19,8 +19,6 @@ final class PageLayoutView
         $rowFlag = $extensionKey = '';
         if (defined('ALL_COMPONENTS')) {
             $allComponents = constant('ALL_COMPONENTS');
-           
-           
             $row = $event->getRecord();
             $flexFormService = '';
             $extKey ='';
@@ -36,7 +34,7 @@ final class PageLayoutView
             }
         }
 
-       
+
        // Let's check if our components is going to be load in backned?
        if ($rowFlag == 1 && $extensionKey != '') {
             //Get image from tt_content table
@@ -54,7 +52,7 @@ final class PageLayoutView
             if (!empty($row['pi_flexform'])) {
                 // Instantiate the FlexFormService only when needed
                 $flexFormService = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Service\FlexFormService::class);
-                
+
                 // Convert FlexForm content to an array, with error handling
                 $flexformData = $flexFormService->convertFlexFormContentToArray($row['pi_flexform']);
                 if ($flexformData !== null) {
@@ -69,26 +67,21 @@ final class PageLayoutView
             }
             $view->assign('data', $row);
             $view->assign('image', $images);
-
-                   
             // return the preview
             $event->setPreviewContent($view->render());
-        
         }
     }
 
-
     /**
      * @param string $extKey
-     * 
-     
      * @param string $templateName
-     * @return \TYPO3\CMS\Fluid\View\StandaloneView the fluid template
+     * @return StandaloneView the fluid template
      */
-    protected function getFluidTemplateComponents($extKey, $templateName)
+    protected function getFluidTemplateComponents(string $extKey, string $templateName): StandaloneView
     {
         // prepare own template
         $fluidTemplateFile = GeneralUtility::getFileAbsFileName('EXT:' . $extKey . '/Resources/Private/Components/Backend/' . $templateName . '.html');
+        // @extensionScannerIgnoreLine
         $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->setTemplatePathAndFilename($fluidTemplateFile);
         return $view;

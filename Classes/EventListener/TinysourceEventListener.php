@@ -11,6 +11,7 @@ namespace NITSAN\NsBasetheme\EventListener;
 use TYPO3\CMS\Frontend\Event\AfterCacheableContentIsGeneratedEvent;
 use NITSAN\NsBasetheme\Tinysource;
 
+// @extensionScannerIgnoreFile
 class TinysourceEventListener
 {
     private Tinysource $tinysource;
@@ -22,10 +23,9 @@ class TinysourceEventListener
 
     public function __invoke(AfterCacheableContentIsGeneratedEvent $event): void
     {
-
         $event->getController()->content = $this->tinysource->tinysource(
             $event->getController()->content,
             $event->getRequest()
-        );;
+        );
     }
 }
