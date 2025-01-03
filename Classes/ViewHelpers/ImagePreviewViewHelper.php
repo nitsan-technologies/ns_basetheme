@@ -5,6 +5,7 @@ namespace NITSAN\NsBasetheme\ViewHelpers;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3\CMS\Core\Utility\PathUtility;
 
 // @extensionScannerIgnoreFile
 class ImagePreviewViewHelper extends AbstractViewHelper
@@ -66,10 +67,24 @@ class ImagePreviewViewHelper extends AbstractViewHelper
         // Ensure $baseThemeRootPath is never null
         $NsBaseThemeRootPath = rtrim((string)$baseThemeRootPath, '/') . '/typo3conf/ext/' . $currentThemeName . '/Resources/Public/Backend/ThemeOptionsPreview/';
 
+        if(\TYPO3\CMS\Core\Core\Environment::isComposerMode()) {
+            $arguments = ['extensionName' => $currentThemeName];
+            $path = $arguments['path'];
+            $publicPath = sprintf('EXT:%s/Resources/Public/%s', $arguments['extensionName'], ltrim($path, '/'));
+            $assetPath = PathUtility::getPublicResourceWebPath($publicPath);           
+            $NsBaseThemeRootPath =  $assetPath."Backend/ThemeOptionsPreview/";
+        }
+        else{
+            $NsBaseThemeRootPath = \TYPO3\CMS\Core\Core\Environment::getPublicPath() . "/typo3conf/ext/".$currentThemeName."/Resources/Public/Public/Backend/ThemeOptionsPreview/";
+        }  
+
         $imageExtension = ($selectBoxName == 'loader') ? '.gif' : '.png';
         $previewImagePath = $NsBaseThemeRootPath . $selectBoxName . '/' . htmlspecialchars($value) . $imageExtension;
 
         return $previewImagePath;
     }
+
+
+
 
 }
