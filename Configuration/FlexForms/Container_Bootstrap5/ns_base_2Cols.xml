@@ -6,13 +6,13 @@
 	<sheets>
 		<columns_sm>
 			<ROOT>
-				<TCEforms>
+				
 					<sheetTitle>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:colSmall</sheetTitle>
-				</TCEforms>
+				
                 <type>array</type>
 				<el>
 					<width_column_sm_1>
-						<TCEforms>
+						
 							<exclude>0</exclude>
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:sizeLeft</label>
 							<config>
@@ -74,10 +74,10 @@
 								</items>
 								<default></default>
 							</config>
-						</TCEforms>
+						
 					</width_column_sm_1>
 					<width_column_sm_2>
-						<TCEforms>
+						
 							<exclude>0</exclude>
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:sizeRight</label>
 							<config>
@@ -139,10 +139,10 @@
 								</items>
 								<default></default>
 							</config>
-						</TCEforms>
+						
 					</width_column_sm_2>
 					<offset_column_sm_1>
-						<TCEforms>
+						
 							<exclude>0</exclude>
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:offsetLeft</label>
 							<config>
@@ -208,10 +208,10 @@
 								</items>
 								<default></default>
 							</config>
-						</TCEforms>
+						
 					</offset_column_sm_1>
 					<offset_column_sm_2>
-						<TCEforms>
+						
 							<exclude>0</exclude>
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:offsetRight</label>
 							<config>
@@ -277,20 +277,20 @@
 								</items>
 								<default></default>
 							</config>
-						</TCEforms>
+						
 					</offset_column_sm_2>
 				</el>
 			</ROOT>
 		</columns_sm>
 		<general>
 			<ROOT>
-				<TCEforms>
+				
 					<sheetTitle>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:colNormal</sheetTitle>
-				</TCEforms>
+				
                 <type>array</type>
 				<el>
 					<width_column_md_1>
-						<TCEforms>
+						
 							<exclude>0</exclude>
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:sizeLeft</label>
 							<config>
@@ -352,10 +352,10 @@
 								</items>		
 								<default>col-md-6</default>						
 							</config>
-						</TCEforms>
+						
 					</width_column_md_1>
 					<width_column_md_2>
-						<TCEforms>
+						
 							<exclude>0</exclude>
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:sizeRight</label>
 							<config>
@@ -417,11 +417,11 @@
 								</items>
 								<default>col-md-6</default>								
 							</config>
-						</TCEforms>
+						
 					</width_column_md_2>
 
 					<offset_column_md_1>
-						<TCEforms>
+						
 							<exclude>0</exclude>
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:offsetLeft</label>
 							<config>
@@ -487,10 +487,10 @@
 								</items>
 								<default></default>
 							</config>
-						</TCEforms>
+						
 					</offset_column_md_1>
 					<offset_column_md_2>
-						<TCEforms>
+						
 							<exclude>0</exclude>
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:offsetRight</label>
 							<config>
@@ -556,20 +556,20 @@
 								</items>
 								<default></default>
 							</config>
-						</TCEforms>
+						
 					</offset_column_md_2>
 				</el>
 			</ROOT>
 		</general>
 		<columns_lg>
 			<ROOT>
-				<TCEforms>
+				
 					<sheetTitle>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:colBig</sheetTitle>
-				</TCEforms>
+				
                 <type>array</type>
 				<el>
 					<width_column_lg_1>
-						<TCEforms>
+						
 							<exclude>0</exclude>
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:sizeLeft</label>
 							<config>
@@ -630,10 +630,10 @@
 									</numIndex>
 								</items>
 							</config>
-						</TCEforms>
+						
 					</width_column_lg_1>
 					<width_column_lg_2>
-						<TCEforms>
+						
 							<exclude>0</exclude>
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:sizeRight</label>
 							<config>
@@ -694,10 +694,10 @@
 									</numIndex>
 								</items>
 							</config>
-						</TCEforms>
+						
 					</width_column_lg_2>
 					<offset_column_lg_1>
-						<TCEforms>
+						
 							<exclude>0</exclude>
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:offsetLeft</label>
 							<config>
@@ -763,10 +763,10 @@
 								</items>
 								<default></default>
 							</config>
-						</TCEforms>
+						
 					</offset_column_lg_1>
 					<offset_column_lg_2>
-						<TCEforms>
+						
 							<exclude>0</exclude>
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:offsetRight</label>
 							<config>
@@ -832,20 +832,20 @@
 								</items>
 								<default></default>
 							</config>
-						</TCEforms>
+						
 					</offset_column_lg_2>
 				</el>
 			</ROOT>
 		</columns_lg>
 		<columns_xl>
 			<ROOT>
-				<TCEforms>
+				
 					<sheetTitle>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:Extralarge</sheetTitle>
-				</TCEforms>
+				
                 <type>array</type>
 				<el>
 					<width_column_xl_1>
-						<TCEforms>
+						
 							<exclude>0</exclude>
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:sizeLeft</label>
 							<config>
@@ -906,10 +906,10 @@
 									</numIndex>
 								</items>
 							</config>
-						</TCEforms>
+						
 					</width_column_xl_1>
 					<width_column_xl_2>
-						<TCEforms>
+						
 							<exclude>0</exclude>
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:sizeRight</label>
 							<config>
@@ -970,10 +970,10 @@
 									</numIndex>
 								</items>
 							</config>
-						</TCEforms>
+						
 					</width_column_xl_2>
 					<offset_column_xl_1>
-						<TCEforms>
+						
 							<exclude>0</exclude>
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:offsetLeft</label>
 							<config>
@@ -1039,10 +1039,10 @@
 								</items>
 								<default></default>
 							</config>
-						</TCEforms>
+						
 					</offset_column_xl_1>
 					<offset_column_xl_2>
-						<TCEforms>
+						
 							<exclude>0</exclude>
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:offsetRight</label>
 							<config>
@@ -1108,20 +1108,20 @@
 								</items>
 								<default></default>
 							</config>
-						</TCEforms>
+						
 					</offset_column_xl_2>
 				</el>
 			</ROOT>
 		</columns_xl>
 		<columns_xxl>
 			<ROOT>
-				<TCEforms>
+				
 					<sheetTitle>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:ExtraExtralarge</sheetTitle>
-				</TCEforms>
+				
                 <type>array</type>
 				<el>
 					<width_column_xxl_1>
-						<TCEforms>
+						
 							<exclude>0</exclude>
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:sizeLeft</label>
 							<config>
@@ -1182,10 +1182,10 @@
 									</numIndex>
 								</items>
 							</config>
-						</TCEforms>
+						
 					</width_column_xxl_1>
 					<width_column_xxl_2>
-						<TCEforms>
+						
 							<exclude>0</exclude>
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:sizeRight</label>
 							<config>
@@ -1246,11 +1246,11 @@
 									</numIndex>
 								</items>
 							</config>
-						</TCEforms>
+						
 					</width_column_xxl_2>
 
 					<offset_column_xxl_1>
-						<TCEforms>
+						
 							<exclude>0</exclude>
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:offsetLeft</label>
 							<config>
@@ -1316,10 +1316,10 @@
 								</items>
 								<default></default>
 							</config>
-						</TCEforms>
+						
 					</offset_column_xxl_1>
 					<offset_column_xxl_2>
-						<TCEforms>
+						
 							<exclude>0</exclude>
 							<label>LLL:EXT:ns_basetheme/Resources/Private/Extensions/Container/Language/locallang.xlf:offsetRight</label>
 							<config>
@@ -1385,7 +1385,7 @@
 								</items>
 								<default></default>
 							</config>
-						</TCEforms>
+						
 					</offset_column_xxl_2>
 				</el>
 			</ROOT>

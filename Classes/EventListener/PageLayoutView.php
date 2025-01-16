@@ -77,6 +77,7 @@ final class PageLayoutView
      * @param string $templateName
      * @return StandaloneView the fluid template
      */
+    // @extensionScannerIgnoreLine
     protected function getFluidTemplateComponents(string $extKey, string $templateName): StandaloneView
     {
         // prepare own template

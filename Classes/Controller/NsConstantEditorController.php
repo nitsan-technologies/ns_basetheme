@@ -442,8 +442,7 @@ class NsConstantEditorController extends AbstractTemplateModuleController
         }
         else {
             // @extensionScannerIgnoreLine
-            $iconSize = $this->iconFactory->getIcon(
-                'actions-document-save', \TYPO3\CMS\Core\Imaging\Icon::SIZE_SMALL);
+            $iconSize = $this->iconFactory->getIcon('actions-document-save', \TYPO3\CMS\Core\Imaging\Icon::SIZE_SMALL);
         }
 
         $languageService = $this->getLanguageService();
