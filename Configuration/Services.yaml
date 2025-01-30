@@ -73,3 +73,10 @@ services:
       -   name: event.listener
           identifier: 'ext-min-tinysource'
           event: TYPO3\CMS\Frontend\Event\AfterCacheableContentIsGeneratedEvent
+  NITSAN\NsBasetheme\EventListener\MyEventListener:
+    tags:
+      -   name: event.listener
+          identifier: 'ext-activated'
+          event: TYPO3\CMS\Core\Package\Event\AfterPackageActivationEvent
+
+
