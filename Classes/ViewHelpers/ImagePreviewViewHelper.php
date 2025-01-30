@@ -75,13 +75,17 @@ class ImagePreviewViewHelper extends AbstractViewHelper
             $NsBaseThemeRootPath =  $assetPath."Backend/ThemeOptionsPreview/";
         }
         else{
+            // $uri = PathUtility::getPublicResourceWebPath($path);
+            // $imagePath = GeneralUtility::locationHeaderUrl($uri);
             $NsBaseThemeRootPath = \TYPO3\CMS\Core\Core\Environment::getPublicPath() . "/typo3conf/ext/".$currentThemeName."/Resources/Public/Public/Backend/ThemeOptionsPreview/";
         }  
-
+        $NsBaseThemeRootPath = 'EXT:'.$currentThemeName.'/Resources/Public/Backend/ThemeOptionsPreview/';
         $imageExtension = ($selectBoxName == 'loader') ? '.gif' : '.png';
         $previewImagePath = $NsBaseThemeRootPath . $selectBoxName . '/' . htmlspecialchars($value) . $imageExtension;
-
-        return $previewImagePath;
+        $uri = PathUtility::getPublicResourceWebPath($previewImagePath);
+        return GeneralUtility::locationHeaderUrl($uri);
+        // \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($previewImagePath, __FILE__.' Line '.__LINE__);die;
+        // return $previewImagePath;
     }
 
 
