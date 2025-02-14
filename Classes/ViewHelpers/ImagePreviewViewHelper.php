@@ -69,7 +69,7 @@ class ImagePreviewViewHelper extends AbstractViewHelper
 
         if(\TYPO3\CMS\Core\Core\Environment::isComposerMode()) {
             $arguments = ['extensionName' => $currentThemeName];
-            $path = $arguments['path'];
+            $path = $arguments['path'] ?? '';
             $publicPath = sprintf('EXT:%s/Resources/Public/%s', $arguments['extensionName'], ltrim($path, '/'));
             $assetPath = PathUtility::getPublicResourceWebPath($publicPath);           
             $NsBaseThemeRootPath =  $assetPath."Backend/ThemeOptionsPreview/";
