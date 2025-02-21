@@ -130,6 +130,7 @@ call_user_func(function () {
             )
             // set an optional icon configuration
             ->setIcon('EXT:ns_basetheme/Resources/Public/Icons/Container/container.svg')
+            ->setSaveAndCloseInNewContentElementWizard(false)
         );
         \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\B13\Container\Tca\Registry::class)->configureContainer(
             (
@@ -147,6 +148,7 @@ call_user_func(function () {
             )
             // set an optional icon configuration
             ->setIcon('EXT:ns_basetheme/Resources/Public/Icons/Container/container-2col.svg')
+            ->setSaveAndCloseInNewContentElementWizard(false)
         );
         \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\B13\Container\Tca\Registry::class)->configureContainer(
             (
@@ -165,6 +167,7 @@ call_user_func(function () {
             )
             // set an optional icon configuration
             ->setIcon('EXT:ns_basetheme/Resources/Public/Icons/Container/container-3col.svg')
+            ->setSaveAndCloseInNewContentElementWizard(false)
         );
 
         \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\B13\Container\Tca\Registry::class)->configureContainer(
@@ -185,6 +188,7 @@ call_user_func(function () {
             )
             // set an optional icon configuration
             ->setIcon('EXT:ns_basetheme/Resources/Public/Icons/Container/container-4col.svg')
+            ->setSaveAndCloseInNewContentElementWizard(false)
         );
 
         // Let's check if Bootstrap version in EXT.ns_theme_mugele
