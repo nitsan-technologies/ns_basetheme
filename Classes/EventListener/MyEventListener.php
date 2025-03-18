@@ -10,7 +10,7 @@ use TYPO3\CMS\Core\Core\Environment;
 #[AsEventListener(
     identifier: 'my-extension/extension-activated',
 )]
-final readonly class MyEventListener
+final class MyEventListener
 {
     public function __invoke(AfterPackageActivationEvent $event)
     {
