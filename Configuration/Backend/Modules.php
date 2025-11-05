@@ -11,7 +11,7 @@ return [
     'nitsan_nsbasethememodule' => [
         'parent' => 'nitsan_module',
         'position' => ['before' => 'top'],
-        'access' => 'user,group',
+        'access' => 'user',
         'path' => '/module/nitsan/NsBasetheme',
         'iconIdentifier' => 'submodule-nsbasetheme',
         'navigationComponent' => '@typo3/backend/page-tree/page-tree-element',

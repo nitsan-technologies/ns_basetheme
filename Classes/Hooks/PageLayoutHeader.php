@@ -9,7 +9,7 @@ class PageLayoutHeader
      * @param null  $parentObj
      * @return string
      */
-    public function render(array $params = null, $parentObj = null): string
+    public function render(?array $params = null, mixed $parentObj = null): string
     {
         die('@TODO at Hooks/PageLayoutHeader.php > Should migrate call of NsBasethemeUtility.php > setupBackendPreviewCssJs()');
     }
