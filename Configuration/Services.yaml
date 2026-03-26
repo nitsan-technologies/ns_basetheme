@@ -1,0 +1,80 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  NITSAN\NsBasetheme\:
+    resource: '../Classes/*'
+
+  NITSAN\NsBasetheme\Setup:
+    tags:
+      - name: event.listener
+        identifier: 'ns-basetheme-after'
+        method: 'executeOnSignalAfter'
+        event: TYPO3\CMS\Extensionmanager\Event\AfterExtensionSiteFilesHaveBeenImportedEvent
+
+  NITSAN\NsBasetheme\Controller\NsConstantEditorController:
+    public: true
+    arguments:
+      $moduleTemplateFactory: '@TYPO3\CMS\Backend\Template\ModuleTemplateFactory'
+      $sysTemplateRepository: '@TYPO3\CMS\Core\TypoScript\IncludeTree\SysTemplateRepository'
+      $treeBuilder: '@TYPO3\CMS\Core\TypoScript\IncludeTree\SysTemplateTreeBuilder'
+      $treeTraverser: '@TYPO3\CMS\Core\TypoScript\IncludeTree\Traverser\IncludeTreeTraverser'
+      $astTraverser: '@TYPO3\CMS\Core\TypoScript\AST\Traverser\AstTraverser'
+      $astBuilder: '@TYPO3\CMS\Core\TypoScript\AST\AstBuilderInterface'
+      $losslessTokenizer: '@TYPO3\CMS\Core\TypoScript\Tokenizer\LosslessTokenizer'
+      $eventDispatcher: '@Psr\EventDispatcher\EventDispatcherInterface'
+
+
+  NITSAN\NsBasetheme\Backend\BackendCssLayout:
+    tags:
+      - name: event.listener
+        identifier: 'ns-basetheme/backend/add-backend-css'
+        event: TYPO3\CMS\Backend\Controller\Event\ModifyPageLayoutContentEvent
+    arguments:
+      $renderer: '@TYPO3\CMS\Core\Page\AssetCollector'
+
+  NITSAN\NsBasetheme\Backend\LoadAssetsElementPreview:
+    tags:
+      - name: event.listener
+        identifier: 'ns-basetheme/backend/add-element-backend-js'
+        method: handleEvent
+        event: TYPO3\CMS\Backend\Controller\Event\AfterFormEnginePageInitializedEvent
+    arguments:
+      $renderer: '@TYPO3\CMS\Core\Page\AssetCollector'
+
+  NITSAN\NsBasetheme\Hooks\BackendUserLogin:
+    tags:
+      - name: event.listener
+        identifier: 'ns-basetheme-backend-login'
+        method: 'dispatch'
+        event: TYPO3\CMS\Core\Authentication\Event\AfterUserLoggedInEvent
+
+
+
+  NITSAN\NsBasetheme\EventListener\AssetRendererEventListener:
+    tags:
+      -   name: event.listener
+          identifier: 'ext-min-css'
+          event: TYPO3\CMS\Core\Page\Event\BeforeStylesheetsRenderingEvent
+          method: beforeStyleSheetsRendering
+      -   name: event.listener
+          identifier: 'ext-min-js'
+          event: TYPO3\CMS\Core\Page\Event\BeforeJavaScriptsRenderingEvent
+          method: beforeJavaScriptsRendering
+
+  NITSAN\NsBasetheme\EventListener\TinysourceEventListener:
+    tags:
+      -   name: event.listener
+          identifier: 'ext-min-tinysource'
+          event: TYPO3\CMS\Frontend\Event\AfterCacheableContentIsGeneratedEvent
+  NITSAN\NsBasetheme\EventListener\MyEventListener:
+    tags:
+      -   name: event.listener
+          identifier: 'ext-activated'
+          event: TYPO3\CMS\Core\Package\Event\AfterPackageActivationEvent
+
+
+
+

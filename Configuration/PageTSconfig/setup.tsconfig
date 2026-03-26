@@ -1,0 +1,8 @@
+// Include the BackendLayouts
+@import 'EXT:ns_basetheme/Configuration/PageTSconfig/BackendLayouts/Default.tsconfig'
+
+// Include the BackendLayouts
+@import 'EXT:ns_basetheme/Configuration/PageTSconfig/TceForm/Page.tsconfig'
+
+// Include dynamically generated Custom Elements PageTSConfig
+@import 'EXT:ns_basetheme/Configuration/PageTSconfig/CustomElements.tsconfig'

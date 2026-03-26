@@ -1,0 +1,645 @@
+
+            # Add new custom wizard for our Components
+            mod.wizards.newContentElement.wizardItems.extra {
+
+            # Set caption
+            header = Custom Elements
+            icon =
+
+            # Register each Elements
+            elements {
+                    
+                        
+                        ThemeOptions {
+                            iconIdentifier = ThemeOptions
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ThemeOptions
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ThemeOptions.desc
+                            tt_content_defValues {
+                                CType = ThemeOptions
+                            }
+                        }
+                        
+                        
+                        ns_accordions {
+                            iconIdentifier = ns-accordions
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_accordions
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_accordions.desc
+                            tt_content_defValues {
+                                CType = ns_accordions
+                            }
+                        }
+                        
+                        
+                        ns_alert {
+                            iconIdentifier = ns-alert
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_alert
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_alert.desc
+                            tt_content_defValues {
+                                CType = ns_alert
+                            }
+                        }
+                        
+                        
+                        ns_animationteaser {
+                            iconIdentifier = ns-animationteaser
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_animationteaser
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_animationteaser.desc
+                            tt_content_defValues {
+                                CType = ns_animationteaser
+                            }
+                        }
+                        
+                        
+                        ns_banner {
+                            iconIdentifier = ns-banner
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_banner
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_banner.desc
+                            tt_content_defValues {
+                                CType = ns_banner
+                            }
+                        }
+                        
+                        
+                        ns_beforeafter {
+                            iconIdentifier = ns-beforeafter
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_beforeafter
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_beforeafter.desc
+                            tt_content_defValues {
+                                CType = ns_beforeafter
+                            }
+                        }
+                        
+                        
+                        ns_blockquotes {
+                            iconIdentifier = ns-blockquotes
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_blockquotes
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_blockquotes.desc
+                            tt_content_defValues {
+                                CType = ns_blockquotes
+                            }
+                        }
+                        
+                        
+                        ns_blogmedia {
+                            iconIdentifier = ns-blogmedia
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_blogmedia
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_blogmedia.desc
+                            tt_content_defValues {
+                                CType = ns_blogmedia
+                            }
+                        }
+                        
+                        
+                        ns_bottomcontent {
+                            iconIdentifier = ns-bottomcontent
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_bottomcontent
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_bottomcontent.desc
+                            tt_content_defValues {
+                                CType = ns_bottomcontent
+                            }
+                        }
+                        
+                        
+                        ns_calltoaction {
+                            iconIdentifier = ns-calltoaction
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_calltoaction
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_calltoaction.desc
+                            tt_content_defValues {
+                                CType = ns_calltoaction
+                            }
+                        }
+                        
+                        
+                        ns_card {
+                            iconIdentifier = ns-card
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_card
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_card.desc
+                            tt_content_defValues {
+                                CType = ns_card
+                            }
+                        }
+                        
+                        
+                        ns_carousels {
+                            iconIdentifier = ns-carousels
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_carousels
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_carousels.desc
+                            tt_content_defValues {
+                                CType = ns_carousels
+                            }
+                        }
+                        
+                        
+                        ns_cascadingimage {
+                            iconIdentifier = ns-cascadingimage
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_cascadingimage
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_cascadingimage.desc
+                            tt_content_defValues {
+                                CType = ns_cascadingimage
+                            }
+                        }
+                        
+                        
+                        ns_contentrotater {
+                            iconIdentifier = ns-contentrotater
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_contentrotater
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_contentrotater.desc
+                            tt_content_defValues {
+                                CType = ns_contentrotater
+                            }
+                        }
+                        
+                        
+                        ns_countdowns {
+                            iconIdentifier = ns-countdowns
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_countdowns
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_countdowns.desc
+                            tt_content_defValues {
+                                CType = ns_countdowns
+                            }
+                        }
+                        
+                        
+                        ns_counters {
+                            iconIdentifier = ns-counters
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_counters
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_counters.desc
+                            tt_content_defValues {
+                                CType = ns_counters
+                            }
+                        }
+                        
+                        
+                        ns_divider {
+                            iconIdentifier = ns-divider
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_divider
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_divider.desc
+                            tt_content_defValues {
+                                CType = ns_divider
+                            }
+                        }
+                        
+                        
+                        ns_dropdownbutton {
+                            iconIdentifier = ns-dropdownbutton
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_dropdownbutton
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_dropdownbutton.desc
+                            tt_content_defValues {
+                                CType = ns_dropdownbutton
+                            }
+                        }
+                        
+                        
+                        ns_footer {
+                            iconIdentifier = ns-footer
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_footer
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_footer.desc
+                            tt_content_defValues {
+                                CType = ns_footer
+                            }
+                        }
+                        
+                        
+                        ns_fullwidthsemi {
+                            iconIdentifier = ns-fullwidthsemi
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_fullwidthsemi
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_fullwidthsemi.desc
+                            tt_content_defValues {
+                                CType = ns_fullwidthsemi
+                            }
+                        }
+                        
+                        
+                        ns_headerslider {
+                            iconIdentifier = ns-headerslider
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_headerslider
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_headerslider.desc
+                            tt_content_defValues {
+                                CType = ns_headerslider
+                            }
+                        }
+                        
+                        
+                        ns_history {
+                            iconIdentifier = ns-history
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_history
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_history.desc
+                            tt_content_defValues {
+                                CType = ns_history
+                            }
+                        }
+                        
+                        
+                        ns_hotspots {
+                            iconIdentifier = ns-hotspots
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_hotspots
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_hotspots.desc
+                            tt_content_defValues {
+                                CType = ns_hotspots
+                            }
+                        }
+                        
+                        
+                        ns_iconbox {
+                            iconIdentifier = ns-iconbox
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_iconbox
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_iconbox.desc
+                            tt_content_defValues {
+                                CType = ns_iconbox
+                            }
+                        }
+                        
+                        
+                        ns_iconlist {
+                            iconIdentifier = ns-iconlist
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_iconlist
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_iconlist.desc
+                            tt_content_defValues {
+                                CType = ns_iconlist
+                            }
+                        }
+                        
+                        
+                        ns_imageanimation {
+                            iconIdentifier = ns-imageanimation
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_imageanimation
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_imageanimation.desc
+                            tt_content_defValues {
+                                CType = ns_imageanimation
+                            }
+                        }
+                        
+                        
+                        ns_imageframes {
+                            iconIdentifier = ns-imageframes
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_imageframes
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_imageframes.desc
+                            tt_content_defValues {
+                                CType = ns_imageframes
+                            }
+                        }
+                        
+                        
+                        ns_imagegallery {
+                            iconIdentifier = ns-imagegallery
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_imagegallery
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_imagegallery.desc
+                            tt_content_defValues {
+                                CType = ns_imagegallery
+                            }
+                        }
+                        
+                        
+                        ns_imageviewer {
+                            iconIdentifier = ns-imageviewer
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_imageviewer
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_imageviewer.desc
+                            tt_content_defValues {
+                                CType = ns_imageviewer
+                            }
+                        }
+                        
+                        
+                        ns_landingdemo {
+                            iconIdentifier = ns-landingdemo
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_landingdemo
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_landingdemo.desc
+                            tt_content_defValues {
+                                CType = ns_landingdemo
+                            }
+                        }
+                        
+                        
+                        ns_lightboxes {
+                            iconIdentifier = ns-lightboxes
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_lightboxes
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_lightboxes.desc
+                            tt_content_defValues {
+                                CType = ns_lightboxes
+                            }
+                        }
+                        
+                        
+                        ns_list {
+                            iconIdentifier = ns-list
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_list
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_list.desc
+                            tt_content_defValues {
+                                CType = nitsan_nslist
+                            }
+                        }
+                        
+                        
+                        ns_map {
+                            iconIdentifier = ns-map
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_map
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_map.desc
+                            tt_content_defValues {
+                                CType = ns_map
+                            }
+                        }
+                        
+                        
+                        ns_maps {
+                            iconIdentifier = ns-maps
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_maps
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_maps.desc
+                            tt_content_defValues {
+                                CType = ns_maps
+                            }
+                        }
+                        
+                        
+                        ns_masonryimg {
+                            iconIdentifier = ns-masonryimg
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_masonryimg
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_masonryimg.desc
+                            tt_content_defValues {
+                                CType = ns_masonryimg
+                            }
+                        }
+                        
+                        
+                        ns_medias {
+                            iconIdentifier = ns-medias
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_medias
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_medias.desc
+                            tt_content_defValues {
+                                CType = ns_medias
+                            }
+                        }
+                        
+                        
+                        ns_modal {
+                            iconIdentifier = ns-modal
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_modal
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_modal.desc
+                            tt_content_defValues {
+                                CType = ns_modal
+                            }
+                        }
+                        
+                        
+                        ns_officedetails {
+                            iconIdentifier = ns-officedetails
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_officedetails
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_officedetails.desc
+                            tt_content_defValues {
+                                CType = ns_officedetails
+                            }
+                        }
+                        
+                        
+                        ns_particles {
+                            iconIdentifier = ns-particles
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_particles
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_particles.desc
+                            tt_content_defValues {
+                                CType = ns_particles
+                            }
+                        }
+                        
+                        
+                        ns_popover {
+                            iconIdentifier = ns-popover
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_popover
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_popover.desc
+                            tt_content_defValues {
+                                CType = ns_popover
+                            }
+                        }
+                        
+                        
+                        ns_pricingtables {
+                            iconIdentifier = ns-pricingtables
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_pricingtables
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_pricingtables.desc
+                            tt_content_defValues {
+                                CType = ns_pricingtables
+                            }
+                        }
+                        
+                        
+                        ns_process {
+                            iconIdentifier = ns-process
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_process
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_process.desc
+                            tt_content_defValues {
+                                CType = ns_process
+                            }
+                        }
+                        
+                        
+                        ns_progressbars {
+                            iconIdentifier = ns-progressbars
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_progressbars
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_progressbars.desc
+                            tt_content_defValues {
+                                CType = ns_progressbars
+                            }
+                        }
+                        
+                        
+                        ns_projectdetailblock {
+                            iconIdentifier = ns-projectdetailblock
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_projectdetailblock
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_projectdetailblock.desc
+                            tt_content_defValues {
+                                CType = ns_projectdetailblock
+                            }
+                        }
+                        
+                        
+                        ns_randomimage {
+                            iconIdentifier = ns-randomimage
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_randomimage
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_randomimage.desc
+                            tt_content_defValues {
+                                CType = ns_randomimage
+                            }
+                        }
+                        
+                        
+                        ns_readmore {
+                            iconIdentifier = ns-readmore
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_readmore
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_readmore.desc
+                            tt_content_defValues {
+                                CType = ns_readmore
+                            }
+                        }
+                        
+                        
+                        ns_sectionparallax {
+                            iconIdentifier = ns-sectionparallax
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_sectionparallax
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_sectionparallax.desc
+                            tt_content_defValues {
+                                CType = ns_sectionparallax
+                            }
+                        }
+                        
+                        
+                        ns_sectionteaser {
+                            iconIdentifier = ns-sectionteaser
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_sectionteaser
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_sectionteaser.desc
+                            tt_content_defValues {
+                                CType = ns_sectionteaser
+                            }
+                        }
+                        
+                        
+                        ns_servicelist {
+                            iconIdentifier = ns-servicelist
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_servicelist
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_servicelist.desc
+                            tt_content_defValues {
+                                CType = ns_servicelist
+                            }
+                        }
+                        
+                        
+                        ns_shapedivider {
+                            iconIdentifier = ns-shapedivider
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_shapedivider
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_shapedivider.desc
+                            tt_content_defValues {
+                                CType = ns_shapedivider
+                            }
+                        }
+                        
+                        
+                        ns_slider {
+                            iconIdentifier = ns-slider
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_slider
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_slider.desc
+                            tt_content_defValues {
+                                CType = ns_slider
+                            }
+                        }
+                        
+                        
+                        ns_social {
+                            iconIdentifier = ns-social
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_social
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_social.desc
+                            tt_content_defValues {
+                                CType = ns_social
+                            }
+                        }
+                        
+                        
+                        ns_starrating {
+                            iconIdentifier = ns-starrating
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_starrating
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_starrating.desc
+                            tt_content_defValues {
+                                CType = ns_starrating
+                            }
+                        }
+                        
+                        
+                        ns_stickycontent {
+                            iconIdentifier = ns-stickycontent
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_stickycontent
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_stickycontent.desc
+                            tt_content_defValues {
+                                CType = ns_stickycontent
+                            }
+                        }
+                        
+                        
+                        ns_tabs {
+                            iconIdentifier = ns-tabs
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_tabs
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_tabs.desc
+                            tt_content_defValues {
+                                CType = ns_tabs
+                            }
+                        }
+                        
+                        
+                        ns_team {
+                            iconIdentifier = ns-team
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_team
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_team.desc
+                            tt_content_defValues {
+                                CType = ns_team
+                            }
+                        }
+                        
+                        
+                        ns_teaser {
+                            iconIdentifier = ns-teaser
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_teaser
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_teaser.desc
+                            tt_content_defValues {
+                                CType = ns_teaser
+                            }
+                        }
+                        
+                        
+                        ns_teaserimage {
+                            iconIdentifier = ns-teaserimage
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_teaserimage
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_teaserimage.desc
+                            tt_content_defValues {
+                                CType = ns_teaserimage
+                            }
+                        }
+                        
+                        
+                        ns_testimonials {
+                            iconIdentifier = ns-testimonials
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_testimonials
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_testimonials.desc
+                            tt_content_defValues {
+                                CType = ns_testimonials
+                            }
+                        }
+                        
+                        
+                        ns_textanimation {
+                            iconIdentifier = ns-textanimation
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_textanimation
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_textanimation.desc
+                            tt_content_defValues {
+                                CType = ns_textanimation
+                            }
+                        }
+                        
+                        
+                        ns_threeimgblock {
+                            iconIdentifier = ns-threeimgblock
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_threeimgblock
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_threeimgblock.desc
+                            tt_content_defValues {
+                                CType = ns_threeimgblock
+                            }
+                        }
+                        
+                        
+                        ns_toggles {
+                            iconIdentifier = ns-toggles
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_toggles
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_toggles.desc
+                            tt_content_defValues {
+                                CType = ns_toggles
+                            }
+                        }
+                        
+                        
+                        ns_wordrotator {
+                            iconIdentifier = ns-wordrotator
+                            title = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_wordrotator
+                            description = LLL:EXT:ns_theme_t3karma/Resources/Private/Language/locallang_db.xlf:wizard.ns_wordrotator.desc
+                            tt_content_defValues {
+                                CType = ns_wordrotator
+                            }
+                        }
+                        
+            }
+            show := addToList(ThemeOptions,ns_accordions,ns_alert,ns_animationteaser,ns_banner,ns_beforeafter,ns_blockquotes,ns_blogmedia,ns_bottomcontent,ns_calltoaction,ns_card,ns_carousels,ns_cascadingimage,ns_contentrotater,ns_countdowns,ns_counters,ns_divider,ns_dropdownbutton,ns_footer,ns_fullwidthsemi,ns_headerslider,ns_history,ns_hotspots,ns_iconbox,ns_iconlist,ns_imageanimation,ns_imageframes,ns_imagegallery,ns_imageviewer,ns_landingdemo,ns_lightboxes,ns_list,ns_map,ns_maps,ns_masonryimg,ns_medias,ns_modal,ns_officedetails,ns_particles,ns_popover,ns_pricingtables,ns_process,ns_progressbars,ns_projectdetailblock,ns_randomimage,ns_readmore,ns_sectionparallax,ns_sectionteaser,ns_servicelist,ns_shapedivider,ns_slider,ns_social,ns_starrating,ns_stickycontent,ns_tabs,ns_team,ns_teaser,ns_teaserimage,ns_testimonials,ns_textanimation,ns_threeimgblock,ns_toggles,ns_wordrotator,)
+            }
+        

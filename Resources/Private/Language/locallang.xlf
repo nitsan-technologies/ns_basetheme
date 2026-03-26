@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-07-24T20:37:42Z">
+		<header/>
+		<body>
+			<trans-unit id="palette.access">
+                <source>Access</source>
+            </trans-unit>
+            <trans-unit id="title">
+                <source>Title</source>
+            </trans-unit>
+
+            <trans-unit id="ns_imageteaser.readmore">
+                <source>Read more!</source>
+            </trans-unit>
+          
+
+            <!-- Module LLL Start-->
+            <trans-unit id="extensionName">
+                <source>Theme Options</source>
+            </trans-unit>
+            <trans-unit id="globalsettings">
+                <source>Global Setting</source>
+            </trans-unit>
+            <trans-unit id="documentaiton">
+                <source>Documentaiton</source>
+            </trans-unit>
+            <trans-unit id="helpsupport">
+                <source>Support</source>
+            </trans-unit>
+            <trans-unit id="donate">
+                <source>Donate</source>
+            </trans-unit>
+            <trans-unit id="loginT3Terminal">
+                <source>Login at T3Terminal</source>
+            </trans-unit>
+            <trans-unit id="Dashboard">
+                <source>Dashboard</source>
+            </trans-unit>
+            <trans-unit id="aboutExtension">
+                <source>About</source>
+            </trans-unit>
+            <trans-unit id="generalSettings">
+                <source>General</source>
+            </trans-unit>
+            <trans-unit id="seoSettings">
+                <source>SEO</source>
+            </trans-unit>
+            <trans-unit id="gdprSettings">
+                <source>GDPR</source>
+            </trans-unit>
+            <trans-unit id="styleSettings">
+                <source>Style</source>
+            </trans-unit>
+            <trans-unit id="integrationSettings">
+                <source>Integration</source>
+            </trans-unit>
+            <trans-unit id="sorry">
+                <source>Sorry!</source>
+            </trans-unit>
+            <trans-unit id="noconstantline1">
+                <source>No Extension Template available for this Page.</source>
+            </trans-unit>
+            <trans-unit id="noconstantline2">
+                <source>Option 1. To configure template globally, Click on your main root page. </source>
+            </trans-unit>
+            <trans-unit id="noconstantline3">
+                <source>Option 2: To create custom configuration at particular page, Go to the Template Module > Create Extension Template for this page.</source>
+            </trans-unit>
+            <trans-unit id="noconstantline4">
+                <source>Do you want to go with Option 2? Then </source>
+            </trans-unit>
+            <trans-unit id="templatelinkText">
+                <source>Click Here</source>
+            </trans-unit>
+            <trans-unit id="save">
+                <source>Save Changes</source>
+            </trans-unit>
+            <trans-unit id="noThemeConfiguration">
+                <source>Sorry, Configuration not available for this category!</source>
+            </trans-unit>
+            <trans-unit id="settings.enabled.label">
+				<source>Enabled</source>
+			</trans-unit>
+			<trans-unit id="settings.enabled.description">
+				<source>PWA Enabled/Disabled Feature</source>
+			</trans-unit>
+            <trans-unit id="settings.short_name.label">
+				<source>Short Name</source>
+			</trans-unit>
+			<trans-unit id="settings.short_name.description">
+				<source>Short name to be shown on the home screen.</source>
+			</trans-unit>
+            <trans-unit id="settings.name.label">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="settings.name.description">
+				<source>The full name of your web app.</source>
+			</trans-unit>
+            <trans-unit id="settings.start_url.label">
+				<source>Start Url (/ or /blog)</source>
+			</trans-unit>
+            <trans-unit id="settings.entry_point.label">
+				<source>Entry Point of Site (/ or /blog)</source>
+			</trans-unit>
+            <trans-unit id="settings.background_color.label">
+				<source>Background Color</source>
+			</trans-unit>
+			<trans-unit id="settings.background_color.description">
+				<source>A color used as the app's default background.</source>
+			</trans-unit>
+            <trans-unit id="settings.display.label">
+				<source>Display</source>
+			</trans-unit>
+			<trans-unit id="settings.display.standalone.label">
+				<source>Standalone</source>
+			</trans-unit>
+			<trans-unit id="settings.display.minimal_ui.label">
+				<source>Minimal UI</source>
+			</trans-unit>
+			<trans-unit id="settings.display.fullscreen.label">
+				<source>Fullscreen</source>
+			</trans-unit>
+			<trans-unit id="settings.display.description">
+				<source>How the app is displayed.</source>
+			</trans-unit>
+            <trans-unit id="settings.scope.label">
+				<source>Scope (/ or /blog)</source>
+			</trans-unit>
+            <trans-unit id="settings.theme_color.label">
+				<source>Theme Color</source>
+			</trans-unit>
+            <trans-unit id="settings.theme_color.description">
+				<source>A primary color for the UI, used by operating system.</source>
+			</trans-unit>
+            <trans-unit id="settings.icon.label">
+				<source>PWA Icon</source>
+			</trans-unit>
+			<trans-unit id="settings.icon.description">
+				<source>The icon of your web app.</source>
+			</trans-unit>
+            <trans-unit id="settings.icon_144.label">
+				<source>PWA Mask Icon (144*144)</source>
+			</trans-unit>
+            <trans-unit id="settings.icon_144.description">
+				<source>The icon size should be 144*144.</source>
+			</trans-unit>
+			<trans-unit id="settings.icon_144_type.label">
+				<source>Image Type</source>
+			</trans-unit>
+            <trans-unit id="settings.icon_144_type.description">
+				<source>Eg. image/png, image/jpg</source>
+			</trans-unit>
+            <trans-unit id="settings.icon_192.label">
+				<source>PWA Icon (192*192)</source>
+			</trans-unit>
+            <trans-unit id="settings.icon_192.description">
+				<source>The icon size should be 192*192.</source>
+			</trans-unit>
+			<trans-unit id="settings.icon_192_type.label">
+				<source>Image Type</source>
+			</trans-unit>
+            <trans-unit id="settings.icon_192_type.description">
+				<source>Eg. image/png, image/jpg</source>
+			</trans-unit>
+            <trans-unit id="settings.icon_512.label">
+				<source>PWA Icon (512*512)</source>
+			</trans-unit>
+            <trans-unit id="settings.icon_512.description">
+				<source>The icon size should be 512*512.</source>
+			</trans-unit>
+			<trans-unit id="settings.icon_512_type.label">
+				<source>Image Type</source>
+			</trans-unit>
+            <trans-unit id="settings.icon_512_type.description">
+				<source>Eg. image/png, image/jpg</source>
+			</trans-unit>
+            <trans-unit id="settings.ss_icon_desktop.label">
+				<source>Desktop Screenshots</source>
+			</trans-unit>
+            <trans-unit id="settings.ss_icon_desktop.description">
+				<source>The width and height must be at least 370px and at most 3840px.</source>
+			</trans-unit>
+			<trans-unit id="settings.ss_icon_desktop_type.label">
+				<source>Image Type</source>
+			</trans-unit>
+            <trans-unit id="settings.ss_icon_desktop_type.description">
+				<source>Eg. image/png, image/jpg</source>
+			</trans-unit>
+            <trans-unit id="settings.ss_icon_size_desktop.label">
+				<source>Size of Desktop Screenshots</source>
+			</trans-unit>
+            <trans-unit id="settings.ss_icon_size_desktop.description">
+				<source>Size of the desktop screenshot which you uploaded above.</source>
+			</trans-unit>
+            <trans-unit id="settings.ss_icon_mobile.label">
+				<source>Mobile Screenshots</source>
+			</trans-unit>
+            <trans-unit id="settings.ss_icon_mobile.description">
+				<source>The width and height must be at least 370px and at most 3840px.</source>
+			</trans-unit>
+			<trans-unit id="settings.ss_icon_mobile_type.label">
+				<source>Image Type</source>
+			</trans-unit>
+            <trans-unit id="settings.ss_icon_mobile_type.description">
+				<source>Eg. image/png, image/jpg</source>
+			</trans-unit>
+            <trans-unit id="settings.ss_icon_size_mobile.label">
+				<source>Size of Mobile Screenshots</source>
+			</trans-unit>
+            <trans-unit id="settings.ss_icon_size_mobile.description">
+				<source>Size of the mobile screenshot which you uploaded above.</source>
+			</trans-unit>
+            <!-- Module LLL End-->
+		</body>
+	</file>
+</xliff>

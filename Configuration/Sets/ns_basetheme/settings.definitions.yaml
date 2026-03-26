@@ -1,0 +1,260 @@
+categories:
+  Nsbasetheme:
+    label: 'Theme Option'
+  Nsbasetheme.settings.general:
+    label: 'General'
+    parent: Nsbasetheme
+  Nsbasetheme.settings.general.header:
+    label: 'Header Settings'
+    parent: Nsbasetheme.settings.general
+  Nsbasetheme.settings.general.footer:
+    label: 'Footer Settings'
+    parent: Nsbasetheme.settings.general
+  Nsbasetheme.settings.general.menu:
+    label: 'Menu and Pages Settings'
+    parent: Nsbasetheme.settings.general
+  Nsbasetheme.settings.general.speed:
+    label: 'Speed and Performance'
+    parent: Nsbasetheme.settings.general
+  Nsbasetheme.settings.general.maintenance:
+    label: 'Site Maintenance'
+    parent: Nsbasetheme.settings.general
+  Nsbasetheme.settings.seo:
+    label: 'SEO'
+    parent: Nsbasetheme
+  Nsbasetheme.settings.seo.seo_settings:
+    label: 'SEO Settings'
+    parent: Nsbasetheme.settings.seo
+  Nsbasetheme.settings.seo.google:
+    label: 'Google'
+    parent: Nsbasetheme.settings.seo
+  Nsbasetheme.settings.seo.social:
+    label: 'Social'
+    parent: Nsbasetheme.settings.seo
+  Nsbasetheme.settings.style:
+    label: 'Style'
+    parent: Nsbasetheme
+  Nsbasetheme.settings.style.style_settings:
+    label: 'Style Settings'
+    parent: Nsbasetheme.settings.style
+  Nsbasetheme.settings.integration:
+    label: 'Integration'
+    parent: Nsbasetheme
+  Nsbasetheme.settings.integration.custom_integration:
+    label: 'Custom Integration'
+    parent: Nsbasetheme.settings.integration
+  
+
+settings:
+  # Logo
+  ns_basetheme.website.settings.logo:
+    label: 'Logo'
+    category: Nsbasetheme.settings.general.header
+    type: string
+    default: ''
+  ns_basetheme.website.settings.logo_width:
+    label: 'Logo Image Width'
+    category: Nsbasetheme.settings.general.header
+    type: string
+    default: ''
+
+  ns_basetheme.website.settings.logo_height:
+    label: 'Logo Image Height'
+    category: Nsbasetheme.settings.general.header
+    type: string
+    default: ''
+
+  ns_basetheme.website.settings.logo_text:
+    label: 'Logo Alternate Text'
+    category: Nsbasetheme.settings.general.header
+    type: string
+    default: ''
+
+  ns_basetheme.website.settings.favicon:
+    label: 'Favicon'
+    category: Nsbasetheme.settings.general.header
+    type: string
+    default: ''
+
+    # Copyright
+  copyright:
+    label: 'Copyright Text'
+    category: Nsbasetheme.settings.general.footer
+    type: string
+    default: 'copyright@2024'
+  ns_basetheme.website.settings.back_to_top:
+    label: 'Back To Top'
+    category: Nsbasetheme.settings.general.footer
+    type: bool
+    default: 0
+
+  ns_basetheme.website.settings.footer_menu:
+    label: 'Footer Menu Id'
+    category: Nsbasetheme.settings.general.menu
+    type: int
+    default: 6
+  ns_basetheme.website.settings.main_menu:
+    label: 'Main Menu Id'
+    category: Nsbasetheme.settings.general.menu
+    type: int
+    default: 11
+  ns_basetheme.website.settings.root:
+    label: 'Root Page Id'
+    category: Nsbasetheme.settings.general.menu
+    type: int
+    default: 1
+  ns_basetheme.website.settings.no_cache:
+    label: 'Enable/Disable Cache'
+    category: Nsbasetheme.settings.general.speed
+    type: bool
+    default: 0
+  ns_basetheme.website.settings.compress_cssjs:
+    label: 'Compress & Merge CSS/JS'
+    category: Nsbasetheme.settings.general.speed
+    type: bool
+    default: 0
+  ns_basetheme.website.settings.tinysource.enable:
+    label: 'Enable HTML Minified'
+    category: Nsbasetheme.settings.general.speed
+    type: bool
+    default: 0
+  ns_basetheme.website.settings.tinysource.oneLineMode:
+    label: 'One Line HTML Minified'
+    category: Nsbasetheme.settings.general.speed
+    type: bool
+    default: 0
+  ns_basetheme.website.settings.tinysource.stripComments:
+    label: 'Strip Comments'
+    category: Nsbasetheme.settings.general.speed
+    type: bool
+    default: 0
+  ns_basetheme.website.settings.tinysource.removeTypeInScriptTags:
+    label: 'Remove Type from Script'
+    category: Nsbasetheme.settings.general.speed
+    type: bool
+    default: 0
+  ns_basetheme.website.settings.maintenance_mode:
+    label: 'Enable Maintenance Mode'
+    category: Nsbasetheme.settings.general.maintenance
+    type: bool
+    default: 0
+  ns_basetheme.website.settings.maintenance_headline:
+    label: 'Headline Text'
+    category: Nsbasetheme.settings.general.maintenance
+    type: string
+    default: 'We&rsquo;ll be back soon!'
+  ns_basetheme.website.settings.maintenance_message:
+    label: 'Text Message'
+    category: Nsbasetheme.settings.general.maintenance
+    type: string
+    default: 'Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment. If you need to you can always <a href="mailto:#">contact us</a>, otherwise we&rsquo;ll be back online shortly!'
+  ns_basetheme.website.settings.seo_title_prefix:
+    label: 'Page Title Prefix'
+    category: Nsbasetheme.settings.seo.seo_settings
+    type: string
+    default: ''
+  ns_basetheme.website.settings.seo_title_sufix:
+    label: 'Page Title Suffix'
+    category: Nsbasetheme.settings.seo.seo_settings
+    type: string
+    default: ''
+  ns_basetheme.website.settings.seo_meta_description:
+    label: 'Default Meta Description'
+    category: Nsbasetheme.settings.seo.seo_settings
+    type: string
+    default: ''
+  ns_basetheme.website.settings.seo_meta_keywords:
+    label: 'Default Meta Keywords'
+    category: Nsbasetheme.settings.seo.seo_settings
+    type: string
+    default: ''
+  ns_basetheme.website.settings.seo_robots_default:
+    label: 'Default Meta Robots'
+    category: Nsbasetheme.settings.seo.seo_settings
+    type: string
+    default: 'FOLLOW,INDEX'
+  ns_basetheme.website.settings.googleanalyticsstatus:
+    label: 'Disable Google Analytics'
+    category: Nsbasetheme.settings.seo.google
+    type: bool
+    default: 0
+  ns_basetheme.website.settings.googleanalyticstype:
+    label: 'Google Analytics Type'
+    category: Nsbasetheme.settings.seo.google
+    type: string
+    default: 'GAv3'
+    enum:
+      valueA: 'GAv3'
+      valueB: 'GAv4'
+  ns_basetheme.website.settings.googleanalytics:
+    label: 'Google Analytics ID'
+    category: Nsbasetheme.settings.seo.google
+    type: string
+    default: ''
+  ns_basetheme.website.settings.seo_google_map:
+    label: 'Google Map API Key'
+    category: Nsbasetheme.settings.seo.google
+    type: string
+    default: ''
+  ns_basetheme.website.settings.seo_twitter_link:
+    label: 'Twitter Profile Link'
+    category: Nsbasetheme.settings.seo.social
+    type: string
+    default: 'https://twitter.com/'
+    # SEO Facebook Link
+  ns_basetheme.website.settings.seo_facebook_link:
+    label: 'SEO Facebook Link'
+    category: Nsbasetheme.settings.seo.social
+    type: string
+    default: ''
+
+  # SEO LinkedIn Link
+  ns_basetheme.website.settings.seo_linkedin_link:
+    label: 'SEO LinkedIn Link'
+    category: Nsbasetheme.settings.seo.social
+    type: string
+    default: ''
+  ns_basetheme.website.settings.style_theme_color:
+    label: 'Theme Color'
+    category: Nsbasetheme.settings.style
+    type: string
+    default: 'blue'
+    enum:
+      valueA: 'Orange'
+      valueB: 'Green'
+      valueC: 'Blue'
+  ns_basetheme.website.settings.integration_admpanel:
+    label: 'Enable Admin Panel'
+    category: Nsbasetheme.settings.integration.custom_integration
+    type: bool
+    default: 0
+  ns_basetheme.website.settings.integration_responsive_layout:
+    label: 'Enable Responsive Layout'
+    category: Nsbasetheme.settings.integration.custom_integration
+    type: bool
+    default: 1
+  ns_basetheme.website.settings.integration_custom_css:
+    label: 'Custom CSS'
+    category: Nsbasetheme.settings.integration.custom_integration
+    type: text
+    default: ''
+  ns_basetheme.website.settings.integration_enable_head:
+    label: 'Enable Header Code'
+    category: Nsbasetheme.settings.integration.custom_integration
+    type: bool
+    default: 0
+  ns_basetheme.website.settings.integration_code_head:
+    label: 'Code into <head>'
+    category: Nsbasetheme.settings.integration.custom_integration
+    type: text
+    default: ''
+  ns_basetheme.website.settings.integration_enable_body:
+    label: 'Enable Body Code'
+    category: Nsbasetheme.settings.integration.custom_integration
+    type: bool
+    default: 0
+  ns_basetheme.website.settings.integration_code_body:
+    label: 'Code before <body>'
+    category: Nsbasetheme.settings.integration.custom_integration
+    type: text
+    default: ''    

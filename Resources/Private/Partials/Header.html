@@ -1,0 +1,58 @@
+<!-- Navigation -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <f:link.page pageUid="{f:cObject(typoscriptObjectPath: 'lib.rootPageId')}" class="navbar-brand">
+        composer req nitsan/ns-basetheme
+    </f:link.page>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+
+        <f:render section="MainMenu" arguments="{MainMenu: MainMenu}" />
+
+    	&nbsp; &nbsp;
+    	<a href="#" class="btn btn-primary">Sign Up</a>
+    </div>
+  </div>
+</nav>
+
+<f:section name="MainMenu">
+    <f:if condition="{MainMenu}">
+        <ul class="navbar-nav ml-auto">
+            <f:for each="{MainMenu}" as="item">
+                <f:if condition="{item.spacer}">
+                    <f:then>
+                        </ul>
+                        <ul class="navbar-nav">
+                    </f:then>
+                    <f:else>
+                        <li class="nav-item{f:if(condition: item.active, then:' active')}{f:if(condition: item.children, then:' dropdown dropdown-hover')}">
+                            <a href="{item.link}" id="nav-item-{item.data.uid}" class="nav-link{f:if(condition: item.children, then:' dropdown-toggle')}"{f:if(condition: item.target, then: ' target="{item.target}"')} title="{item.title}"{f:if(condition: item.children, then:' aria-haspopup="true" aria-expanded="false"')}>
+                                <span class="nav-link-text">{item.title}<f:if condition="{item.current}"> <span class="sr-only">(current)</span></f:if></span>
+                            </a>
+                            <f:if condition="{item.children}">
+                                <ul class="dropdown-menu" aria-labelledby="nav-item-{item.data.uid}">
+                                    <f:for each="{item.children}" as="child">
+                                        <f:if condition="{child.spacer}">
+                                            <f:then>
+                                                <li class="dropdown-divider"></li>
+                                            </f:then>
+                                            <f:else>
+                                                <li>
+                                                    <a href="{child.link}" class="dropdown-item{f:if(condition: child.active, then:' active')}"{f:if(condition: child.target, then: ' target="{child.target}"')} title="{child.title}">
+                                                        <span class="dropdown-text">{child.title}<f:if condition="{child.current}"> <span class="sr-only">(current)</span></f:if></span>
+                                                    </a>
+                                                </li>
+                                            </f:else>
+                                        </f:if>
+                                    </f:for>
+                                </ul>
+                            </f:if>
+                        </li>
+                    </f:else>
+                </f:if>
+            </f:for>
+        </ul>
+    </f:if>
+</f:section>

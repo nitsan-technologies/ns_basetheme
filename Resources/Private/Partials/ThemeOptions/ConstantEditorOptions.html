@@ -1,0 +1,52 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+    xmlns:bt="http://typo3.org/ns/NITSAN\NsBasetheme\ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:if condition="({f:count(subject: allTemplatesOnPage)} > 1) || ({f:count(subject: relevantCategories)} > 1)">
+    <div id="constant-editor-index" class="tx_tstemplate_constant-editor">
+        <div class="ns-ext-navigation-wrap">
+            <f:if condition="{f:count(subject: relevantCategories)} > 1">
+                <a class="navbar-brand ns-ext-name ns-ext-name-desktop" href="javascript:;"><f:translate key="LLL:EXT:ns_basetheme/Resources/Private/Language/locallang.xlf:extensionName" /></a>
+                <div class="ns-ext-navigation">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand ns-ext-name" href="javascript:;"><f:translate key="LLL:EXT:ns_basetheme/Resources/Private/Language/locallang.xlf:extensionName" /></a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nsextNavbar"
+                            aria-controls="nsextNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler__line"></span>
+                            <span class="navbar-toggler__line"></span>
+                            <span class="navbar-toggler__line"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="nsextNavbar">
+                            <ul class="navbar-nav">
+                                <f:for each="{relevantCategories}" key="relevantCategoryKey" as="relevantCategory" iteration="i">
+                                    <f:if condition="{bt:themeContains(value: '{relevantCategoryKey}')}">
+                                        <li class="nav-item {f:if(condition: '{selectedCategory}=={relevantCategory.label}', then: 'active')}">
+                                            <f:if condition="{i.isLast}">
+                                                <f:then>
+                                                    <f:link.typolink class="nav-link" parameter="{f:be.uri(route: 'nitsan_nsbasethememodule', parameters: '{id: pageUid, selectedCategory:\'{relevantCategoryKey}\'}')}">
+                                                        <em class="fa fas fa-icon fa-icon-theme-option" aria-hidden="true"></em><f:translate key="LLL:EXT:ns_basetheme/Resources/Private/Language/BackendModule.xlf:others"  />
+                                                    </f:link.typolink>
+                                                </f:then>
+                                                <f:else>
+                                                    <f:link.typolink class="nav-link" parameter="{f:be.uri(route: 'nitsan_nsbasethememodule', parameters: '{id: pageUid, selectedCategory:\'{relevantCategoryKey}\'}')}">
+                                                        <em class="fa fas fa-icon fa-icon-{relevantCategory.label}" aria-hidden="true"></em>
+                                                        <f:translate key="LLL:EXT:ns_basetheme/Resources/Private/Language/BackendModule.xlf:{relevantCategory.label}"  />
+                                                    </f:link.typolink>
+                                                </f:else>
+                                            </f:if>
+                                        </li>
+                                    </f:if>
+                                </f:for>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </f:if>
+        </div>
+    </div>
+</f:if>
+
+</html>

@@ -1,0 +1,13 @@
+plugin.ns_basetheme.tinysource {
+    enable = {$ns_basetheme.website.tinysource.enable}
+    body {
+        stripComments = {$ns_basetheme.website.tinysource.stripComments}
+        preventStripOfSearchComment = {$ns_basetheme.website.tinysource.preventStripOfSearchComment}
+        removeTypeInScriptTags = {$ns_basetheme.website.tinysource.removeTypeInScriptTags}
+    }
+    protectCode {
+        10 = /(<textarea.*?>.*?<\/textarea>)/is
+        20 = /(<pre.*?>.*?<\/pre>)/is
+    }
+    oneLineMode = {$ns_basetheme.website.tinysource.oneLineMode}
+}

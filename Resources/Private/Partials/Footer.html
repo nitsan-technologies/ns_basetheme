@@ -1,0 +1,28 @@
+<!-- Footer -->
+<footer class="py-5 bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 m-0 text-left text-white"><f:render section="FooterMenu" arguments="{FooterMenu: FooterMenu}" /></div>
+            <div class="col-sm-6 m-0 text-right text-white"><f:cObject typoscriptObjectPath="lib.copyright" /></div>
+        </div>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<f:section name="FooterMenu">
+    <f:if condition="{FooterMenu}">
+        <f:for each="{FooterMenu}" as="item">
+            <f:if condition="{item.spacer}">
+                <f:then>
+                    </ul>
+                    <ul class="navbar-nav">
+                </f:then>
+                <f:else>
+                    <a href="{item.link}" id="nav-item-{item.data.uid}" class="text-white">
+                        {item.title}
+                    </a>|
+                </f:else>
+            </f:if>
+        </f:for>
+    </f:if>
+</f:section>

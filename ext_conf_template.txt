@@ -1,0 +1,2 @@
+# cat=basic; type=boolean; label=Enable to use Mask and Flexform-based Elements
+enable_mask_flexform = 0

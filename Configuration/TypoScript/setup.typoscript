@@ -1,0 +1,26 @@
+# Includes Basic Configuration of website
+@import 'EXT:ns_basetheme/Configuration/TypoScript/Configuration/'
+
+# Includes EXT:IndexedSearch Configuration
+@import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/IndexedSearch/'
+
+# Includes EXT:Form Configuration
+@import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/IndexedSearch/'
+
+# Includes EXT:Fluid Configuration
+@import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/Fluid/'
+
+# Includes EXT:News Configuration
+@import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/News/'
+
+# Includes EXT:Custom
+@import 'EXT:ns_basetheme/Configuration/TypoScript/Components/'
+
+# Includes Page Configuration
+@import 'EXT:ns_basetheme/Configuration/TypoScript/Page/'
+
+# Includes EXT:Container Configuration
+@import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/Container/'
+
+# Includes HTML Minified Configuration
+@import 'EXT:ns_basetheme/Configuration/TypoScript/HtmlMinified/'
