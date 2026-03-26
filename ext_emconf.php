@@ -9,10 +9,10 @@ $EM_CONF['ns_basetheme'] = [
     'author_email' => 'sanjay@nitsan.in',
     'author_company' => 'NITSAN Technologies Pvt Ltd',
     'state' => 'stable',
-    'version' => '13.0.8',
+    'version' => '14.0.0',
     'constraints' => [
         'depends' => [
-             'typo3' => '12.0.0-14.9.99',
+             'typo3' => '14.0.0-14.9.99',
         ],
         'conflicts' => [],
         'suggests' => [],
