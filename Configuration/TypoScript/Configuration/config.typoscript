@@ -44,14 +44,3 @@ config {
     concatenateCss = {$ns_basetheme.website.settings.compress_cssjs}
 }
 
-# for TYPO3 v8, Mulit-Langauge configuration
-/*
-[globalVar = GP:L = 1]
-    config {
-        htmlTag_langKey = en
-        sys_language_uid = 1
-        language = en
-        locale_all = en_EN
-    }
-[global]
-*/
