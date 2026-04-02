@@ -214,15 +214,6 @@ settings:
     category: Nsbasetheme.settings.seo.social
     type: string
     default: ''
-  ns_basetheme.website.settings.style_theme_color:
-    label: 'Theme Color'
-    category: Nsbasetheme.settings.style
-    type: string
-    default: 'blue'
-    enum:
-      valueA: 'Orange'
-      valueB: 'Green'
-      valueC: 'Blue'
   ns_basetheme.website.settings.integration_admpanel:
     label: 'Enable Admin Panel'
     category: Nsbasetheme.settings.integration.custom_integration
