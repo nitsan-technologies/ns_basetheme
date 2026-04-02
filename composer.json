@@ -12,21 +12,13 @@
     "template",
     "ns"
   ],
-  "homepage": "https://gitlab.com/sanjay_nitsan/ns_basetheme",
-  "authors": [
-    {
-        "name": "Team NITSAN",
-        "email": "sanjay@nitsan.in",
-        "role": "Developer",
-        "homepage": "http://www.nitsan.in/"
-    }
-  ],
+  "homepage": "https://github.com/nitsan-technologies/ns_basetheme",
   "support": {
-    "issues": "https://gitlab.com/sanjay_nitsan/ns_basetheme/issues"
+    "issues": "https://github.com/nitsan-technologies/ns_basetheme/issues"
   },
   "license": "MIT",
   "require": {
-    "typo3/cms-core": "^13 || ^14"
+    "typo3/cms-core": "^14"
   },
   "autoload": {
     "psr-4": {
