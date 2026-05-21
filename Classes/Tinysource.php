@@ -1,6 +1,4 @@
 <?php
-declare(strict_types=1);
-
 namespace NITSAN\NsBasetheme;
 
 /*  | This extension is made with ❤ for TYPO3 CMS and is licensed
@@ -11,7 +9,9 @@ namespace NITSAN\NsBasetheme;
  *  |     2012 Dennis Römmich <dennis@roemmich.eu>
  */
 use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\TypoScript\FrontendTypoScript;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
 
 /**
@@ -38,13 +38,13 @@ class Tinysource
         }
         $this->conf = $frontendTypoScript->getSetupArray()['plugin.']['ns_basetheme.']['tinysource.'] ?? [];
 
-        $configArray = $frontendTypoScript->getConfigArray();
-        $disableAllHeaderCode = (bool)($configArray['config']['disableAllHeaderCode'] ?? false);
-        if (!$disableAllHeaderCode) {
+        $checkTypo3Version = GeneralUtility::makeInstance(Typo3Version::class);
+        if($checkTypo3Version->getMajorVersion() > 12) {
             $typoScriptFrontendController = $request->getAttribute('frontend.controller');
-            if (is_object($typoScriptFrontendController)) {
-                $disableAllHeaderCode = (bool)($typoScriptFrontendController->config['config']['disableAllHeaderCode'] ?? false);
-            }
+            $disableAllHeaderCode = $typoScriptFrontendController->config['config']['disableAllHeaderCode'] ?? false;
+        } else{
+            // @extensionScannerIgnoreLine
+            $disableAllHeaderCode = $GLOBALS['TSFE']->config['config']['disableAllHeaderCode'] ?? false;
         }
 
         if (($this->conf['enable'] ?? false) && !($disableAllHeaderCode)) {
