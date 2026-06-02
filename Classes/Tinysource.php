@@ -49,15 +49,23 @@ class Tinysource
 
         if (($this->conf['enable'] ?? false) && !($disableAllHeaderCode)) {
             $headOffset = strpos($source, '<head');
-            $headEndOffset = strpos($source, '>', $headOffset);
             $closingHeadOffset = strpos($source, '</head>');
             $bodyOffset = strpos($source, '<body');
-            $bodyEndOffset = strpos($source, '>', $bodyOffset);
             $closingBodyOffset = strpos($source, '</body>');
 
-            if (($headOffset !== false && $headEndOffset !== false && $closingHeadOffset !== false) ||
-                ($bodyOffset !== false && $bodyEndOffset !== false && $closingBodyOffset !== false)
+            if (
+                $headOffset === false ||
+                $closingHeadOffset === false ||
+                $bodyOffset === false ||
+                $closingBodyOffset === false
             ) {
+                return $source;
+            }
+
+            $headEndOffset = strpos($source, '>', $headOffset);
+            $bodyEndOffset = strpos($source, '>', $bodyOffset);
+
+            if ($headEndOffset !== false && $bodyEndOffset !== false) {
                 $beforeHead = substr($source, 0, $headEndOffset + 1);
 
                 $head = substr($source, $headEndOffset + 1, $closingHeadOffset - $headEndOffset - 1);
