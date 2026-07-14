@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-01-06T20:41:06Z" product-name="NITSANpageadds" target-language="de">
+		<header />
+		<body>
+			<trans-unit id="palette.access">
+				<target>Access</target>
+			</trans-unit>
+			<trans-unit id="headline">
+				<target>Headline</target>
+			</trans-unit>
+			<trans-unit id="imageManipulation.desktop">
+				<target>[Desktop] Default Image Dimension</target>
+			</trans-unit>
+			<trans-unit id="imageManipulation.tablet">
+				<target>[Tablet] Default Image Dimension</target>
+			</trans-unit>
+			<trans-unit id="imageManipulation.mobile">
+				<target>[Mobile] Default Image Dimension</target>
+			</trans-unit>
+			<trans-unit id="wizard.ns_imageteaser">
+				<target>[Component] Image Teaser</target>
+			</trans-unit>
+			<trans-unit id="tab.ns_imageteaser">
+				<target>Image Setting</target>
+			</trans-unit>
+			<trans-unit id="wizard.ns_imageteaser.desc">
+				<target>Display teaser box with image and text</target>
+			</trans-unit>
+			<trans-unit id="wizard.ns_slider">
+				<target>[Component] Slider</target>
+			</trans-unit>
+			<trans-unit id="wizard.ns_slider.desc">
+				<target>Integrate slider with multiple images and headline</target>
+			</trans-unit>
+			<trans-unit id="header">
+				<target>Header Settings</target>
+			</trans-unit>
+			<trans-unit id="menu">
+				<target>Menu and Pages Settings</target>
+			</trans-unit>
+			<trans-unit id="footer">
+				<target>Footer Settings</target>
+			</trans-unit>
+			<trans-unit id="speed">
+				<target>Speed and Performance</target>
+			</trans-unit>
+			<trans-unit id="maintenance">
+				<target>Site Maintenance</target>
+			</trans-unit>
+			<trans-unit id="cookie">
+				<target>Cookie</target>
+			</trans-unit>
+			<trans-unit id="seo">
+				<target>SEO Settings</target>
+			</trans-unit>
+			<trans-unit id="google">
+				<target>Google</target>
+			</trans-unit>
+			<trans-unit id="style">
+				<target>Style Settings</target>
+			</trans-unit>
+			<trans-unit id="integration">
+				<target>Custom Integration</target>
+			</trans-unit>
+			<trans-unit id="social">
+				<target>Social Media</target>
+			</trans-unit>
+			<trans-unit id="grid.1column">
+				<target>1-Spalten-Raster</target>
+			</trans-unit>
+			<trans-unit id="grid.1column.des">
+				<target>Standard-Container-Raster</target>
+			</trans-unit>
+			<trans-unit id="grid.2column">
+				<target>2-Spalten-Raster</target>
+			</trans-unit>
+			<trans-unit id="grid.2column.des">
+				<target>Standard-2-Spalten-Raster</target>
+			</trans-unit>
+			<trans-unit id="grid.3column">
+				<target>3-Spalten-Raster</target>
+			</trans-unit>
+			<trans-unit id="grid.3column.des">
+				<target>Standard-3-Spalten-Raster</target>
+			</trans-unit>
+			<trans-unit id="grid.4column">
+				<target>4-Spalten-Raster</target>
+			</trans-unit>
+			<trans-unit id="grid.4column.des">
+				<target>Standard-4-Spalten-Raster</target>
+			</trans-unit>
+			<trans-unit id="grid.container">
+				<source>Container Grid</source>
+				<target>Container-Raster</target>
+			</trans-unit>
+			<trans-unit id="grid.container.des">
+				<source>Standard Container grid element</source>
+				<target>Standard-Container-Raster</target>
+			</trans-unit>
+			<trans-unit id="grid.content">
+				<source>Content</source>
+				<target>Inhalt</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -98,6 +98,15 @@
             <trans-unit id="grid.4column.des">
                 <source>Flexible four column grid container</source>
             </trans-unit>
+            <trans-unit id="grid.container">
+                <source>Container Grid</source>
+            </trans-unit>
+            <trans-unit id="grid.container.des">
+                <source>Standard Container grid element</source>
+            </trans-unit>
+            <trans-unit id="grid.content">
+                <source>Content</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

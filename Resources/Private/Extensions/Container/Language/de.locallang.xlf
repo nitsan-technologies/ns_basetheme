@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file source-language="en" datatype="plaintext" original="messages" date="2015-10-01T10:30:00Z" product-name="t3nitsan">
+    <file source-language="en" datatype="plaintext" original="messages" date="2015-10-01T10:30:00Z" product-name="t3nitsan" target-language="de">
         <header/>
         <body>
             <trans-unit id="background">
@@ -309,7 +309,13 @@
                 <target><![CDATA[Klein (≥768px)]]></target>
             </trans-unit>
             <trans-unit id="colBig">
-                <target><![CDATA[Groß (≥1200px)]]></target>
+                <target><![CDATA[Groß (≥992px)]]></target>
+            </trans-unit>
+            <trans-unit id="Extralarge">
+                <target><![CDATA[Extra groß (≥1200px)]]></target>
+            </trans-unit>
+            <trans-unit id="ExtraExtralarge">
+                <target><![CDATA[Extra extra groß (≥1400px)]]></target>
             </trans-unit>
 
             <trans-unit id="sizeLeft">
@@ -326,6 +332,24 @@
             </trans-unit>
             <trans-unit id="sizeRight">
                 <target>Größe Rechts</target>
+            </trans-unit>
+            <trans-unit id="sizeColumn1">
+                <target>Spaltenbreite 1</target>
+            </trans-unit>
+            <trans-unit id="sizeColumn2">
+                <target>Spaltenbreite 2</target>
+            </trans-unit>
+            <trans-unit id="sizeColumn3">
+                <target>Spaltenbreite 3</target>
+            </trans-unit>
+            <trans-unit id="sizeColumn4">
+                <target>Spaltenbreite 4</target>
+            </trans-unit>
+            <trans-unit id="sizeColumn5">
+                <target>Spaltenbreite 5</target>
+            </trans-unit>
+            <trans-unit id="sizeColumn6">
+                <target>Spaltenbreite 6</target>
             </trans-unit>
 
             <trans-unit id="colLeft">
@@ -361,6 +385,24 @@
             </trans-unit>
             <trans-unit id="offsetRight">
                 <target>Offset Rechts</target>
+            </trans-unit>
+            <trans-unit id="offsetColumn1">
+                <target>Spaltenversatz 1</target>
+            </trans-unit>
+            <trans-unit id="offsetColumn2">
+                <target>Spaltenversatz 2</target>
+            </trans-unit>
+            <trans-unit id="offsetColumn3">
+                <target>Spaltenversatz 3</target>
+            </trans-unit>
+            <trans-unit id="offsetColumn4">
+                <target>Spaltenversatz 4</target>
+            </trans-unit>
+            <trans-unit id="offsetColumn5">
+                <target>Spaltenversatz 5</target>
+            </trans-unit>
+            <trans-unit id="offsetColumn6">
+                <target>Spaltenversatz 6</target>
             </trans-unit>
 
             <trans-unit id="notDefined">

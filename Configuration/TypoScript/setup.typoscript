@@ -5,13 +5,12 @@
 @import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/IndexedSearch/'
 
 # Includes EXT:Form Configuration
-@import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/IndexedSearch/'
+@import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/Form/'
 
 # Includes EXT:Fluid Configuration
 @import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/Fluid/'
 
-# Includes EXT:News Configuration
-@import 'EXT:ns_basetheme/Configuration/TypoScript/Extensions/News/'
+# Includes EXT:News Configuration (theme-specific news setup is in ns_theme_bootstrap Site Set)
 
 # Includes EXT:Custom
 @import 'EXT:ns_basetheme/Configuration/TypoScript/Components/'

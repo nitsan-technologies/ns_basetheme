@@ -5,4 +5,5 @@
 @import 'EXT:ns_basetheme/Configuration/PageTSconfig/TceForm/Page.tsconfig'
 
 // Include dynamically generated Custom Elements PageTSConfig
-@import 'EXT:ns_basetheme/Configuration/PageTSconfig/CustomElements.tsconfig'
+// Disabled: theme elements are registered via Content Blocks on TYPO3 14.
+// @import 'EXT:ns_basetheme/Configuration/PageTSconfig/CustomElements.tsconfig'

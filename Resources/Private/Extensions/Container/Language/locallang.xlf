@@ -333,6 +333,24 @@
             <trans-unit id="sizeRight">
                 <source>Size right</source>
             </trans-unit>
+            <trans-unit id="sizeColumn1">
+                <source>Size column 1</source>
+            </trans-unit>
+            <trans-unit id="sizeColumn2">
+                <source>Size column 2</source>
+            </trans-unit>
+            <trans-unit id="sizeColumn3">
+                <source>Size column 3</source>
+            </trans-unit>
+            <trans-unit id="sizeColumn4">
+                <source>Size column 4</source>
+            </trans-unit>
+            <trans-unit id="sizeColumn5">
+                <source>Size column 5</source>
+            </trans-unit>
+            <trans-unit id="sizeColumn6">
+                <source>Size column 6</source>
+            </trans-unit>
 
             <trans-unit id="colLeft">
                 <source>Left column</source>
@@ -367,6 +385,24 @@
             </trans-unit>
             <trans-unit id="offsetRight">
                 <source>Offset right</source>
+            </trans-unit>
+            <trans-unit id="offsetColumn1">
+                <source>Offset column 1</source>
+            </trans-unit>
+            <trans-unit id="offsetColumn2">
+                <source>Offset column 2</source>
+            </trans-unit>
+            <trans-unit id="offsetColumn3">
+                <source>Offset column 3</source>
+            </trans-unit>
+            <trans-unit id="offsetColumn4">
+                <source>Offset column 4</source>
+            </trans-unit>
+            <trans-unit id="offsetColumn5">
+                <source>Offset column 5</source>
+            </trans-unit>
+            <trans-unit id="offsetColumn6">
+                <source>Offset column 6</source>
             </trans-unit>
 
             <trans-unit id="notDefined">

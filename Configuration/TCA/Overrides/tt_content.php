@@ -171,11 +171,11 @@ call_user_func(function () {
             (
                 new \B13\Container\Tca\ContainerConfiguration(
                     'ns_base_container', // CType
-                    'Container Grid', // label
-                    'Standard Container grid element', // description
+                    'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.container', // label
+                    'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.container.des', // description
                     [
                         [
-                            ['name' => 'Content', 'colPos' => 101],
+                            ['name' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.content', 'colPos' => 101],
                         ],
                     ] // grid configuration
                 )
@@ -188,12 +188,12 @@ call_user_func(function () {
             (
                 new \B13\Container\Tca\ContainerConfiguration(
                     'ns_base_2Cols', // CType
-                    '2 Column Grid', // label
-                    'Standard Container grid element', // description
+                    'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.2column', // label
+                    'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.2column.des', // description
                     [
                         [
-                            ['name' => 'Content', 'colPos' => 101],
-                            ['name' => 'Content', 'colPos' => 102],
+                            ['name' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.content', 'colPos' => 101],
+                            ['name' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.content', 'colPos' => 102],
                         ],
                     ] // grid configuration
                 )
@@ -206,13 +206,13 @@ call_user_func(function () {
             (
                 new \B13\Container\Tca\ContainerConfiguration(
                     'ns_base_3Cols', // CType
-                    '3 Column Grid', // label
-                    'Standard 3 Column grid element', // description
+                    'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.3column', // label
+                    'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.3column.des', // description
                     [
                         [
-                            ['name' => 'Content', 'colPos' => 101],
-                            ['name' => 'Content', 'colPos' => 102],
-                            ['name' => 'Content', 'colPos' => 103],
+                            ['name' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.content', 'colPos' => 101],
+                            ['name' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.content', 'colPos' => 102],
+                            ['name' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.content', 'colPos' => 103],
                         ],
                     ] // grid configuration
                 )
@@ -226,14 +226,14 @@ call_user_func(function () {
             (
                 new \B13\Container\Tca\ContainerConfiguration(
                     'ns_base_4Cols', // CType
-                    '4 Column Grid', // label
-                    'Standard 4 Column grid element', // description
+                    'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.4column', // label
+                    'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.4column.des', // description
                     [
                         [
-                            ['name' => 'Content', 'colPos' => 101],
-                            ['name' => 'Content', 'colPos' => 102],
-                            ['name' => 'Content', 'colPos' => 103],
-                            ['name' => 'Content', 'colPos' => 104],
+                            ['name' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.content', 'colPos' => 101],
+                            ['name' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.content', 'colPos' => 102],
+                            ['name' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.content', 'colPos' => 103],
+                            ['name' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.content', 'colPos' => 104],
                         ],
                     ] // grid configuration
                 )
