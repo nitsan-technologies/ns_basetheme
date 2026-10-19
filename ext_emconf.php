@@ -26,6 +26,7 @@ $EM_CONF[$_EXTKEY] = array (
     'depends' => 
     array (
       'typo3' => '14.0.0-14.9.99',
+      'ns_license' => '14.5.4-14.9.99',
     ),
     'conflicts' => 
     array (
