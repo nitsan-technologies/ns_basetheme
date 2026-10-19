@@ -18,7 +18,8 @@
   },
   "license": "MIT",
   "require": {
-    "typo3/cms-core": "^14"
+    "typo3/cms-core": "^14",
+    "nitsan/ns-license": "^14.5.4"
   },
   "autoload": {
     "psr-4": {
@@ -26,17 +27,17 @@
     }
   },
   "replace": {
-      "typo3-ter/ns-basetheme": "self.version"
+    "typo3-ter/ns-basetheme": "self.version"
   },
   "config": {
     "vendor-dir": ".Build/vendor/",
     "bin-dir": ".Build/bin/"
   },
   "extra": {
-      "typo3/cms": {
-          "cms-package-dir": "{$vendor-dir}/typo3/cms",
-          "web-dir": ".Build/public",
-          "extension-key": "ns_basetheme"
-      }
+    "typo3/cms": {
+      "cms-package-dir": "{$vendor-dir}/typo3/cms",
+      "web-dir": ".Build/public",
+      "extension-key": "ns_basetheme"
+    }
   }
 }
