@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace NITSAN\NsBasetheme\EventListener;
@@ -18,7 +19,9 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class AssetRendererEventListener
 {
-    public function __construct(private readonly Minifier $minifier) {}
+    public function __construct(private readonly Minifier $minifier)
+    {
+    }
 
     public function beforeStyleSheetsRendering(BeforeStylesheetsRenderingEvent $event): void
     {
@@ -116,14 +119,14 @@ class AssetRendererEventListener
             if ($event->isInline()) {
                 $assets[$uniqueIdentifier] = [
                     'compress' => true,
-                    'code' => $asset['source']
+                    'code' => $asset['source'],
                 ];
             } else {
                 $path = GeneralUtility::getFileAbsFileName($asset['source']);
                 if ($path && file_exists($path)) {
                     $assets[$uniqueIdentifier] = [
                         'compress' => true,
-                        'file' => $path
+                        'file' => $path,
                     ];
                 }
             }

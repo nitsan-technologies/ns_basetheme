@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace NITSAN\NsBasetheme\Backend;
@@ -17,7 +18,7 @@ class BackendCssLayout
     private NsBasethemeUtility $objNsBasetheme;
 
     /**
-     * @param AssetCollector $pageRenderer
+     * @param AssetCollector $renderer
      */
     public function __construct(private readonly AssetCollector $renderer)
     {

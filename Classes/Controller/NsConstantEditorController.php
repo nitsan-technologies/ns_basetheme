@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace NITSAN\NsBasetheme\Controller;
@@ -167,7 +168,7 @@ class NsConstantEditorController extends AbstractTemplateModuleController
         $this->eventDispatcher->dispatch(new ModifyPageLayoutContentEvent($request, $view));
         $view->setTitle($languageService->sL($currentModule->getTitle()), $pageRecord['title']);
         $view->getDocHeaderComponent()->setMetaInformation($pageRecord);
-        
+
         $this->addPreviewButtonToDocHeader($view, $pageRecord);
         $this->addShortcutButtonToDocHeader($view, $currentModuleIdentifier, $pageRecord, $pageUid, $languageService->sL($currentModule->getTitle()));
         if (!empty($relevantCategories)) {
@@ -438,11 +439,12 @@ class NsConstantEditorController extends AbstractTemplateModuleController
     private function addSaveButtonToDocHeader(ModuleTemplate $view): void
     {
         $checkTypo3Version = GeneralUtility::makeInstance(Typo3Version::class);
-        if($checkTypo3Version->getMajorVersion() > 12) {
+        if ($checkTypo3Version->getMajorVersion() > 12) {
             $iconSize = $this->iconFactory->getIcon(
-                'actions-document-save', \TYPO3\CMS\Core\Imaging\IconSize::SMALL);
-        }
-        else {
+                'actions-document-save',
+                \TYPO3\CMS\Core\Imaging\IconSize::SMALL
+            );
+        } else {
             // @extensionScannerIgnoreLine
             $iconSize = $this->iconFactory->getIcon('actions-document-save', \TYPO3\CMS\Core\Imaging\Icon::SIZE_SMALL);
         }

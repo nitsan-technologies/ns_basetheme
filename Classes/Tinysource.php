@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace NITSAN\NsBasetheme;
 
 /*  | This extension is made with ❤ for TYPO3 CMS and is licensed
@@ -39,10 +42,10 @@ class Tinysource
         $this->conf = $frontendTypoScript->getSetupArray()['plugin.']['ns_basetheme.']['tinysource.'] ?? [];
 
         $checkTypo3Version = GeneralUtility::makeInstance(Typo3Version::class);
-        if($checkTypo3Version->getMajorVersion() > 12) {
+        if ($checkTypo3Version->getMajorVersion() > 12) {
             $typoScriptFrontendController = $request->getAttribute('frontend.controller');
             $disableAllHeaderCode = $typoScriptFrontendController->config['config']['disableAllHeaderCode'] ?? false;
-        } else{
+        } else {
             // @extensionScannerIgnoreLine
             $disableAllHeaderCode = $GLOBALS['TSFE']->config['config']['disableAllHeaderCode'] ?? false;
         }

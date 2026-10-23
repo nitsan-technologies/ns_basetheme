@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace NITSAN\NsBasetheme\Backend;
@@ -17,14 +18,15 @@ class LoadAssetsElementPreview
     private NsBasethemeUtility $objNsBasetheme;
 
     /**
-     * @param AssetCollector $pageRenderer
+     * @param AssetCollector $renderer
      */
     public function __construct(private readonly AssetCollector $renderer)
     {
         $this->objNsBasetheme = GeneralUtility::makeInstance(NsBasethemeUtility::class);
     }
 
-    public function handleEvent(AfterFormEnginePageInitializedEvent $event): void {
+    public function handleEvent(AfterFormEnginePageInitializedEvent $event): void
+    {
         $siteRoot = \TYPO3\CMS\Core\Core\Environment::getPublicPath().'/typo3conf/ext/';
         if (Environment::isComposerMode()) {
             $siteRoot = Environment::getProjectPath() . '/vendor/nitsan/';

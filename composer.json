@@ -1,43 +1,53 @@
 {
-  "name": "nitsan/ns-basetheme",
-  "type": "typo3-cms-extension",
-  "description": "The architecture of parent/child TYPO3 theme concept. Explore https://t3planet.com and https://nitsantech.com",
-  "keywords": [
-    "TYPO3 CMS",
-    "Basetheme",
-    "bootstrap",
-    "responsive",
-    "frontend",
-    "theme",
-    "template",
-    "ns"
-  ],
-  "homepage": "https://github.com/nitsan-technologies/ns_basetheme",
-  "support": {
-    "issues": "https://github.com/nitsan-technologies/ns_basetheme/issues"
-  },
-  "license": "MIT",
-  "require": {
-    "typo3/cms-core": "^14",
-    "nitsan/ns-license": "^14.5.4"
-  },
-  "autoload": {
-    "psr-4": {
-      "NITSAN\\NsBasetheme\\": "Classes/"
+    "name": "nitsan/ns-basetheme",
+    "type": "typo3-cms-extension",
+    "description": "The architecture of parent/child TYPO3 theme concept. Explore https://t3planet.com and https://nitsantech.com",
+    "keywords": [
+        "TYPO3 CMS",
+        "Basetheme",
+        "bootstrap",
+        "responsive",
+        "frontend",
+        "theme",
+        "template",
+        "ns"
+    ],
+    "homepage": "https://github.com/nitsan-technologies/ns_basetheme",
+    "support": {
+        "issues": "https://github.com/nitsan-technologies/ns_basetheme/issues"
+    },
+    "license": "MIT",
+    "require": {
+        "php": ">=8.2 <8.6",
+        "nitsan/ns-license": "^14.5",
+        "typo3/cms-core": "^14"
+    },
+    "autoload": {
+        "psr-4": {
+            "NITSAN\\NsBasetheme\\": "Classes/"
+        }
+    },
+    "replace": {
+        "typo3-ter/ns-basetheme": "self.version"
+    },
+    "config": {
+        "vendor-dir": ".Build/vendor",
+        "bin-dir": ".Build/bin",
+        "sort-packages": true,
+        "allow-plugins": {
+            "typo3/class-alias-loader": true,
+            "typo3/cms-composer-installers": true
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "web-dir": ".Build/public",
+            "extension-key": "ns_basetheme",
+            "version": "14.0.6",
+            "Package": {
+                "providesPackages": {}
+            }
+        }
     }
-  },
-  "replace": {
-    "typo3-ter/ns-basetheme": "self.version"
-  },
-  "config": {
-    "vendor-dir": ".Build/vendor/",
-    "bin-dir": ".Build/bin/"
-  },
-  "extra": {
-    "typo3/cms": {
-      "cms-package-dir": "{$vendor-dir}/typo3/cms",
-      "web-dir": ".Build/public",
-      "extension-key": "ns_basetheme"
-    }
-  }
 }

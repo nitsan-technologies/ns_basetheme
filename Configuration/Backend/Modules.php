@@ -1,30 +1,9 @@
 <?php
 
-use NITSAN\NsBasetheme\Controller\NsConstantEditorController;
+declare(strict_types=1);
 
-// return [
-//     'nitsan_module' => [
-//         'labels' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/BackendModule.xlf',
-//         'iconIdentifier' => 'module-nsbasetheme',
-//         'position' => ['after' => 'web'],
-//     ],
-//     'nitsan_nsbasethememodule' => [
-//         'parent' => 'nitsan_module',
-//         'position' => ['before' => 'top'],
-//         'access' => 'user',
-//         'path' => '/module/nitsan/NsBasetheme',
-//         'iconIdentifier' => 'submodule-nsbasetheme',
-//         'navigationComponent' => '@typo3/backend/page-tree/page-tree-element',
-//         'labels' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_basethememodule.xlf',
-//         'extensionName' => 'NsBasetheme',
-//         'routes' => [
-//             '_default' => [
-//                 'target' => NsConstantEditorController::class . '::handleRequest',
-//             ],
-//         ],
-//         'moduleData' => [
-//             'selectedTemplatePerPage' => [],
-//             'selectedCategory' => '',
-//         ],
-//     ],
-// ];
+/**
+ * Theme options live in the ns_basetheme Site Set (TYPO3 14).
+ * The previous constant-editor backend module is intentionally not registered.
+ */
+return [];

@@ -15,7 +15,7 @@ call_user_func(function () {
 
         // Check if Content Blocks extension is loaded
         $contentBlocksLoaded = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('content_blocks');
-        
+
         // Get list of Content Block identifiers by checking for config.yaml files
         // Content Blocks expects: ContentBlocks/ContentElements/{block-name}/config.yaml
         // This avoids dependency injection issues at TCA load time
@@ -49,7 +49,7 @@ call_user_func(function () {
                 if (in_array($theComponent, $contentBlockIdentifiers)) {
                     continue;
                 }
-                
+
                 $GLOBALS['TCA']['tt_content']['types']['CType']['subtypes_addlist'][$theComponent] = 'pi_flexform';
                 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
                     '',
@@ -67,7 +67,7 @@ call_user_func(function () {
                 if (in_array($theComponent, $contentBlockIdentifiers)) {
                     continue;
                 }
-                
+
                 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
                     'tt_content',
                     'CType',
@@ -91,7 +91,7 @@ call_user_func(function () {
                 if (in_array($theComponent, $contentBlockIdentifiers)) {
                     continue;
                 }
-                
+
                 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$theComponent] = $typeIcon;
             }
         }
@@ -104,7 +104,7 @@ call_user_func(function () {
                 if (in_array($theComponent, $contentBlockIdentifiers)) {
                     continue;
                 }
-                
+
                 $tcaComponent = [
                     'showitem' => '
                         --palette--;LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_db.xlf:palette.general;general,
@@ -253,7 +253,7 @@ call_user_func(function () {
             if (Environment::isComposerMode()) {
                 $installedTheme = str_replace('_', '-', $installedTheme);
                 $basePath =  Environment::getProjectPath() . '/vendor/nitsan/' . $installedTheme[0] . '/Resources/Public/CheckBootstrapVersion';
-            }else{
+            } else {
                 $basePath =  Environment::getPublicPath() . '/typo3conf/ext/' . $installedTheme[0] . '/Resources/Public/CheckBootstrapVersion';
             }
             $checkFile = @file_exists($basePath);

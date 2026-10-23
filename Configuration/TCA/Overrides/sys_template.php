@@ -9,4 +9,3 @@ $_EXTKEY = 'ns_basetheme';
     'Configuration/TypoScript',
     'Parent theme'
 );
-

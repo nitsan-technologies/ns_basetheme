@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace NITSAN\NsBasetheme\EventListener;
@@ -10,8 +11,8 @@ namespace NITSAN\NsBasetheme\EventListener;
  *  |     2023 Benjamin Gries <gries@iwkoeln.de>
  *  |     2023-2024 Joel Mai <mai@iwkoeln.de>
  */
-use TYPO3\CMS\Frontend\Event\AfterCacheableContentIsGeneratedEvent;
 use NITSAN\NsBasetheme\Tinysource;
+use TYPO3\CMS\Frontend\Event\AfterCacheableContentIsGeneratedEvent;
 
 // @extensionScannerIgnoreFile
 class TinysourceEventListener

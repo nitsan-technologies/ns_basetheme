@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace NITSAN\NsBasetheme\EventListener;
@@ -13,7 +14,8 @@ class Tinysource
 {
     public function __construct(
         private readonly TinysourceService $tinysourceService
-    ) {}
+    ) {
+    }
 
     public function __invoke(AfterCacheableContentIsGeneratedEvent $event): void
     {

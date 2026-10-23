@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace NITSAN\NsBasetheme\DataProcessing;
@@ -28,8 +29,8 @@ class DefaultProcessor implements DataProcessorInterface
         array $contentObjectConfiguration,
         array $processorConfiguration,
         array $processedData
-    ) {
-        $processedData['content'] = $this->getOptionsFromFlexFormData($processedData['data']);
+    ): array {
+        $processedData['content'] = $this->getOptionsFromFlexFormData($processedData['data'] ?? []);
 
         return $processedData;
     }
@@ -38,7 +39,7 @@ class DefaultProcessor implements DataProcessorInterface
      * @param array $row
      * @return array
      */
-    protected function getOptionsFromFlexFormData(array $row)
+    protected function getOptionsFromFlexFormData(array $row): array
     {
         $options = [];
         if (!empty($row['pi_flexform'])) {

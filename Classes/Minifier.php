@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace NITSAN\NsBasetheme;
@@ -9,7 +10,7 @@ namespace NITSAN\NsBasetheme;
  *  | (c) 2016-2024 Armin Vieweg <armin@v.ieweg.de>
  *  |     2023 Joel Mai <mai@iwkoeln.de>
  */
-use \MatthiasMullie\Minify;
+use MatthiasMullie\Minify;
 use NITSAN\NsBasetheme\Helper\ResourceCompressorPath;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -69,6 +70,9 @@ class Minifier
     ): array {
         $filesAfterCompression = [];
         $minifierClassName = '\\MatthiasMullie\\Minify\\' . $type;
+        if (!class_exists($minifierClassName)) {
+            return $files;
+        }
 
         foreach ($files as $key => $config) {
             // Do not proceed, if compression is disabled for current file
@@ -187,7 +191,7 @@ class Minifier
      *
      * @see \TYPO3\CMS\Core\Resource\ResourceCompressor::compressCssFile
      */
-    private function compressCss(string $cssCode) : string
+    private function compressCss(string $cssCode): string
     {
         $cssCode = str_replace(CR, '', $cssCode);
         // Strip any and all carriage returns.
@@ -226,7 +230,7 @@ class Minifier
      *
      * @see \TYPO3\CMS\Core\Resource\ResourceCompressor::compressCssFile
      */
-    private function compressCssPregCallback(array $matches) : string
+    private function compressCssPregCallback(array $matches): string
     {
         if ($matches[1]) {
             // Group 1: Double quoted string.
