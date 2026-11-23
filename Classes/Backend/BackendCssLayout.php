@@ -8,22 +8,13 @@ use NITSAN\NsBasetheme\NsBasethemeUtility;
 use TYPO3\CMS\Backend\Controller\Event\ModifyPageLayoutContentEvent;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Page\AssetCollector;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class BackendCssLayout
 {
-    /**
-     * @var NsBasethemeUtility
-     */
-    private NsBasethemeUtility $objNsBasetheme;
-
-    /**
-     * @param AssetCollector $renderer
-     */
-    public function __construct(private readonly AssetCollector $renderer)
-    {
-        $this->objNsBasetheme = GeneralUtility::makeInstance(NsBasethemeUtility::class);
-    }
+    public function __construct(
+        private readonly AssetCollector $renderer,
+        private readonly NsBasethemeUtility $objNsBasetheme,
+    ) {}
 
     public function __invoke(ModifyPageLayoutContentEvent $event): void
     {

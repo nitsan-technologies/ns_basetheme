@@ -12,9 +12,7 @@ namespace NITSAN\NsBasetheme;
  *  |     2012 Dennis Römmich <dennis@roemmich.eu>
  */
 use Psr\Http\Message\ServerRequestInterface;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\TypoScript\FrontendTypoScript;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
 
 /**
@@ -41,16 +39,10 @@ class Tinysource
         }
         $this->conf = $frontendTypoScript->getSetupArray()['plugin.']['ns_basetheme.']['tinysource.'] ?? [];
 
-        $checkTypo3Version = GeneralUtility::makeInstance(Typo3Version::class);
-        if ($checkTypo3Version->getMajorVersion() > 12) {
-            $typoScriptFrontendController = $request->getAttribute('frontend.controller');
-            $disableAllHeaderCode = $typoScriptFrontendController->config['config']['disableAllHeaderCode'] ?? false;
-        } else {
-            // @extensionScannerIgnoreLine
-            $disableAllHeaderCode = $GLOBALS['TSFE']->config['config']['disableAllHeaderCode'] ?? false;
-        }
+        $config = $frontendTypoScript->getConfigArray();
+        $disableAllHeaderCode = (bool)($config['disableAllHeaderCode'] ?? false);
 
-        if (($this->conf['enable'] ?? false) && !($disableAllHeaderCode)) {
+        if (($this->conf['enable'] ?? false) && !$disableAllHeaderCode) {
             $headOffset = strpos($source, '<head');
             $closingHeadOffset = strpos($source, '</head>');
             $bodyOffset = strpos($source, '<body');

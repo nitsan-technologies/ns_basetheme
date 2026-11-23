@@ -8,22 +8,13 @@ use NITSAN\NsBasetheme\NsBasethemeUtility;
 use TYPO3\CMS\Backend\Controller\Event\AfterFormEnginePageInitializedEvent;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Page\AssetCollector;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class LoadAssetsElementPreview
 {
-    /**
-     * @var NsBasethemeUtility
-     */
-    private NsBasethemeUtility $objNsBasetheme;
-
-    /**
-     * @param AssetCollector $renderer
-     */
-    public function __construct(private readonly AssetCollector $renderer)
-    {
-        $this->objNsBasetheme = GeneralUtility::makeInstance(NsBasethemeUtility::class);
-    }
+    public function __construct(
+        private readonly AssetCollector $renderer,
+        private readonly NsBasethemeUtility $objNsBasetheme,
+    ) {}
 
     public function handleEvent(AfterFormEnginePageInitializedEvent $event): void
     {
@@ -75,5 +66,4 @@ class LoadAssetsElementPreview
             }
         }
     }
-
 }

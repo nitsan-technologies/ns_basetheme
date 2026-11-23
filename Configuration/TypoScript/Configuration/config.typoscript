@@ -37,11 +37,9 @@ config {
     index_metatags = 0
 
     # Site Optimization
+    # Note: config.compress*/concatenate* were removed in TYPO3 v14 (Breaking #108055).
+    # Optional AssetCollector minify is gated via Extension Settings (assetCollector.*), default off.
     moveJsFromHeaderToFooter = 1
-    compressJs = {$ns_basetheme.website.settings.compress_cssjs}
-    compressCss = {$ns_basetheme.website.settings.compress_cssjs}
-    concatenateJs = {$ns_basetheme.website.settings.compress_cssjs}
-    concatenateCss = {$ns_basetheme.website.settings.compress_cssjs}
 }
 
 # for TYPO3 v8, Mulit-Langauge configuration
