@@ -295,9 +295,7 @@ page {
 }
 [global]
 
-[typo3.version >= "11"]
-    module.tx_nsbasetheme.settings.bootAttr = data-bs-
-[end]
+module.tx_nsbasetheme.settings.bootAttr = data-bs-
 
 plugin.ns_basetheme.tinysource {
     enable = {$ns_basetheme.website.tinysource.enable}
@@ -319,18 +317,6 @@ plugin.ns_basetheme.tinysource {
     config.no_cache = 0
 [global]
 
-["{$ns_basetheme.website.settings.compress_cssjs}" == true]
-    config {
-        compressJs = 1
-        compressCss = 1
-        concatenateJs = 1
-        concatenateCss = 1
-    }    
-[else]    
-    config {
-        compressJs = 0
-        compressCss = 0
-        concatenateJs = 0
-        concatenateCss = 0
-    }    
-[global]
+# Note: config.compress*/concatenate* were removed in TYPO3 v14 (Breaking #108055).
+# Theme option compress_cssjs is kept for BC in settings/constants but no longer drives Core.
+# Optional minify: Extension Settings assetCollector.* (default off).

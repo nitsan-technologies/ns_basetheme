@@ -31,9 +31,6 @@ class Minifier
      */
     public function __construct()
     {
-        // if (!class_exists(Minify\Minify::class)) {
-        //     require_once(GeneralUtility::getFileAbsFileName('EXT:ns_basetheme/Resources/Private/PHP/vendor/autoload.php'));
-        // }
         $this->resourceCompressor = GeneralUtility::makeInstance(ResourceCompressorPath::class);
     }
 
@@ -130,22 +127,16 @@ class Minifier
             }
             $minifier->add($sourceFilePath);
 
-            if ($this->isGzipUsageEnabled()) {
-                $minifier->gzip(
-                    $sitePath . $targetFilename,
-                    $GLOBALS['TYPO3_CONF_VARS']['FE']['compressionLevel']
-                );
-            } else {
-                $minifier->minify($sitePath . $targetFilename);
+            // FE.compressionLevel / Core gzip asset delivery was removed in TYPO3 v14 (Breaking #107943).
+            $minifier->minify($sitePath . $targetFilename);
 
-                if ($type === self::TYPE_STYLESHEET) {
-                    $minifiedCss = file_get_contents($sitePath . $targetFilename);
-                    if (!$isInline) {
-                        $relativeSourceFilePath = substr($sourceFilePath, strlen($sitePath));
-                        $minifiedCss = $this->resourceCompressor->fixRelativeUrlPathsInCssCode($minifiedCss, $relativeSourceFilePath);
-                    }
-                    file_put_contents($sitePath . $targetFilename, $this->compressCss($minifiedCss));
+            if ($type === self::TYPE_STYLESHEET) {
+                $minifiedCss = file_get_contents($sitePath . $targetFilename);
+                if (!$isInline) {
+                    $relativeSourceFilePath = substr($sourceFilePath, strlen($sitePath));
+                    $minifiedCss = $this->resourceCompressor->fixRelativeUrlPathsInCssCode($minifiedCss, $relativeSourceFilePath);
                 }
+                file_put_contents($sitePath . $targetFilename, $this->compressCss($minifiedCss));
             }
 
             $config['compress'] = false;
@@ -154,11 +145,6 @@ class Minifier
             $filesAfterCompression[$isAssetCollector ? $key : $targetFilename] = $config;
         }
         return $filesAfterCompression;
-    }
-
-    private function isGzipUsageEnabled(): bool
-    {
-        return \extension_loaded('zlib') && $GLOBALS['TYPO3_CONF_VARS']['FE']['compressionLevel'];
     }
 
     private function getSitePath(): string
@@ -178,12 +164,7 @@ class Minifier
             $pathInfoFilename .= '-' . md5($filepath);
         }
 
-        $targetFilename = $compressorPath . $pathInfoFilename . '-min.' . $pathInfo['extension'];
-
-        if ($this->isGzipUsageEnabled()) {
-            $targetFilename .= '.gz';
-        }
-        return $targetFilename;
+        return $compressorPath . $pathInfoFilename . '-min.' . $pathInfo['extension'];
     }
 
     /**

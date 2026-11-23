@@ -10,7 +10,7 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 use TYPO3\CMS\Frontend\ContentObject\Exception\ContentRenderingException;
 
 /**
- * Deafult processor
+ * Default processor for flexform options on content elements.
  */
 class DefaultProcessor implements DataProcessorInterface
 {
@@ -43,9 +43,10 @@ class DefaultProcessor implements DataProcessorInterface
     {
         $options = [];
         if (!empty($row['pi_flexform'])) {
-            // Note: xml2array is deprecated but still needed for parsing raw flexform XML structure
-            // FlexFormService::convertFlexFormContentToArray() returns a flattened structure
-            // which doesn't match the nested structure this code expects
+            // Keep GeneralUtility::xml2array(): FlexFormService::convertFlexFormContentToArray()
+            // flattens sheets into a simple key/value map and drops the nested
+            // data → lDEF → el → vDEF structure this processor walks for section/container
+            // fields. Changing the parser would alter $processedData['content'] for Fluid.
             // @extensionScannerIgnoreLine
             $flexFormAsArray = GeneralUtility::xml2array($row['pi_flexform']);
             if (isset($flexFormAsArray['data']) && is_array($flexFormAsArray['data'])) {

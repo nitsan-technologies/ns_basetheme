@@ -109,7 +109,8 @@ settings:
     type: bool
     default: 0
   ns_basetheme.website.settings.compress_cssjs:
-    label: 'Compress & Merge CSS/JS'
+    label: 'Compress & Merge CSS/JS (legacy, unused in TYPO3 v14 Core)'
+    description: 'Core config.compress*/concatenate* were removed in v14. Optional minify: Extension Settings assetCollector.* (default off).'
     category: Nsbasetheme.settings.general.speed
     type: bool
     default: 0
