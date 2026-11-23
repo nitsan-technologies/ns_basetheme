@@ -1,2 +1,14 @@
 # cat=basic; type=boolean; label=Enable to use Mask and Flexform-based Elements
 enable_mask_flexform = 0
+
+# cat=minify; type=boolean; label=Compress CSS (AssetCollector): Minify CSS registered via AssetCollector. Default off — does not change FE until enabled.
+assetCollector.compressCss = 0
+
+# cat=minify; type=boolean; label=Compress inline CSS (AssetCollector)
+assetCollector.compressInlineCss = 0
+
+# cat=minify; type=boolean; label=Compress JS (AssetCollector): Minify JS registered via AssetCollector. Default off — does not change FE until enabled.
+assetCollector.compressJs = 0
+
+# cat=minify; type=boolean; label=Compress inline JS (AssetCollector)
+assetCollector.compressInlineJs = 0

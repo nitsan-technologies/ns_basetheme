@@ -389,9 +389,7 @@ page {
 }
 [global]
 
-[typo3.version >= "11"]
-    module.tx_nsbasetheme.settings.bootAttr = data-bs-
-[end]
+module.tx_nsbasetheme.settings.bootAttr = data-bs-
 
 ["{$ns_basetheme.website.settings.googleanalytics}" != '']
     page {

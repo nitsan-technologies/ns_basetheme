@@ -3,51 +3,29 @@
 $siteColumns = &$GLOBALS['SiteConfiguration']['site']['columns'];
 $languageFile = 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang.xlf:settings.';
 
-$typo3VersionArray = \TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionStringToArray(
-    \TYPO3\CMS\Core\Utility\VersionNumberUtility::getCurrentTypo3Version()
-);
-if (version_compare($typo3VersionArray['version_main'], 11, '==')) {
-    $colorConfig = [
-        'type' => 'input',
-        'renderType' => 'colorpicker',
-        'size' => 10,
-        'default' => '#3a85e6',
-    ];
+$colorConfig = [
+    'type' => 'color',
+    'default' => '#3a85e6',
+];
 
-    $displayConfig = [
-        'type' => 'select',
-        'renderType' => 'selectSingle',
-        'items' => [
-            [ $languageFile.'display.standalone.label', 'standalone'],
-            [ $languageFile.'display.minimal_ui.label', 'minimal-ui' ],
-            [ $languageFile.'display.fullscreen.label', 'fullscreen'],
+$displayConfig = [
+    'type' => 'select',
+    'renderType' => 'selectSingle',
+    'items' => [
+        [
+            'label' => $languageFile . 'display.standalone.label',
+            'value' => 'standalone',
         ],
-    ];
-} else {
-    $colorConfig = [
-        'type' => 'color',
-        'default' => '#3a85e6',
-    ];
-
-    $displayConfig = [
-        'type' => 'select',
-        'renderType' => 'selectSingle',
-        'items' => [
-            [
-                'label' =>  $languageFile.'display.standalone.label',
-                'value' => 'standalone',
-            ],
-            [
-                'label' => $languageFile.'display.minimal_ui.label',
-                'value' => 'minimal-ui',
-            ],
-            [
-                'label' => $languageFile.'display.fullscreen.label',
-                'value' => 'fullscreen',
-            ],
+        [
+            'label' => $languageFile . 'display.minimal_ui.label',
+            'value' => 'minimal-ui',
         ],
-    ];
-}
+        [
+            'label' => $languageFile . 'display.fullscreen.label',
+            'value' => 'fullscreen',
+        ],
+    ],
+];
 
 
 $siteColumns['enabled'] = [

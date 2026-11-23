@@ -71,7 +71,7 @@ ns_basetheme {
             #cat = ns_basetheme/130/01; type=boolean; label=Enable/Disable Cache: You can enable or disable TYPO3 core's cache framework. We recommend to keep enable to boost your website's speed and performance.
             no_cache = 1
 
-            #cat = ns_basetheme/130/02; type=boolean; label=Compress & Merge CSS/JS: You can enable or merge of CSS and JS files. We recommend to keep enable to boost your website's speed and performance.
+            #cat = ns_basetheme/130/02; type=boolean; label=Compress & Merge CSS/JS (legacy): Core config.compress*/concatenate* were removed in TYPO3 v14. Kept for BC; does not change FE. Optional minify: Extension Settings → assetCollector.* (default off).
             compress_cssjs = 0
 
 

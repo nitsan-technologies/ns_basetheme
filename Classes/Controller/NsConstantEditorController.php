@@ -13,7 +13,7 @@ use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\Http\RedirectResponse;
-use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\Imaging\IconSize;
 use TYPO3\CMS\Core\TypoScript\AST\AstBuilderInterface;
 use TYPO3\CMS\Core\TypoScript\AST\Node\RootNode;
 use TYPO3\CMS\Core\TypoScript\AST\Traverser\AstTraverser;
@@ -438,16 +438,10 @@ class NsConstantEditorController extends AbstractTemplateModuleController
 
     private function addSaveButtonToDocHeader(ModuleTemplate $view): void
     {
-        $checkTypo3Version = GeneralUtility::makeInstance(Typo3Version::class);
-        if ($checkTypo3Version->getMajorVersion() > 12) {
-            $iconSize = $this->iconFactory->getIcon(
-                'actions-document-save',
-                \TYPO3\CMS\Core\Imaging\IconSize::SMALL
-            );
-        } else {
-            // @extensionScannerIgnoreLine
-            $iconSize = $this->iconFactory->getIcon('actions-document-save', \TYPO3\CMS\Core\Imaging\Icon::SIZE_SMALL);
-        }
+        $iconSize = $this->iconFactory->getIcon(
+            'actions-document-save',
+            IconSize::SMALL
+        );
 
         $languageService = $this->getLanguageService();
         $buttonBar = $view->getDocHeaderComponent()->getButtonBar();
