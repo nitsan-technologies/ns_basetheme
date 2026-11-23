@@ -34,8 +34,9 @@ class PwaMiddleware implements MiddlewareInterface
             return;
         }
 
-        $this->addHeaderData($configurations);
-        $this->processFiles($this->prepareJsonData($configurations));
+        $manifestData = $this->prepareJsonData($configurations);
+        $this->addHeaderData($configurations, $manifestData);
+        $this->processFiles($manifestData);
     }
 
     /**
@@ -53,8 +54,9 @@ class PwaMiddleware implements MiddlewareInterface
 
     /**
      * @param array<string, mixed> $configurations
+     * @param array<string, mixed> $manifestData
      */
-    protected function addHeaderData(array $configurations): void
+    protected function addHeaderData(array $configurations, array $manifestData): void
     {
         $normalizedParams = $this->request->getAttribute('normalizedParams');
         if ($normalizedParams === null) {
@@ -62,17 +64,20 @@ class PwaMiddleware implements MiddlewareInterface
         }
 
         $siteUrl = $normalizedParams->getSiteUrl();
-        $manifestUrl = $siteUrl . self::MANIFEST_NAME . '?' . time();
+        // Stable cache-buster: changes only when manifest content changes (not every request).
+        $manifestUrl = $siteUrl . self::MANIFEST_NAME . '?' . substr(hash('sha256', (string)json_encode($manifestData)), 0, 12);
         $configurationsName = htmlspecialchars((string)($configurations['name'] ?? ''));
-        $configurationsIcon = htmlspecialchars((string)($configurations['icon'] ?? ''));
+        $configurationsIcon = $this->sanitizePublicUrl((string)($configurations['icon'] ?? ''));
         $configurationsColor = htmlspecialchars((string)($configurations['theme_color'] ?? ''));
 
         $headerData = "<link rel='manifest' href='" . htmlspecialchars($manifestUrl) . "'>";
         $headerData .= '<meta name="apple-mobile-web-app-capable" content="yes">';
         $headerData .= '<meta name="apple-mobile-web-app-status-bar-style" content="black">';
         $headerData .= "<meta name='apple-mobile-web-app-title' content='{$configurationsName}'>";
-        $headerData .= "<link rel='apple-touch-icon' href='{$configurationsIcon}'>";
-        $headerData .= "<meta name='msapplication-TileImage' content='{$configurationsIcon}'>";
+        if ($configurationsIcon !== '') {
+            $headerData .= "<link rel='apple-touch-icon' href='{$configurationsIcon}'>";
+            $headerData .= "<meta name='msapplication-TileImage' content='{$configurationsIcon}'>";
+        }
         $headerData .= "<meta name='theme-color' content='{$configurationsColor}'>";
         $headerData .= "<meta name='msapplication-TileColor' content='{$configurationsColor}'>";
         GeneralUtility::makeInstance(PageRenderer::class)->addHeaderData($headerData);
@@ -136,6 +141,8 @@ class PwaMiddleware implements MiddlewareInterface
     }
 
     /**
+     * Writes manifest and default icons only when missing or content changed.
+     *
      * @param array<string, mixed> $data
      */
     protected function processFiles(array $data): void
@@ -151,9 +158,26 @@ class PwaMiddleware implements MiddlewareInterface
         $this->copyfolder($iconSource, $pwaFileadminPath . '/');
 
         $jsonFile = Environment::getPublicPath() . '/' . self::MANIFEST_NAME;
-        GeneralUtility::writeFile($jsonFile, (string)json_encode($data));
+        $encoded = (string)json_encode($data);
+        if (!$this->manifestNeedsUpdate($jsonFile, $encoded)) {
+            return;
+        }
+        GeneralUtility::writeFile($jsonFile, $encoded);
     }
 
+    protected function manifestNeedsUpdate(string $jsonFile, string $encoded): bool
+    {
+        if (!is_file($jsonFile)) {
+            return true;
+        }
+        $existing = @file_get_contents($jsonFile);
+        return $existing === false || $existing !== $encoded;
+    }
+
+    /**
+     * Copy default PWA icons only when the destination file is missing.
+     * Preserves any custom files already present under fileadmin/pwa/.
+     */
     public function copyfolder(string $from, string $to, string $ext = '*'): void
     {
         if (!is_dir($from)) {
@@ -170,7 +194,24 @@ class PwaMiddleware implements MiddlewareInterface
                 $this->copyfolder($from . $name . '/', $to . $name . '/');
                 continue;
             }
-            @copy($entry, $to . $name);
+            $target = $to . $name;
+            if (is_file($target)) {
+                continue;
+            }
+            @copy($entry, $target);
         }
+    }
+
+    /**
+     * Allow relative and http(s) URLs used by existing site configs; block script schemes.
+     */
+    protected function sanitizePublicUrl(string $url): string
+    {
+        $url = trim($url);
+        if ($url === '' || preg_match('#^(javascript|data|vbscript):#i', $url) === 1) {
+            return '';
+        }
+
+        return htmlspecialchars($url);
     }
 }

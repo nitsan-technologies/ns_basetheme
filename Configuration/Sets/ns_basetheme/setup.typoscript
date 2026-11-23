@@ -59,6 +59,8 @@ lib {
 #########################
 ### AJAX Calling PAGE ###
 #########################
+# Kept for backward compatibility with child themes that may call typeNum 22184356.
+# Cached (no_cache=0) to avoid unauthenticated cache-bypass / resource abuse.
 
 ajaxData = PAGE
 ajaxData {
@@ -68,7 +70,7 @@ ajaxData {
         additionalHeaders = Content-type:application/html
         xhtml_cleaning = 0
         debug = 0
-        no_cache = 1
+        no_cache = 0
         admPanel = 0
     }
 }
