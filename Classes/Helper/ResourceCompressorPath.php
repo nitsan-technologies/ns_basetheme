@@ -24,11 +24,11 @@ class ResourceCompressorPath
     protected string $targetDirectory;
 
     /**
-     * ResourceCompressorPath constructor
+     * Path relative to the public web root (Minifier prefixes Environment::getPublicPath()).
      */
     public function __construct()
     {
-        $this->targetDirectory = Environment::getPublicPath() . '/typo3temp/assets/';
+        $this->targetDirectory = 'typo3temp/assets/';
     }
 
     /**

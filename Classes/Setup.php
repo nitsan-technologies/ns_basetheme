@@ -11,11 +11,28 @@ use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Package\PackageManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * Handles post-activation / site-import setup for NITSAN packages.
+ *
+ * Invoked from two distinct lifecycle events (both required):
+ * - AfterPackageActivationEvent (PackageActivationSiteImportListener)
+ * - AfterExtensionSiteFilesHaveBeenImportedEvent (this class tagged in Services.yaml)
+ *
+ * Site import is idempotent: existing destination config skips a second copy.
+ */
 class Setup
 {
     protected string $siteRoot = '';
 
-    protected ?LoggerInterface $logger = null;
+    protected LoggerInterface $logger;
+
+    public function __construct(
+        private readonly PackageManager $packageManager,
+        private readonly LicenseService $licenseService,
+        LogManager $logManager,
+    ) {
+        $this->logger = $logManager->getLogger(self::class);
+    }
 
     public function executeOnSignalAfter(mixed $extname = null): void
     {
@@ -41,9 +58,8 @@ class Setup
             }
         }
 
-        $packageManager = GeneralUtility::makeInstance(PackageManager::class);
-        if ($packageManager->isPackageActive('ns_license') && str_contains($extname, 'ns_theme_')) {
-            GeneralUtility::makeInstance(LicenseService::class)->connectToServer($extname, 1, 'checkTheme');
+        if ($this->packageManager->isPackageActive('ns_license') && str_contains($extname, 'ns_theme_')) {
+            $this->licenseService->connectToServer($extname, 1, 'checkTheme');
         }
 
         $this->importSiteConfiguration($extname);
@@ -72,8 +88,6 @@ class Setup
             $sConfig = Environment::getPublicPath() . '/typo3conf/ext/' . $extname . '/Initialisation/Site/' . $siteKeyConfig . '/config.yaml';
             $dConfig = Environment::getPublicPath() . '/typo3conf/sites/' . $siteKeyConfig . '/config.yaml';
         }
-
-        $this->logger = GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__);
 
         if (file_exists($dConfig) || !file_exists($sConfig)) {
             $this->logger->info('Site configuration is already configured.');

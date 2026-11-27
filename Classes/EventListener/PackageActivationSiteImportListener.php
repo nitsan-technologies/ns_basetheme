@@ -7,7 +7,12 @@ namespace NITSAN\NsBasetheme\EventListener;
 use NITSAN\NsBasetheme\Setup;
 use TYPO3\CMS\Core\Package\Event\AfterPackageActivationEvent;
 
-class MyEventListener
+/**
+ * Runs site-import / license checks when a NITSAN package is activated.
+ * Complements Setup's AfterExtensionSiteFilesHaveBeenImportedEvent listener;
+ * import itself is idempotent.
+ */
+class PackageActivationSiteImportListener
 {
     public function __construct(private readonly Setup $setup)
     {

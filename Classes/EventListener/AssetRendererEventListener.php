@@ -19,9 +19,10 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class AssetRendererEventListener
 {
-    public function __construct(private readonly Minifier $minifier)
-    {
-    }
+    public function __construct(
+        private readonly Minifier $minifier,
+        private readonly ExtensionConfiguration $extensionConfiguration,
+    ) {}
 
     public function beforeStyleSheetsRendering(BeforeStylesheetsRenderingEvent $event): void
     {
@@ -137,7 +138,7 @@ class AssetRendererEventListener
     private function getAssetCollectorConfiguration(): array
     {
         try {
-            $extensionConfiguration = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('ns_basetheme');
+            $extensionConfiguration = $this->extensionConfiguration->get('ns_basetheme');
         } catch (\Throwable) {
             return [];
         }

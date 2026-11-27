@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 $siteColumns = &$GLOBALS['SiteConfiguration']['site']['columns'];
-$languageFile = 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang.xlf:settings.';
+$languageFile = 'ns_basetheme.messages:settings.';
 
 $colorConfig = [
     'type' => 'color',

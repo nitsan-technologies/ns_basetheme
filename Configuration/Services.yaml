@@ -7,6 +7,10 @@ services:
   NITSAN\NsBasetheme\:
     resource: '../Classes/*'
 
+  # Public: still created via GeneralUtility::makeInstance() from TCA Overrides.
+  NITSAN\NsBasetheme\NsBasethemeUtility:
+    public: true
+
   NITSAN\NsBasetheme\Setup:
     tags:
       - name: event.listener
@@ -14,26 +18,11 @@ services:
         method: 'executeOnSignalAfter'
         event: TYPO3\CMS\Extensionmanager\Event\AfterExtensionSiteFilesHaveBeenImportedEvent
 
-  NITSAN\NsBasetheme\Controller\NsConstantEditorController:
-    public: true
-    arguments:
-      $moduleTemplateFactory: '@TYPO3\CMS\Backend\Template\ModuleTemplateFactory'
-      $sysTemplateRepository: '@TYPO3\CMS\Core\TypoScript\IncludeTree\SysTemplateRepository'
-      $treeBuilder: '@TYPO3\CMS\Core\TypoScript\IncludeTree\SysTemplateTreeBuilder'
-      $treeTraverser: '@TYPO3\CMS\Core\TypoScript\IncludeTree\Traverser\IncludeTreeTraverser'
-      $astTraverser: '@TYPO3\CMS\Core\TypoScript\AST\Traverser\AstTraverser'
-      $astBuilder: '@TYPO3\CMS\Core\TypoScript\AST\AstBuilderInterface'
-      $losslessTokenizer: '@TYPO3\CMS\Core\TypoScript\Tokenizer\LosslessTokenizer'
-      $eventDispatcher: '@Psr\EventDispatcher\EventDispatcherInterface'
-
-
   NITSAN\NsBasetheme\Backend\BackendCssLayout:
     tags:
       - name: event.listener
         identifier: 'ns-basetheme/backend/add-backend-css'
         event: TYPO3\CMS\Backend\Controller\Event\ModifyPageLayoutContentEvent
-    arguments:
-      $renderer: '@TYPO3\CMS\Core\Page\AssetCollector'
 
   NITSAN\NsBasetheme\Backend\LoadAssetsElementPreview:
     tags:
@@ -41,8 +30,6 @@ services:
         identifier: 'ns-basetheme/backend/add-element-backend-js'
         method: handleEvent
         event: TYPO3\CMS\Backend\Controller\Event\AfterFormEnginePageInitializedEvent
-    arguments:
-      $renderer: '@TYPO3\CMS\Core\Page\AssetCollector'
 
   NITSAN\NsBasetheme\Hooks\BackendUserLogin:
     tags:
@@ -50,8 +37,6 @@ services:
         identifier: 'ns-basetheme-backend-login'
         method: 'dispatch'
         event: TYPO3\CMS\Core\Authentication\Event\AfterUserLoggedInEvent
-
-
 
   NITSAN\NsBasetheme\EventListener\AssetRendererEventListener:
     tags:
@@ -69,12 +54,9 @@ services:
       -   name: event.listener
           identifier: 'ext-min-tinysource'
           event: TYPO3\CMS\Frontend\Event\AfterCacheableContentIsGeneratedEvent
-  NITSAN\NsBasetheme\EventListener\MyEventListener:
+
+  NITSAN\NsBasetheme\EventListener\PackageActivationSiteImportListener:
     tags:
       -   name: event.listener
           identifier: 'ext-activated'
           event: TYPO3\CMS\Core\Package\Event\AfterPackageActivationEvent
-
-
-
-

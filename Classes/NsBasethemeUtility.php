@@ -12,10 +12,15 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class NsBasethemeUtility
 {
+    public function __construct(
+        private readonly PackageManager $packageManager,
+        private readonly AssetCollector $assetCollector,
+    ) {}
+
     public function getInstalledChildTheme(): array
     {
         $arrAllExtensions = [];
-        $activePackages = GeneralUtility::makeInstance(PackageManager::class)->getActivePackages();
+        $activePackages = $this->packageManager->getActivePackages();
         foreach ($activePackages as $package) {
             $packageKey = $package->getPackageKey();
             if (str_starts_with($packageKey, 'ns_theme_')) {
@@ -33,7 +38,7 @@ class NsBasethemeUtility
         }
 
         $basethemeKey = 'ns_basetheme';
-        $renderer = GeneralUtility::makeInstance(AssetCollector::class);
+        $renderer = $this->assetCollector;
 
         foreach ($arrAllExtensions as $extKey) {
             $rExtkey = $extKey;

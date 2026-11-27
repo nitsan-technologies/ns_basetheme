@@ -19,6 +19,10 @@ class PwaMiddleware implements MiddlewareInterface
 
     protected ServerRequestInterface $request;
 
+    public function __construct(
+        private readonly PageRenderer $pageRenderer,
+    ) {}
+
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $this->request = $request;
@@ -80,7 +84,7 @@ class PwaMiddleware implements MiddlewareInterface
         }
         $headerData .= "<meta name='theme-color' content='{$configurationsColor}'>";
         $headerData .= "<meta name='msapplication-TileColor' content='{$configurationsColor}'>";
-        GeneralUtility::makeInstance(PageRenderer::class)->addHeaderData($headerData);
+        $this->pageRenderer->addHeaderData($headerData);
     }
 
     /**
@@ -94,18 +98,18 @@ class PwaMiddleware implements MiddlewareInterface
             'name' => (string)($configurations['name'] ?? ''),
             'icons' => [
                 [
-                    'src' => (string)($configurations['icon_192'] ?? ''),
+                    'src' => $this->sanitizePublicUrl((string)($configurations['icon_192'] ?? '')),
                     'sizes' => '192x192',
                     'type' => (string)($configurations['icon_192_type'] ?? ''),
                     'density' => 4,
                 ],
                 [
-                    'src' => (string)($configurations['icon_512'] ?? ''),
+                    'src' => $this->sanitizePublicUrl((string)($configurations['icon_512'] ?? '')),
                     'sizes' => '512x512',
                     'type' => (string)($configurations['icon_512_type'] ?? ''),
                 ],
                 [
-                    'src' => (string)($configurations['icon_144'] ?? ''),
+                    'src' => $this->sanitizePublicUrl((string)($configurations['icon_144'] ?? '')),
                     'sizes' => '144x144',
                     'type' => (string)($configurations['icon_144_type'] ?? ''),
                     'purpose' => 'maskable',
@@ -120,7 +124,7 @@ class PwaMiddleware implements MiddlewareInterface
 
         if (!empty($configurations['ss_icon_desktop'])) {
             $data['screenshots'][] = [
-                'src' => (string)$configurations['ss_icon_desktop'],
+                'src' => $this->sanitizePublicUrl((string)$configurations['ss_icon_desktop']),
                 'sizes' => (string)($configurations['ss_icon_size_desktop'] ?? ''),
                 'type' => (string)($configurations['ss_icon_desktop_type'] ?? ''),
                 'form_factor' => 'wide',
@@ -129,7 +133,7 @@ class PwaMiddleware implements MiddlewareInterface
         }
         if (!empty($configurations['ss_icon_mobile'])) {
             $data['screenshots'][] = [
-                'src' => (string)$configurations['ss_icon_mobile'],
+                'src' => $this->sanitizePublicUrl((string)$configurations['ss_icon_mobile']),
                 'sizes' => (string)($configurations['ss_icon_size_mobile'] ?? ''),
                 'type' => (string)($configurations['ss_icon_mobile_type'] ?? ''),
                 'form_factor' => 'narrow',
@@ -145,7 +149,7 @@ class PwaMiddleware implements MiddlewareInterface
      *
      * @param array<string, mixed> $data
      */
-    protected function processFiles(array $data): void
+    public function processFiles(array $data): void
     {
         $pwaFileadminPath = Environment::getPublicPath() . '/fileadmin/pwa';
         if (!is_dir($pwaFileadminPath) && !GeneralUtility::mkdir($pwaFileadminPath) && !is_dir($pwaFileadminPath)) {
@@ -165,7 +169,7 @@ class PwaMiddleware implements MiddlewareInterface
         GeneralUtility::writeFile($jsonFile, $encoded);
     }
 
-    protected function manifestNeedsUpdate(string $jsonFile, string $encoded): bool
+    public function manifestNeedsUpdate(string $jsonFile, string $encoded): bool
     {
         if (!is_file($jsonFile)) {
             return true;

@@ -76,9 +76,15 @@ settings:
     type: string
     default: ''
 
-    # Copyright
+    # Copyright (bare key kept for BC with Sets/setup.typoscript {$copyright})
   copyright:
     label: 'Copyright Text'
+    category: Nsbasetheme.settings.general.footer
+    type: string
+    default: 'copyright@2024'
+  # Full constant path used by child-theme TypoScript / Fluid
+  ns_basetheme.website.settings.copyright:
+    label: 'Copyright Text (constant)'
     category: Nsbasetheme.settings.general.footer
     type: string
     default: 'copyright@2024'
@@ -100,6 +106,12 @@ settings:
     default: 11
   ns_basetheme.website.settings.root:
     label: 'Root Page Id'
+    category: Nsbasetheme.settings.general.menu
+    type: int
+    default: 1
+  # Alias used by child-theme TypoScript ({$ns_basetheme.website.settings.rootpage})
+  ns_basetheme.website.settings.rootpage:
+    label: 'Root Page Id (constant)'
     category: Nsbasetheme.settings.general.menu
     type: int
     default: 1

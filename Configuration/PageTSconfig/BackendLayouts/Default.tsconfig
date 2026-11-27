@@ -3,7 +3,7 @@ mod {
     web_layout {
         BackendLayouts {
             default {
-                title = LLL:EXT:ns_basetheme/Resources/Private/Language/BackendLayouts/locallang.xlf:default
+                title = ns_basetheme.backend_layouts.messages:default
                 icon = EXT:ns_basetheme/Resources/Public/Icons/BackendLayouts/default.gif
                 config {
                     backend_layout {
@@ -13,7 +13,7 @@ mod {
                             1 {
                                 columns {
                                     1 {
-                                        name = LLL:EXT:ns_basetheme/Resources/Private/Language/BackendLayouts/locallang.xlf:content
+                                        name = ns_basetheme.backend_layouts.messages:content
                                         colPos = 0
                                     }
                                 }
@@ -22,7 +22,7 @@ mod {
                             2 {
                                 columns {
                                     1 {
-                                        name = LLL:EXT:ns_basetheme/Resources/Private/Language/BackendLayouts/locallang.xlf:footer
+                                        name = ns_basetheme.backend_layouts.messages:footer
                                         colPos = 1
                                     }
                                 }

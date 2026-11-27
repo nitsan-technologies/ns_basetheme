@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 defined('TYPO3') or die();
 
 use TYPO3\CMS\Core\Core\Environment;
@@ -42,23 +44,6 @@ call_user_func(function () {
             }
         }
 
-        // Let's load pi_flexform ONLY for elements that are NOT Content Blocks
-        foreach ($allComponents as $extKey => $extValue) {
-            foreach ($extValue as $key => $theComponent) {
-                // Skip if this is a Content Block - Content Blocks handle their own fields
-                if (in_array($theComponent, $contentBlockIdentifiers)) {
-                    continue;
-                }
-
-                $GLOBALS['TCA']['tt_content']['types']['CType']['subtypes_addlist'][$theComponent] = 'pi_flexform';
-                \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
-                    '',
-                    'FILE:EXT:' . $extKey . '/Configuration/FlexForms/' . $theComponent . '.xml',
-                    '' . $theComponent . ''
-                );
-            }
-        }
-
         // Let's add each Component as CType
         // Note: Content Blocks automatically register their CTypes, so we skip them here
         foreach ($allComponents as $extKey => $extValue) {
@@ -96,7 +81,7 @@ call_user_func(function () {
             }
         }
 
-        // Adding each components
+        // Adding each components (FlexForm via columnsOverrides — replaces deprecated addPiFlexFormValue)
         // Note: Content Blocks handle their own TCA configuration, so we skip them here
         foreach ($allComponents as $extKey => $extValue) {
             foreach ($extValue as $key => $theComponent) {
@@ -105,7 +90,8 @@ call_user_func(function () {
                     continue;
                 }
 
-                $tcaComponent = [
+                $flexFormDs = 'FILE:EXT:' . $extKey . '/Configuration/FlexForms/' . $theComponent . '.xml';
+                $GLOBALS['TCA']['tt_content']['types'][$theComponent] = [
                     'showitem' => '
                         --palette--;LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_db.xlf:palette.general;general,
                         --palette--;;visibility,
@@ -116,8 +102,14 @@ call_user_func(function () {
                         --div--;LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_db.xlf:palette.access,
                         --palette--;LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_db.xlf:palette.access;access,
                     ',
+                    'columnsOverrides' => [
+                        'pi_flexform' => [
+                            'config' => [
+                                'ds' => $flexFormDs,
+                            ],
+                        ],
+                    ],
                 ];
-                $GLOBALS['TCA']['tt_content']['types'][$theComponent] = $tcaComponent;
             }
         }
 
@@ -134,7 +126,7 @@ call_user_func(function () {
                 'type' => 'imageManipulation',
                 'cropVariants' => [
                     'specialMobile' => [
-                        'title' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:imageManipulation.mobile',
+                        'title' => 'ns_basetheme.db:imageManipulation.mobile',
                         'allowedAspectRatios' => [
                             'NaN' => [
                                 'title' => $imgLl . 'imwizard.ratio.free',
@@ -143,7 +135,7 @@ call_user_func(function () {
                         ],
                     ],
                     'specialTablet' => [
-                        'title' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:imageManipulation.tablet',
+                        'title' => 'ns_basetheme.db:imageManipulation.tablet',
                         'allowedAspectRatios' => [
                             'NaN' => [
                                 'title' => $imgLl . 'imwizard.ratio.free',
@@ -152,7 +144,7 @@ call_user_func(function () {
                         ],
                     ],
                     'default' => [
-                        'title' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:imageManipulation.desktop',
+                        'title' => 'ns_basetheme.db:imageManipulation.desktop',
                         'allowedAspectRatios' => [
                             'NaN' => [
                                 'title' => $imgLl . 'imwizard.ratio.free',
@@ -171,11 +163,11 @@ call_user_func(function () {
             (
                 new \B13\Container\Tca\ContainerConfiguration(
                     'ns_base_container', // CType
-                    'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.container', // label
-                    'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.container.des', // description
+                    'ns_basetheme.db:grid.container', // label
+                    'ns_basetheme.db:grid.container.des', // description
                     [
                         [
-                            ['name' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.content', 'colPos' => 101],
+                            ['name' => 'ns_basetheme.db:grid.content', 'colPos' => 101],
                         ],
                     ] // grid configuration
                 )
@@ -188,12 +180,12 @@ call_user_func(function () {
             (
                 new \B13\Container\Tca\ContainerConfiguration(
                     'ns_base_2Cols', // CType
-                    'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.2column', // label
-                    'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.2column.des', // description
+                    'ns_basetheme.db:grid.2column', // label
+                    'ns_basetheme.db:grid.2column.des', // description
                     [
                         [
-                            ['name' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.content', 'colPos' => 101],
-                            ['name' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.content', 'colPos' => 102],
+                            ['name' => 'ns_basetheme.db:grid.content', 'colPos' => 101],
+                            ['name' => 'ns_basetheme.db:grid.content', 'colPos' => 102],
                         ],
                     ] // grid configuration
                 )
@@ -206,13 +198,13 @@ call_user_func(function () {
             (
                 new \B13\Container\Tca\ContainerConfiguration(
                     'ns_base_3Cols', // CType
-                    'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.3column', // label
-                    'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.3column.des', // description
+                    'ns_basetheme.db:grid.3column', // label
+                    'ns_basetheme.db:grid.3column.des', // description
                     [
                         [
-                            ['name' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.content', 'colPos' => 101],
-                            ['name' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.content', 'colPos' => 102],
-                            ['name' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.content', 'colPos' => 103],
+                            ['name' => 'ns_basetheme.db:grid.content', 'colPos' => 101],
+                            ['name' => 'ns_basetheme.db:grid.content', 'colPos' => 102],
+                            ['name' => 'ns_basetheme.db:grid.content', 'colPos' => 103],
                         ],
                     ] // grid configuration
                 )
@@ -226,14 +218,14 @@ call_user_func(function () {
             (
                 new \B13\Container\Tca\ContainerConfiguration(
                     'ns_base_4Cols', // CType
-                    'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.4column', // label
-                    'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.4column.des', // description
+                    'ns_basetheme.db:grid.4column', // label
+                    'ns_basetheme.db:grid.4column.des', // description
                     [
                         [
-                            ['name' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.content', 'colPos' => 101],
-                            ['name' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.content', 'colPos' => 102],
-                            ['name' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.content', 'colPos' => 103],
-                            ['name' => 'LLL:EXT:ns_basetheme/Resources/Private/Language/locallang_db.xlf:grid.content', 'colPos' => 104],
+                            ['name' => 'ns_basetheme.db:grid.content', 'colPos' => 101],
+                            ['name' => 'ns_basetheme.db:grid.content', 'colPos' => 102],
+                            ['name' => 'ns_basetheme.db:grid.content', 'colPos' => 103],
+                            ['name' => 'ns_basetheme.db:grid.content', 'colPos' => 104],
                         ],
                     ] // grid configuration
                 )
@@ -247,14 +239,13 @@ call_user_func(function () {
         $nsbasethemeUtility = GeneralUtility::makeInstance(\NITSAN\NsBasetheme\NsBasethemeUtility::class);
         $installedTheme = $nsbasethemeUtility->getInstalledChildTheme();
 
-        //@TODO Change /typo3conf/
         $checkFile = '';
         if ($installedTheme) {
             if (Environment::isComposerMode()) {
                 $installedTheme = str_replace('_', '-', $installedTheme);
-                $basePath =  Environment::getProjectPath() . '/vendor/nitsan/' . $installedTheme[0] . '/Resources/Public/CheckBootstrapVersion';
+                $basePath = Environment::getProjectPath() . '/vendor/nitsan/' . $installedTheme[0] . '/Resources/Public/CheckBootstrapVersion';
             } else {
-                $basePath =  Environment::getPublicPath() . '/typo3conf/ext/' . $installedTheme[0] . '/Resources/Public/CheckBootstrapVersion';
+                $basePath = Environment::getPublicPath() . '/typo3conf/ext/' . $installedTheme[0] . '/Resources/Public/CheckBootstrapVersion';
             }
             $checkFile = @file_exists($basePath);
         }
@@ -264,20 +255,12 @@ call_user_func(function () {
         }
         $grids = ['ns_base_2Cols', 'ns_base_3Cols', 'ns_base_4Cols'];
         foreach ($grids as $grid) {
-            if ($CheckBootstrapVersion == 'Bootstrap5') {
-                \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
-                    '',
-                    'FILE:EXT:ns_basetheme/Configuration/FlexForms/Container_Bootstrap5/' . $grid . '.xml',
-                    $grid
-                );
-            } else {
-                \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
-                    '',
-                    'FILE:EXT:ns_basetheme/Configuration/FlexForms/Container/' . $grid . '.xml',
-                    $grid
-                );
-            }
+            $flexFormFolder = $CheckBootstrapVersion == 'Bootstrap5'
+                ? 'Container_Bootstrap5'
+                : 'Container';
+            $flexFormDs = 'FILE:EXT:ns_basetheme/Configuration/FlexForms/' . $flexFormFolder . '/' . $grid . '.xml';
 
+            $GLOBALS['TCA']['tt_content']['types'][$grid]['columnsOverrides']['pi_flexform']['config']['ds'] = $flexFormDs;
             $GLOBALS['TCA']['tt_content']['types'][$grid]['showitem'] = '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                     --palette--;;general,

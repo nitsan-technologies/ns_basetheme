@@ -24,15 +24,9 @@ class Minifier
     public const TYPE_STYLESHEET = 'CSS';
     public const TYPE_JAVASCRIPT = 'JS';
 
-    protected ResourceCompressorPath $resourceCompressor;
-
-    /**
-     * Minifier constructor
-     */
-    public function __construct()
-    {
-        $this->resourceCompressor = GeneralUtility::makeInstance(ResourceCompressorPath::class);
-    }
+    public function __construct(
+        private readonly ResourceCompressorPath $resourceCompressor,
+    ) {}
 
     /**
      * Method called by "jsCompressHandler"
@@ -154,9 +148,10 @@ class Minifier
 
     private function generateTargetFilename(string $filepath, bool $isAssetCollector): string
     {
-        $compressorPath = (string) $this->resourceCompressor;
-        if (!is_dir($this->getSitePath() . $compressorPath)) {
-            GeneralUtility::mkdir($this->getSitePath() . $compressorPath);
+        $compressorPath = $this->resolveCompressorRelativePath();
+        $absoluteCompressorDir = $this->getSitePath() . $compressorPath;
+        if (!is_dir($absoluteCompressorDir)) {
+            GeneralUtility::mkdir_deep($absoluteCompressorDir);
         }
         $pathInfo = pathinfo($filepath);
         $pathInfoFilename = $pathInfo['filename'];
@@ -165,6 +160,24 @@ class Minifier
         }
 
         return $compressorPath . $pathInfoFilename . '-min.' . $pathInfo['extension'];
+    }
+
+    /**
+     * Ensures a public-relative directory (defensive if an absolute path is ever injected).
+     */
+    private function resolveCompressorRelativePath(): string
+    {
+        $compressorPath = str_replace('\\', '/', (string)$this->resourceCompressor);
+        $publicPath = rtrim(str_replace('\\', '/', Environment::getPublicPath()), '/') . '/';
+        if (str_starts_with($compressorPath, $publicPath)) {
+            $compressorPath = substr($compressorPath, strlen($publicPath));
+        }
+        $compressorPath = ltrim($compressorPath, '/');
+        if ($compressorPath === '') {
+            $compressorPath = 'typo3temp/assets/';
+        }
+
+        return rtrim($compressorPath, '/') . '/';
     }
 
     /**
